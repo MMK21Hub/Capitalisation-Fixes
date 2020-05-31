@@ -1,6 +1,6 @@
 {
 "pack": {
 "pack_format": 5,
-"description": "Fixes MC-184723. Only works in 20w21a."
+"description": "Fixes capitalisation in 20w21a/22a. §9§nbit.ly/CapsFix"
 }
 }

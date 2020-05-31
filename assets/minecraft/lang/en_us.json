@@ -1,3 +1,7 @@
 {
-	"generator.single_biome_floating_islands": "Floating Islands"
+	"generator.single_biome_floating_islands": "Floating Islands",
+	"selectWorld.backupJoinConfirmButton": "Create Backup and Load",
+	"selectWorld.import_worldgen_settings": "Import Settings",
+	"datapackFailure.safeMode": "Safe Mode",
+    "selectWorld.backupJoinSkipButton": "I Know what I'm Doing!"
 }
