@@ -11,6 +11,7 @@ Not compatable with other versions.
 
 ## What's inside?
 **Fixed bugs:** MC-184723, MC-186264, MC-186263
+
 **Todo:** MC-184612, MC-186248
 
 ## See also
