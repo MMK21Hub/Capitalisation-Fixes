@@ -4,5 +4,5 @@
  - Fixed four more capitalisation bugs
 
 # Released
-## v1.0
+## v1.0 (2020-05-21)
  - Fixed MC-184723 by adjusting the translation string for the Floating Islands world type.
