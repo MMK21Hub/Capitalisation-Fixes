@@ -1,6 +1,6 @@
 
 # Capitalisation-Fixes
-This is a resource pack to fix a few bugs with 20w21a/20w22a where labels are incorrectly capitalised. It works for both Engish and American languages. If you have feedback, you can DM `MMK21Games#2868` on Discord. You can also submit a bug report under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).  To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable relese and download the zip file. Install it [just like any other resource pack](https://minecraft.gamepedia.com/Tutorials/Loading_a_resource_pack).
+This is a resource pack to fix a few bugs with 20w21a/20w22a where labels are incorrectly capitalised. It works for both Engish and American languages. If you have feedback, you can DM `MMK21Games#2868` on Discord. You can also submit a bug report under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).  To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable relese and download the zip file. Install it [just like any other resource pack](https://minecraft.gamepedia.com/Tutorials/Loading_a_resource_pack). You can find the changelog [in a seperate file](Changelog.md).
 
 ## Compatability table
 Not compatable with other versions.
