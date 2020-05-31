@@ -10,7 +10,7 @@ Not compatable with other versions.
 |**v1.1**|✅|✅
 
 ## What's inside?
-**Fixed bugs:** MC-184723, MC-186264, MC-186263, MC-184612, MC-186248
+**Fixed bugs:** [MC-184723](https://bugs.mojang.com/browse/MC-184723), [MC-186264]((https://bugs.mojang.com/browse/MC-186264), [MC-186263]((https://bugs.mojang.com/browse/MC-186263), [MC-184612](https://bugs.mojang.com/browse/MC-184612), [MC-186248](https://bugs.mojang.com/browse/MC-186248)
 
 ## See also
  - There is [a resoruce pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string (is untranslated)") and [MC-186687](https://bugs.mojang.com/browse/MC-186687 "Death message for being shot by a Wither Skull does not fit for all entities").
