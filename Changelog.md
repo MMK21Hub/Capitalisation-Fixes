@@ -2,6 +2,8 @@
 ## v1.2
  - Updated folder name: `Capitalisation Fixes v1.1` --> `Capitalisation Fixes v1.2`
  - Updated pack.mcmeta
+ - Fixed 1 bug
+    - `Do you want to add following packs to Minecraft?` --> `Do you want to add the following packs to Minecraft?` (MC-187380)
 
 # Released
 ## [v1.1 (2020-05-31)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.1)
