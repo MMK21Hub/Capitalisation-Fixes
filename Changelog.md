@@ -9,6 +9,7 @@
     - Minor grammar fix: `"Fast" graphics reduces the amount of visible rain and snow. Transparency effects are disabled for various blocks such as tree-leaves.` → `"Fast" graphics reduces the amount of visible rain and snow. Transparency effects are disabled for various blocks such as tree leaves.` (MC-187344)
     - `Cover Me With Diamonds` → `Cover Me with Diamonds` (MC-187544)
     - `Reset to default` → `Reset to Default` (MC-187676) Note that this bug has been assigned to Grum and marked as 'In Progress', so is likely to be fixed in 1.16 pre-3.
+    - `Go back` → `Go Back` (MC-187677) Note that this bug has been marked as fixed for a 'Future Version - 1.16+', so is very likely to be fixed in the 1.16 pre-3.
 
 # Released
 ## [v1.1 (2020-05-31)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.1)
