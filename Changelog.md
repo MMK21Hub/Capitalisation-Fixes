@@ -10,6 +10,7 @@
     - `Reset to default` → `Reset to Default` (MC-187676) Note that this bug has been assigned to Grum and marked as 'In Progress', so is likely to be fixed in 1.16 pre-3.
     - `Go back` → `Go Back` (MC-187677) Note that this bug has been marked as fixed for a 'Future Version - 1.16+', so is very likely to be fixed in the 1.16 pre-3.
     - `"Fabulous" graphics enables screen shaders to draw translucent objects per-pixel.\nThis may severely impact performance for portable devices and 4k displays.` → `"Fabulous" graphics enables screen shaders to draw translucent objects per-pixel.\nThis may severely impact performance for portable devices and 4K displays.` (MC-188393)
+ - Simplified the installation process.
 
 [**Roadmap**](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/1)
 
