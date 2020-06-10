@@ -3,5 +3,13 @@
 	"selectWorld.backupJoinConfirmButton": "Create Backup and Load",
 	"selectWorld.import_worldgen_settings": "Import Settings",
 	"datapackFailure.safeMode": "Safe Mode",
-    "selectWorld.backupJoinSkipButton": "I Know what I'm Doing!"
+    "selectWorld.backupJoinSkipButton": "I Know what I'm Doing!",
+    "pack.incompatible.confirm.old": "This pack was made for an older version of Minecraft and may not work correctly.",
+    "pack.incompatible.confirm.new": "This pack was made for a newer version of Minecraft and may not work correctly.",
+	"options.graphics.fast.tooltip": "\"Fast\" graphics reduces the amount of visible rain and snow.\nTransparency effects are disabled for various blocks such as tree leaves.",
+	"advancements.story.shiny_gear.title": "Cover Me with Diamonds",
+	"dataPack.validation.reset": "Reset to Default",
+	"dataPack.validation.back": "Go Back",
+	"options.graphics.fabulous.tooltip": "\"Fabulous\" graphics enables screen shaders to draw translucent objects per-pixel.\nThis may severely impact performance for portable devices and 4K displays.",
+	"pack.dropConfirm": "Do you want to add the following packs to Minecraft?"
 }
