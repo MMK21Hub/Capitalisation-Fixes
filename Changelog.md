@@ -1,5 +1,8 @@
 # Unreleased
-## v1.2
+None!
+
+# Released
+## [v1.2 (2020-06-10)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.2)
  - Updated folder name: `Capitalisation Fixes v1.1` → `Capitalisation Fixes v1.2`
  - Updated pack.mcmeta
  - Fixed 7 bugs
@@ -14,7 +17,6 @@
 
 [**Roadmap**](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/1)
 
-# Released
 ## [v1.1 (2020-05-31)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.1)
  - Changed name of resource pack from 'MC-184723 Fix' to 'Capitalisation Fixes'.
  - Fixed four more capitalisation bugs
