@@ -4,10 +4,10 @@ This is a resource pack to fix a few bugs with 20w21a/20w22a where labels are in
 
 ## Compatability table
 Not compatable with other versions.
-|  |20w21a|20w22a|
-|--|--|--
-|**v1.0**|✅|✅
-|**v1.1**|✅|✅
+|  |20w21a|20w22a|1.16 pre-1|1.16 pre-2
+|--|--|--|--|--
+|**v1.0**|✅|✅|✅|✅
+|**v1.1**|✅|✅|✅|✅
 
 ## What's inside?
 **Fixed bugs:** [MC-184723](https://bugs.mojang.com/browse/MC-184723), [MC-186264](https://bugs.mojang.com/browse/MC-186264), [MC-186263](https://bugs.mojang.com/browse/MC-186263), [MC-184612](https://bugs.mojang.com/browse/MC-184612), [MC-186248](https://bugs.mojang.com/browse/MC-186248)
