@@ -1,5 +1,6 @@
 # Unreleased
 ## v1.2
+*[Roadmap](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/1)*
  - Updated folder name: `Capitalisation Fixes v1.1` → `Capitalisation Fixes v1.2`
  - Updated pack.mcmeta
  - Fixed 3 bugs
