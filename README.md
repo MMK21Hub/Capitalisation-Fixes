@@ -11,7 +11,8 @@ Not compatable with other versions.
 |**v1.2**|✅|✅|✅|✅
 
 ## What's inside?
-**Fixed bugs:** [MC-184723](https://bugs.mojang.com/browse/MC-184723)
+**Fixed bugs:** 
+ - [MC-184723](https://bugs.mojang.com/browse/MC-184723)
  - [MC-186264](https://bugs.mojang.com/browse/MC-186264)
  - [MC-186263](https://bugs.mojang.com/browse/MC-186263)
  - [MC-184612](https://bugs.mojang.com/browse/MC-184612)
