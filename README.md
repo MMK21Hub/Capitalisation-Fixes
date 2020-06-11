@@ -4,26 +4,26 @@ This is a resource pack to fix some bugs with 20w21a+ where labels are incorrect
 
 ## Compatability table
 Not compatable with other versions.
-|  |20w21a|20w22a|1.16 pre-1|1.16 pre-2
-|--|--|--|--|--
-|**v1.0**|✅|✅|✅|✅
-|**v1.1**|✅|✅|✅|✅
-|**v1.2**|✅|✅|✅|✅
+|  |20w21a|20w22a|1.16 pre-1|1.16 pre-2|1.16 pre-3
+|--|--|--|--|--|--
+|**v1.0**|✅|✅|✅|✅|✅
+|**v1.1**|✅|✅|✅|✅|✅
+|**v1.2**|✅|✅|✅|✅|✅
 
 ## What's inside?
 **Fixed bugs:** 
- - [MC-184723](https://bugs.mojang.com/browse/MC-184723)
- - [MC-186264](https://bugs.mojang.com/browse/MC-186264)
- - [MC-186263](https://bugs.mojang.com/browse/MC-186263)
- - [MC-184612](https://bugs.mojang.com/browse/MC-184612)
- - [MC-186248](https://bugs.mojang.com/browse/MC-186248)
+ - [MC-184723](https://bugs.mojang.com/browse/MC-184723) - Fixed in vanilla (1.16 pre-3)
+ - [MC-186264](https://bugs.mojang.com/browse/MC-186264) - Marked as WAI
+ - [MC-186263](https://bugs.mojang.com/browse/MC-186263) - Fixed in vanilla (1.16 pre-3)
+ - [MC-184612](https://bugs.mojang.com/browse/MC-184612) - Fixed in vanilla (1.16 pre-3)
+ - [MC-186248](https://bugs.mojang.com/browse/MC-186248) - Fixed in vanilla (1.16 pre-3)
  - [MC-187380](https://bugs.mojang.com/browse/MC-187380)
  - [MC-187379](https://bugs.mojang.com/browse/MC-187379)
  - [MC-187344](https://bugs.mojang.com/browse/MC-187344)
  - [MC-187544](https://bugs.mojang.com/browse/MC-187544)
- - [MC-187676](https://bugs.mojang.com/browse/MC-187676)
- - [MC-187677](https://bugs.mojang.com/browse/MC-187677)
- - [MC-188393](https://bugs.mojang.com/browse/MC-188393)
+ - [MC-187676](https://bugs.mojang.com/browse/MC-187676) - Fixed in vanilla (1.16 pre-3)
+ - [MC-187677](https://bugs.mojang.com/browse/MC-187677) - Fixed in vanilla (1.16 pre-3)
+ - [MC-188393](https://bugs.mojang.com/browse/MC-188393) - Fixed in vanilla (1.16 pre-3)
 
 ## See also
  - There is [a resoruce pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string \(is untranslated\)"), [MC-186687](https://bugs.mojang.com/browse/MC-186687 "Death message for being shot by a Wither Skull does not fit for all entities") and [MC-186851](https://bugs.mojang.com/browse/MC-186851 "\"death.attack.sting.item\" displays raw translation string \(is untranslated\)")
