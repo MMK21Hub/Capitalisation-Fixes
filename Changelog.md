@@ -5,7 +5,7 @@
  - Updated folder name to `Capitalisation-Fixes-v1.3`
  - Reverted the capitalisition of `I Know what I'm Doing!`
  - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (28/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
-   - Spectate **W**orld [Action button] <!-- -->
+   - Spectate **W**orld [Action button]
    - You **D**ied! [Title/Heading]
    - Title **S**creen [Action button]
    - Game **O**ver! [Title/Heading]
@@ -29,6 +29,9 @@
    - Show **I**nvisible **B**locks: [Field name]
    - Show **B**ounding **B**ox: [Field name]
    - Turtle **S**hell thunks [Consistant with item name] <!-- #28 -->
+ - Partially fixed [MC-116857](https://bugs.mojang.com/browse/MC-116857) (2/9). This is what the strings look line in v1.3 (with the changes in bold):
+   - Find **E**lytra
+   - Use a **c**ompass on a **l**odestone
    
 [**Roadmap**](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/2)
 
