@@ -21,6 +21,8 @@
    - Continue **W**ithout **S**upport [Action Button] \[1.16 pre5 and above only]
    - Take me **B**ack [Action Button] \[1.16 pre5 and above only] <!-- #20 -->
    - Include **E**ntities: [Field name]
+   
+[**Roadmap**](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/2)
 
 # Released
 ## [v1.2 (2020-06-10)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.2)
