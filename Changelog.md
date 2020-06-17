@@ -1,5 +1,16 @@
+
 # Unreleased
-None!
+## v1.3
+ - Updated folder name to `Capitalisation-Fixes-v1.3`
+ - Reverted the capitalisition of `I Know what I'm Doing!`
+ - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (11/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
+   - Spectate **W**orld [Action button]
+   - You **D**ied! [Title/Heading]
+   - Title **S**creen [Action button]
+   - Game **O**ver! [Title/Heading]
+   - F3 + F = Cycle render distance (**s**hift to invert) 
+   - When on **H**ead/**B**ody/**L**egs/**F**eet: [Confirmed by Mojang]
+   - When in **M**ain/**O**ff **H**and: [Confirmed by Mojang]
 
 # Released
 ## [v1.2 (2020-06-10)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.2)
