@@ -1,9 +1,10 @@
 
+
 # Unreleased
 ## v1.3
  - Updated folder name to `Capitalisation-Fixes-v1.3`
  - Reverted the capitalisition of `I Know what I'm Doing!`
- - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (21/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
+ - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (28/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
    - Spectate **W**orld [Action button] <!-- -->
    - You **D**ied! [Title/Heading]
    - Title **S**creen [Action button]
@@ -21,6 +22,13 @@
    - Continue **W**ithout **S**upport [Action Button] \[1.16 pre5 and above only]
    - Take me **B**ack [Action Button] \[1.16 pre5 and above only] <!-- #20 -->
    - Include **E**ntities: [Field name]
+   - Save **M**ode - write to file [Field name]
+   - Load **M**ode - load from file [Field name]
+   - Data **M**ode - game logic marker [Field name]
+   - Corner **M**ode - placement and size marker [Field name]
+   - Show **I**nvisible **B**locks: [Field name]
+   - Show **B**ounding **B**ox: [Field name]
+   - Turtle **S**hell thunks [Consistant with item name] <!-- #28 -->
    
 [**Roadmap**](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/2)
 
