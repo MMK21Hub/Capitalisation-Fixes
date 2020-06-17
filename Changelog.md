@@ -3,14 +3,24 @@
 ## v1.3
  - Updated folder name to `Capitalisation-Fixes-v1.3`
  - Reverted the capitalisition of `I Know what I'm Doing!`
- - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (11/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
-   - Spectate **W**orld [Action button]
+ - Partially fixed [MC-190102](https://bugs.mojang.com/browse/MC-190102) (21/39). This is what the strings look line in v1.3 (with the changes in bold, and the reason in square brackets):
+   - Spectate **W**orld [Action button] <!-- -->
    - You **D**ied! [Title/Heading]
    - Title **S**creen [Action button]
    - Game **O**ver! [Title/Heading]
-   - F3 + F = Cycle render distance (**s**hift to invert) 
+   - F3 + F = Cycle render distance (**s**hift to invert) [Brackets do not restart capitalisation]
    - When on **H**ead/**B**ody/**L**egs/**F**eet: [Confirmed by Mojang]
-   - When in **M**ain/**O**ff **H**and: [Confirmed by Mojang]
+   - When in **M**ain/**O**ff **H**and: [Confirmed by Mojang] <!-- #10-11 -->
+   - Joint **T**ype: [Field name]
+   - Target **N**ame/**P**ool: [Field name]
+   - World **U**pdates [Title/Heading]
+   - Right Click for **M**ore ['Click' is capitalised]
+   - Back to **S**erver **L**ist [Action button]
+   - Back to **T**itle **S**creen [Action button]
+   - Press Shift to **D**ismount ['Shift' is capitalised]
+   - Continue **W**ithout **S**upport [Action Button] \[1.16 pre5 and above only]
+   - Take me **B**ack [Action Button] \[1.16 pre5 and above only] <!-- #20 -->
+   - Include **E**ntities: [Field name]
 
 # Released
 ## [v1.2 (2020-06-10)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v1.2)
