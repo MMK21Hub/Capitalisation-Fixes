@@ -4,11 +4,12 @@ This is a resource pack to fix some bugs with 20w21a+ where labels are incorrect
 
 ## Compatability table
 Not compatable with other versions.
-|  |20w21a|20w22a|1.16 pre1|1.16 pre2|1.16 pre3|1.16 pre4|1.16 pre5|1.16 pre6|1.16 pre7
-|--|--|--|--|--|--|--|--|--|--
-|**v1.0**|✅|✅|✅|✅|✅|✅|✅|✅|✅
-|**v1.1**|✅|✅|✅|✅|✅|✅|✅|✅|✅
-|**v1.2**|✅|✅|✅|✅|✅|✅|✅|✅|✅
+|  |20w21a|20w22a|1.16 Pre-releases|
+|--|--|--|--
+|**[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v10)**|✅|✅|✅
+|**[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v11)**|✅|✅|✅
+|**[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v12)**|✅|✅|✅
+|**[v1.3](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v13)**<sup>[Upcoming]</sup>|✅|✅|✅
 
 ## What's inside?
 **Fixed bugs:** 
