@@ -20,7 +20,7 @@ Not compatable with other versions.
  - [MC-187380](https://bugs.mojang.com/browse/MC-187380) - Fixed in vanilla (20w30a)
  - [MC-187379](https://bugs.mojang.com/browse/MC-187379) - Fixed in vanilla (20w30a)
  - [MC-187344](https://bugs.mojang.com/browse/MC-187344) - Fixed in vanilla (20w30a)
- - [MC-187544](https://bugs.mojang.com/browse/MC-187544) - Fixed in vanilla (20w30a)
+ - [MC-187544](https://bugs.mojang.com/browse/MC-187544)
  - [MC-187676](https://bugs.mojang.com/browse/MC-187676) - Fixed in vanilla (1.16 pre3)
  - [MC-187677](https://bugs.mojang.com/browse/MC-187677) - Fixed in vanilla (1.16 pre3)
  - [MC-188393](https://bugs.mojang.com/browse/MC-188393) - Fixed in vanilla (1.16 pre3)
