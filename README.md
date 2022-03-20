@@ -1,17 +1,19 @@
 # Capitalisation Fixes
 Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.
-- It targets the 1.19 snapshots
-- It works for both Engish and American languages
-- If you have feedback, you can DM `MMK21Games#2868` on Discord
+- It currently targets the 1.19 snapshots
+- It works for the `en_uk` and `en_us` languages
+- If you have feedback, you can DM `MMK21Games#2121` on Discord
 - You can also submit bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).
 
 To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a seperate file](Changelog.md).
 
 ## Compatability table
+Not all versions of the resource pack are compatible with all versions of MC, so check the table before deciding on the version of ~~Minecraft~~ the resource pack to use.
+
 ### Capitalisation Fixes v2
 |  |22w11a
 |--|--
-|**[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v10)**|Coming soon!
+|**v2.0**|Coming soon! (see [Issue #3](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/3))
 
 ### Capitalisation Fixes v1
 Capitalisation Fixes v1 (previously just "Capitalisation Fixes") was a resource pack that fixed some bugs in 20w21a+ where UI labels were incorrectly capitalised, and some minor grammar issues.
