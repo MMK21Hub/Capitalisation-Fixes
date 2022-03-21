@@ -1,6 +1,6 @@
 {
-"pack": {
-"pack_format": 5,
-"description": "Fixes capitalisation in 20w21a+. §9§nbit.ly/CapsFix"
-}
+  "pack": {
+    "pack_format": 9,
+    "description": "Fixes issues with in-game/UI text labels.\nSource: §9§nhttps://github.com/MMK21Hub/Capitalisation-Fixes"
+  }
 }
