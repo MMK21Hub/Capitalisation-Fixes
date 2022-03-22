@@ -39,6 +39,8 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780)
 - ["Feels like home" advancement](https://bugs.mojang.com/browse/MC-237920)
 - [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096)
+- [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972)
+- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
 
 ## See also
 
