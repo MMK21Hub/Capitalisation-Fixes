@@ -45,5 +45,8 @@
   // MC-206779
   "subtitles.block.honey_block.slide": "Sliding down a Honey Block",
 
+  // MC-237590
+  "options.chunks": "%s Chunks",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
