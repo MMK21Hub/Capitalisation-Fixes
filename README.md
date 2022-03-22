@@ -30,22 +30,14 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 | **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v11)** | ✅                | ✅                 | ✅              | ✅                |
 | **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v12)** | ✅                | ✅                 | ✅              | ✅                |
 
-## What's inside?
+## Fixed strings
 
-### Fixed bugs
-
-- ~~[MC-184723](https://bugs.mojang.com/browse/MC-184723)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-186264](https://bugs.mojang.com/browse/MC-186264)~~ - Marked as intended
-- ~~[MC-186263](https://bugs.mojang.com/browse/MC-186263)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-184612](https://bugs.mojang.com/browse/MC-184612)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-186248](https://bugs.mojang.com/browse/MC-186248)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-187380](https://bugs.mojang.com/browse/MC-187380)~~ - Fixed in vanilla (20w30a)
-- ~~[MC-187379](https://bugs.mojang.com/browse/MC-187379)~~ - Fixed in vanilla (20w30a)
-- ~~[MC-187344](https://bugs.mojang.com/browse/MC-187344)~~ - Fixed in vanilla (20w30a)
-- ~~[MC-187544](https://bugs.mojang.com/browse/MC-187544)~~ - Fixed in vanilla (21w13a)
-- ~~[MC-187676](https://bugs.mojang.com/browse/MC-187676)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-187677](https://bugs.mojang.com/browse/MC-187677)~~ - Fixed in vanilla (1.16 pre3)
-- ~~[MC-188393](https://bugs.mojang.com/browse/MC-188393)~~ - Fixed in vanilla (1.16 pre3)
+- [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
+- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606)
+- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541)
+- ["Include entities" button in the structure block interface](https://bugs.mojang.com/browse/MC-195781)
+- ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780)
+- ["Feels like home" advancement](https://bugs.mojang.com/browse/MC-237920)
 
 ## See also
 
