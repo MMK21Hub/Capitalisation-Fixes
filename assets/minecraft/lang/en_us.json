@@ -13,5 +13,8 @@
   // MC-236606
   "options.hideLightningFlashes.tooltip": "Prevents Lightning Bolts from making the sky flash. The bolts themselves will still be visible.",
 
+  // MC-219541
+  "subtitles.entity.horse.armor": "Horse Armor equips",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
