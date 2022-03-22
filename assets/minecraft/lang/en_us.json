@@ -42,5 +42,8 @@
   // MC-237922
   "advancements.adventure.play_jukebox_in_meadows.description": "Make the Meadows come alive with the sound of music from a Jukebox",
 
+  // MC-206779
+  "subtitles.block.honey_block.slide": "Sliding down a Honey Block",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
