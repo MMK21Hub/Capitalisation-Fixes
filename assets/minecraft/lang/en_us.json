@@ -13,5 +13,5 @@
   // MC-236606
   "options.hideLightningFlashes.tooltip": "Prevents Lightning Bolts from making the sky flash. The bolts themselves will still be visible.",
 
-  "trailing-comma-workaround": "This is the only line tht shouldn't have a comma"
+  "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
