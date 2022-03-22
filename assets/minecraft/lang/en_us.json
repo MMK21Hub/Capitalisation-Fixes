@@ -48,5 +48,8 @@
   // MC-237590
   "options.chunks": "%s Chunks",
 
+  // MC-237924
+  "advancements.adventure.trade_at_world_height.description": "Trade with a Villager at the build height limit",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }

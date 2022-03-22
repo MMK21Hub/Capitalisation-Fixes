@@ -43,6 +43,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590)
+- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
 
 ## See also
 
