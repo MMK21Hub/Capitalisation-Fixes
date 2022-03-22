@@ -23,5 +23,8 @@
   "structure_block.mode_info.load": "Load Mode - Load from File",
   "structure_block.mode_info.data": "Data Mode - Game Logic Marker",
 
+  // MC-237920
+  "advancements.nether.ride_strider_in_overworld_lava.title": "Feels Like Home",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
