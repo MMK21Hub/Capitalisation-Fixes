@@ -26,5 +26,21 @@
   // MC-237920
   "advancements.nether.ride_strider_in_overworld_lava.title": "Feels Like Home",
 
+  // MC-220096
+  "options.graphics.warning.accept": "Continue Without Support",
+  "options.graphics.warning.cancel": "Take Me Back",
+
+  // MC-128972
+  "argument.entity.options.distance.description": "Distance to entities",
+  "argument.entity.options.level.description": "layers with experience level",
+  "argument.entity.options.gamemode.description": "Players in gamemode",
+  "argument.entity.options.name.description": "Entities with name",
+  "argument.entity.options.x.description": "X coordinate",
+  "argument.entity.options.y.description": "Y coordinate",
+  "argument.entity.options.z.description": "Z coordinate",
+
+  // MC-237922
+  "advancements.adventure.play_jukebox_in_meadows.description": "Make the Meadows come alive with the sound of music from a Jukebox",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
