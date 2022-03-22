@@ -16,5 +16,12 @@
   // MC-219541
   "subtitles.entity.horse.armor": "Horse Armor equips",
 
+  // MC-195781
+  "structure_block.include_entities": "Include Entities:",
+
+  // MC-195780
+  "structure_block.mode_info.load": "Load Mode - Load from File",
+  "structure_block.mode_info.data": "Data Mode - Game Logic Marker",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
