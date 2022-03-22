@@ -1,11 +1,17 @@
 {
-	"advancements.adventure.lightning_rod_with_villager_no_fire.description": "Protect a Villager from an undesired shock without starting a fire",
-	"advancements.adventure.spyglass_at_parrot.description": "Look at a Parrot through a Spyglass",
-	"advancements.adventure.spyglass_at_ghast.description": "Look at a Ghast through a Spyglass",
-	"advancements.adventure.spyglass_at_dragon.description": "Look at the Ender Dragon through a Spyglass",
-	"advancements.husbandry.axolotl_in_a_bucket.description": "Catch an Axolotl in a bucket",
-	"advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
-	"advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
-	"advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
-	"advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it"
+  // MC-226430 (1.17 advancement strings)
+  "advancements.adventure.lightning_rod_with_villager_no_fire.description": "Protect a Villager from an undesired shock without starting a fire",
+  "advancements.adventure.spyglass_at_parrot.description": "Look at a Parrot through a Spyglass",
+  "advancements.adventure.spyglass_at_ghast.description": "Look at a Ghast through a Spyglass",
+  "advancements.adventure.spyglass_at_dragon.description": "Look at the Ender Dragon through a Spyglass",
+  "advancements.husbandry.axolotl_in_a_bucket.description": "Catch an Axolotl in a bucket",
+  "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
+  "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
+  "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
+  "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
+
+  // MC-236606
+  "options.hideLightningFlashes.tooltip": "Prevents Lightning Bolts from making the sky flash. The bolts themselves will still be visible.",
+
+  "trailing-comma-workaround": "This is the only line tht shouldn't have a comma"
 }
