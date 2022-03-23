@@ -1,1 +1,72 @@
-{}
+{
+  // MC-226430 (1.17 advancement strings)
+  "advancements.adventure.lightning_rod_with_villager_no_fire.description": "Protect a Villager from an undesired shock without starting a fire",
+  "advancements.adventure.spyglass_at_parrot.description": "Look at a Parrot through a Spyglass",
+  "advancements.adventure.spyglass_at_ghast.description": "Look at a Ghast through a Spyglass",
+  "advancements.adventure.spyglass_at_dragon.description": "Look at the Ender Dragon through a Spyglass",
+  "advancements.husbandry.axolotl_in_a_bucket.description": "Catch an Axolotl in a bucket",
+  "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
+  "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
+  "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
+  "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
+
+  // MC-236606
+  "options.hideLightningFlashes.tooltip": "Prevents Lightning Bolts from making the sky flash. The bolts themselves will still be visible.",
+
+  // MC-219541
+  "subtitles.entity.horse.armor": "Horse Armor equips",
+
+  // MC-195781
+  "structure_block.include_entities": "Include Entities:",
+
+  // MC-195780
+  "structure_block.mode_info.load": "Load Mode - Load from File",
+  "structure_block.mode_info.data": "Data Mode - Game Logic Marker",
+
+  // MC-237920
+  "advancements.nether.ride_strider_in_overworld_lava.title": "Feels Like Home",
+
+  // MC-220096
+  "options.graphics.warning.accept": "Continue Without Support",
+  "options.graphics.warning.cancel": "Take Me Back",
+
+  // MC-128972
+  "argument.entity.options.distance.description": "Distance to entities",
+  "argument.entity.options.level.description": "layers with experience level",
+  "argument.entity.options.gamemode.description": "Players in gamemode",
+  "argument.entity.options.name.description": "Entities with name",
+  "argument.entity.options.x.description": "X coordinate",
+  "argument.entity.options.y.description": "Y coordinate",
+  "argument.entity.options.z.description": "Z coordinate",
+
+  // MC-237922
+  "advancements.adventure.play_jukebox_in_meadows.description": "Make the Meadows come alive with the sound of music from a Jukebox",
+
+  // MC-206779
+  "subtitles.block.honey_block.slide": "Sliding down a Honey Block",
+
+  // MC-237590
+  "options.chunks": "%s Chunks",
+
+  // MC-237924
+  "advancements.adventure.trade_at_world_height.description": "Trade with a Villager at the build height limit",
+
+  // MC-206548
+  "subtitles.entity.leash_knot.break": "Leash Knot breaks",
+  "subtitles.entity.leash_knot.place": "Leash Knot tied",
+
+  // MC-244721
+  "selectWorld.backupEraseCache": "Erase Cached Data",
+
+  // MC-231458
+  "advancements.husbandry.netherite_hoe.description": "Use a Netherite Ingot to upgrade a hoe, and then reevaluate your life choices",
+
+  // MC-222876
+  "createWorld.customize.buffet.title": "Buffet World Customization",
+
+  // MC-219533
+  "subtitles.entity.wandering_trader.drink_milk": "Wandering Trader drinks Milk",
+  "subtitles.entity.wandering_trader.drink_potion": "Wandering Trader drinks Potion",
+
+  "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
+}
