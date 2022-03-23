@@ -15,9 +15,9 @@ Not all versions of the resource pack are compatible with all versions of MC, so
 
 ### Capitalisation Fixes v2
 
-|          | 22w11a                                                                                   |
-| -------- | ---------------------------------------------------------------------------------------- |
-| **v2.0** | Coming soon! (see [Issue #3](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/3)) |
+|                                                                                | 22w11a |
+| ------------------------------------------------------------------------------ | ------ |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | ✅      |
 
 ### Capitalisation Fixes v1
 
