@@ -15,9 +15,9 @@ Not all versions of the resource pack are compatible with all versions of MC, so
 
 ### Capitalisation Fixes v2
 
-|                                                                                | 22w11a |
-| ------------------------------------------------------------------------------ | ------ |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | ✅      |
+|                                                                                | 22w11a  | 22w12a  |
+| ------------------------------------------------------------------------------ | ------- | ------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#9989; | &#9989; |
 
 ### Capitalisation Fixes v1
 
@@ -26,9 +26,9 @@ Capitalisation Fixes v1 (previously just "Capitalisation Fixes") was a resource 
 Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued because of a variety of reasons, e.g. the merger of many capitalisation bugs fixed by this pack into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
 |                                                                                           | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | ----------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
-| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v10)** | ✅                | ✅                 | ✅              | ✅                |
-| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v11)** | ✅                | ✅                 | ✅              | ✅                |
-| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v12)** | ✅                | ✅                 | ✅              | ✅                |
+| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v11)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v12)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 
 ## Fixed strings
 
