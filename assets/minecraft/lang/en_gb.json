@@ -68,5 +68,9 @@
   "subtitles.entity.wandering_trader.drink_milk": "Wandering Trader drinks Milk",
   "subtitles.entity.wandering_trader.drink_potion": "Wandering Trader drinks Potion",
 
+  // MC-249422
+  "subtitles.entity.warden.heartbeat": "Warden's heart beats",
+  "subtitles.entity.warden.tendril_clicks": "Warden's tendrils click",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }

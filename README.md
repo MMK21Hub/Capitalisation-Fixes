@@ -49,6 +49,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Serious Dedication" advancement description](https://bugs.mojang.com/browse/MC-231458)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
+- [Subtitles for warden body parts](https://bugs.mojang.com/browse/MC-249422)
 
 ## See also
 
