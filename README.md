@@ -13,11 +13,14 @@ To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitali
 
 Not all versions of the resource pack are compatible with all versions of MC, so check the table before deciding on the version of ~~Minecraft~~ the resource pack to use.
 
+&#127775; - Denotes the recommend version of the pack for each Minecraft version
+
 ### Capitalisation Fixes v2
 
-|                                                                                | 22w11a  | 22w12a  |
-| ------------------------------------------------------------------------------ | ------- | ------- |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#9989; | &#9989; |
+|                                                                                | 22w11a    | 22w12a    |
+| ------------------------------------------------------------------------------ | --------- | --------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   |
+| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; |
 
 ### Capitalisation Fixes v1
 
