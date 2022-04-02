@@ -54,6 +54,10 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
 - [Subtitles for warden body parts](https://bugs.mojang.com/browse/MC-249422)
 
+## `build.sh`
+
+This script is used to easily produce a resource pack `.zip` file that can be distributed. You need to specify a version identifier to be included in the filename, e.g. `./build.sh v2.0` (generates `Capitalisation-Fixes-v2.0.zip`). Only the files that need to be distributed are included: check the script for exact details.
+
 ## See also
 
 - There is [a resource pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string \(is untranslated\)") and [MC-186851](https://bugs.mojang.com/browse/MC-186851 "\"death.attack.sting.item\" displays raw translation string \(is untranslated\)")
