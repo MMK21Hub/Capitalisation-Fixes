@@ -29,9 +29,9 @@ Capitalisation Fixes v1 (previously just "Capitalisation Fixes") was a resource 
 Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued because of a variety of reasons, e.g. the merger of many capitalisation bugs fixed by this pack into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
 |                                                                                           | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | ----------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
-| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
-| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v11)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
-| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/Changelog.md#v12)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 
 ## Fixed strings
 
@@ -61,4 +61,4 @@ This script is used to easily produce a resource pack `.zip` file that can be di
 ## See also
 
 - There is [a resource pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string \(is untranslated\)") and [MC-186851](https://bugs.mojang.com/browse/MC-186851 "\"death.attack.sting.item\" displays raw translation string \(is untranslated\)")
-- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod for 1.18.2 that fixes a whole load of vanilla bugs: it currently contains 61 bugfixes! It also has a config screen that lets you independently toggle all the bugfixes.
+- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod for 1.18.2 that fixes [a whole load of vanilla bugs](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md): it currently contains 61 bugfixes! It also has a config screen that lets you independently toggle all the bugfixes.
