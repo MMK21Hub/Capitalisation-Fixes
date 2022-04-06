@@ -4,7 +4,7 @@
 
 This document is an archive of the versions of Capitalisation Fixes v1. For information on modern versions of the pack (Capitalisation Fixes v2), see the [Github Releases](https://github.com/MMK21Hub/Capitalisation-Fixes/releases) page.
 
-## v1.3 (This version was never released; blame 20w30a )
+## v1.3 (This version was never released; blame 20w30a)
 
 - Updated folder name to `Capitalisation-Fixes-v1.3`
 - Reverted the capitalisition of `I Know what I'm Doing!`
