@@ -61,4 +61,4 @@ This script is used to easily produce a resource pack `.zip` file that can be di
 ## See also
 
 - There is [a resource pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string \(is untranslated\)") and [MC-186851](https://bugs.mojang.com/browse/MC-186851 "\"death.attack.sting.item\" displays raw translation string \(is untranslated\)")
-- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod that fixes a whole load of vanilla bugs: it currently contaisn 61 bugfixes! Combine it with this resource pack to take your bugsquashing to the next level :D
+- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod for 1.18.2 that fixes a whole load of vanilla bugs: it currently contains 61 bugfixes! It also has a config screen that lets you independently toggle all the bugfixes.
