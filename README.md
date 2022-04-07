@@ -27,8 +27,8 @@ Not all versions of the resource pack are compatible with all versions of MC, so
 Capitalisation Fixes v1 (previously just "Capitalisation Fixes") was a resource pack that fixed some bugs in 20w21a+ where UI labels were incorrectly capitalised, and some minor grammar issues.
 
 Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued because of a variety of reasons, e.g. the merger of many capitalisation bugs fixed by this pack into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
-|                                                                                           | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
-| ----------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
+|                                                                                                          | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
+| -------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
 | **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 | **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 | **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
@@ -52,7 +52,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Serious Dedication" advancement description](https://bugs.mojang.com/browse/MC-231458)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
-- [Subtitles for warden body parts](https://bugs.mojang.com/browse/MC-249422)
+- ~~[Subtitles for warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
 
 ## `build.sh`
 
