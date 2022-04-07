@@ -2,7 +2,7 @@
 
 Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.
 
-- It currently targets the 1.19 snapshots
+- It currently targets the 1.19 snapshots, but there is a "compatibility release" that supports 1.18.x versions, including the `22w13oneBlockAtATime` April Fools snapshot.
 - It works for the `en_uk` and `en_us` languages
 - If you have feedback, you can DM `MMK21Games#2121` on Discord
 - You can also submit bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).
@@ -24,6 +24,10 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 | **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   |
 | **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   |
 | **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#127775; |
+
+|                                                                                                                    | 1.17.x   | 1.18.x  | 1.19.x   |
+| ------------------------------------------------------------------------------------------------------------------ | -------- | ------- | -------- |
+| **[v2.0-compat](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** (1.18 Compatibility Release) | &#10060; | &#9989; | &#10060; |
 
 ### Capitalisation Fixes v1
 
