@@ -35,25 +35,27 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
+37 modified translation strings are included in the resource pack, which fix a total of 17 bugs:
+
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
+- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920)
+- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
+- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
+- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458)
+- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980)
+- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590)
 - [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606)
-- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541)
+- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
+- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096)
+- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721)
 - ["Include entities" button in the structure block interface](https://bugs.mojang.com/browse/MC-195781)
 - ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780)
-- ["Feels like home" advancement](https://bugs.mojang.com/browse/MC-237920)
-- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (These fixes are slightly opinionated, as there are multiple ways to fix the grammar issues and inconsistencies.)
-- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
+- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779)
-- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590)
-- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
-- [Leash knot subtitles](https://bugs.mojang.com/browse/MC-206548)
-- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721)
-- ["Serious Dedication" advancement description](https://bugs.mojang.com/browse/MC-231458)
-- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
-- ~~[Subtitles for warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
-- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980)
+- ~~[Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
+- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548)
 
 ## `build.sh`
 
