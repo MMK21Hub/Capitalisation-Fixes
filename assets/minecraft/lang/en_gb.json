@@ -68,9 +68,11 @@
   "subtitles.entity.wandering_trader.drink_milk": "Wandering Trader drinks Milk",
   "subtitles.entity.wandering_trader.drink_potion": "Wandering Trader drinks Potion",
 
-  // MC-249422
-  "subtitles.entity.warden.heartbeat": "Warden's heart beats",
-  "subtitles.entity.warden.tendril_clicks": "Warden's tendrils click",
+  // MC-249980
+  // Note: The translation key for this advancement is incorrect (see https://bugs.mojang.com/browse/MC-249984)
+  "advancements.husbandry.allay_deliver_cake_to_noteblock.description": "Have an Allay drop a cake at a note block",
+  // Future-proofing: Correct translation string (to be used when MC-249984 gets fixed)
+  "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a cake at a note block",
 
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
