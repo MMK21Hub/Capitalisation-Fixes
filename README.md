@@ -46,6 +46,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
 - ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920)
+- ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025)
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
 - [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458)

@@ -74,5 +74,8 @@
   // Future-proofing: Correct translation string (to be used when MC-249984 gets fixed)
   "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a cake at a note block",
 
+  // MC-250025
+  "advancements.husbandry.allay_deliver_item_to_player.title": "You've Got a Friend in Me",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
