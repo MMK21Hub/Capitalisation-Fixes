@@ -1,1 +1,0 @@
-zip -r "Capitalisation-Fixes-$1.zip" assets/** pack.mcmeta README.md pack.png

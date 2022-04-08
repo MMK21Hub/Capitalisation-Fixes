@@ -66,9 +66,15 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ~~[Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548)
 
-## `build.sh`
+## `new-version.sh`
 
-This script is used to easily produce a resource pack `.zip` file that can be distributed. You need to specify a version identifier to be included in the filename, e.g. `./build.sh v2.0` (generates `Capitalisation-Fixes-v2.0.zip`). Only the files that need to be distributed are included: check the script for exact details.
+This is a utility script that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`. It does two main jobs:
+
+- Create a `.zip` file that can be distributed with the GitHub release, with a name such as `Capitalisation-Fixes-v2.1.zip`
+- Push any commits that only exist locally, to make sure that the tag on GitHub is based on the most recent commit.
+- Create a new git tag to mark the version. It then pushes the tag to GitHub.
+
+For detailed information, check [the file itself](new-version.sh) - it's only four commands!
 
 ## See also
 
