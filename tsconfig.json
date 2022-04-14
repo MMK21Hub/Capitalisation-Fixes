@@ -4,7 +4,9 @@
     "target": "ESNext",
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
+    "outDir": "dist",
+    "sourceMap": true
   },
   "exclude": ["node_modules"]
 }

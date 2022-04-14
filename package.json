@@ -5,7 +5,7 @@
   "main": "src/main.ts",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/MMK21Hub/Capitalisation-Fixes#readme",
   "devDependencies": {
+    "@types/node": "^17.0.24",
     "typescript": "^4.6.3"
   }
 }

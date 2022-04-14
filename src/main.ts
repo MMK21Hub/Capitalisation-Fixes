@@ -75,3 +75,21 @@ class Fix {
     this.data = options
   }
 }
+
+function generateTranslationStrings(fixes: Fix[]) {
+  const result: Record<string, string> = {}
+  fixes.forEach(({ data: { key, transformer } }) => {
+    console.log(`Generating translation string for ${key}`)
+    result[key] = transformer.callback(key).value
+  })
+  return result
+}
+
+console.log(
+  generateTranslationStrings([
+    new Fix({
+      key: "test",
+      transformer: new OverrideTransformer("test"),
+    }),
+  ])
+)
