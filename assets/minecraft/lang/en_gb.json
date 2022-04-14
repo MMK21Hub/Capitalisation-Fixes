@@ -77,5 +77,8 @@
   // MC-250025
   "advancements.husbandry.allay_deliver_item_to_player.title": "You've Got a Friend in Me",
 
+  // MC-250158
+  "advancements.adventure.avoid_vibration.description": "Sneak near a Sculk Sensor, Sculk Shrieker, or Warden to prevent it from hearing you",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }

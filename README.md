@@ -52,6 +52,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
 - [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458)
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980)
+- [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590)
 - [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
