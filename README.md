@@ -47,7 +47,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
 - ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920)
-- ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025)
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
 - [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458)
@@ -64,8 +63,14 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
-- ~~[Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548)
+
+### Previously-fixed strings
+
+These fixes used to be included in the pack but have since been fixed in the vanilla game, so they're longer necessary.
+
+- ~~[Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
+- ~~["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025)~~ Fixed in 22w15a
 
 ## `new-version.sh`
 

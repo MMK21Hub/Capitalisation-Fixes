@@ -72,9 +72,6 @@
   // Note: The report was marked as fixed, but it wasn't fully fixed (see Avoma's comment)
   "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a Cake at a Note Block",
 
-  // MC-250025
-  "advancements.husbandry.allay_deliver_item_to_player.title": "You've Got a Friend in Me",
-
   // MC-250158
   "advancements.adventure.avoid_vibration.description": "Sneak near a Sculk Sensor, Sculk Shrieker, or Warden to prevent it from hearing you",
 
