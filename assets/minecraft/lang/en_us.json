@@ -8,6 +8,8 @@
   "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
   "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
   "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
+
+  // MC-226454
   "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
 
   // MC-236606
@@ -23,9 +25,6 @@
   "structure_block.mode_info.load": "Load Mode - Load from File",
   "structure_block.mode_info.data": "Data Mode - Game Logic Marker",
 
-  // MC-237920
-  "advancements.nether.ride_strider_in_overworld_lava.title": "Feels Like Home",
-
   // MC-220096
   "options.graphics.warning.accept": "Continue Without Support",
   "options.graphics.warning.cancel": "Take Me Back",
@@ -39,17 +38,11 @@
   "argument.entity.options.y.description": "Y coordinate",
   "argument.entity.options.z.description": "Z coordinate",
 
-  // MC-237922
-  "advancements.adventure.play_jukebox_in_meadows.description": "Make the Meadows come alive with the sound of music from a Jukebox",
-
   // MC-206779
   "subtitles.block.honey_block.slide": "Sliding down a Honey Block",
 
   // MC-237590
   "options.chunks": "%s Chunks",
-
-  // MC-237924
-  "advancements.adventure.trade_at_world_height.description": "Trade with a Villager at the build height limit",
 
   // MC-206548
   "subtitles.entity.leash_knot.break": "Leash Knot breaks",
@@ -57,9 +50,6 @@
 
   // MC-244721
   "selectWorld.backupEraseCache": "Erase Cached Data",
-
-  // MC-231458
-  "advancements.husbandry.netherite_hoe.description": "Use a Netherite Ingot to upgrade a hoe, and then reevaluate your life choices",
 
   // MC-222876
   "createWorld.customize.buffet.title": "Buffet World Customization",
@@ -69,13 +59,11 @@
   "subtitles.entity.wandering_trader.drink_potion": "Wandering Trader drinks Potion",
 
   // MC-249980
-  // Note: The translation key for this advancement is incorrect (see https://bugs.mojang.com/browse/MC-249984)
-  "advancements.husbandry.allay_deliver_cake_to_noteblock.description": "Have an Allay drop a cake at a note block",
-  // Future-proofing: Correct translation string (to be used when MC-249984 gets fixed)
-  "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a cake at a note block",
+  // Note: The report was marked as fixed, but it wasn't fully fixed (see Avoma's comment)
+  "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a Cake at a Note Block",
 
-  // MC-250025
-  "advancements.husbandry.allay_deliver_item_to_player.title": "You've Got a Friend in Me",
+  // MC-250158
+  "advancements.adventure.avoid_vibration.description": "Sneak near a Sculk Sensor, Sculk Shrieker, or Warden to prevent it from hearing you",
 
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
