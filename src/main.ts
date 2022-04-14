@@ -1,4 +1,41 @@
-class Transformer {}
+abstract class Transformer {
+  callback
+
+  constructor(callback: (value: string) => TransformerResult) {
+    this.callback = callback
+  }
+}
+
+/** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
+class CustomTransformer extends Transformer {
+  constructor(callback: (value: string) => TransformerResult) {
+    super(callback)
+  }
+}
+
+/** Modify translation strings the old way! */
+class OverrideTransformer extends Transformer {
+  constructor(value: string) {
+    // Just return the provided value
+    super(() => ({ value }))
+  }
+}
+
+/** Lets you apply multiple transformers to a single translation string */
+class MultiTransformer extends Transformer {
+  transformers
+
+  constructor(transformers: Transformer[]) {
+    super((value) => {
+      let newValue = value
+      for (const transformer of transformers) {
+        newValue = transformer.callback(newValue).value
+      }
+      return { value: newValue }
+    })
+    this.transformers = transformers
+  }
+}
 
 /**
  * Represents the start and end points of a range
@@ -9,6 +46,10 @@ class Transformer {}
  * [null, null] // Anything and everything
  */
 type Range<T> = [T | null, T | null]
+/** The output of a {@link Transformer} */
+type TransformerResult = {
+  value: string
+}
 /** A single Minecraft language ID */
 type MinecraftLanguage = string
 /** A single Minecraft version ID */
