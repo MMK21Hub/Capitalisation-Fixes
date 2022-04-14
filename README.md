@@ -66,8 +66,12 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 These fixes used to be included in the pack but have since been fixed in the vanilla game, so they're longer necessary.
 
-- ~~[Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422)~~ Fixed in 22w14a
-- ~~["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025)~~ Fixed in 22w15a
+- [Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422) Fixed in 22w14a
+- ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025) Fixed in 22w15a
+- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920) Fixed in 22w15a
+- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) Fixed in 22w15a
+- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) Fixed in 22w15a
+- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a
 
 ## `new-version.sh`
 
