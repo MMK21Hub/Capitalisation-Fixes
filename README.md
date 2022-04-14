@@ -47,10 +47,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430) (capitalisation)
   - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
-- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920) (capitalisation of advancement titles)
-- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) (capitalisation)
-- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) (capitalisation)
-- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) (capitalisation)
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)

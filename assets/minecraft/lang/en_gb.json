@@ -25,9 +25,6 @@
   "structure_block.mode_info.load": "Load Mode - Load from File",
   "structure_block.mode_info.data": "Data Mode - Game Logic Marker",
 
-  // MC-237920
-  "advancements.nether.ride_strider_in_overworld_lava.title": "Feels Like Home",
-
   // MC-220096
   "options.graphics.warning.accept": "Continue Without Support",
   "options.graphics.warning.cancel": "Take Me Back",
@@ -41,17 +38,11 @@
   "argument.entity.options.y.description": "Y coordinate",
   "argument.entity.options.z.description": "Z coordinate",
 
-  // MC-237922
-  "advancements.adventure.play_jukebox_in_meadows.description": "Make the Meadows come alive with the sound of music from a Jukebox",
-
   // MC-206779
   "subtitles.block.honey_block.slide": "Sliding down a Honey Block",
 
   // MC-237590
   "options.chunks": "%s Chunks",
-
-  // MC-237924
-  "advancements.adventure.trade_at_world_height.description": "Trade with a Villager at the build height limit",
 
   // MC-206548
   "subtitles.entity.leash_knot.break": "Leash Knot breaks",
@@ -59,9 +50,6 @@
 
   // MC-244721
   "selectWorld.backupEraseCache": "Erase Cached Data",
-
-  // MC-231458
-  "advancements.husbandry.netherite_hoe.description": "Use a Netherite Ingot to upgrade a hoe, and then reevaluate your life choices",
 
   // MC-222876
   "createWorld.customize.buffet.title": "Buffet World Customization",
