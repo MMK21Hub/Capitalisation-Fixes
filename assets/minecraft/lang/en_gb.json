@@ -69,10 +69,10 @@
   "subtitles.entity.wandering_trader.drink_potion": "Wandering Trader drinks Potion",
 
   // MC-249980
-  // Note: The translation key for this advancement is incorrect (see https://bugs.mojang.com/browse/MC-249984)
-  "advancements.husbandry.allay_deliver_cake_to_noteblock.description": "Have an Allay drop a cake at a note block",
-  // Future-proofing: Correct translation string (to be used when MC-249984 gets fixed)
-  "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a cake at a note block",
+  // Note: The report was marked as fixed, but it wasn't fully fixed (see Avoma's comment)
+  "advancements.husbandry.allay_deliver_cake_to_note_block.description": "Have an Allay drop a Cake at a Note Block",
+  // Backwards compatibility with 22w14a, which has an incorrect translation key (MC-249984)
+  "advancements.husbandry.allay_deliver_cake_to_noteblock.description": "Have an Allay drop a Cake at a Note Block",
 
   // MC-250025
   "advancements.husbandry.allay_deliver_item_to_player.title": "You've Got a Friend in Me",
