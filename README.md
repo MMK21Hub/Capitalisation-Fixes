@@ -43,7 +43,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-37 modified translation strings are included in the resource pack, which fix a total of 17 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+33 modified translation strings are included in the resource pack, which fix a total of 16 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430) (capitalisation)
   - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
