@@ -19,12 +19,13 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 
 ### Capitalisation Fixes v2
 
-|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    |
-| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   |
-| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; |
+|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    |
+| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   |
+| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   |
+| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; |
 
 |                                                                                                                           | 1.17.x   | 1.18.x  | 1.19.x   |
 | ------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | -------- |
