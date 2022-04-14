@@ -1,6 +1,6 @@
 # Capitalisation Fixes
 
-Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.
+Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised. In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").
 
 - It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that supports 1.18.x versions, including the `22w13oneBlockAtATime` April Fools snapshot.
 - It works for the `en_uk` and `en_us` languages
@@ -43,28 +43,28 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-37 modified translation strings are included in the resource pack, which fix a total of 17 bugs:
+37 modified translation strings are included in the resource pack, which fix a total of 17 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
-- [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
-  - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454)
-- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920)
-- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
-- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
-- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458)
-- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980)
-- [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158)
-- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590)
-- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606)
-- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876)
-- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096)
-- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721)
-- ["Include entities" button in the structure block interface](https://bugs.mojang.com/browse/MC-195781)
-- ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780)
-- [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (These fixes are slightly opinionated, as there are multiple ways to fix the grammar issues and inconsistencies.)
-- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541)
-- ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779)
-- ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533)
-- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548)
+- [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430) (capitalisation)
+  - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
+- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920) (capitalisation of advancement titles)
+- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) (capitalisation)
+- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) (capitalisation)
+- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) (capitalisation)
+- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
+- [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
+- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
+- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
+- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
+- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
+- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) (capitalisation of action button labels)
+- ["Include entities" button in the structure block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
+- ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780) (capitalisation of action button labels)
+- [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
+- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
+- ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
+- ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
+- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
 
 ### Previously-fixed strings
 
