@@ -8,6 +8,8 @@
   "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
   "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
   "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
+
+  // MC-226454
   "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
 
   // MC-236606

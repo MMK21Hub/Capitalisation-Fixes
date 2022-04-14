@@ -46,6 +46,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 37 modified translation strings are included in the resource pack, which fix a total of 17 bugs:
 
 - [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430)
+  - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454)
 - ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920)
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922)
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924)
