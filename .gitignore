@@ -1,2 +1,4 @@
 # Generated files
 *.zip
+
+node_modules/
