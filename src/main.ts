@@ -216,11 +216,16 @@ async function generateTranslationStrings(
     targetVersion
   )
 
-  const duplicateFixes = fixes.filter(
-    (fix) => fixes.filter((f) => f.data.key === fix.data.key).length > 1
+  console.log(`Generating language file for ${targetLanguage}...`)
+
+  const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
+    fixes.filter((f, i) => f.data.key === fix.data.key && index > i).length
+  const duplicateFixes = fixes.filter((fix, i) =>
+    fixKeyIsDuplicated(fixes, fix, i)
   )
+
   duplicateFixes.forEach(({ data: { key } }) =>
-    console.warn(`Translation key ${key} has multiple fixes that target it.`)
+    console.warn(`Translation key ${key} has multiple fixes that target it`)
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
@@ -248,19 +253,11 @@ function generateLanguageFilesData(
   targetLanguages: MinecraftLanguage[],
   fixes: Fix[]
 ) {
-  const translationStringSets: Record<string, string>[] = []
-
-  targetLanguages.map(async (language) => {
-    console.log(`Generating language file for ${language}...`)
-    const translationStringSet = await generateTranslationStrings(
-      targetVersion,
-      language,
-      fixes
+  return Promise.all(
+    targetLanguages.map((language) =>
+      generateTranslationStrings(targetVersion, language, fixes)
     )
-    translationStringSets.push(translationStringSet)
-  })
-
-  return translationStringSets
+  )
 }
 
 const cache = new Map<string, any>()
