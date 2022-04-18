@@ -44,6 +44,12 @@ class MultiTransformer extends Transformer {
         currentValue = result.value
       })
 
+      // currentValue shouldn't be null at this point (as long as at least one transformer has touched it)
+      if (!currentValue)
+        throw new Error(
+          "No value returned from transformers. Were any transformers provided?"
+        )
+
       // Return the final value and the original key
       return { value: currentValue, key: data.key }
     })
@@ -67,7 +73,7 @@ type TransformerResult = {
 /** The data provided to {@link Transformer} callback functions */
 type TransformerCallbackData = {
   key: string
-  oldValue: string
+  oldValue: string | null
 }
 /** A single Minecraft language ID */
 type MinecraftLanguage = string
@@ -180,7 +186,7 @@ async function generateTranslationStrings(fixes: Fix[]) {
     console.log(`Generating translation string: ${key}`)
     result[key] = transformer.callback({
       key,
-      oldValue: originalLanguageFile[key],
+      oldValue: originalLanguageFile[key] ?? null,
     }).value
   })
   return result
