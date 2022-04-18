@@ -229,8 +229,6 @@ async function generateTranslationStrings(
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
-    console.log(`Generating translation string: ${key}`)
-
     result[key] = transformer.callback({
       key,
       oldValue: originalLanguageFile[key] ?? null,
