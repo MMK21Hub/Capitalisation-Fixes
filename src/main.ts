@@ -241,25 +241,49 @@ async function generateTranslationStrings(
   return result
 }
 
+function generateLanguageFilesData(
+  targetVersion: MinecraftVersion,
+  targetLanguages: MinecraftLanguage[],
+  fixes: Fix[]
+) {
+  const translationStringSets: Record<string, string>[] = []
+
+  targetLanguages.map(async (language) => {
+    console.log(`Generating language file for ${language}...`)
+    const translationStringSet = await generateTranslationStrings(
+      targetVersion,
+      language,
+      fixes
+    )
+    translationStringSets.push(translationStringSet)
+  })
+
+  return translationStringSets
+}
+
 const cache = new Map<string, any>()
 
 console.log(
-  await generateTranslationStrings("22w15a", "en_us", [
-    new Fix({
-      key: "test",
-      transformer: new OverrideTransformer("test"),
-    }),
-    new Fix({
-      key: "gui.yes",
-      transformer: new MultiTransformer([
-        new CustomTransformer(({ oldValue }) => `${oldValue}!`),
-      ]),
-    }),
-    new Fix({
-      key: "gui.yes",
-      transformer: new MultiTransformer([
-        new CustomTransformer(({ oldValue }) => `${oldValue}`),
-      ]),
-    }),
-  ])
+  await generateLanguageFilesData(
+    "22w15a",
+    ["en_us", "en_gb"],
+    [
+      new Fix({
+        key: "test",
+        transformer: new OverrideTransformer("test"),
+      }),
+      new Fix({
+        key: "gui.yes",
+        transformer: new MultiTransformer([
+          new CustomTransformer(({ oldValue }) => `${oldValue}!`),
+        ]),
+      }),
+      new Fix({
+        key: "gui.yes",
+        transformer: new MultiTransformer([
+          new CustomTransformer(({ oldValue }) => `${oldValue}`),
+        ]),
+      }),
+    ]
+  )
 )
