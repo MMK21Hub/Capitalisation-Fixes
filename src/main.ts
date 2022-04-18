@@ -216,13 +216,15 @@ async function generateTranslationStrings(
     targetVersion
   )
 
+  const duplicateFixes = fixes.filter(
+    (fix) => fixes.filter((f) => f.data.key === fix.data.key).length > 1
+  )
+  duplicateFixes.forEach(({ data: { key } }) =>
+    console.warn(`Translation key ${key} has multiple fixes that target it.`)
+  )
+
   fixes.forEach(({ data: { key, transformer } }) => {
     console.log(`Generating translation string: ${key}`)
-
-    if (key in result)
-      console.warn(
-        `Translation key ${key} has already had a fix applied to it. The new fix will override the old one.`
-      )
 
     result[key] = transformer.callback({
       key,
