@@ -218,6 +218,11 @@ async function generateTranslationStrings(
 
   console.log(`Generating language file for ${targetLanguage}...`)
 
+  // Remove fixes that aren't for the target language
+  fixes = fixes.filter(
+    (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
+  )
+
   const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
     fixes.filter((f, i) => f.data.key === fix.data.key && index > i).length
   const duplicateFixes = fixes.filter((fix, i) =>
@@ -226,11 +231,6 @@ async function generateTranslationStrings(
 
   duplicateFixes.forEach(({ data: { key } }) =>
     console.warn(`Translation key ${key} has multiple fixes that target it`)
-  )
-
-  // Remove fixes that aren't for the target language
-  fixes = fixes.filter(
-    (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
