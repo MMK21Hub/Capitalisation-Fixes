@@ -187,10 +187,24 @@ async function generateTranslationStrings(fixes: Fix[]) {
 
   fixes.forEach(({ data: { key, transformer } }) => {
     console.log(`Generating translation string: ${key}`)
+
+    if (key in result)
+      console.warn(
+        `Translation key ${key} has already had a fix applied to it. The new fix will override the old one.`
+      )
+
     result[key] = transformer.callback({
       key,
       oldValue: originalLanguageFile[key] ?? null,
     }).value
+
+    if (result[key] === originalLanguageFile[key])
+      console.warn(
+        `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
+        `Transformer used: ${
+          Object.getPrototypeOf(transformer).constructor.name
+        }`
+      )
   })
   return result
 }
@@ -200,6 +214,18 @@ console.log(
     new Fix({
       key: "test",
       transformer: new OverrideTransformer("test"),
+    }),
+    new Fix({
+      key: "gui.yes",
+      transformer: new MultiTransformer([
+        new CustomTransformer(({ oldValue }) => `${oldValue}!`),
+      ]),
+    }),
+    new Fix({
+      key: "gui.yes",
+      transformer: new MultiTransformer([
+        new CustomTransformer(({ oldValue }) => `${oldValue}`),
+      ]),
     }),
   ])
 )
