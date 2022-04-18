@@ -105,6 +105,16 @@ class Fix {
   }
 }
 
+// https://stackoverflow.com/a/46842181/11519302
+async function filter<T>(array: T[], predicate: (item: T) => Promise<boolean>) {
+  const fail = Symbol()
+  return (
+    await Promise.all(
+      array.map(async (item) => ((await predicate(item)) ? item : fail))
+    )
+  ).filter((i) => i !== fail) as T[]
+}
+
 async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier
 ) {
@@ -216,6 +226,13 @@ async function generateTranslationStrings(
     targetVersion
   )
 
+  // Remove fixes that aren't for the target version
+  fixes = await filter(fixes, async (fix) => {
+    if (!fix.data.versions) return true
+    const versions = await resolveMinecraftVersionSpecifier(fix.data.versions)
+    return versions.includes(targetVersion)
+  })
+
   console.log(`Generating language file for ${targetLanguage}...`)
 
   // Remove fixes that aren't for the target language
@@ -246,8 +263,6 @@ async function generateTranslationStrings(
           Object.getPrototypeOf(transformer).constructor.name
         }`
       )
-
-    console.log(`${targetLanguage}: ${key}: ${result[key]}`)
   })
 
   return result
@@ -267,29 +282,32 @@ function generateLanguageFilesData(
 
 const cache = new Map<string, any>()
 
+const fixes = [
+  new Fix({
+    key: "test",
+    transformer: new OverrideTransformer("test"),
+    versions: ["22w12a", "22w14a"],
+  }),
+  new Fix({
+    key: "gui.yes",
+    transformer: new MultiTransformer([
+      // Adds an exclamation mark to the end
+      new CustomTransformer(({ oldValue }) => `${oldValue}!`),
+      // Adds a question mark to the end
+      new CustomTransformer(({ oldValue }) => `${oldValue}?`),
+    ]),
+  }),
+  new Fix({
+    key: "item.minecraft.baked_potato",
+    transformer: new OverrideTransformer("Baked Jacket Potato"),
+    languages: ["en_gb"],
+  }),
+]
+
 console.log(
-  await generateLanguageFilesData(
-    "22w15a",
-    ["en_us", "en_gb"],
-    [
-      new Fix({
-        key: "test",
-        transformer: new OverrideTransformer("test"),
-      }),
-      new Fix({
-        key: "gui.yes",
-        transformer: new MultiTransformer([
-          // Adds an exclamation mark to the end
-          new CustomTransformer(({ oldValue }) => `${oldValue}!`),
-          // Adds a question mark to the end
-          new CustomTransformer(({ oldValue }) => `${oldValue}?`),
-        ]),
-      }),
-      new Fix({
-        key: "item.minecraft.baked_potato",
-        transformer: new OverrideTransformer("Baked Jacket Potato"),
-        languages: ["en_gb"],
-      }),
-    ]
+  JSON.stringify(
+    await generateLanguageFilesData("22w15a", ["en_us", "en_gb"], fixes),
+    null,
+    2
   )
 )
