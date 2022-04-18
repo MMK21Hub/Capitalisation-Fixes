@@ -211,7 +211,10 @@ async function generateTranslationStrings(
 ) {
   const result: Record<string, string> = {}
 
-  const originalLanguageFile = await getVanillaLanguageFile("en_us", "22w15a")
+  const originalLanguageFile = await getVanillaLanguageFile(
+    targetLanguage,
+    targetVersion
+  )
 
   fixes.forEach(({ data: { key, transformer } }) => {
     console.log(`Generating translation string: ${key}`)
