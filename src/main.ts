@@ -5,14 +5,14 @@ import * as path from "node:path"
 abstract class Transformer {
   callback
 
-  constructor(callback: (value: string) => TransformerResult) {
+  constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
     this.callback = callback
   }
 }
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 class CustomTransformer extends Transformer {
-  constructor(callback: (value: string) => TransformerResult) {
+  constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
     super(callback)
   }
 }
@@ -30,12 +30,22 @@ class MultiTransformer extends Transformer {
   transformers
 
   constructor(transformers: Transformer[]) {
-    super((value) => {
-      let newValue = value
-      for (const transformer of transformers) {
-        newValue = transformer.callback(newValue).value
-      }
-      return { value: newValue }
+    super((data) => {
+      let currentValue = data.oldValue
+
+      // Run each transformer, providing it with the output from the previous one
+      transformers.forEach((transformer) => {
+        const result = transformer.callback({
+          key: data.key,
+          oldValue: currentValue,
+        })
+
+        // Update the current value
+        currentValue = result.value
+      })
+
+      // Return the final value and the original key
+      return { value: currentValue, key: data.key }
     })
     this.transformers = transformers
   }
@@ -53,6 +63,11 @@ type Range<T> = [T | null, T | null]
 /** The output of a {@link Transformer} */
 type TransformerResult = {
   value: string
+}
+/** The data provided to {@link Transformer} callback functions */
+type TransformerCallbackData = {
+  key: string
+  oldValue: string
 }
 /** A single Minecraft language ID */
 type MinecraftLanguage = string
@@ -83,7 +98,7 @@ class Fix {
 async function getVanillaLanguageFile(
   language: MinecraftLanguage,
   version: MinecraftVersion
-) {
+): Promise<Record<string, string>> {
   // If there is a file in the cache that matches the language and the version, use it
   const cacheResult = await getCachedFile(`${language}/${version}.json`)
   if (cacheResult) return JSON.parse(cacheResult)
@@ -113,6 +128,8 @@ async function getVanillaLanguageFile(
     const filePath = path.join(language, `${version}.json`)
     addToCache(filePath, JSON.stringify(languageFile))
   })
+
+  return languageFile as any
 }
 
 function getVersionManifest() {
@@ -154,17 +171,23 @@ async function addToCache(filePath: string, contents: string) {
   await writeFile(fullFilePath, contents)
 }
 
-function generateTranslationStrings(fixes: Fix[]) {
+async function generateTranslationStrings(fixes: Fix[]) {
   const result: Record<string, string> = {}
+
+  const originalLanguageFile = await getVanillaLanguageFile("en_us", "22w15a")
+
   fixes.forEach(({ data: { key, transformer } }) => {
     console.log(`Generating translation string: ${key}`)
-    result[key] = transformer.callback(key).value
+    result[key] = transformer.callback({
+      key,
+      oldValue: originalLanguageFile[key],
+    }).value
   })
   return result
 }
 
 console.log(
-  generateTranslationStrings([
+  await generateTranslationStrings([
     new Fix({
       key: "test",
       transformer: new OverrideTransformer("test"),

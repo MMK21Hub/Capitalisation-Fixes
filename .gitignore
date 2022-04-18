@@ -1,5 +1,7 @@
 # Generated files
 *.zip
-dist
+dist/
 
 node_modules/
+
+.cache
