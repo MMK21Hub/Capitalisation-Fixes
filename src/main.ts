@@ -56,6 +56,7 @@ class MultiTransformer extends Transformer {
       // Return the final value and the original key
       return { value: currentValue, key: data.key }
     })
+
     this.transformers = transformers
   }
 }
@@ -233,6 +234,7 @@ async function generateTranslationStrings(
         }`
       )
   })
+
   return result
 }
 
