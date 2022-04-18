@@ -228,6 +228,11 @@ async function generateTranslationStrings(
     console.warn(`Translation key ${key} has multiple fixes that target it`)
   )
 
+  // Remove fixes that aren't for the target language
+  fixes = fixes.filter(
+    (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
+  )
+
   fixes.forEach(({ data: { key, transformer } }) => {
     result[key] = transformer.callback({
       key,
@@ -241,6 +246,8 @@ async function generateTranslationStrings(
           Object.getPrototypeOf(transformer).constructor.name
         }`
       )
+
+    console.log(`${targetLanguage}: ${key}: ${result[key]}`)
   })
 
   return result
@@ -272,14 +279,16 @@ console.log(
       new Fix({
         key: "gui.yes",
         transformer: new MultiTransformer([
+          // Adds an exclamation mark to the end
           new CustomTransformer(({ oldValue }) => `${oldValue}!`),
+          // Adds a question mark to the end
+          new CustomTransformer(({ oldValue }) => `${oldValue}?`),
         ]),
       }),
       new Fix({
-        key: "gui.yes",
-        transformer: new MultiTransformer([
-          new CustomTransformer(({ oldValue }) => `${oldValue}`),
-        ]),
+        key: "item.minecraft.baked_potato",
+        transformer: new OverrideTransformer("Baked Jacket Potato"),
+        languages: ["en_gb"],
       }),
     ]
   )
