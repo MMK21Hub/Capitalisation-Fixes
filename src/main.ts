@@ -12,8 +12,9 @@ abstract class Transformer {
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 class CustomTransformer extends Transformer {
-  constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
-    super(callback)
+  constructor(callback: (data: TransformerCallbackData) => string) {
+    // Call the provided function and use the string it returns
+    super((data) => ({ value: callback(data) }))
   }
 }
 
@@ -44,7 +45,9 @@ class MultiTransformer extends Transformer {
         currentValue = result.value
       })
 
-      // currentValue shouldn't be null at this point (as long as at least one transformer has touched it)
+      // currentValue shouldn't be null at this point, unless:
+      // - The key is not present in the vanilla language file; and
+      // - No transformers have touched it (i.e. none were provided)
       if (!currentValue)
         throw new Error(
           "No value returned from transformers. Were any transformers provided?"
