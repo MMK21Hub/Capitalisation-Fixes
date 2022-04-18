@@ -104,6 +104,21 @@ class Fix {
   }
 }
 
+async function resolveMinecraftVersionSpecifier(
+  specifier: MinecraftVersionSpecifier
+) {
+  if (typeof specifier === "string") return [specifier]
+
+  const [start, end] = specifier
+  const versionManifest = await getVersionManifest()
+  const versions = versionManifest.versions.map((v) => v.id).reverse()
+
+  const startIndex = start ? versions.indexOf(start) : 0
+  const endIndex = end ? versions.indexOf(end) : versions.length
+
+  return versions.slice(startIndex, endIndex + 1)
+}
+
 async function getVanillaLanguageFile(
   language: MinecraftLanguage,
   version: MinecraftVersion
@@ -141,13 +156,21 @@ async function getVanillaLanguageFile(
   return languageFile as any
 }
 
-function getVersionManifest() {
-  return fetch(
+function getVersionManifest(): Promise<{
+  latest: { snapshot: string; release: string }
+  versions: any[]
+}> {
+  // If it's available in the cache, immediately return that
+  if (cache.has("versionManifest")) return cache.get("versionManifest")
+
+  const result = fetch(
     "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json"
-  ).then((res) => res.json()) as Promise<{
-    latest: { snapshot: string; release: string }
-    versions: any[]
-  }>
+  ).then((res) => res.json()) as any
+
+  // Store the result in the cache for future calls of the function
+  cache.set("versionManifest", result)
+
+  return result
 }
 
 async function getCachedFile(filePath: string) {
@@ -180,7 +203,11 @@ async function addToCache(filePath: string, contents: string) {
   await writeFile(fullFilePath, contents)
 }
 
-async function generateTranslationStrings(fixes: Fix[]) {
+async function generateTranslationStrings(
+  targetVersion: MinecraftVersion,
+  targetLanguage: MinecraftLanguage,
+  fixes: Fix[]
+) {
   const result: Record<string, string> = {}
 
   const originalLanguageFile = await getVanillaLanguageFile("en_us", "22w15a")
@@ -209,8 +236,10 @@ async function generateTranslationStrings(fixes: Fix[]) {
   return result
 }
 
+const cache = new Map<string, any>()
+
 console.log(
-  await generateTranslationStrings([
+  await generateTranslationStrings("22w15a", "en_us", [
     new Fix({
       key: "test",
       transformer: new OverrideTransformer("test"),
