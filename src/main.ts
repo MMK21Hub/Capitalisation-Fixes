@@ -69,7 +69,18 @@ class MultiTransformer extends Transformer {
  * [null, 5] // Anything before 5
  * [null, null] // Anything and everything
  */
-type Range<T> = [T | null, T | null]
+type StartAndEnd<T> = [T | null, T | null]
+/** Represents a {@link Range}, with options for excluding parts within that range */
+type FancyRange<T> = {
+  start: T
+  end: T
+  exclude?: Range<T>
+  include?: Range<T>
+  inclusiveStart?: boolean
+  inclusiveEnd?: boolean
+}
+/** A set of items within start and end limits. Can be represented in multiple ways. */
+type Range<T> = StartAndEnd<T> | FancyRange<T>
 /** The output of a {@link Transformer} */
 type TransformerResult = {
   value: string
@@ -122,7 +133,29 @@ async function resolveMinecraftVersionSpecifier(
 ) {
   if (typeof specifier === "string") return [specifier]
 
-  const [start, end] = specifier
+  const isSimpleRange =
+    Array.isArray(specifier) && typeof specifier[0] !== "object"
+
+  const [start, end] = isSimpleRange
+    ? resolveMinecraftVersionSimpleRange(specifier)
+    : resolveMinecraftVersionFancyRange(specifier)
+  const versionManifest = await getVersionManifest()
+  const versions = versionManifest.versions.map((v) => v.id).reverse()
+
+  const startIndex = start ? versions.indexOf(start) : 0
+  const endIndex = end ? versions.indexOf(end) : versions.length
+
+  return versions.slice(startIndex, endIndex + 1)
+}
+
+async function resolveMinecraftVersionSimpleRange(
+  range: StartAndEnd<string>,
+  options: {
+    removeStart?: boolean
+    removeEnd?: boolean
+  } = {}
+) {
+  const [start, end] = range
   const versionManifest = await getVersionManifest()
   const versions = versionManifest.versions.map((v) => v.id).reverse()
 
