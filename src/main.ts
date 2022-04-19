@@ -135,7 +135,7 @@ async function getVanillaLanguageFile(
   version: MinecraftVersion
 ): Promise<Record<string, string>> {
   // If there is a file in the cache that matches the language and the version, use it
-  const cacheResult = await getCachedFile(`${language}/${version}.json`)
+  const cacheResult = await getCachedFile(`${version}/${language}.json`)
   if (cacheResult) return JSON.parse(cacheResult)
 
   // Get the specified version from the version manifest
@@ -159,8 +159,8 @@ async function getVanillaLanguageFile(
     )
 
   // Asynchronously cache the language file
-  ensureDir(path.join(".cache", language)).then(() => {
-    const filePath = path.join(language, `${version}.json`)
+  ensureDir(path.join(".cache", version)).then(() => {
+    const filePath = path.join(version, `${language}.json`)
     addToCache(filePath, JSON.stringify(languageFile))
   })
 
