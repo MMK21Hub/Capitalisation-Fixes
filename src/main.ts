@@ -85,6 +85,8 @@ type MinecraftLanguage = string
 type MinecraftVersion = string
 /** Used to refer to a group, range, or single version of Minecraft */
 type MinecraftVersionSpecifier = Range<MinecraftVersion> | MinecraftVersion
+// Language files are a map of translation keys to string values
+type LanguageFileData = Record<string, string>
 
 interface FixOptions {
   /** The translation string that needs to be edited */
@@ -219,7 +221,7 @@ async function generateTranslationStrings(
   targetLanguage: MinecraftLanguage,
   fixes: Fix[]
 ) {
-  const result: Record<string, string> = {}
+  const result: LanguageFileData = {}
 
   const originalLanguageFile = await getVanillaLanguageFile(
     targetLanguage,
@@ -233,7 +235,9 @@ async function generateTranslationStrings(
     return versions.includes(targetVersion)
   })
 
-  console.log(`Generating language file for ${targetLanguage}...`)
+  console.log(
+    `Generating language file for ${targetLanguage} (${targetVersion})`
+  )
 
   // Remove fixes that aren't for the target language
   fixes = fixes.filter(
@@ -280,6 +284,56 @@ function generateLanguageFilesData(
   )
 }
 
+async function generateMultipleVersionsLanguageFileData(
+  targetVersions: MinecraftVersionSpecifier,
+  targetLanguages: MinecraftLanguage[],
+  fixes: Fix[]
+) {
+  const versions = await resolveMinecraftVersionSpecifier(targetVersions)
+
+  const versionedLanguageFiles = await Promise.all(
+    versions.map((version) =>
+      generateLanguageFilesData(version, targetLanguages, fixes)
+    )
+  )
+
+  /**
+   * A map of versions to a map of languages to sets of translations.
+   * Looks like this:
+   * ```json
+   * {
+   *   "1.14.4": {
+   *     "en_us": {
+   *       "gui.yes": "Yes",
+   *       "gui.no": "No",
+   *       // More translation strings...
+   *     },
+   *     "en_gb": { ... },
+   *     "fr_fr": { ... },
+   *     // More languages...
+   *   },
+   *   "1.15.1": { ... },
+   *   // More versions...
+   * ```
+   */
+  const result: Record<string, Record<string, LanguageFileData>> = {}
+
+  versionedLanguageFiles.forEach((languageFiles, i) => {
+    // Initialize an object to store this version's language files
+    const languages: Record<string, LanguageFileData> = {}
+
+    // Add each language file to the object
+    languageFiles.forEach(
+      (languageFile, i) => (languages[targetLanguages[i]] = languageFile)
+    )
+
+    // Add the current version's language files to the result
+    result[versions[i]] = languages
+  })
+
+  return result
+}
+
 const cache = new Map<string, any>()
 
 const fixes = [
@@ -306,7 +360,11 @@ const fixes = [
 
 console.log(
   JSON.stringify(
-    await generateLanguageFilesData("22w15a", ["en_us", "en_gb"], fixes),
+    await generateMultipleVersionsLanguageFileData(
+      ["22w14a", "22w15a"],
+      ["en_us", "en_gb"],
+      fixes
+    ),
     null,
     2
   )
