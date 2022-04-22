@@ -86,7 +86,7 @@ This is a utility script that automates part of the process of releasing a new v
 
 For detailed information, check [the file itself](new-version.sh) - it's only four commands!
 
-## See also
+## Related projects
 
 - There is [a resource pack](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) (not by me) for 1.16 which fixes [MC-186148](https://bugs.mojang.com/browse/MC-186148 "\"death.attack.witherSkull.item\" displays raw translation string \(is untranslated\)") and [MC-186851](https://bugs.mojang.com/browse/MC-186851 "\"death.attack.sting.item\" displays raw translation string \(is untranslated\)").
-- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod for 1.18.2 that fixes [70+ vanilla bugs](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md). However, it also "fixes" behaviour that Mojang consideres intended, so it isn't a good fit if you want to stick to the way that the game is meant to be.
+- [Debugify](https://modrinth.com/mod/debugify) is a Fabric mod for 1.18.2 that fixes [70+ vanilla bugs](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md). However, it also "fixes" behaviour that Mojang considers intended, so it isn't a good fit if you want to stick to the way that the game is meant to be.
