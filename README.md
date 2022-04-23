@@ -97,10 +97,10 @@ For detailed information, check [the file itself](new-version.sh) - it's only fo
 
 ### Fabric Mods
 
-| Name                                                                        | Version(s) | Fixed bug(s)                                                            | Side   | Notes                                                                                |
-| --------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
-| Carpet-Fixes                                                                | 1.18, 1.19 | [200+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
-| [Debugify](https://modrinth.com/mod/debugify)                               | 1.18.2     | [70+](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md)      | Both   | ⚠️ Falls into the trap of "fixing" behaviour that isn't considered a bug by Mojang    |
-| [Blanket client-tweaks](https://github.com/BlanketMC/blanket-client-tweaks) | 1.18.2     | [9](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
-| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)                         | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
-| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix)             | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
+| Name                                                            | Version(s) | Fixed bug(s)                                                            | Side   | Notes                                                                                |
+| --------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| Carpet-Fixes                                                    | 1.18, 1.19 | [200+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
+| [Debugify](https://modrinth.com/mod/debugify)                   | 1.18.2     | [70+](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md)      | Both   | ⚠️ Falls into the trap of "fixing" behaviour that isn't considered a bug by Mojang    |
+| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18.2     | [9](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
+| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
+| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
