@@ -105,3 +105,4 @@ For detailed information, check [the file itself](new-version.sh) - it's only fo
 | [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
 | [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
 | [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1     | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
+| [Raised](https://modrinth.com/mod/raised)                       | 1.18, 1.19 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
