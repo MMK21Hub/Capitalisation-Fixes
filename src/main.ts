@@ -76,8 +76,8 @@ type FancyRange<T> = {
   end: T
   exclude?: Range<T>
   include?: Range<T>
-  inclusiveStart?: boolean
-  inclusiveEnd?: boolean
+  exclusiveStart?: boolean
+  exclusiveEnd?: boolean
 }
 /** A set of items within start and end limits. Can be represented in multiple ways. */
 type Range<T> = StartAndEnd<T> | FancyRange<T>
@@ -136,16 +136,11 @@ async function resolveMinecraftVersionSpecifier(
   const isSimpleRange =
     Array.isArray(specifier) && typeof specifier[0] !== "object"
 
-  const [start, end] = isSimpleRange
-    ? resolveMinecraftVersionSimpleRange(specifier)
-    : resolveMinecraftVersionFancyRange(specifier)
-  const versionManifest = await getVersionManifest()
-  const versions = versionManifest.versions.map((v) => v.id).reverse()
+  const matchingVersions = isSimpleRange
+    ? await resolveMinecraftVersionSimpleRange(specifier)
+    : await resolveMinecraftVersionFancyRange(specifier as FancyRange<string>)
 
-  const startIndex = start ? versions.indexOf(start) : 0
-  const endIndex = end ? versions.indexOf(end) : versions.length
-
-  return versions.slice(startIndex, endIndex + 1)
+  return matchingVersions
 }
 
 async function resolveMinecraftVersionSimpleRange(
@@ -163,6 +158,15 @@ async function resolveMinecraftVersionSimpleRange(
   const endIndex = end ? versions.indexOf(end) : versions.length
 
   return versions.slice(startIndex, endIndex + 1)
+}
+
+async function resolveMinecraftVersionFancyRange(range: FancyRange<string>) {
+  const resolveRange = resolveMinecraftVersionSimpleRange
+
+  return resolveRange([range.start, range.end], {
+    removeStart: range.exclusiveStart,
+    removeEnd: range.exclusiveEnd,
+  })
 }
 
 async function getVanillaLanguageFile(
