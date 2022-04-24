@@ -129,8 +129,9 @@ async function filter<T>(array: T[], predicate: (item: T) => Promise<boolean>) {
 }
 
 async function resolveMinecraftVersionSpecifier(
-  specifier: MinecraftVersionSpecifier
+  specifier: MinecraftVersionSpecifier | undefined
 ) {
+  if (!specifier) return []
   if (typeof specifier === "string") return [specifier]
 
   const isSimpleRange =
@@ -150,9 +151,12 @@ async function resolveMinecraftVersionSimpleRange(
     removeEnd?: boolean
   } = {}
 ) {
+  // Don't return any items if no range was provided
+  if (!range) return []
+
   const [start, end] = range
   const versionManifest = await getVersionManifest()
-  const versions = versionManifest.versions.map((v) => v.id).reverse()
+  const versions: string[] = versionManifest.versions.map((v) => v.id).reverse()
 
   const startIndex = start ? versions.indexOf(start) : 0
   const endIndex = end ? versions.indexOf(end) : versions.length
@@ -160,13 +164,26 @@ async function resolveMinecraftVersionSimpleRange(
   return versions.slice(startIndex, endIndex + 1)
 }
 
-async function resolveMinecraftVersionFancyRange(range: FancyRange<string>) {
+async function resolveMinecraftVersionFancyRange(
+  range: FancyRange<string>
+): Promise<string[]> {
+  // Local function shorthands:
   const resolveRange = resolveMinecraftVersionSimpleRange
 
-  return resolveRange([range.start, range.end], {
+  const fullRange = await resolveRange([range.start, range.end], {
     removeStart: range.exclusiveStart,
     removeEnd: range.exclusiveEnd,
   })
+
+  const exclusionRange = await resolveMinecraftVersionSpecifier(range.exclude)
+  const inclusionRange = await resolveMinecraftVersionSpecifier(range.include)
+
+  // Remove any items that need to be excluded
+  const filteredRange = fullRange.filter((el) => !exclusionRange.includes(el))
+  // Add any items that need to be included
+  filteredRange.push(...inclusionRange)
+
+  return filteredRange
 }
 
 async function getVanillaLanguageFile(
