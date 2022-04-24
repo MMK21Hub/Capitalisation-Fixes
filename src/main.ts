@@ -1,6 +1,7 @@
 import fetch from "node-fetch"
 import { mkdir, readFile, writeFile } from "node:fs/promises"
 import * as path from "node:path"
+import AdmZip from "adm-zip"
 
 abstract class Transformer {
   callback
@@ -98,6 +99,26 @@ type MinecraftVersion = string
 type MinecraftVersionSpecifier = Range<MinecraftVersion> | MinecraftVersion
 // Language files are a map of translation keys to string values
 type LanguageFileData = Record<string, string>
+/**
+ * A map of versions to a map of languages to sets of translations.
+ * Looks like this:
+ * ```json
+ * {
+ *   "1.14.4": {
+ *     "en_us": {
+ *       "gui.yes": "Yes",
+ *       "gui.no": "No",
+ *       // More translation strings...
+ *     },
+ *     "en_gb": { ... },
+ *     "fr_fr": { ... },
+ *     // More languages...
+ *   },
+ *   "1.15.1": { ... },
+ *   // More versions...
+ * ```
+ */
+type LanguageFileBundle = Record<string, Record<string, LanguageFileData>>
 
 interface FixOptions {
   /** The translation string that needs to be edited */
@@ -351,26 +372,7 @@ async function generateMultipleVersionsLanguageFileData(
     )
   )
 
-  /**
-   * A map of versions to a map of languages to sets of translations.
-   * Looks like this:
-   * ```json
-   * {
-   *   "1.14.4": {
-   *     "en_us": {
-   *       "gui.yes": "Yes",
-   *       "gui.no": "No",
-   *       // More translation strings...
-   *     },
-   *     "en_gb": { ... },
-   *     "fr_fr": { ... },
-   *     // More languages...
-   *   },
-   *   "1.15.1": { ... },
-   *   // More versions...
-   * ```
-   */
-  const result: Record<string, Record<string, LanguageFileData>> = {}
+  const result: LanguageFileBundle = {}
 
   versionedLanguageFiles.forEach((languageFiles, i) => {
     // Initialize an object to store this version's language files
@@ -384,6 +386,53 @@ async function generateMultipleVersionsLanguageFileData(
     // Add the current version's language files to the result
     result[versions[i]] = languages
   })
+
+  return result
+}
+
+async function generatePackZipData(
+  languageFiles: Record<string, LanguageFileData>,
+  metaFiles: Record<string, Buffer>
+) {
+  const zip = new AdmZip()
+
+  // Add each "meta file" to the zip
+  Object.entries(metaFiles).forEach(([path, contents]) =>
+    zip.addFile(path, contents)
+  )
+
+  // Add each language file to the zip
+  Object.entries(languageFiles).forEach(([language, languageFile]) => {
+    const fileContents = JSON.stringify(languageFile, null, 4)
+    zip.addFile(
+      `assets/minecraft/lang/${language}.json`,
+      Buffer.from(fileContents)
+    )
+  })
+
+  return zip
+}
+
+async function generateMultiplePackZipData(
+  versionedLanguageFiles: LanguageFileBundle
+) {
+  const result: Record<string, AdmZip> = {}
+
+  // Include our pack.mcmeta, pack.png and readme files in the zip
+  const metaFiles = {
+    "pack.mcmeta": await readFile("../pack.mcmeta"),
+    "pack.png": await readFile("../pack.png"),
+    "README.md": await readFile("../README.md"),
+  }
+
+  await Promise.all(
+    Object.entries(versionedLanguageFiles).map(
+      async ([version, languageFiles]) => {
+        // Add the current version's language files to the result
+        result[version] = await generatePackZipData(languageFiles, metaFiles)
+      }
+    )
+  )
 
   return result
 }
