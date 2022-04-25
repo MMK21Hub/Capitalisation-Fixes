@@ -1,3 +1,6 @@
+import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
+import path from "node:path"
+
 /** Specify a value, or provide a function that returns that value */
 export type FunctionMaybe<T, A extends any[] = []> = T | ((...args: A) => T)
 /** Like {@link FunctionMaybe}, but with named arguments for readability */
@@ -37,4 +40,53 @@ export async function filter<T>(
       array.map(async (item) => ((await predicate(item)) ? item : fail))
     )
   ).filter((i) => i !== fail) as T[]
+}
+
+/* FILESYSTEM UTILS */
+
+/**
+ * Creates a directory if it does not already exist
+ * @returns true if the directory already existed; false if it was created
+ */
+export function ensureDir(path: string): Promise<boolean> {
+  return mkdir(path)
+    .then(() => true)
+    .catch((e) => {
+      return e.code === "EEXIST" ? false : e
+    })
+}
+
+/** Deletes all the files in a folder */
+export async function clearDir(directoryPath: string) {
+  const contents = await readdir(directoryPath)
+
+  // Return false if the directory is empty
+  if (!contents) return false
+
+  // Delete all the files in the directory (asynchronously)
+  await Promise.all(
+    contents.map((file) => unlink(path.resolve(directoryPath, file)))
+  )
+
+  return true
+}
+
+/* CACHING */
+
+export async function getCachedFile(filePath: string) {
+  // Make sure that the .cache directory exists
+  await ensureDir(".cache")
+
+  const fullFilePath = path.join(".cache", ...filePath.split("/"))
+  return await readFile(fullFilePath, "utf8").catch(() => {
+    return null
+  })
+}
+
+export async function addToCache(filePath: string, contents: string) {
+  // Make sure that the .cache directory exists
+  await ensureDir(".cache")
+
+  const fullFilePath = path.join(".cache", ...filePath.split("/"))
+  await writeFile(fullFilePath, contents)
 }

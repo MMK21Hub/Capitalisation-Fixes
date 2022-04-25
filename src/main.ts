@@ -1,280 +1,22 @@
-import fetch from "node-fetch"
-import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
+import { readFile } from "node:fs/promises"
 import * as path from "node:path"
 import AdmZip from "adm-zip"
-import { FancyRange, filter, FunctionMaybe, StartAndEnd, Range } from "./util"
-
-abstract class Transformer {
-  callback
-
-  constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
-    this.callback = callback
-  }
-}
-
-/** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
-class CustomTransformer extends Transformer {
-  constructor(callback: (data: TransformerCallbackData) => string) {
-    // Call the provided function and use the string it returns
-    super((data) => ({ value: callback(data) }))
-  }
-}
-
-/** Modify translation strings the old way! */
-class OverrideTransformer extends Transformer {
-  constructor(value: string) {
-    // Just return the provided value
-    super(() => ({ value }))
-  }
-}
-
-/** Lets you apply multiple transformers to a single translation string */
-class MultiTransformer extends Transformer {
-  transformers
-
-  constructor(transformers: Transformer[]) {
-    super((data) => {
-      let currentValue = data.oldValue
-
-      // Run each transformer, providing it with the output from the previous one
-      transformers.forEach((transformer) => {
-        const result = transformer.callback({
-          key: data.key,
-          oldValue: currentValue,
-        })
-
-        // Update the current value
-        currentValue = result.value
-      })
-
-      // currentValue shouldn't be null at this point, unless:
-      // - The key is not present in the vanilla language file; and
-      // - No transformers have touched it (i.e. none were provided)
-      if (!currentValue)
-        throw new Error(
-          "No value returned from transformers. Were any transformers provided?"
-        )
-
-      // Return the final value and the original key
-      return { value: currentValue, key: data.key }
-    })
-
-    this.transformers = transformers
-  }
-}
-
-/** The output of a {@link Transformer} */
-type TransformerResult = {
-  value: string
-}
-/** The data provided to {@link Transformer} callback functions */
-type TransformerCallbackData = {
-  key: string
-  oldValue: string | null
-}
-/** A single Minecraft language ID */
-type MinecraftLanguage = string
-/** A single Minecraft version ID */
-type MinecraftVersion = string
-/** Used to refer to a group, range, or single version of Minecraft */
-type MinecraftVersionSpecifier = Range<MinecraftVersion> | MinecraftVersion
-// Language files are a map of translation keys to string values
-type LanguageFileData = Record<string, string>
-/**
- * A map of versions to a map of languages to sets of translations.
- * Looks like this:
- * ```json
- * {
- *   "1.14.4": {
- *     "en_us": {
- *       "gui.yes": "Yes",
- *       "gui.no": "No",
- *       // More translation strings...
- *     },
- *     "en_gb": { ... },
- *     "fr_fr": { ... },
- *     // More languages...
- *   },
- *   "1.15.1": { ... },
- *   // More versions...
- * ```
- */
-type LanguageFileBundle = Record<string, Record<string, LanguageFileData>>
-
-interface FixOptions {
-  /** The translation string that needs to be edited */
-  key: string
-  /** A "transformer" that declares the edits that need to be made to the specified translation string */
-  transformer: Transformer
-  /** Specifies the versions of Minecraft that the fix should be applied to (defaults to all versions) */
-  versions?: MinecraftVersionSpecifier
-  /** Specifies the languages that the fix should be applied to (defaults to all languages) */
-  languages?: MinecraftLanguage[]
-}
-
-class Fix {
-  data
-
-  constructor(options: FixOptions) {
-    this.data = options
-  }
-}
-
-async function resolveMinecraftVersionSpecifier(
-  specifier: MinecraftVersionSpecifier | undefined
-) {
-  if (!specifier) return []
-  if (typeof specifier === "string") return [specifier]
-
-  const isSimpleRange =
-    Array.isArray(specifier) && typeof specifier[0] !== "object"
-
-  const matchingVersions = isSimpleRange
-    ? await resolveMinecraftVersionSimpleRange(specifier)
-    : await resolveMinecraftVersionFancyRange(specifier as FancyRange<string>)
-
-  return matchingVersions
-}
-
-async function resolveMinecraftVersionSimpleRange(
-  range: StartAndEnd<string>,
-  options: {
-    removeStart?: boolean
-    removeEnd?: boolean
-  } = {}
-) {
-  // Don't return any items if no range was provided
-  if (!range) return []
-
-  const [start, end] = range
-  const versionManifest = await getVersionManifest()
-  const versions: string[] = versionManifest.versions.map((v) => v.id).reverse()
-
-  const startIndex = start ? versions.indexOf(start) : 0
-  const endIndex = end ? versions.indexOf(end) : versions.length
-
-  return versions.slice(startIndex, endIndex + 1)
-}
-
-async function resolveMinecraftVersionFancyRange(
-  range: FancyRange<string>
-): Promise<string[]> {
-  // Local function shorthands:
-  const resolveRange = resolveMinecraftVersionSimpleRange
-
-  const fullRange = await resolveRange([range.start, range.end], {
-    removeStart: range.exclusiveStart,
-    removeEnd: range.exclusiveEnd,
-  })
-
-  const exclusionRange = await resolveMinecraftVersionSpecifier(range.exclude)
-  const inclusionRange = await resolveMinecraftVersionSpecifier(range.include)
-
-  // Remove any items that need to be excluded
-  const filteredRange = fullRange.filter((el) => !exclusionRange.includes(el))
-  // Add any items that need to be included
-  filteredRange.push(...inclusionRange)
-
-  return filteredRange
-}
-
-async function getVanillaLanguageFile(
-  language: MinecraftLanguage,
-  version: MinecraftVersion
-): Promise<Record<string, string>> {
-  // If there is a file in the cache that matches the language and the version, use it
-  const cacheResult = await getCachedFile(`${version}/${language}.json`)
-  if (cacheResult) return JSON.parse(cacheResult)
-
-  // Get the specified version from the version manifest
-  const versionManifest = await getVersionManifest()
-  const versionMetadata = versionManifest.versions.find((v) => v.id === version)
-  if (!versionMetadata)
-    throw new Error(
-      `Version does not exist: ${version}` +
-        ` (${versionManifest.versions.length} versions available)`
-    )
-
-  // Get the language file from the minecraft-assets repository
-  const languageFile = await fetch(
-    `https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/${version}/assets/minecraft/lang/${language}.json`
-  ).then((res) => (res.status === 404 ? null : res.json()))
-
-  // Throw if the request 404'd
-  if (!languageFile)
-    throw new Error(
-      `Could not find language file (${language}.json) in minecraft-assets repository. Does the language exist?`
-    )
-
-  // Asynchronously cache the language file
-  ensureDir(path.join(".cache", version)).then(() => {
-    const filePath = path.join(version, `${language}.json`)
-    addToCache(filePath, JSON.stringify(languageFile))
-  })
-
-  return languageFile as any
-}
-
-function getVersionManifest(): Promise<{
-  latest: { snapshot: string; release: string }
-  versions: any[]
-}> {
-  // If it's available in the cache, immediately return that
-  if (cache.has("versionManifest")) return cache.get("versionManifest")
-
-  const result = fetch(
-    "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json"
-  ).then((res) => res.json()) as any
-
-  // Store the result in the cache for future calls of the function
-  cache.set("versionManifest", result)
-
-  return result
-}
-
-async function getCachedFile(filePath: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  return await readFile(fullFilePath, "utf8").catch(() => {
-    return null
-  })
-}
-
-/**
- * Creates a directory if it does not already exist
- * @returns true if the directory already existed; false if it was created
- */
-function ensureDir(path: string): Promise<boolean> {
-  return mkdir(path)
-    .then(() => true)
-    .catch((e) => {
-      return e.code === "EEXIST" ? false : e
-    })
-}
-
-async function clearDir(directoryPath: string) {
-  const contents = await readdir(directoryPath)
-
-  // Return false if the directory is empty
-  if (!contents) return false
-
-  // Delete all the files in the directory (asynchronously)
-  await Promise.all(
-    contents.map((file) => unlink(path.resolve(directoryPath, file)))
-  )
-
-  return true
-}
-
-async function addToCache(filePath: string, contents: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  await writeFile(fullFilePath, contents)
-}
+import { clearDir, ensureDir, filter, FunctionMaybe } from "./util"
+import {
+  OverrideTransformer,
+  MultiTransformer,
+  CustomTransformer,
+  Fix,
+  LanguageFileBundle,
+} from "./builder"
+import {
+  MinecraftVersion,
+  MinecraftLanguage,
+  LanguageFileData,
+  MinecraftVersionSpecifier,
+  getVanillaLanguageFile,
+  resolveMinecraftVersionSpecifier,
+} from "./minecraftHelpers"
 
 async function generateTranslationStrings(
   targetVersion: MinecraftVersion,
@@ -472,7 +214,7 @@ async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
 
 console.log("Building resource packs...")
 
-const cache = new Map<string, any>()
+export const cache = new Map<string, any>()
 
 const fixes = [
   new Fix({
