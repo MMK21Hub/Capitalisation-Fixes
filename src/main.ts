@@ -1,5 +1,5 @@
 import fetch from "node-fetch"
-import { mkdir, readFile, writeFile } from "node:fs/promises"
+import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
 import * as path from "node:path"
 import AdmZip from "adm-zip"
 
@@ -283,6 +283,20 @@ function ensureDir(path: string): Promise<boolean> {
     })
 }
 
+async function clearDir(directoryPath: string) {
+  const contents = await readdir(directoryPath)
+
+  // Return false if the directory is empty
+  if (!contents) return false
+
+  // Delete all the files in the directory (asynchronously)
+  await Promise.all(
+    contents.map((file) => unlink(path.resolve(directoryPath, file)))
+  )
+
+  return true
+}
+
 async function addToCache(filePath: string, contents: string) {
   // Make sure that the .cache directory exists
   await ensureDir(".cache")
@@ -448,11 +462,13 @@ interface BuildOptions {
   targetLanguages: MinecraftLanguage[]
   directory?: string
   packVersion?: string
+  clearDirectory?: boolean
 }
 
 async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
   const outputDir = buildOptions.directory || "out"
   ensureDir(outputDir)
+  if (buildOptions.clearDirectory) clearDir(outputDir)
 
   const languageFiles = await generateMultipleVersionsLanguageFileData(
     buildOptions.targetVersions,
@@ -500,4 +516,5 @@ const fixes = [
 await emitResourcePacks(fixes, {
   targetVersions: ["22w14a", "22w15a"],
   targetLanguages: ["en_us", "en_gb"],
+  clearDirectory: true,
 })
