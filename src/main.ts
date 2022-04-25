@@ -62,6 +62,13 @@ class MultiTransformer extends Transformer {
   }
 }
 
+/** Specify a value, or provide a function that returns that value */
+type FunctionMaybe<T, A extends any[] = []> = T | ((...args: A) => T)
+/** Like {@link FunctionMaybe}, but with named arguments for readability */
+type FunctionMaybeArgs<T, A extends Record<string, any>> = FunctionMaybe<
+  T,
+  A[string][]
+>
 /**
  * Represents the start and end points of a range
  * @example
@@ -463,6 +470,7 @@ interface BuildOptions {
   directory?: string
   packVersion?: string
   clearDirectory?: boolean
+  filename?: FunctionMaybe<string, [string, string?]>
 }
 
 async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
@@ -488,7 +496,11 @@ async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
     const suffix = buildOptions.packVersion
       ? `-${buildOptions.packVersion}`
       : ""
-    const filename = `Capitalisation-Fixes${suffix}-${version}.zip`
+    const defaultFilename = `Capitalisation-Fixes${suffix}-${version}.zip`
+    const filename =
+      typeof buildOptions.filename === "function"
+        ? buildOptions.filename(version, buildOptions.packVersion)
+        : buildOptions.filename || defaultFilename
     const zipPath = path.join(outputDir, filename)
     zip.writeZip(zipPath)
   })
@@ -520,8 +532,15 @@ const fixes = [
   }),
 ]
 
+const versionString = process.argv[2]
+
 await emitResourcePacks(fixes, {
   targetVersions: ["22w14a", "22w15a"],
   targetLanguages: ["en_us", "en_gb"],
   clearDirectory: true,
+  packVersion: versionString,
+  // If no version was specified, just name the zip after the MC version it targets:
+  filename: versionString
+    ? undefined
+    : (minecraftVersion) => `${minecraftVersion}.zip`,
 })
