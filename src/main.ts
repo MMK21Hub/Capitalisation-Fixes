@@ -414,15 +414,18 @@ async function generatePackZipData(
 }
 
 async function generateMultiplePackZipData(
-  versionedLanguageFiles: LanguageFileBundle
+  versionedLanguageFiles: LanguageFileBundle,
+  metaFileDirectory: string
 ) {
   const result: Record<string, AdmZip> = {}
 
   // Include our pack.mcmeta, pack.png and readme files in the zip
-  const metaFiles = {
-    "pack.mcmeta": await readFile("../pack.mcmeta"),
-    "pack.png": await readFile("../pack.png"),
-    "README.md": await readFile("../README.md"),
+  const metaFiles: Record<string, Buffer> = {}
+  const metaFileNames = ["pack.mcmeta", "pack.png", "README.md"]
+  for (const i in metaFileNames) {
+    const file = metaFileNames[i]
+    const filePath = path.join(metaFileDirectory, file)
+    metaFiles[file] = await readFile(filePath)
   }
 
   await Promise.all(
@@ -453,7 +456,7 @@ async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
     buildOptions.targetLanguages,
     fixes
   )
-  const zipFiles = await generateMultiplePackZipData(languageFiles)
+  const zipFiles = await generateMultiplePackZipData(languageFiles, ".")
 
   Object.entries(zipFiles).forEach(([version, zip]) => {
     const suffix = buildOptions.packVersion
@@ -491,11 +494,10 @@ const fixes = [
 
 console.log(
   JSON.stringify(
-    await generateMultipleVersionsLanguageFileData(
-      ["22w14a", "22w15a"],
-      ["en_us", "en_gb"],
-      fixes
-    ),
+    await emitResourcePacks(fixes, {
+      targetVersions: ["22w14a", "22w15a"],
+      targetLanguages: ["en_us", "en_gb"],
+    }),
     null,
     2
   )
