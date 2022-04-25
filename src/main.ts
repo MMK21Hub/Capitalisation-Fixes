@@ -310,10 +310,6 @@ async function generateTranslationStrings(
     return versions.includes(targetVersion)
   })
 
-  console.log(
-    `Generating language file for ${targetLanguage} (${targetVersion})`
-  )
-
   // Remove fixes that aren't for the target language
   fixes = fixes.filter(
     (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
@@ -343,6 +339,13 @@ async function generateTranslationStrings(
         }`
       )
   })
+
+  // Log the translation strings that we just generated
+  console.log(`=== ${targetVersion} ${targetLanguage} ===`)
+  Object.entries(result).forEach(([key, value]) =>
+    console.log(`${key}: "${value}"`)
+  )
+  console.log(" ")
 
   return result
 }
@@ -468,6 +471,8 @@ async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
   })
 }
 
+console.log("Building resource packs...")
+
 const cache = new Map<string, any>()
 
 const fixes = [
@@ -492,13 +497,7 @@ const fixes = [
   }),
 ]
 
-console.log(
-  JSON.stringify(
-    await emitResourcePacks(fixes, {
-      targetVersions: ["22w14a", "22w15a"],
-      targetLanguages: ["en_us", "en_gb"],
-    }),
-    null,
-    2
-  )
-)
+await emitResourcePacks(fixes, {
+  targetVersions: ["22w14a", "22w15a"],
+  targetLanguages: ["en_us", "en_gb"],
+})
