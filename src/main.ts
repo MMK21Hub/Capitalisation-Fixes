@@ -467,8 +467,15 @@ interface BuildOptions {
 
 async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
   const outputDir = buildOptions.directory || "out"
+
+  // Prepare the output directory
   ensureDir(outputDir)
   if (buildOptions.clearDirectory) clearDir(outputDir)
+
+  if (!buildOptions.packVersion)
+    console.warn(
+      "No pack version specified. Published builds should be branded with a version number."
+    )
 
   const languageFiles = await generateMultipleVersionsLanguageFileData(
     buildOptions.targetVersions,
