@@ -437,6 +437,34 @@ async function generateMultiplePackZipData(
   return result
 }
 
+interface BuildOptions {
+  targetVersions: MinecraftVersionSpecifier
+  targetLanguages: MinecraftLanguage[]
+  directory?: string
+  packVersion?: string
+}
+
+async function emitResourcePacks(fixes: Fix[], buildOptions: BuildOptions) {
+  const outputDir = buildOptions.directory || "out"
+  ensureDir(outputDir)
+
+  const languageFiles = await generateMultipleVersionsLanguageFileData(
+    buildOptions.targetVersions,
+    buildOptions.targetLanguages,
+    fixes
+  )
+  const zipFiles = await generateMultiplePackZipData(languageFiles)
+
+  Object.entries(zipFiles).forEach(([version, zip]) => {
+    const suffix = buildOptions.packVersion
+      ? `-${buildOptions.packVersion}`
+      : ""
+    const filename = `Capitalisation-Fixes${suffix}-${version}.zip`
+    const zipPath = path.join(outputDir, filename)
+    zip.writeZip(zipPath)
+  })
+}
+
 const cache = new Map<string, any>()
 
 const fixes = [
