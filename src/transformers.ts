@@ -1,4 +1,5 @@
 import { Transformer, TransformerCallbackData } from "./builder.js"
+import { toTitleCase } from "./util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
@@ -63,5 +64,35 @@ export class ReplaceTransformer extends Transformer {
 
     this.searchValue = searchValue
     this.replaceValue = replaceValue
+  }
+}
+
+export class CapitaliseSegmentTransformer extends Transformer {
+  searchValue
+
+  constructor(searchValue: string | RegExp) {
+    super(({ oldValue }) => {
+      if (!oldValue) return { value: null }
+
+      if (typeof searchValue === "string") {
+        const newValue = oldValue.replace(searchValue, toTitleCase(searchValue))
+        return {
+          value: newValue,
+        }
+      }
+
+      const matches = oldValue.match(searchValue)
+      let value = oldValue
+      matches?.forEach((match) => {
+        // Convert each matched test segment to title case
+        value = value.replace(match, toTitleCase(match))
+      })
+
+      return {
+        value,
+      }
+    })
+
+    this.searchValue = searchValue
   }
 }

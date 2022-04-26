@@ -29,6 +29,8 @@ export type FancyRange<T> = {
 /** A set of items within start and end limits. Can be represented in multiple ways. */
 export type Range<T> = StartAndEnd<T> | FancyRange<T>
 
+/* ASYNC UTILS */
+
 // https://stackoverflow.com/a/46842181/11519302
 export async function filter<T>(
   array: T[],
@@ -40,6 +42,13 @@ export async function filter<T>(
       array.map(async (item) => ((await predicate(item)) ? item : fail))
     )
   ).filter((i) => i !== fail) as T[]
+}
+
+/* STRING PROCESSING */
+
+export function toTitleCase(str: string) {
+  // TODO
+  return str
 }
 
 /* FILESYSTEM UTILS */

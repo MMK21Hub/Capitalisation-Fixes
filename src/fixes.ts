@@ -8,7 +8,7 @@ import {
 const fixes: Fix[] = [
   new Fix({
     key: "test",
-    transformer: new OverrideTransformer("test"),
+    transformer: new OverrideTransformer("Testing"),
     versions: ["22w12a", "22w14a"],
   }),
   new Fix({
