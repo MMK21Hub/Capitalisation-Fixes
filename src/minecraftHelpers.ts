@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 import path from "path"
-import { cache } from "./main"
+import { cache } from "./main.js"
 import {
   FancyRange,
   StartAndEnd,
@@ -8,7 +8,7 @@ import {
   addToCache,
   ensureDir,
   getCachedFile,
-} from "./util"
+} from "./util.js"
 
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string

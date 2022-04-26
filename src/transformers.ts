@@ -1,4 +1,4 @@
-import { Transformer, TransformerCallbackData } from "./builder"
+import { Transformer, TransformerCallbackData } from "./builder.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {

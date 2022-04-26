@@ -1,9 +1,9 @@
-import { Fix } from "./builder"
+import { Fix } from "./builder.js"
 import {
   OverrideTransformer,
   MultiTransformer,
   CustomTransformer,
-} from "./transformers"
+} from "./transformers.js"
 
 const fixes: Fix[] = [
   new Fix({

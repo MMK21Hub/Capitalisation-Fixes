@@ -1,5 +1,5 @@
-import { emitResourcePacks } from "./builder"
-import fixes from "./fixes"
+import { emitResourcePacks } from "./builder.js"
+import fixes from "./fixes.js"
 
 console.log("Building resource packs...")
 

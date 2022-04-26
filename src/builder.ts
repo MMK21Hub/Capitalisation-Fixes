@@ -8,8 +8,8 @@ import {
   MinecraftVersion,
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
-} from "./minecraftHelpers"
-import { FunctionMaybe, filter, ensureDir, clearDir } from "./util"
+} from "./minecraftHelpers.js"
+import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
