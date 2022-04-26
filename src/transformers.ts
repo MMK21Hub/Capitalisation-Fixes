@@ -50,3 +50,18 @@ export class MultiTransformer extends Transformer {
     this.transformers = transformers
   }
 }
+
+/** Replaces a specified search string with another string */
+export class ReplaceTransformer extends Transformer {
+  searchValue
+  replaceValue
+
+  constructor(searchValue: string | RegExp, replaceValue: string) {
+    super(({ oldValue }) => ({
+      value: oldValue?.replace(searchValue, replaceValue),
+    }))
+
+    this.searchValue = searchValue
+    this.replaceValue = replaceValue
+  }
+}
