@@ -48,7 +48,7 @@ export async function filter<T>(
 
 export function toTitleCase(str: string) {
   return str.replaceAll(
-    /w+/g,
+    /\w+/g,
     (match) => match.charAt(0).toUpperCase() + match.slice(1)
   )
 }
