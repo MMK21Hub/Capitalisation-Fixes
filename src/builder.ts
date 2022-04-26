@@ -13,12 +13,12 @@ import { FunctionMaybe, filter, ensureDir, clearDir } from "./util"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
-  value: string
+  value: string | null | undefined
 }
 /** The data provided to {@link Transformer} callback functions */
 export type TransformerCallbackData = {
   key: string
-  oldValue: string | null
+  oldValue: string | null | undefined
 }
 
 /**
@@ -116,10 +116,11 @@ async function generateTranslationStrings(
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
-    result[key] = transformer.callback({
-      key,
-      oldValue: originalLanguageFile[key] ?? null,
-    }).value
+    result[key] =
+      transformer.callback({
+        key,
+        oldValue: originalLanguageFile[key] ?? null,
+      }).value || ""
 
     if (result[key] === originalLanguageFile[key])
       console.warn(
