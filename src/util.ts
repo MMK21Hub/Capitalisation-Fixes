@@ -47,8 +47,10 @@ export async function filter<T>(
 /* STRING PROCESSING */
 
 export function toTitleCase(str: string) {
-  // TODO
-  return str
+  return str.replaceAll(
+    /w+/g,
+    (match) => match.charAt(0).toUpperCase() + match.slice(1)
+  )
 }
 
 /* FILESYSTEM UTILS */
