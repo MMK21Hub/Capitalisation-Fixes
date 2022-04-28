@@ -65,5 +65,13 @@
   // MC-250158
   "advancements.adventure.avoid_vibration.description": "Sneak near a Sculk Sensor, Sculk Shrieker, or Warden to prevent it from hearing you",
 
+  // MC-250932
+  // `subtitles.entity.goat.horn_break` should be possessive anyway (see MC-250968)
+  // "subtitles.entity.goat.horn_break": "Goat Horn breaks off",
+  "subtitles.item.goat_horn.play": "Goat Horn plays",
+
+  // MC-250968
+  "subtitles.entity.goat.horn_break": "Goat's horn breaks off",
+
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }

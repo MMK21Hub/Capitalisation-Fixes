@@ -64,6 +64,8 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
+- [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) (capitalisation)
+- [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 
 ### Previously-fixed strings
 
