@@ -6,8 +6,9 @@
   "advancements.adventure.spyglass_at_dragon.description": "Look at the Ender Dragon through a Spyglass",
   "advancements.husbandry.axolotl_in_a_bucket.description": "Catch an Axolotl in a bucket",
   "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
-  "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
-  "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
+  // Descriptions for Wax On/Off shouldn't even say "Copper Block" in the first place (MC-226484)
+  // "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
+  // "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
 
   // MC-226454
   "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
@@ -72,6 +73,10 @@
 
   // MC-250968
   "subtitles.entity.goat.horn_break": "Goat's horn breaks off",
+
+  // MC-226484
+  "advancements.husbandry.wax_on.description": "Apply Honeycomb to copper!",
+  "advancements.husbandry.wax_off.description": "Scrape wax off of copper!",
 
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
