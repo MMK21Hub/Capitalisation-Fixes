@@ -48,10 +48,9 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 33 modified translation strings are included in the resource pack, which fix a total of 16 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
-- [Several 1.17 advancement strings](https://bugs.mojang.com/browse/MC-226430) (capitalisation)
-  - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
+- [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
 - [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
