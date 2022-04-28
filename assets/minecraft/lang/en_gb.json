@@ -1,14 +1,4 @@
 {
-  // MC-226430 (1.17 advancement strings)
-  "advancements.adventure.lightning_rod_with_villager_no_fire.description": "Protect a Villager from an undesired shock without starting a fire",
-  "advancements.adventure.spyglass_at_parrot.description": "Look at a Parrot through a Spyglass",
-  "advancements.adventure.spyglass_at_ghast.description": "Look at a Ghast through a Spyglass",
-  "advancements.adventure.spyglass_at_dragon.description": "Look at the Ender Dragon through a Spyglass",
-  "advancements.husbandry.axolotl_in_a_bucket.description": "Catch an Axolotl in a bucket",
-  "advancements.husbandry.kill_axolotl_target.description": "Team up with an Axolotl and win a fight",
-  "advancements.husbandry.wax_on.description": "Apply Wax to a Copper Block!",
-  "advancements.husbandry.wax_off.description": "Scrape Wax off of a Copper Block!",
-
   // MC-226454
   "advancements.adventure.walk_on_powder_snow_with_leather_boots.description": "Walk on Powder Snow... without sinking in it",
 
@@ -64,6 +54,18 @@
 
   // MC-250158
   "advancements.adventure.avoid_vibration.description": "Sneak near a Sculk Sensor, Sculk Shrieker, or Warden to prevent it from hearing you",
+
+  // MC-250932
+  // `subtitles.entity.goat.horn_break` should be possessive anyway (see MC-250968)
+  // "subtitles.entity.goat.horn_break": "Goat Horn breaks off",
+  "subtitles.item.goat_horn.play": "Goat Horn plays",
+
+  // MC-250968
+  "subtitles.entity.goat.horn_break": "Goat's horn breaks off",
+
+  // MC-226484
+  "advancements.husbandry.wax_on.description": "Apply Honeycomb to copper!",
+  "advancements.husbandry.wax_off.description": "Scrape wax off of copper!",
 
   "trailing-comma-workaround": "This is the only line that shouldn't have a comma"
 }
