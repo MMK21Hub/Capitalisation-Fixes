@@ -9,6 +9,7 @@ import {
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
+import { MultiTransformer } from "./transformers.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 
 /** The output of a {@link Transformer} */
@@ -48,8 +49,8 @@ export type LanguageFileBundle = Record<
 interface FixOptions {
   /** The translation string that needs to be edited */
   key: string
-  /** A "transformer" that declares the edits that need to be made to the specified translation string */
-  transformer: Transformer
+  /** A "transformer" that declares the edits that need to be made to the specified translation string. Providing an array of transformers automatically uses a {@link MultiTransformer} */
+  transformer: Transformer | Transformer[]
   /** Specifies the versions of Minecraft that the fix should be applied to (defaults to all versions) */
   versions?: MinecraftVersionSpecifier
   /** Specifies the languages that the fix should be applied to (defaults to all languages) */
@@ -116,6 +117,11 @@ async function generateTranslationStrings(
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
+    if (Array.isArray(transformer)) {
+      // Automatically use a MultiTransformer if an array is provided
+      transformer = new MultiTransformer(transformer)
+    }
+
     result[key] =
       transformer.callback({
         key,
