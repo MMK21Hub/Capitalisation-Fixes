@@ -47,7 +47,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-33 modified translation strings are included in the resource pack, which fix a total of 16 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+30 modified translation strings are included in the resource pack, which fix a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
@@ -95,7 +95,7 @@ For detailed information, check [the file itself](new-version.sh) - it's only fo
 
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [16](#fixed-strings)                                                                                            | You are here! |
+| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [18](#fixed-strings)                                                                                            | You are here! |
 | [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
