@@ -9,7 +9,7 @@ import {
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
-import { MultiTransformer } from "./transformers.js"
+import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 
 /** The output of a {@link Transformer} */
@@ -57,6 +57,10 @@ interface FixOptions {
   languages?: MinecraftLanguage[]
 }
 
+interface FixData extends FixOptions {
+  transformer: Transformer
+}
+
 interface BuildOptions {
   targetVersions: MinecraftVersionSpecifier
   targetLanguages: MinecraftLanguage[]
@@ -78,7 +82,12 @@ export class Fix {
   data
 
   constructor(options: FixOptions) {
-    this.data = options
+    if (Array.isArray(options.transformer)) {
+      // Automatically use a MultiTransformer if an array is provided
+      options.transformer = new MultiTransformer(options.transformer)
+    }
+
+    this.data = options as FixData
   }
 }
 
@@ -117,11 +126,6 @@ async function generateTranslationStrings(
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
-    if (Array.isArray(transformer)) {
-      // Automatically use a MultiTransformer if an array is provided
-      transformer = new MultiTransformer(transformer)
-    }
-
     result[key] =
       transformer.callback({
         key,

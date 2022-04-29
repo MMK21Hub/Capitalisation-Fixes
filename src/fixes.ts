@@ -1,9 +1,10 @@
 import { Fix } from "./builder.js"
 import {
   OverrideTransformer,
-  MultiTransformer,
+  // MultiTransformer,
   CustomTransformer,
-} from "./transformers.js"
+  CapitaliseSegmentTransformer,
+} from "./transformers/index.js"
 
 const fixes: Fix[] = [
   new Fix({
@@ -13,16 +14,19 @@ const fixes: Fix[] = [
   }),
   new Fix({
     key: "gui.yes",
-    transformer: new MultiTransformer([
+    transformer: [
       // Adds an exclamation mark to the end
       new CustomTransformer(({ oldValue }) => `${oldValue}!`),
       // Adds a question mark to the end
       new CustomTransformer(({ oldValue }) => `${oldValue}?`),
-    ]),
+    ],
   }),
   new Fix({
     key: "item.minecraft.baked_potato",
-    transformer: new OverrideTransformer("Baked Jacket Potato"),
+    transformer: [
+      new OverrideTransformer("Baked jacket Potato"),
+      new CapitaliseSegmentTransformer(/Jacket/i),
+    ],
     languages: ["en_gb"],
   }),
 ]
