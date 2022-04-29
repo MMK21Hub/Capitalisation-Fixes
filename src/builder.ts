@@ -1,3 +1,4 @@
+import type { Fix } from "./Fix.js"
 import AdmZip from "adm-zip"
 import { readFile } from "fs/promises"
 import path from "path"
@@ -9,7 +10,6 @@ import {
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
-import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 
 /** The output of a {@link Transformer} */
@@ -46,7 +46,7 @@ export type LanguageFileBundle = Record<
   Record<string, LanguageFileData>
 >
 
-interface FixOptions {
+export interface FixOptions {
   /** The translation string that needs to be edited */
   key: string
   /** A "transformer" that declares the edits that need to be made to the specified translation string. Providing an array of transformers automatically uses a {@link MultiTransformer} */
@@ -57,7 +57,7 @@ interface FixOptions {
   languages?: MinecraftLanguage[]
 }
 
-interface FixData extends FixOptions {
+export interface FixData extends FixOptions {
   transformer: Transformer
 }
 
@@ -75,19 +75,6 @@ export abstract class Transformer {
 
   constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
     this.callback = callback
-  }
-}
-
-export class Fix {
-  data
-
-  constructor(options: FixOptions) {
-    if (Array.isArray(options.transformer)) {
-      // Automatically use a MultiTransformer if an array is provided
-      options.transformer = new MultiTransformer(options.transformer)
-    }
-
-    this.data = options as FixData
   }
 }
 
