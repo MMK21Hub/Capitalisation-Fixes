@@ -4,6 +4,7 @@ import {
   // MultiTransformer,
   CustomTransformer,
   CapitaliseSegmentTransformer,
+  CapitaliseSectionTransformer,
 } from "./transformers/index.js"
 
 const fixes: Fix[] = [
@@ -24,8 +25,8 @@ const fixes: Fix[] = [
   new Fix({
     key: "item.minecraft.baked_potato",
     transformer: [
-      new OverrideTransformer("Baked jacket Potato"),
-      new CapitaliseSegmentTransformer(/Jacket/i),
+      new OverrideTransformer("baked jacket potato"),
+      new CapitaliseSectionTransformer(/bake/i, /tato/i),
     ],
     languages: ["en_gb"],
   }),

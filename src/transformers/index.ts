@@ -1,5 +1,5 @@
 import { Transformer, TransformerCallbackData } from "../builder.js"
-import { toTitleCase } from "../util.js"
+import { toTitleCase, Range, StartAndEnd } from "../util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
@@ -43,5 +43,50 @@ export class CapitaliseSegmentTransformer extends Transformer {
     })
 
     this.searchValue = searchValue
+  }
+}
+
+export class CapitaliseSectionTransformer extends Transformer {
+  range: StartAndEnd<string | RegExp>
+
+  constructor(start: string | RegExp | null, end: string | RegExp | null) {
+    super(({ oldValue }) => {
+      if (!oldValue) return { value: null }
+
+      const [start, end] = this.range
+
+      const simpleStart = typeof start === "string"
+      const simpleEnd = typeof end === "string"
+
+      const startIndex =
+        start === null
+          ? 0
+          : simpleStart
+          ? oldValue.indexOf(start)
+          : oldValue.search(start)
+
+      const endIndex =
+        end === null
+          ? oldValue.length
+          : simpleEnd
+          ? oldValue.indexOf(end) + end.length
+          : oldValue.search(end) + (oldValue.match(end)?.[0].length || -1)
+
+      if (startIndex === -1 || endIndex === -1) {
+        console.warn(
+          "CapitaliseSectionTransformer: Start/end search string didn't match"
+        )
+        return { value: oldValue }
+      }
+
+      const value =
+        oldValue.slice(0, startIndex) +
+        toTitleCase(oldValue.slice(startIndex, endIndex)) +
+        oldValue.slice(endIndex)
+
+      return { value }
+    })
+
+    this.range = [start, end]
   }
 }
