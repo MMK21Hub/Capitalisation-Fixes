@@ -32,6 +32,7 @@ export class ReplaceTransformer extends Transformer {
   }
 }
 
+/** Capitalises past of a string, as specified by a RegEx or simple search string */
 export class CapitaliseSegmentTransformer extends Transformer {
   searchValue
 
@@ -46,6 +47,7 @@ export class CapitaliseSegmentTransformer extends Transformer {
   }
 }
 
+/** Capitalises the parts of a string that are in-between the provided search strings (inclusively)  */
 export class CapitaliseSectionTransformer extends Transformer {
   range: StartAndEnd<string | RegExp>
 
