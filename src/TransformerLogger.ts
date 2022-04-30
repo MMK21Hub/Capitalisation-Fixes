@@ -50,13 +50,13 @@ export class Timestamp {
   leapSecond: boolean = false
 
   assertValid() {
-    if (this.hour > 23) {
+    if (this.hour > 23 || this.hour < 0) {
       throw new ValidationError("hour", "Hour must be between 0 and 23")
     }
-    if (this.minute > 59) {
+    if (this.minute > 59 || this.minute < 0) {
       throw new ValidationError("minute", "Minute must be between 0 and 59")
     }
-    if (this.second > 59) {
+    if (this.second > 59 || this.second < 0) {
       throw new ValidationError("second", "Second must be between 0 and 59")
     }
 
@@ -104,8 +104,6 @@ export class Timestamp {
         )
       }
     })
-
-    this.decimalSeconds.forEach((decimalSecond) => {})
   }
 
   toISO() {
