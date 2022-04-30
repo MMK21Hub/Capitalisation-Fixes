@@ -46,21 +46,6 @@ export type LanguageFileBundle = Record<
   Record<string, LanguageFileData>
 >
 
-export interface FixOptions {
-  /** The translation string that needs to be edited */
-  key: string
-  /** A "transformer" that declares the edits that need to be made to the specified translation string. Providing an array of transformers automatically uses a {@link MultiTransformer} */
-  transformer: Transformer | Transformer[]
-  /** Specifies the versions of Minecraft that the fix should be applied to (defaults to all versions) */
-  versions?: MinecraftVersionSpecifier
-  /** Specifies the languages that the fix should be applied to (defaults to all languages) */
-  languages?: MinecraftLanguage[]
-}
-
-export interface FixData extends FixOptions {
-  transformer: Transformer
-}
-
 interface BuildOptions {
   targetVersions: MinecraftVersionSpecifier
   targetLanguages: MinecraftLanguage[]
