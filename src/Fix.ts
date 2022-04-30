@@ -20,7 +20,7 @@ export interface FixData extends FixOptions {
   transformer: Transformer
 }
 
-export class Fix {
+export default class Fix {
   data
 
   constructor(options: FixOptions) {

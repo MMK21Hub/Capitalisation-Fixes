@@ -1,7 +1,6 @@
-import type { Fix } from "./Fix.js"
+import path from "node:path"
+import { readFile } from "node:fs/promises"
 import AdmZip from "adm-zip"
-import { readFile } from "fs/promises"
-import path from "path"
 import {
   getVanillaLanguageFile,
   LanguageFileData,
@@ -11,6 +10,8 @@ import {
   resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
+import TransformerLogger from "./TransformerLogger.js"
+import type Fix from "./Fix.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -20,6 +21,7 @@ export type TransformerResult = {
 export type TransformerCallbackData = {
   key: string
   oldValue: string | null | undefined
+  logger: TransformerLogger
 }
 
 /**
@@ -102,6 +104,7 @@ async function generateTranslationStrings(
       transformer.callback({
         key,
         oldValue: originalLanguageFile[key] ?? null,
+        logger: new TransformerLogger(),
       }).value || ""
 
     if (result[key] === originalLanguageFile[key])

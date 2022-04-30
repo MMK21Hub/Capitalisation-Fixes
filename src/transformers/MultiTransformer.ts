@@ -5,14 +5,15 @@ export class MultiTransformer extends Transformer {
   transformers
 
   constructor(transformers: Transformer[]) {
-    super((data) => {
-      let currentValue = data.oldValue
+    super(({ oldValue, key, logger }) => {
+      let currentValue = oldValue
 
       // Run each transformer, providing it with the output from the previous one
       transformers.forEach((transformer) => {
         const result = transformer.callback({
-          key: data.key,
+          key,
           oldValue: currentValue,
+          logger,
         })
 
         // Update the current value
@@ -28,7 +29,7 @@ export class MultiTransformer extends Transformer {
         )
 
       // Return the final value and the original key
-      return { value: currentValue, key: data.key }
+      return { value: currentValue, key }
     })
 
     this.transformers = transformers
