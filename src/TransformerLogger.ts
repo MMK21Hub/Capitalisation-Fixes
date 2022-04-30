@@ -60,7 +60,7 @@ export class Timestamp {
       throw new ValidationError("second", "Second must be between 0 and 59")
     }
 
-    this.decimalSeconds.forEach((decimalSecond) => {
+    this.decimalSeconds.forEach((decimalSecond, i) => {
       // Check for multiple decimal seconds with the same exponent
       const duplicates = this.decimalSeconds.filter(
         (dc) => dc.exponent === decimalSecond.exponent
@@ -72,13 +72,37 @@ export class Timestamp {
           .join(", ")
 
         throw new ValidationError(
-          `decimalSeconds`,
+          "decimalSeconds",
           `Multiple decimal seconds specified for the same exponent (${decimalSecond.exponent})`,
-          `Items with the same exponent: ${duplicatesString}`
+          "Items with the same exponent: " + duplicatesString
         )
       }
 
-      if (decimalSecond.exponent > 0) throw new ValidationError("exponent")
+      if (decimalSecond.exponent === 0)
+        throw new ValidationError(
+          `decimalSeconds[${i}].exponent`,
+          "Exponent cannot be 0. Modify the Timestamp#second field to specify seconds."
+        )
+
+      if (decimalSecond.exponent > 0)
+        throw new ValidationError(
+          `decimalSeconds[${i}].exponent`,
+          "Exponent must be negative. Use minutes/hours etc to specify units of time larger than 1 second.",
+          "Provided value: " + decimalSecond.exponent
+        )
+
+      if (decimalSecond.exponent % 3) {
+        const suggestedValue =
+          decimalSecond.value * 10 ** Math.abs(decimalSecond.exponent)
+        const suggestedExponent = Math.floor(decimalSecond.exponent / 3) * 3
+
+        throw new ValidationError(
+          `decimalSeconds[${i}].exponent`,
+          "Exponent must be a multiple of three. To specify other resolutions, use a smaller exponent and multiply the value by 10 or 100.",
+          `Provided value: ${decimalSecond.exponent}\n` +
+            `Suggested value: ${suggestedValue} (with exponent ${suggestedExponent})`
+        )
+      }
     })
 
     this.decimalSeconds.forEach((decimalSecond) => {})
