@@ -10,7 +10,7 @@ import {
   resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
-import TransformerLogger from "./TransformerLogger.js"
+import TransformerLogger, { MessageType } from "./TransformerLogger.js"
 import type Fix from "./Fix.js"
 
 /** The output of a {@link Transformer} */
@@ -100,19 +100,48 @@ async function generateTranslationStrings(
   )
 
   fixes.forEach(({ data: { key, transformer } }) => {
+    const transformerName = Object.getPrototypeOf(transformer).constructor.name
+    const logger = new TransformerLogger()
+
     result[key] =
       transformer.callback({
         key,
         oldValue: originalLanguageFile[key] ?? null,
-        logger: new TransformerLogger(),
+        logger,
       }).value || ""
+
+    if (logger.countMessages(MessageType.Warn)) {
+      console.group(
+        `${transformerName} produced warning(s) while processing ${key}`
+      )
+
+      logger
+        .getMessages(MessageType.Warn)
+        .forEach((msg) =>
+          console.warn(`[${msg.timestamp.simpleTime}] ${msg.message}`)
+        )
+
+      console.groupEnd()
+    }
+
+    if (logger.countMessages(MessageType.Error)) {
+      console.group(
+        `${transformerName} produced error(s) while processing ${key}`
+      )
+
+      logger
+        .getMessages(MessageType.Error)
+        .forEach((msg) =>
+          console.error(`[${msg.timestamp.simpleTime}] ${msg.message}`)
+        )
+
+      console.groupEnd()
+    }
 
     if (result[key] === originalLanguageFile[key])
       console.warn(
         `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
-        `Transformer used: ${
-          Object.getPrototypeOf(transformer).constructor.name
-        }`
+        `Transformer used: ${transformerName}`
       )
   })
 
