@@ -53,7 +53,7 @@ export class Timestamp {
   minute: number
   second: number
   /** Divisions of a second, e.g. milliseconds and nanoseconds */
-  decimalSeconds: DecimalSecond[]
+  decimalSeconds: DecimalSecond[] = []
 
   day: number
   month: number
@@ -193,6 +193,33 @@ export class Timestamp {
 
   toDate(): Date {
     return new Date(this.toISO())
+  }
+
+  setDecimalSecond(exponent: number, value: number) {
+    const matchingDecimalSeconds = this.decimalSeconds.find(
+      (ds) => ds.exponent === exponent
+    )
+
+    matchingDecimalSeconds
+      ? // Update an already-existing decimalSecond item if it exists
+        (matchingDecimalSeconds.value = value)
+      : // Otherwise, add a new decimalSecond item with the provided value
+        this.decimalSeconds.push(new DecimalSecond(exponent, value))
+  }
+
+  constructor(timestamp: Timestamp | Date | number) {
+    const jsDate =
+      timestamp instanceof Timestamp ? timestamp.toDate() : new Date(timestamp)
+
+    this.hour = jsDate.getUTCHours()
+    this.minute = jsDate.getUTCMinutes()
+    this.second = jsDate.getUTCSeconds()
+
+    this.day = jsDate.getUTCDate()
+    this.month = jsDate.getUTCMonth() + 1
+    this.year = jsDate.getUTCFullYear()
+
+    this.decimalSeconds.push({ value: jsDate.getMilliseconds(), exponent: -3 })
   }
 }
 
