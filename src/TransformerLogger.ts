@@ -171,6 +171,20 @@ export class Timestamp {
     }
   }
 
+  invalidReason() {
+    try {
+      this.assertValid()
+      return null
+    } catch (e) {
+      if (e instanceof ValidationError) return e
+      throw e
+    }
+  }
+
+  checkValid() {
+    return !!this.invalidReason()
+  }
+
   simpleTime(): string {
     const { hour, minute, second } = this
     return `${hour}:${minute}:${second}`
