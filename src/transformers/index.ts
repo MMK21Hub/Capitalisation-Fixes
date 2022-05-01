@@ -52,7 +52,7 @@ export class CapitaliseSectionTransformer extends Transformer {
   range: StartAndEnd<string | RegExp>
 
   constructor(start: string | RegExp | null, end: string | RegExp | null) {
-    super(({ oldValue, key }) => {
+    super(({ oldValue, key, logger }) => {
       if (!oldValue) return { value: null }
 
       const [start, end] = this.range
@@ -75,17 +75,17 @@ export class CapitaliseSectionTransformer extends Transformer {
           : oldValue.search(end) + (oldValue.match(end)?.[0].length || -1)
 
       if (startIndex === -1) {
-        console.warn(
-          "CapitaliseSectionTransformer: Start search string didn't match anything in the string.",
-          `Searching for "${start}" in while processing translation key ${key}.`
+        logger.warn(
+          "Start search string didn't match anything in the string. " +
+            `Searching for "${start}" in "${oldValue}" while processing translation key ${key}.`
         )
         return { value: oldValue }
       }
 
       if ((simpleEnd && endIndex < end.length) || endIndex === -1) {
-        console.warn(
-          "CapitaliseSectionTransformer: End search string didn't match anything in the string",
-          `Searching for "${end}" in  while processing translation key ${key}.`
+        logger.warn(
+          "End search string didn't match anything in the string. " +
+            `Searching for "${end}" in "${oldValue}" while processing translation key ${key}.`
         )
         return { value: oldValue }
       }
