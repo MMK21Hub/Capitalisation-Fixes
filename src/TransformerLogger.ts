@@ -23,6 +23,21 @@ export class ValidationError extends Error {
   }
 }
 
+const monthLengths: Record<number, number> = {
+  1: 31,
+  2: 28,
+  3: 31,
+  4: 30,
+  5: 31,
+  6: 30,
+  7: 31,
+  8: 31,
+  9: 30,
+  10: 31,
+  11: 30,
+  12: 31,
+}
+
 class DecimalSecond {
   exponent
   value
@@ -50,14 +65,27 @@ export class Timestamp {
   leapSecond: boolean = false
 
   assertValid() {
-    if (this.hour > 23 || this.hour < 0) {
+    if (this.hour > 23 || this.hour < 0)
       throw new ValidationError("hour", "Hour must be between 0 and 23")
-    }
-    if (this.minute > 59 || this.minute < 0) {
+    if (this.minute > 59 || this.minute < 0)
       throw new ValidationError("minute", "Minute must be between 0 and 59")
-    }
-    if (this.second > 59 || this.second < 0) {
+    if (this.second > 59 || this.second < 0)
       throw new ValidationError("second", "Second must be between 0 and 59")
+
+    if (this.day <= 0)
+      throw new ValidationError("day", "Day cannot be positive")
+    if (this.month > 12 || this.month < 1)
+      throw new ValidationError("month", "Month must be between 1 and 12")
+
+    const maxDays = monthLengths[this.month]
+    if (this.day > maxDays) {
+      const isLeap = this.month === 2 && this.day === 29
+      throw new ValidationError(
+        "day",
+        `Specified day is over the maximum day count for month ${this.month}` +
+          (isLeap ? ". Set #leapDay to represent Feb 29" : ""),
+        `Expected a value from 1 to ${maxDays}, but got ${this.day}`
+      )
     }
 
     this.decimalSeconds.forEach((decimalSecond, i) => {
