@@ -132,11 +132,63 @@ export class Timestamp {
         )
       }
     })
+
+    if (this.leapDay && this.day !== maxDays) {
+      const recommendedSolution = `Set #day to ${
+        this.day + 1
+      } and #leapDay to false`
+
+      throw new ValidationError(
+        "leapDay",
+        "Leap days can only occur at the end of the month",
+        `Current month number: ${this.month}\n` +
+          `Expected day for a leap day: ${maxDays}\n` +
+          `Recommended solution: ${recommendedSolution}\n` +
+          `Alternative solution: Set #day to ${maxDays}`
+      )
+    }
+
+    if (
+      this.leapSecond &&
+      (this.second !== 59 || this.minute !== 59 || this.hour !== 23)
+    ) {
+      const getSuggestion: () => [string, number] = () => {
+        if (this.second !== 59) return ["second", this.second + 1]
+        if (this.minute !== 59) return ["minute", this.minute + 1]
+        return ["hour", this.hour + 1]
+      }
+
+      const [field, value] = getSuggestion()
+
+      throw new ValidationError(
+        "leapSecond",
+        "Leap seconds can only occur at the very end of the day",
+        `Provided time: ${this.simpleTime()}\n` +
+          `Expected time: 23:59:59\n` +
+          `Recommended solution: Set #${field} to ${value} and #leapSecond to false\n` +
+          `Alternative solution: Set #hour to 23, #minute to 59 and #second to 59`
+      )
+    }
+  }
+
+  simpleTime(): string {
+    const { hour, minute, second } = this
+    return `${hour}:${minute}:${second}`
+  }
+
+  fullTime(): string {
+    let decimals = 0.0
+    this.decimalSeconds.forEach((decimalSecond) => {
+      decimals += decimalSecond.value * 10 ** decimalSecond.exponent
+    })
+
+    // Append the decimal places, with the leading 0 stripped, to the simple time
+    return this.simpleTime() + decimals.toString().substring(1)
   }
 
   toISO() {
-    const { year, month, day, hour, minute, second } = this
-    return `${year}-${month}-${day}T${hour}:${minute}:${second}`
+    const { year, month, day } = this
+    return `${year}-${month}-${day}T${this.fullTime()}`
   }
 
   toDate(): Date {
