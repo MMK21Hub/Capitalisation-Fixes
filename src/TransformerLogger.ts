@@ -9,6 +9,7 @@ enum MessageType {
 interface Message {
   type: MessageType
   message: string
+  timestamp: Timestamp
 }
 
 export class ValidationError extends Error {
@@ -239,19 +240,35 @@ export class Timestamp {
 
 export default class TransformerLogger extends EventEmitter {
   info(message: string) {
-    this.emit("info", message)
-    this.messages.push({ type: MessageType.Info, message })
+    this.emit("message", { content: message, type: MessageType.Info })
   }
 
   warn(message: string) {
-    this.emit("warn", message)
-    this.messages.push({ type: MessageType.Warn, message })
+    this.emit("message", { content: message, type: MessageType.Warn })
   }
 
   error(message: string) {
-    this.emit("error", message)
-    this.messages.push({ type: MessageType.Error, message })
+    this.emit("message", { content: message, type: MessageType.Error })
   }
 
   messages: Message[] = []
+
+  constructor() {
+    super()
+
+    this.on(
+      "message",
+      ({ type, content }: { type: MessageType; content: string }) => {
+        const eventName = MessageType[type].toLowerCase()
+
+        this.messages.push({
+          type,
+          message: content,
+          timestamp: new Timestamp(Date.now()),
+        })
+
+        this.emit(eventName, content)
+      }
+    )
+  }
 }
