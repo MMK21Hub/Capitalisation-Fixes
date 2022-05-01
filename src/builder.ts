@@ -118,7 +118,7 @@ async function generateTranslationStrings(
       logger
         .getMessages(MessageType.Warn)
         .forEach((msg) =>
-          console.warn(`[${msg.timestamp.simpleTime}] ${msg.message}`)
+          console.warn(`[${msg.timestamp.simpleTime()}] ${msg.message}`)
         )
 
       console.groupEnd()
