@@ -1,6 +1,6 @@
 import EventEmitter from "node:events"
 
-enum MessageType {
+export enum MessageType {
   Info,
   Warn,
   Error,
@@ -249,6 +249,12 @@ export default class TransformerLogger extends EventEmitter {
 
   error(message: string) {
     this.emit("message", { content: message, type: MessageType.Error })
+  }
+
+  countMessages(...types: MessageType[]) {
+    const messages = this.messages
+    if (types === []) return messages.length
+    return messages.filter((message) => message.type in types).length
   }
 
   messages: Message[] = []
