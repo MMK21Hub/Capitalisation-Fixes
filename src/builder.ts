@@ -89,6 +89,9 @@ async function generateTranslationStrings(
     (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
   )
 
+  // Print a 'heading' to the console
+  console.group(`=== ${targetVersion} ${targetLanguage} ===`)
+
   const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
     fixes.filter((f, i) => f.data.key === fix.data.key && index > i).length
   const duplicateFixes = fixes.filter((fix, i) =>
@@ -126,7 +129,7 @@ async function generateTranslationStrings(
 
     if (logger.countMessages(MessageType.Error)) {
       console.group(
-        `${transformerName} produced error(s) while processing ${key}`
+        `${transformerName} produced error(s) while processing ${key}:`
       )
 
       logger
@@ -146,10 +149,10 @@ async function generateTranslationStrings(
   })
 
   // Log the translation strings that we just generated
-  console.log(`=== ${targetVersion} ${targetLanguage} ===`)
   Object.entries(result).forEach(([key, value]) =>
     console.log(`${key}: "${value}"`)
   )
+  console.groupEnd()
   console.log(" ")
 
   return result
