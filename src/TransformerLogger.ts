@@ -260,7 +260,7 @@ export default class TransformerLogger extends EventEmitter {
   countMessages(...types: MessageType[]) {
     const messages = this.messages
     if (types === []) return messages.length
-    return messages.filter((message) => message.type in types).length
+    return messages.filter(({ type }) => types.includes(type)).length
   }
 
   readonly messages: Message[] = []
