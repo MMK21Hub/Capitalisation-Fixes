@@ -45,6 +45,16 @@ const fixes: Fix[] = [
     key: "structure_block.mode_info.data",
     transformer: new TitleCaseTransformer(),
   }),
+  new Fix({
+    bug: "MC-220096",
+    key: "options.graphics.warning.cancel",
+    transformer: new TitleCaseTransformer(),
+  }),
+  new Fix({
+    bug: "MC-220096",
+    key: "options.graphics.warning.accept",
+    transformer: new TitleCaseTransformer(),
+  }),
 ]
 
 export default fixes
