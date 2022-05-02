@@ -1,4 +1,5 @@
 import Fix from "./Fix.js"
+import { stringGroup } from "./fixGroups.js"
 import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
@@ -55,6 +56,19 @@ const fixes: Fix[] = [
     key: "options.graphics.warning.accept",
     transformer: new TitleCaseTransformer(),
   }),
+  ...stringGroup(
+    "MC-128972",
+    {
+      "distance.description": "Distance to entities",
+      "level.description": "Players with experience level",
+      "gamemode.description": "Players in gamemode",
+      "name.description": "Entities with name",
+      "x.description": "X coordinate",
+      "y.description": "Y coordinate",
+      "z.description": "Z coordinate",
+    },
+    { keyPrefix: "argument.entity.options" }
+  ),
 ]
 
 export default fixes
