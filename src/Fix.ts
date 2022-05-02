@@ -31,6 +31,9 @@ export default class Fix {
       options.transformer = new MultiTransformer(options.transformer)
     }
 
+    if (options.bug && !/[A-Z]+-\d+/.test(options.bug))
+      console.warn(`Doesn't look like a bug report key: "${options.bug}"`)
+
     this.data = options as FixData
   }
 }
