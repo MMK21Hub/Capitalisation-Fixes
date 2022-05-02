@@ -1,9 +1,14 @@
-import { Transformer, TransformerCallbackData } from "../builder.js"
-import { toTitleCase, Range, StartAndEnd } from "../util.js"
+import {
+  Transformer,
+  TransformerCallback as Callback,
+  TransformerCallbackData as CallbackData,
+} from "../builder.js"
+import { getVanillaLanguageFile } from "../minecraftHelpers.js"
+import { toTitleCase, StartAndEnd } from "../util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
-  constructor(callback: (data: TransformerCallbackData) => string) {
+  constructor(callback: (data: CallbackData) => string) {
     // Call the provided function and use the string it returns
     super((data) => ({ value: callback(data) }))
   }
@@ -99,5 +104,30 @@ export class CapitaliseSectionTransformer extends Transformer {
     })
 
     this.range = [start, end]
+  }
+}
+
+/**
+ * Matches translation strings from the vanilla language file to parts of the input string, to automatically capitalise any in-game names.
+ */
+export class CapitaliseFromTranslationStringsTransformer
+  implements Transformer
+{
+  options
+
+  callback: Callback = async ({ oldValue, language, version }) => {
+    const languageFile = await getVanillaLanguageFile(language, version)
+
+    return { value: oldValue }
+  }
+
+  constructor(options: {
+    /**
+     * An array of vanilla translation strings to use. Can use wildcards.
+     * @example ["block.minecraft.*", "entity.**"]
+     */
+    vanillaStrings: string[]
+  }) {
+    this.options = options
   }
 }
