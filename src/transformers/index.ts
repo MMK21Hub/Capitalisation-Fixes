@@ -7,7 +7,6 @@ import {
   getVanillaLanguageFile,
   MinecraftLanguage,
   MinecraftVersion,
-  UseTranslationString,
 } from "../minecraftHelpers.js"
 import { toTitleCase, StartAndEnd, Resolvable } from "../util.js"
 
@@ -39,6 +38,15 @@ export class ReplaceTransformer extends Transformer {
 
     this.searchValue = searchValue
     this.replaceValue = replaceValue
+  }
+}
+
+/** Converts the whole string into Title Case. Useful for button labels etc. */
+export class TitleCaseTransformer extends Transformer {
+  constructor() {
+    super(({ oldValue }) => ({
+      value: toTitleCase(oldValue || "") || null,
+    }))
   }
 }
 
