@@ -76,6 +76,7 @@ async function generateTranslationStrings(
   targetLanguage: MinecraftLanguage,
   fixes: Fix[]
 ) {
+  // TODO: Option somewhere to warn if translation string isn't in vanilla
   const brand = `${targetVersion} ${targetLanguage}`
 
   const result: LanguageFileData = {}

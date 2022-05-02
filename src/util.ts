@@ -53,8 +53,11 @@ export async function filter<T>(
 /** Returns true if the provided word should be capitalised in a Title Case string. Not exhaustive. */
 export function shouldCapitalise(word: string) {
   const excludedWords = ["from", "into"]
+  const includedWords = ["me"]
 
+  if (includedWords.includes(word)) return true
   if (word.length < 3) return false
+  if (word.length > 5) return true
   if (excludedWords.includes(word)) return false
   return true
 }
