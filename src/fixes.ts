@@ -35,6 +35,16 @@ const fixes: Fix[] = [
     key: "structure_block.include_entities",
     transformer: new TitleCaseTransformer(),
   }),
+  new Fix({
+    bug: "MC-195780",
+    key: "structure_block.mode_info.load",
+    transformer: new TitleCaseTransformer(),
+  }),
+  new Fix({
+    bug: "MC-195780",
+    key: "structure_block.mode_info.data",
+    transformer: new TitleCaseTransformer(),
+  }),
 ]
 
 export default fixes
