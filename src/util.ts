@@ -50,10 +50,20 @@ export async function filter<T>(
 
 /* STRING PROCESSING */
 
+/** Returns true if the provided word should be capitalised in a Title Case string. Not exhaustive. */
+export function shouldCapitalise(word: string) {
+  const excludedWords = ["from", "into"]
+
+  if (word.length < 3) return false
+  if (excludedWords.includes(word)) return false
+  return true
+}
+
 export function toTitleCase(str: string) {
-  return str.replaceAll(
-    /\w+/g,
-    (match) => match.charAt(0).toUpperCase() + match.slice(1)
+  return str.replaceAll(/\w+/g, (match) =>
+    shouldCapitalise(match)
+      ? match.charAt(0).toUpperCase() + match.slice(1)
+      : match
   )
 }
 
