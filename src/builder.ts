@@ -60,7 +60,11 @@ interface BuildOptions {
 export abstract class Transformer {
   callback
 
-  constructor(callback: (data: TransformerCallbackData) => TransformerResult) {
+  constructor(
+    callback: (
+      data: TransformerCallbackData
+    ) => TransformerResult | Promise<TransformerResult>
+  ) {
     this.callback = callback
   }
 }
@@ -102,16 +106,20 @@ async function generateTranslationStrings(
     console.warn(`Translation key ${key} has multiple fixes that target it`)
   )
 
-  fixes.forEach(({ data: { key, transformer } }) => {
+  for (const {
+    data: { key, transformer },
+  } of fixes) {
     const transformerName = Object.getPrototypeOf(transformer).constructor.name
     const logger = new TransformerLogger()
 
     result[key] =
-      transformer.callback({
-        key,
-        oldValue: originalLanguageFile[key] ?? null,
-        logger,
-      }).value || ""
+      (
+        await transformer.callback({
+          key,
+          oldValue: originalLanguageFile[key] ?? null,
+          logger,
+        })
+      ).value || ""
 
     if (logger.countMessages(MessageType.Warn)) {
       console.group(
@@ -146,7 +154,7 @@ async function generateTranslationStrings(
         `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
         `Transformer used: ${transformerName}`
       )
-  })
+  }
 
   // Log the translation strings that we just generated
   Object.entries(result).forEach(([key, value]) =>
