@@ -14,6 +14,8 @@ export interface FixOptions {
   versions?: MinecraftVersionSpecifier
   /** Specifies the languages that the fix should be applied to (defaults to all languages) */
   languages?: MinecraftLanguage[]
+  /** References the Mojira bug report for the bug that the fix fixes */
+  bug?: string
 }
 
 export interface FixData extends FixOptions {
