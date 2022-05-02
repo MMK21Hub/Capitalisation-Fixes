@@ -1,9 +1,10 @@
+import { Transformer } from "./builder"
 import Fix from "./Fix"
 import { OverrideTransformer } from "./transformers"
 
-export function overrideGroup(
+export function stringGroup(
   bug: string,
-  strings: Record<string, string>,
+  strings: Record<string, string | Transformer>,
   options: {
     keyPrefix?: string
   } = {}
@@ -16,7 +17,8 @@ export function overrideGroup(
       new Fix({
         bug,
         key: `${keyPrefix}${key}`,
-        transformer: new OverrideTransformer(value),
+        transformer:
+          value instanceof Transformer ? value : new OverrideTransformer(value),
       })
   )
 }
