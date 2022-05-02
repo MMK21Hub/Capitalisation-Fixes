@@ -74,6 +74,11 @@ const fixes: Fix[] = [
     key: "subtitles.block.honey_block.slide",
     transformer: autoCapitaliser,
   }),
+  new Fix({
+    bug: "MC-237590",
+    key: "options.chunks",
+    transformer: new TitleCaseTransformer(),
+  }),
 ]
 
 export default fixes
