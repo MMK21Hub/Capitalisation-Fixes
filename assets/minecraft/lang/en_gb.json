@@ -21,7 +21,7 @@
 
   // MC-128972
   "argument.entity.options.distance.description": "Distance to entities",
-  "argument.entity.options.level.description": "layers with experience level",
+  "argument.entity.options.level.description": "Players with experience level",
   "argument.entity.options.gamemode.description": "Players in gamemode",
   "argument.entity.options.name.description": "Entities with name",
   "argument.entity.options.x.description": "X coordinate",
