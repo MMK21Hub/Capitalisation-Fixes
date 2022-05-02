@@ -69,6 +69,11 @@ const fixes: Fix[] = [
     },
     { keyPrefix: "argument.entity.options" }
   ),
+  new Fix({
+    bug: "MC-206779",
+    key: "subtitles.block.honey_block.slide",
+    transformer: autoCapitaliser,
+  }),
 ]
 
 export default fixes
