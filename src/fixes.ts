@@ -1,4 +1,5 @@
 import Fix from "./Fix.js"
+import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
@@ -20,6 +21,13 @@ const fixes: Fix[] = [
     bug: "MC-236606",
     key: "options.hideLightningFlashes.tooltip",
     transformer: autoCapitaliser,
+  }),
+  new Fix({
+    bug: "MC-219541",
+    key: "subtitles.entity.horse.armor",
+    transformer: new CapitaliseSegmentTransformer(
+      lang`${"entity.minecraft.horse"} ${"attribute.name.generic.armor"}`
+    ),
   }),
 ]
 
