@@ -145,7 +145,7 @@ export class CapitaliseFromTranslationStringsTransformer
       // Case-insensitively replace all occurrences of the string with the properly-capitalised version from the lang file
       const matcher = new RegExp(string, "gi")
       if (!matcher.test(currentValue)) return
-      currentValue = oldValue.replaceAll(matcher, string)
+      currentValue = currentValue.replaceAll(matcher, string)
     })
 
     return { value: currentValue }
