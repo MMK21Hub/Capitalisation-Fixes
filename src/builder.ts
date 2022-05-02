@@ -75,7 +75,7 @@ async function generateTranslationStrings(
   targetVersion: MinecraftVersion,
   targetLanguage: MinecraftLanguage,
   fixes: Fix[]
-) {
+): Promise<LanguageFileData> {
   // TODO: Option somewhere to warn if translation string isn't in vanilla
   const brand = `${targetVersion} ${targetLanguage}`
 
@@ -153,20 +153,24 @@ async function generateTranslationStrings(
       console.groupEnd()
     }
 
-    if (result[key] === originalLanguageFile[key])
+    if (
+      result[key] === originalLanguageFile[key] &&
+      targetLanguage === "en_us"
+    ) {
       console.warn(
         `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
         `Transformer used: ${transformerName}`
       )
-  }
+    }
 
-  // Log the translation strings that we just generated
-  console.group(`=== ${brand} ===`)
-  Object.entries(result).forEach(([key, value]) =>
-    console.log(`${key}: "${value}"`)
-  )
-  console.groupEnd()
-  console.log(" ")
+    // Log the translation strings that we just generated
+    console.group(`=== ${brand} ===`)
+    Object.entries(result).forEach(([key, value]) =>
+      console.log(`${key}: "${value}"`)
+    )
+    console.groupEnd()
+    console.log(" ")
+  }
 
   return result
 }
