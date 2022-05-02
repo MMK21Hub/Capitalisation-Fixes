@@ -29,6 +29,10 @@ export type FancyRange<T> = {
 /** A set of items within start and end limits. Can be represented in multiple ways. */
 export type Range<T> = StartAndEnd<T> | FancyRange<T>
 
+export interface Resolvable<T, A extends any[] = []> {
+  resolve(...args: A): T | Promise<T>
+}
+
 /* ASYNC UTILS */
 
 // https://stackoverflow.com/a/46842181/11519302

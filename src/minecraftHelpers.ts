@@ -21,6 +21,39 @@ export type MinecraftVersionSpecifier =
 // Language files are a map of translation keys to string values
 export type LanguageFileData = Record<string, string>
 
+export class UseTranslationString {
+  readonly string
+
+  async resolve(language: MinecraftLanguage, version: MinecraftVersion) {
+    const langFile = await getVanillaLanguageFile(language, version)
+    return langFile[this.string]
+  }
+
+  constructor(string: string) {
+    this.string = string
+  }
+}
+
+export function lang(
+  textFragments: TemplateStringsArray,
+  ...substitutions: string[]
+) {
+  return {
+    async resolve(language: MinecraftLanguage, version: MinecraftVersion) {
+      const langFile = await getVanillaLanguageFile(language, version)
+      let result = ""
+
+      textFragments.forEach((text, i) => {
+        const nextTranslationKey = substitutions?.at(i)
+        result += text
+        result += nextTranslationKey ? langFile[nextTranslationKey] : ""
+      })
+
+      return result
+    },
+  }
+}
+
 export async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier | undefined
 ) {

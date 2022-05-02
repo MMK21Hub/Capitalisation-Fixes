@@ -3,8 +3,13 @@ import {
   TransformerCallback as Callback,
   TransformerCallbackData as CallbackData,
 } from "../builder.js"
-import { getVanillaLanguageFile } from "../minecraftHelpers.js"
-import { toTitleCase, StartAndEnd } from "../util.js"
+import {
+  getVanillaLanguageFile,
+  MinecraftLanguage,
+  MinecraftVersion,
+  UseTranslationString,
+} from "../minecraftHelpers.js"
+import { toTitleCase, StartAndEnd, Resolvable } from "../util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
@@ -41,10 +46,19 @@ export class ReplaceTransformer extends Transformer {
 export class CapitaliseSegmentTransformer extends Transformer {
   searchValue
 
-  constructor(searchValue: string | RegExp) {
-    super(({ oldValue }) => {
+  constructor(
+    searchValue:
+      | string
+      | Resolvable<string, [MinecraftLanguage, MinecraftVersion]>
+      | RegExp
+  ) {
+    super(async ({ oldValue, language, version }) => {
       if (!oldValue) return { value: null }
-      const value = oldValue.replace(searchValue, toTitleCase)
+      if (typeof searchValue === "object" && "resolve" in searchValue)
+        searchValue = await searchValue.resolve(language, version)
+
+      searchValue = new RegExp(searchValue, "gi")
+      const value = oldValue.replaceAll(searchValue, toTitleCase)
       return { value }
     })
 
