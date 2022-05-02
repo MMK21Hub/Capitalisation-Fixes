@@ -4,6 +4,7 @@ import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
   ReplaceTransformer,
+  TitleCaseTransformer,
 } from "./transformers/index.js"
 
 const autoCapitaliser = new CapitaliseFromTranslationStringsTransformer({
@@ -28,6 +29,11 @@ const fixes: Fix[] = [
     transformer: new CapitaliseSegmentTransformer(
       lang`${"entity.minecraft.horse"} ${"attribute.name.generic.armor"}`
     ),
+  }),
+  new Fix({
+    bug: "MC-195781",
+    key: "structure_block.include_entities",
+    transformer: new TitleCaseTransformer(),
   }),
 ]
 
