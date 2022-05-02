@@ -20,9 +20,15 @@ export type TransformerResult = {
 /** The data provided to {@link Transformer} callback functions */
 export type TransformerCallbackData = {
   key: string
+  language: MinecraftLanguage
+  version: MinecraftVersion
   oldValue: string | null | undefined
   logger: TransformerLogger
 }
+
+export type TransformerCallback = (
+  data: TransformerCallbackData
+) => TransformerResult | Promise<TransformerResult>
 
 /**
  * A map of versions to a map of languages to sets of translations.
@@ -60,11 +66,7 @@ interface BuildOptions {
 export abstract class Transformer {
   callback
 
-  constructor(
-    callback: (
-      data: TransformerCallbackData
-    ) => TransformerResult | Promise<TransformerResult>
-  ) {
+  constructor(callback: TransformerCallback) {
     this.callback = callback
   }
 }
@@ -118,6 +120,8 @@ async function generateTranslationStrings(
           key,
           oldValue: originalLanguageFile[key] ?? null,
           logger,
+          version: targetVersion,
+          language: targetLanguage,
         })
       ).value || ""
 
