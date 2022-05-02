@@ -1,5 +1,5 @@
 import Fix from "./Fix.js"
-import { stringGroup } from "./fixGroups.js"
+import { fixGroup, autoCapitaliseGroup } from "./fixGroups.js"
 import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
@@ -56,7 +56,7 @@ const fixes: Fix[] = [
     key: "options.graphics.warning.accept",
     transformer: new TitleCaseTransformer(),
   }),
-  ...stringGroup(
+  ...fixGroup(
     "MC-128972",
     {
       "distance.description": "Distance to entities",
@@ -79,6 +79,10 @@ const fixes: Fix[] = [
     key: "options.chunks",
     transformer: new TitleCaseTransformer(),
   }),
+  ...autoCapitaliseGroup("MC-206548", [
+    "subtitles.entity.leash_knot.break",
+    "subtitles.entity.leash_knot.place",
+  ]),
 ]
 
 export default fixes
