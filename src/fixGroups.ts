@@ -1,6 +1,6 @@
-import { Transformer } from "./builder"
-import Fix from "./Fix"
-import { OverrideTransformer } from "./transformers"
+import { Transformer } from "./builder.js"
+import Fix from "./Fix.js"
+import { OverrideTransformer } from "./transformers/index.js"
 
 export function stringGroup(
   bug: string,
