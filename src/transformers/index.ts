@@ -142,10 +142,22 @@ export class CapitaliseFromTranslationStringsTransformer
     let currentValue = oldValue
 
     matchingTranslationStrings.forEach((string) => {
-      // Case-insensitively replace all occurrences of the string with the properly-capitalised version from the lang file
       const matcher = new RegExp(string, "gi")
-      if (!matcher.test(currentValue)) return
-      currentValue = currentValue.replaceAll(matcher, string)
+      const pluralMatcher = new RegExp(string + "s", "gi")
+
+      const match = matcher.test(currentValue)
+        ? 1
+        : pluralMatcher.test(currentValue)
+        ? 2
+        : 0
+
+      if (!match) return
+
+      // Case-insensitively replace all occurrences of the string with the properly-capitalised version from the lang file
+      currentValue = currentValue.replaceAll(
+        matcher,
+        match === 1 ? string : `${string}s`
+      )
     })
 
     return { value: currentValue }
