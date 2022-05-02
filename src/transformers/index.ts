@@ -116,6 +116,7 @@ export class CapitaliseFromTranslationStringsTransformer
   options
 
   callback: Callback = async ({ oldValue, language, version }) => {
+    if (!oldValue) return { value: null }
     const languageFile = await getVanillaLanguageFile(language, version)
 
     const matchingTranslationStrings = Object.entries(languageFile)
@@ -138,7 +139,16 @@ export class CapitaliseFromTranslationStringsTransformer
       })
       .map(([_, value]) => value)
 
-    return { value: oldValue }
+    let currentValue = oldValue
+
+    matchingTranslationStrings.forEach((string) => {
+      // Case-insensitively replace all occurrences of the string with the properly-capitalised version from the lang file
+      const matcher = new RegExp(string, "gi")
+      if (!matcher.test(currentValue)) return
+      currentValue = oldValue.replaceAll(matcher, string)
+    })
+
+    return { value: currentValue }
   }
 
   constructor(options: {
