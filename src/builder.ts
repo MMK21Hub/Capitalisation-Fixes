@@ -162,15 +162,15 @@ async function generateTranslationStrings(
         `Transformer used: ${transformerName}`
       )
     }
-
-    // Log the translation strings that we just generated
-    console.group(`=== ${brand} ===`)
-    Object.entries(result).forEach(([key, value]) =>
-      console.log(`${key}: "${value}"`)
-    )
-    console.groupEnd()
-    console.log(" ")
   }
+
+  // Log the translation strings that we just generated
+  console.group(`=== ${brand} ===`)
+  Object.entries(result).forEach(([key, value]) =>
+    console.log(`${key}: "${value}"`)
+  )
+  console.groupEnd()
+  console.log(" ")
 
   return result
 }
