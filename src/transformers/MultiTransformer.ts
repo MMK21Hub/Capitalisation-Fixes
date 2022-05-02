@@ -5,20 +5,22 @@ export class MultiTransformer extends Transformer {
   transformers
 
   constructor(transformers: Transformer[]) {
-    super(({ oldValue, key, logger }) => {
+    super(async ({ oldValue, key, logger, language, version }) => {
       let currentValue = oldValue
 
       // Run each transformer, providing it with the output from the previous one
-      transformers.forEach((transformer) => {
-        const result = transformer.callback({
+      for (const transformer of transformers) {
+        const result = await transformer.callback({
           key,
           oldValue: currentValue,
           logger,
+          language,
+          version,
         })
 
         // Update the current value
         currentValue = result.value
-      })
+      }
 
       // currentValue shouldn't be null at this point, unless:
       // - The key is not present in the vanilla language file; and
