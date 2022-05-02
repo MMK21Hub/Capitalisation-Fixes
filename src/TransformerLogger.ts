@@ -186,8 +186,33 @@ export class Timestamp {
     return !!this.invalidReason()
   }
 
+  getPaddingAmount(field: string) {
+    if (field === "day") return 2
+    if (field === "month") return 2
+    if (field === "year") return 4
+    if (field === "hour") return 2
+    if (field === "minute") return 2
+    if (field === "second") return 2
+    return 0
+  }
+
+  getPaddedValues(...values: (keyof this)[]) {
+    return values
+      .map((key) => [key, this[key]] as [keyof this, this[keyof this]])
+      .map(([key, value]) => {
+        if (typeof value !== "number" || typeof key !== "string") return value
+        const padding = this.getPaddingAmount(key)
+        return value.toString().padStart(padding, "0")
+      })
+  }
+
   simpleTime(): string {
-    const { hour, minute, second } = this
+    const [hour, minute, second] = this.getPaddedValues(
+      "hour",
+      "minute",
+      "second"
+    )
+
     return `${hour}:${minute}:${second}`
   }
 
@@ -202,7 +227,7 @@ export class Timestamp {
   }
 
   toISO() {
-    const { year, month, day } = this
+    const [year, month, day] = this.getPaddedValues("year", "month", "day")
     return `${year}-${month}-${day}T${this.fullTime()}`
   }
 

@@ -76,6 +76,8 @@ async function generateTranslationStrings(
   targetLanguage: MinecraftLanguage,
   fixes: Fix[]
 ) {
+  const brand = `${targetVersion} ${targetLanguage}`
+
   const result: LanguageFileData = {}
 
   const originalLanguageFile = await getVanillaLanguageFile(
@@ -94,9 +96,6 @@ async function generateTranslationStrings(
   fixes = fixes.filter(
     (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
   )
-
-  // Print a 'heading' to the console
-  console.group(`=== ${targetVersion} ${targetLanguage} ===`)
 
   const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
     fixes.filter((f, i) => f.data.key === fix.data.key && index > i).length
@@ -127,7 +126,7 @@ async function generateTranslationStrings(
 
     if (logger.countMessages(MessageType.Warn)) {
       console.group(
-        `${transformerName} produced warning(s) while processing ${key}`
+        `[${brand}] ${transformerName} produced warning(s) while processing ${key}`
       )
 
       logger
@@ -141,7 +140,7 @@ async function generateTranslationStrings(
 
     if (logger.countMessages(MessageType.Error)) {
       console.group(
-        `${transformerName} produced error(s) while processing ${key}:`
+        `[${brand}] ${transformerName} produced error(s) while processing ${key}:`
       )
 
       logger
@@ -161,6 +160,7 @@ async function generateTranslationStrings(
   }
 
   // Log the translation strings that we just generated
+  console.group(`=== ${brand} ===`)
   Object.entries(result).forEach(([key, value]) =>
     console.log(`${key}: "${value}"`)
   )

@@ -3,6 +3,7 @@ import {
   OverrideTransformer,
   CustomTransformer,
   CapitaliseSectionTransformer,
+  CapitaliseFromTranslationStringsTransformer,
 } from "./transformers/index.js"
 
 const fixes: Fix[] = [
@@ -27,6 +28,15 @@ const fixes: Fix[] = [
       new CapitaliseSectionTransformer(/bake/i, "11"),
     ],
     languages: ["en_gb"],
+  }),
+  new Fix({
+    key: "test.place_grass",
+    transformer: [
+      new OverrideTransformer("Place a grass block"),
+      new CapitaliseFromTranslationStringsTransformer({
+        vanillaStrings: ["block.minecraft.*"],
+      }),
+    ],
   }),
 ]
 

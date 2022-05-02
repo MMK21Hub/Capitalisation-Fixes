@@ -65,7 +65,7 @@ export class CapitaliseSectionTransformer extends Transformer {
       const simpleStart = typeof start === "string"
       const simpleEnd = typeof end === "string"
 
-      const startIndex =
+      const startIndex: number =
         start === null
           ? 0
           : simpleStart
@@ -117,6 +117,26 @@ export class CapitaliseFromTranslationStringsTransformer
 
   callback: Callback = async ({ oldValue, language, version }) => {
     const languageFile = await getVanillaLanguageFile(language, version)
+
+    const matchingTranslationStrings = Object.entries(languageFile)
+      .filter(([key]) => {
+        const keySegments = key.split(".")
+
+        const matches = this.options.vanillaStrings.filter((matchString) => {
+          const matchSegments = matchString.split(".")
+          const matchingSegments = matchSegments.filter((matchSegment, i) => {
+            if (matchSegment === keySegments[i]) return true
+            if (matchSegment === "*" && keySegments[i]) return true
+            if (matchSegment === "**") return true
+            return false
+          })
+
+          return matchingSegments.length === matchSegments.length
+        })
+
+        return matches.length > 0
+      })
+      .map(([_, value]) => value)
 
     return { value: oldValue }
   }
