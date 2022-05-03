@@ -41,8 +41,11 @@ export class UseTranslationString {
   }
 }
 
-type ResolvableFromLangFile = {
+export type ResolvableFromLangFile = {
   resolve(language: string, version: string): Promise<string>
+}
+export type ResolvableFromLangFileSync = {
+  resolve(languageFileData: Record<string, string>): string
 }
 
 export function lang(translationString: string): ResolvableFromLangFile
