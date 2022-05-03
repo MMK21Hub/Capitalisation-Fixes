@@ -88,6 +88,11 @@ const fixes: Fix[] = [
     key: "selectWorld.backupEraseCache",
     transformer: new TitleCaseTransformer(),
   }),
+  new Fix({
+    bug: "MC-222876",
+    key: "createWorld.customize.buffet.title",
+    transformer: new TitleCaseTransformer(),
+  }),
 ]
 
 export default fixes
