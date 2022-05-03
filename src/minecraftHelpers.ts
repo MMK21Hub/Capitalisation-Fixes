@@ -41,21 +41,31 @@ export class UseTranslationString {
   }
 }
 
+type ResolvableFromLangFile = {
+  resolve(language: string, version: string): Promise<string>
+}
+
+export function lang(translationString: string): ResolvableFromLangFile
 export function lang(
   textFragments: TemplateStringsArray,
   ...substitutions: string[]
-) {
+): ResolvableFromLangFile
+export function lang(
+  providedText: TemplateStringsArray | string,
+  ...substitutions: string[]
+): ResolvableFromLangFile {
   return {
     async resolve(language: MinecraftLanguage, version: MinecraftVersion) {
       const langFile = await getVanillaLanguageFile(language, version)
-      let result = ""
 
-      textFragments.forEach((text, i) => {
+      if (typeof providedText === "string") return langFile[providedText]
+
+      let result = ""
+      providedText.forEach((text, i) => {
         const nextTranslationKey = substitutions?.at(i)
         result += text
         result += nextTranslationKey ? langFile[nextTranslationKey] : ""
       })
-
       return result
     },
   }
