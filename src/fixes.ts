@@ -83,6 +83,11 @@ const fixes: Fix[] = [
     "subtitles.entity.leash_knot.break",
     "subtitles.entity.leash_knot.place",
   ]),
+  new Fix({
+    bug: "MC-244721",
+    key: "selectWorld.backupEraseCache",
+    transformer: new TitleCaseTransformer(),
+  }),
 ]
 
 export default fixes
