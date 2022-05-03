@@ -1,12 +1,7 @@
-import {
-  MinecraftLanguage,
-  MinecraftVersion,
-  ResolvableFromLangFileSync,
-} from "./minecraftHelpers"
+import { ResolvableFromLangFileSync } from "./minecraftHelpers"
 
 export type LanguageHelperCallback<O = undefined> = (
-  language: MinecraftLanguage,
-  version: MinecraftVersion,
+  langFile: Record<string, string>,
   options?: O
 ) => string
 
@@ -18,12 +13,10 @@ function createLanguageHelper<O = undefined>(
   callback: LanguageHelperCallback<O>
 ): LanguageHelper<O> {
   return (options?: O) => ({
-    resolve(language: MinecraftLanguage, version: MinecraftVersion) {
-      return callback(language, version, options)
+    resolve(languageFileData: Record<string, string>) {
+      return callback(languageFileData, options)
     },
   })
 }
 
-const getMilk = createLanguageHelper((language, version) => "milk")
-
-getMilk().resolve("en_us", "1.14.4")
+const getMilk = createLanguageHelper((langFile) => "milk")
