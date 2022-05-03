@@ -8,6 +8,7 @@ import {
   addToCache,
   ensureDir,
   getCachedFile,
+  Resolvable,
 } from "./util.js"
 
 /** A single Minecraft language ID */
@@ -20,6 +21,11 @@ export type MinecraftVersionSpecifier =
   | MinecraftVersion
 // Language files are a map of translation keys to string values
 export type LanguageFileData = Record<string, string>
+/** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
+export type ContextSensitiveSearchValue = Resolvable<
+  string | RegExp,
+  [MinecraftLanguage, MinecraftVersion]
+>
 
 export class UseTranslationString {
   readonly string
