@@ -24,6 +24,7 @@ export type TransformerCallbackData = {
   version: MinecraftVersion
   oldValue: string | null | undefined
   logger: TransformerLogger
+  languageFileData: Record<string, string>
 }
 
 export type TransformerCallback = (
@@ -122,6 +123,7 @@ async function generateTranslationStrings(
           logger,
           version: targetVersion,
           language: targetLanguage,
+          languageFileData: originalLanguageFile,
         })
       ).value || ""
 
