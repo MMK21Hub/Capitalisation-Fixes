@@ -1,10 +1,13 @@
 import { Transformer } from "./builder.js"
 import Fix from "./Fix.js"
+import { ContextSensitiveSearchValue } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
+  CapitaliseSegmentTransformer,
   OverrideTransformer,
   TitleCaseTransformer,
 } from "./transformers/index.js"
+import { SearchValue } from "./util.js"
 
 export function fixGroup(
   bug: string,
@@ -53,6 +56,7 @@ export function autoCapitaliseGroup(
   options: {
     keyPrefix?: string
     vanillaStrings?: string[]
+    alwaysCapitalise?: (SearchValue | ContextSensitiveSearchValue)[]
   } = {}
 ): Fix[] {
   let {
@@ -61,14 +65,26 @@ export function autoCapitaliseGroup(
   } = options
   if (keyPrefix && !keyPrefix.endsWith(".")) keyPrefix += "."
 
+  const autoCapitaliser = new CapitaliseFromTranslationStringsTransformer({
+    vanillaStrings,
+  })
+
+  const transformer: Transformer | Transformer[] = options.alwaysCapitalise
+    ? [autoCapitaliser]
+    : autoCapitaliser
+
+  options.alwaysCapitalise?.forEach((searchValue) =>
+    (transformer as Transformer[]).push(
+      new CapitaliseSegmentTransformer(searchValue)
+    )
+  )
+
   return translationKeys.map(
     (key) =>
       new Fix({
         bug,
         key: `${keyPrefix}${key}`,
-        transformer: new CapitaliseFromTranslationStringsTransformer({
-          vanillaStrings,
-        }),
+        transformer,
       })
   )
 }
