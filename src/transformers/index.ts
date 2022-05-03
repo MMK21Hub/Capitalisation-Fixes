@@ -4,11 +4,10 @@ import {
   TransformerCallbackData as CallbackData,
 } from "../builder.js"
 import {
+  ContextSensitiveSearchValue,
   getVanillaLanguageFile,
-  MinecraftLanguage,
-  MinecraftVersion,
 } from "../minecraftHelpers.js"
-import { toTitleCase, StartAndEnd, Resolvable } from "../util.js"
+import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
@@ -31,7 +30,7 @@ export class ReplaceTransformer extends Transformer {
   searchValue
   replaceValue
 
-  constructor(searchValue: string | RegExp, replaceValue: string) {
+  constructor(searchValue: SearchValue, replaceValue: string) {
     super(({ oldValue }) => ({
       value: oldValue?.replace(searchValue, replaceValue),
     }))
@@ -54,12 +53,7 @@ export class TitleCaseTransformer extends Transformer {
 export class CapitaliseSegmentTransformer extends Transformer {
   searchValue
 
-  constructor(
-    searchValue:
-      | string
-      | Resolvable<string, [MinecraftLanguage, MinecraftVersion]>
-      | RegExp
-  ) {
+  constructor(searchValue: SearchValue | ContextSensitiveSearchValue) {
     super(async ({ oldValue, language, version }) => {
       if (!oldValue) return { value: null }
       if (typeof searchValue === "object" && "resolve" in searchValue)
@@ -76,9 +70,9 @@ export class CapitaliseSegmentTransformer extends Transformer {
 
 /** Capitalises the parts of a string that are in-between the provided search strings (inclusively)  */
 export class CapitaliseSectionTransformer extends Transformer {
-  range: StartAndEnd<string | RegExp>
+  range: StartAndEnd<SearchValue>
 
-  constructor(start: string | RegExp | null, end: string | RegExp | null) {
+  constructor(start: SearchValue | null, end: SearchValue | null) {
     super(({ oldValue, key, logger }) => {
       if (!oldValue) return { value: null }
 
