@@ -28,6 +28,8 @@ export type FancyRange<T> = {
 }
 /** A set of items within start and end limits. Can be represented in multiple ways. */
 export type Range<T> = StartAndEnd<T> | FancyRange<T>
+/** Something that can be used to fins matches within a string, i.e. regex or another string */
+export type SearchValue = string | RegExp
 
 export interface Resolvable<T, A extends any[] = []> {
   resolve(...args: A): T | Promise<T>

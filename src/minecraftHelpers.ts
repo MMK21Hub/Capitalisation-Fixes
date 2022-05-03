@@ -9,6 +9,7 @@ import {
   ensureDir,
   getCachedFile,
   Resolvable,
+  SearchValue,
 } from "./util.js"
 
 /** A single Minecraft language ID */
@@ -23,7 +24,7 @@ export type MinecraftVersionSpecifier =
 export type LanguageFileData = Record<string, string>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
 export type ContextSensitiveSearchValue = Resolvable<
-  string | RegExp,
+  SearchValue,
   [MinecraftLanguage, MinecraftVersion]
 >
 
