@@ -1,9 +1,7 @@
 # Capitalisation Fixes
 
-Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.
-
-
-In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").
+<p>Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
+<p>In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
 
 - It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that supports 1.18.x versions, including the `22w13oneBlockAtATime` April Fools snapshot.
 - It works for the `en_uk` and `en_us` languages
@@ -22,14 +20,14 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 
 ### Capitalisation Fixes v2
 
-|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    | 22w16a    | 22w17a    |
-| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; | &#9989;   |
-| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; |
+|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    | 22w16a    | 22w17a    | 22w18a    |
+| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
+| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   |
+| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; |
 
 |                                                                                                                           | 1.17.x   | 1.18.x  | 1.19.x   |
 | ------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | -------- |
@@ -123,4 +121,3 @@ For detailed information, check [the file itself](new-version.sh) - it's only fo
 | [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1     | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
 | [Raised](https://modrinth.com/mod/raised)                       | 1.18, 1.19 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
 | [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.17  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
-
