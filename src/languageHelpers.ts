@@ -1,4 +1,5 @@
 import { ResolvableFromLangFileSync } from "./minecraftHelpers"
+import { toWords } from "./util"
 
 export type LanguageHelperCallback<O = undefined> = (
   langFile: Record<string, string>,
@@ -19,4 +20,12 @@ function createLanguageHelper<O = undefined>(
   })
 }
 
-const getMilk = createLanguageHelper((langFile) => "milk")
+export const getMilk = createLanguageHelper((langFile) => {
+  const bucket = langFile["item.minecraft.bucket"].toLowerCase()
+  const milkBucket = langFile["item.minecraft.milk_bucket"].toLowerCase()
+
+  // Remove the word "bucket", and return the longest word
+  return toWords(milkBucket)
+    .filter((word) => word !== bucket)
+    .sort((a, b) => b.length - a.length)[0]
+})
