@@ -1,5 +1,6 @@
 import Fix from "./Fix.js"
 import { fixGroup, autoCapitaliseGroup } from "./fixGroups.js"
+import { getMilk } from "./languageHelpers.js"
 import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
@@ -93,6 +94,19 @@ const fixes: Fix[] = [
     key: "createWorld.customize.buffet.title",
     transformer: new TitleCaseTransformer(),
   }),
+  ...autoCapitaliseGroup(
+    "MC-219533",
+    [
+      "subtitles.entity.wandering_trader.drink_milk",
+      "subtitles.entity.wandering_trader.drink_potion",
+    ],
+    {
+      // There isn't a translation string for "Milk" on its own,
+      // so we extract it from other strings and manually add it
+      // to the list of strings to capitalise
+      alwaysCapitalise: [getMilk()],
+    }
+  ),
 ]
 
 export default fixes
