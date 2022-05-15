@@ -1,13 +1,12 @@
 import { Transformer } from "./builder.js"
 import Fix from "./Fix.js"
-import { ContextSensitiveSearchValue } from "./minecraftHelpers.js"
+import { FlexibleSearchValue } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
   OverrideTransformer,
   TitleCaseTransformer,
 } from "./transformers/index.js"
-import { SearchValue } from "./util.js"
 
 export function fixGroup(
   bug: string,
@@ -56,7 +55,7 @@ export function autoCapitaliseGroup(
   options: {
     keyPrefix?: string
     vanillaStrings?: string[]
-    alwaysCapitalise?: (SearchValue | ContextSensitiveSearchValue)[]
+    alwaysCapitalise?: FlexibleSearchValue[]
   } = {}
 ): Fix[] {
   let {

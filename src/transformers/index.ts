@@ -5,6 +5,7 @@ import {
 } from "../builder.js"
 import {
   ContextSensitiveSearchValue,
+  FlexibleSearchValue,
   getVanillaLanguageFile,
 } from "../minecraftHelpers.js"
 import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
@@ -53,11 +54,13 @@ export class TitleCaseTransformer extends Transformer {
 export class CapitaliseSegmentTransformer extends Transformer {
   searchValue
 
-  constructor(searchValue: SearchValue | ContextSensitiveSearchValue) {
-    super(async ({ oldValue, language, version }) => {
+  constructor(searchValue: FlexibleSearchValue) {
+    super(async ({ oldValue, language, version, languageFileData }) => {
       if (!oldValue) return { value: null }
       if (typeof searchValue === "object" && "resolve" in searchValue)
-        searchValue = await searchValue.resolve(language, version)
+        searchValue = searchValue.sync
+          ? searchValue.resolve(languageFileData)
+          : await searchValue.resolve(language, version)
 
       searchValue = new RegExp(searchValue, "gi")
       const value = oldValue.replaceAll(searchValue, toTitleCase)

@@ -31,8 +31,19 @@ export type Range<T> = StartAndEnd<T> | FancyRange<T>
 /** Something that can be used to fins matches within a string, i.e. regex or another string */
 export type SearchValue = string | RegExp
 
-export interface Resolvable<T, A extends any[] = []> {
+export interface ResolvableAny<T, A extends any[] = []> {
   resolve(...args: A): T | Promise<T>
+  sync?: boolean
+}
+export interface ResolvableAsync<T, A extends any[] = []>
+  extends ResolvableAny<T, A> {
+  resolve(...args: A): T | Promise<T>
+  sync?: false
+}
+export interface ResolvableSync<T, A extends any[] = []>
+  extends ResolvableAny<T, A> {
+  resolve(...args: A): T
+  sync: true
 }
 
 /* ASYNC UTILS */

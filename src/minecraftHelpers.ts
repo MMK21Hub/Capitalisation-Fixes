@@ -8,8 +8,9 @@ import {
   addToCache,
   ensureDir,
   getCachedFile,
-  Resolvable,
+  ResolvableAsync,
   SearchValue,
+  ResolvableSync,
 } from "./util.js"
 
 /** A single Minecraft language ID */
@@ -23,10 +24,20 @@ export type MinecraftVersionSpecifier =
 // Language files are a map of translation keys to string values
 export type LanguageFileData = Record<string, string>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
-export type ContextSensitiveSearchValue = Resolvable<
+export type ContextSensitiveSearchValue = ResolvableAsync<
   SearchValue,
   [MinecraftLanguage, MinecraftVersion]
 >
+/** A variant of {@link ContextSensitiveSearchValue}, where the language file data is directly provided to the resolver instead of the resolver having to fetch the data itself. */
+export type ContextSensitiveSearchValueSync = ResolvableSync<
+  SearchValue,
+  [LanguageFileData]
+>
+/** A search value that may or may not be be context-sensitive, and may or may not have a synchronous resolver. */
+export type FlexibleSearchValue =
+  | ContextSensitiveSearchValue
+  | ContextSensitiveSearchValueSync
+  | SearchValue
 
 export class UseTranslationString {
   readonly string
@@ -46,6 +57,7 @@ export type ResolvableFromLangFile = {
 }
 export type ResolvableFromLangFileSync = {
   resolve(languageFileData: Record<string, string>): string
+  sync: true
 }
 
 export function lang(translationString: string): ResolvableFromLangFile
