@@ -1,5 +1,5 @@
-import { ResolvableFromLangFileSync } from "./minecraftHelpers"
-import { isSingleWord, toWords } from "./util"
+import { ResolvableFromLangFileSync } from "./minecraftHelpers.js"
+import { isSingleWord, toWords } from "./util.js"
 
 export type LanguageHelperCallback<O = undefined> = (
   langFile: Record<string, string>,
