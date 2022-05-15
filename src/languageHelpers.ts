@@ -1,5 +1,5 @@
 import { ResolvableFromLangFileSync } from "./minecraftHelpers"
-import { toWords } from "./util"
+import { isSingleWord, toWords } from "./util"
 
 export type LanguageHelperCallback<O = undefined> = (
   langFile: Record<string, string>,
@@ -17,12 +17,29 @@ function createLanguageHelper<O = undefined>(
     resolve(languageFileData: Record<string, string>) {
       return callback(languageFileData, options)
     },
+    sync: true,
   })
+}
+
+export class FailedLanguageHelper extends Error {
+  details: string[]
+
+  constructor(message: string, ...details: string[]) {
+    super(message)
+    this.name = "FailedLanguageHelper"
+    this.details = details
+  }
 }
 
 export const getMilk = createLanguageHelper((langFile) => {
   const bucket = langFile["item.minecraft.bucket"].toLowerCase()
   const milkBucket = langFile["item.minecraft.milk_bucket"].toLowerCase()
+
+  if (!isSingleWord(bucket))
+    throw new FailedLanguageHelper(
+      `Expected translation string "item.minecraft.milk_bucket" to be a single word`,
+      `Actual value: "${milkBucket}"`
+    )
 
   // Remove the word "bucket", and return the longest word
   return toWords(milkBucket)
