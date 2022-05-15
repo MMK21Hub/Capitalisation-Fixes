@@ -72,6 +72,15 @@ export function toTitleCase(str: string) {
   )
 }
 
+/** Splits a string into an array of words */
+export function toWords(str: string) {
+  return Array.from(str.match(/\b(\w+)'?(\w+)?\b/g) || [])
+}
+
+export function isSingleWord(str: string) {
+  return toWords(str).length === 1
+}
+
 /* FILESYSTEM UTILS */
 
 /**
