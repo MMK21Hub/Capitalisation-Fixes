@@ -15,7 +15,7 @@ const autoCapitaliser = new CapitaliseFromTranslationStringsTransformer({
 
 const fixes: Fix[] = [
   new Fix({
-    bug: "MC-226454",
+    bug: "MC-250158",
     key: "advancements.adventure.avoid_vibration.description",
     // Adds a serial comma to the list of blocks/mobs that can detect player vibrations
     transformer: new ReplaceTransformer(" or", ", or"),
@@ -114,10 +114,10 @@ const fixes: Fix[] = [
     versions: ["22w14a", null],
   }),
   new Fix({
-    bug: "MC-250158",
-    key: "advancements.husbandry.allay_deliver_cake_to_note_block.description",
-    transformer: autoCapitaliser,
-    versions: ["22w14a", null],
+    bug: "MC-226454",
+    key: "advancements.adventure.walk_on_powder_snow_with_leather_boots.description",
+    // Replaces "XXX...YYY" with "XXX... YYY" (i.e. adds a space after the ellipsis)
+    transformer: new ReplaceTransformer(/(\w)\.\.\.(\w)/, "$1... $2"),
   }),
 ]
 
