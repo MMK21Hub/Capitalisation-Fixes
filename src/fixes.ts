@@ -113,6 +113,12 @@ const fixes: Fix[] = [
     transformer: autoCapitaliser,
     versions: ["22w14a", null],
   }),
+  new Fix({
+    bug: "MC-250158",
+    key: "advancements.husbandry.allay_deliver_cake_to_note_block.description",
+    transformer: autoCapitaliser,
+    versions: ["22w14a", null],
+  }),
 ]
 
 export default fixes
