@@ -305,3 +305,56 @@ export async function emitResourcePacks(
     zip.writeZip(zipPath)
   })
 }
+
+export async function generateStats(
+  fixes: Fix[],
+  filter: {
+    version?: MinecraftVersionSpecifier
+    language?: MinecraftLanguage[]
+  } = {}
+) {
+  async function checkVersion(fix: Fix) {
+    if (!versions) return true
+    if (!fix.data.versions) return true
+
+    const fixVersions = await resolveMinecraftVersionSpecifier(
+      fix.data.versions
+    )
+    return fixVersions.some((version) => versions.includes(version))
+  }
+
+  async function checkLanguage(fix: Fix) {
+    if (!languages) return true
+    if (!fix.data.languages) return true
+
+    return fix.data.languages.some((language) => languages.includes(language))
+  }
+
+  async function processFix(fix: Fix) {
+    const versionMatch = await checkVersion(fix)
+    const languageMatch = await checkLanguage(fix)
+    if (!versionMatch || !languageMatch) return
+
+    if (fix.data.bug) bugReports.push(fix.data.bug)
+    translationKeys.push(fix.data.key)
+  }
+
+  const versions = filter.version
+    ? await resolveMinecraftVersionSpecifier(filter.version)
+    : null
+  const languages = filter.language || null
+
+  const bugReports: string[] = []
+  const translationKeys: string[] = []
+
+  Promise.all(fixes.map(processFix))
+
+  return {
+    bugReports,
+    translationKeys,
+    count: {
+      bugReports: bugReports.length,
+      translationKeys: translationKeys.length,
+    },
+  }
+}
