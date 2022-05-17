@@ -107,6 +107,12 @@ const fixes: Fix[] = [
       alwaysCapitalise: [getMilk()],
     }
   ),
+  new Fix({
+    bug: "MC-249980",
+    key: "advancements.husbandry.allay_deliver_cake_to_note_block.description",
+    transformer: autoCapitaliser,
+    versions: ["22w14a", null],
+  }),
 ]
 
 export default fixes
