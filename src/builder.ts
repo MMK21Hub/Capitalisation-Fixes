@@ -64,6 +64,13 @@ interface BuildOptions {
   filename?: FunctionMaybe<string, [string, string?]>
 }
 
+export class MissingValueError extends Error {
+  constructor() {
+    super()
+    this.name = "MissingValueError"
+  }
+}
+
 export abstract class Transformer {
   callback
 
@@ -117,18 +124,31 @@ async function generateTranslationStrings(
     const transformerName = Object.getPrototypeOf(transformer).constructor.name
     const logger = new TransformerLogger()
 
-    const { value } = await transformer.callback({
-      key,
-      oldValue: originalLanguageFile[key] ?? null,
-      logger,
-      version: targetVersion,
-      language: targetLanguage,
-      languageFileData: originalLanguageFile,
-    })
+    let value: string | null | undefined
+
+    try {
+      const result = await transformer.callback({
+        key,
+        oldValue: originalLanguageFile[key] ?? null,
+        logger,
+        version: targetVersion,
+        language: targetLanguage,
+        languageFileData: originalLanguageFile,
+      })
+      value = result.value
+    } catch (error) {
+      throw error instanceof MissingValueError
+        ? new Error(
+            `[${brand}] Transformer ${transformerName} requires a translation string value to be provided.\n` +
+              `Translation key being processed: ${key}`
+          )
+        : error
+    }
 
     if (!value)
       throw new Error(
-        `[${brand}] Transformer ${transformerName} didn't return any value`
+        `[${brand}] Transformer ${transformerName} didn't return any value.\n` +
+          `Translation key being processed: ${key}`
       )
 
     result[key] = value
