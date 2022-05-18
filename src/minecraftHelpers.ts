@@ -86,6 +86,19 @@ export function lang(
   }
 }
 
+export async function resolveFlexibleSearchValue(
+  searchValue: FlexibleSearchValue,
+  languageFileData: LanguageFileData,
+  language: MinecraftLanguage,
+  version: MinecraftVersion
+): Promise<SearchValue> {
+  if (typeof searchValue === "object" && "resolve" in searchValue)
+    return searchValue.sync
+      ? searchValue.resolve(languageFileData)
+      : await searchValue.resolve(language, version)
+  return searchValue
+}
+
 export async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier | undefined
 ) {
@@ -178,6 +191,7 @@ export async function getVanillaLanguageFile(
     addToCache(filePath, JSON.stringify(languageFile))
   })
 
+  debugger
   return languageFile as any
 }
 

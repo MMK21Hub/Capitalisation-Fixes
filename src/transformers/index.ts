@@ -7,6 +7,8 @@ import {
   ContextSensitiveSearchValue,
   FlexibleSearchValue,
   getVanillaLanguageFile,
+  ResolvableFromLangFileSync,
+  resolveFlexibleSearchValue,
 } from "../minecraftHelpers.js"
 import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
 
@@ -31,10 +33,19 @@ export class ReplaceTransformer extends Transformer {
   searchValue
   replaceValue
 
-  constructor(searchValue: SearchValue, replaceValue: string) {
-    super(({ oldValue }) => ({
-      value: oldValue?.replace(searchValue, replaceValue),
-    }))
+  constructor(searchValue: FlexibleSearchValue, replaceValue: string) {
+    super(async ({ oldValue, languageFileData, language, version }) => {
+      searchValue = await resolveFlexibleSearchValue(
+        searchValue,
+        languageFileData,
+        language,
+        version
+      )
+
+      return {
+        value: oldValue?.replace(searchValue, replaceValue),
+      }
+    })
 
     this.searchValue = searchValue
     this.replaceValue = replaceValue
@@ -57,12 +68,17 @@ export class CapitaliseSegmentTransformer extends Transformer {
   constructor(searchValue: FlexibleSearchValue) {
     super(async ({ oldValue, language, version, languageFileData }) => {
       if (!oldValue) return { value: null }
-      if (typeof searchValue === "object" && "resolve" in searchValue)
-        searchValue = searchValue.sync
-          ? searchValue.resolve(languageFileData)
-          : await searchValue.resolve(language, version)
 
-      searchValue = new RegExp(searchValue, "gi")
+      searchValue = new RegExp(
+        await resolveFlexibleSearchValue(
+          searchValue,
+          languageFileData,
+          language,
+          version
+        ),
+        "gi"
+      )
+
       const value = oldValue.replaceAll(searchValue, toTitleCase)
       return { value }
     })
