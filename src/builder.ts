@@ -106,7 +106,9 @@ async function generateTranslationStrings(
   )
 
   duplicateFixes.forEach(({ data: { key } }) =>
-    console.warn(`Translation key ${key} has multiple fixes that target it`)
+    console.warn(
+      `[${brand}] Translation key ${key} has multiple fixes that target it`
+    )
   )
 
   for (const {
