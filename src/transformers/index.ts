@@ -1,13 +1,12 @@
 import {
+  MissingValueError,
   Transformer,
   TransformerCallback as Callback,
   TransformerCallbackData as CallbackData,
 } from "../builder.js"
 import {
-  ContextSensitiveSearchValue,
   FlexibleSearchValue,
   getVanillaLanguageFile,
-  ResolvableFromLangFileSync,
   resolveFlexibleSearchValue,
 } from "../minecraftHelpers.js"
 import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
@@ -151,7 +150,7 @@ export class CapitaliseFromTranslationStringsTransformer
   options
 
   callback: Callback = async ({ oldValue, language, version }) => {
-    if (!oldValue) return { value: null }
+    if (!oldValue) throw new MissingValueError()
     const languageFile = await getVanillaLanguageFile(language, version)
 
     const matchingTranslationStrings = Object.entries(languageFile)
