@@ -117,17 +117,21 @@ async function generateTranslationStrings(
     const transformerName = Object.getPrototypeOf(transformer).constructor.name
     const logger = new TransformerLogger()
 
-    result[key] =
-      (
-        await transformer.callback({
-          key,
-          oldValue: originalLanguageFile[key] ?? null,
-          logger,
-          version: targetVersion,
-          language: targetLanguage,
-          languageFileData: originalLanguageFile,
-        })
-      ).value || ""
+    const { value } = await transformer.callback({
+      key,
+      oldValue: originalLanguageFile[key] ?? null,
+      logger,
+      version: targetVersion,
+      language: targetLanguage,
+      languageFileData: originalLanguageFile,
+    })
+
+    if (!value)
+      throw new Error(
+        `[${brand}] Transformer ${transformerName} didn't return any value`
+      )
+
+    result[key] = value
 
     if (logger.countMessages(MessageType.Warn)) {
       console.group(

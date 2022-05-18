@@ -191,7 +191,6 @@ export async function getVanillaLanguageFile(
     addToCache(filePath, JSON.stringify(languageFile))
   })
 
-  debugger
   return languageFile as any
 }
 
