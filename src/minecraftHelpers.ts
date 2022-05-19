@@ -210,3 +210,27 @@ function getVersionManifest(): Promise<{
 
   return result
 }
+
+export async function getTranslationString(
+  key: string,
+  options: {
+    language: MinecraftLanguage
+    version: MinecraftVersion
+    fallbackLanguage?: MinecraftLanguage | null
+  }
+) {
+  const { language, version, fallbackLanguage = "en_us" } = options
+  const langFile = await getVanillaLanguageFile(language, version)
+
+  if (key in langFile) return langFile[key]
+
+  if (!fallbackLanguage) return null
+  if (language === fallbackLanguage) return null
+
+  const fallbackLangFile = await getVanillaLanguageFile(
+    fallbackLanguage,
+    version
+  )
+
+  return fallbackLangFile[key] || null
+}
