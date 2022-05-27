@@ -17,11 +17,40 @@ import {
 export type MinecraftLanguage = string
 /** A single Minecraft version ID */
 export type MinecraftVersion = string
+/** Specifies a "target" MC version that may change over time, e.g. the latest version */
+export type MinecraftVersionTarget = {
+  type: "latest"
+  branch?: "snapshot" | "release"
+}
+/** Represents a single MC version as a set of numbers, instead of a string */
+export type NumericMinecraftVersion = {
+  /** The first part of the version number. This is always 1. */
+  main: 1
+  /** The second part of the version number; corresponds with "major" named releases (e.g. the "14" in "1.14.2") */
+  major: number
+  /** The third part of the version number; corresponds with "minor" releases (e.g. the "2" in "1.14.2") */
+  minor: number
+  /** Extra information "attached" to the version number by a hyphen, for development releases. */
+  attachment: {
+    type: "pre" | "rc"
+    number: number
+  }
+}
+/** Represents a single MC snapshot as a set of numbers, instead of a string. For pre-releases or release candidates, use a {@link NumericMinecraftVersion} */
+export type NumericMinecraftSnapshot = {
+  /** A two-digit number that corresponds with the year that the snapshot is from (e.g. the "22" in "22w11a") */
+  year: number
+  /** A two-digit number that corresponds with the week number of the week that the snapshot was released in (e.g. the "11" in "22w11a") */
+  week: number
+  /** A lowercase letter (a-z) that separates snapshots within the same week (e.g. the "a" in "22w11a") */
+  letter: string
+}
 /** Used to refer to a group, range, or single version of Minecraft */
 export type MinecraftVersionSpecifier =
   | Range<MinecraftVersion>
   | MinecraftVersion
-// Language files are a map of translation keys to string values
+  | MinecraftVersionTarget
+  | NumericMinecraftVersion
 export type LanguageFileData = Record<string, string>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
 export type ContextSensitiveSearchValue = ResolvableAsync<
@@ -84,6 +113,13 @@ export function lang(
       return result
     },
   }
+}
+
+export async function getLatestVersion(
+  type: "release" | "snapshot" = "snapshot"
+): Promise<MinecraftVersion> {
+  const versionManifest = await getVersionManifest()
+  return versionManifest.latest[type]
 }
 
 export async function resolveFlexibleSearchValue(
