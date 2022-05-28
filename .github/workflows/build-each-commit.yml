@@ -19,4 +19,4 @@ jobs:
           path: out/*.zip
           if-no-files-found: error
       - name: Print the link to the artifact
-        run: 'echo "Built resource packs (one for each version) can be downloaded from: https://github.com/MMK21Hub/Capitalisation-Fixes/actions/runs/${{ github.run_id }}#artifacts" (packs are inside the zip file)'
+        run: 'echo "Built resource packs (one for each version) can be downloaded from: https://github.com/MMK21Hub/Capitalisation-Fixes/actions/runs/${{ github.run_id }}#artifacts (packs are inside the zip file)"'
