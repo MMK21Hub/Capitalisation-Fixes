@@ -11,6 +11,7 @@ import {
   ResolvableAsync,
   SearchValue,
   ResolvableSync,
+  isSimpleRange,
 } from "./util.js"
 
 /** A single Minecraft language ID */
@@ -31,7 +32,7 @@ export type NumericMinecraftVersion = {
   /** The third part of the version number; corresponds with "minor" releases (e.g. the "2" in "1.14.2") */
   minor: number
   /** Extra information "attached" to the version number by a hyphen, for development releases. */
-  attachment: {
+  attachment?: {
     type: "pre" | "rc"
     number: number
   }
@@ -135,18 +136,47 @@ export async function resolveFlexibleSearchValue(
   return searchValue
 }
 
+export async function resolveMinecraftVersionId<F = never>(
+  version: string,
+  fallback?: F
+): Promise<string | F> {
+  const manifest = await getVersionManifest()
+  const versionMatch = manifest.versions.find((v) => v.id === version)
+  if (versionMatch) return versionMatch.id
+  if (fallback) return fallback
+  throw new Error(`${version} is not a valid Minecraft version ID`)
+}
+
+export function stringifyNumericMinecraftVersion({
+  main,
+  major,
+  minor,
+  attachment,
+}: NumericMinecraftVersion): string {
+  return attachment
+    ? `${main}.${major}.${minor}-${attachment.type}${attachment.number}`
+    : `${main}.${major}.${minor}`
+}
+
+export async function resolveNumericMinecraftVersion(
+  version: NumericMinecraftVersion
+) {
+  const versionString = stringifyNumericMinecraftVersion(version)
+  return resolveMinecraftVersionId(versionString)
+}
+
 export async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier | undefined
-) {
+): Promise<string[]> {
   if (!specifier) return []
   if (typeof specifier === "string") return [specifier]
+  if ("type" in specifier) return [await getLatestVersion(specifier.branch)]
+  if ("main" in specifier)
+    return [await resolveNumericMinecraftVersion(specifier)]
 
-  const isSimpleRange =
-    Array.isArray(specifier) && typeof specifier[0] !== "object"
-
-  const matchingVersions = isSimpleRange
+  const matchingVersions = isSimpleRange(specifier)
     ? await resolveMinecraftVersionSimpleRange(specifier)
-    : await resolveMinecraftVersionFancyRange(specifier as FancyRange<string>)
+    : await resolveMinecraftVersionFancyRange(specifier)
 
   return matchingVersions
 }
