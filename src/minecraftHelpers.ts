@@ -169,7 +169,8 @@ export async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier | undefined
 ): Promise<string[]> {
   if (!specifier) return []
-  if (typeof specifier === "string") return [specifier]
+  if (typeof specifier === "string")
+    return [await resolveMinecraftVersionId(specifier)]
   if ("type" in specifier) return [await getLatestVersion(specifier.branch)]
   if ("main" in specifier)
     return [await resolveNumericMinecraftVersion(specifier)]
