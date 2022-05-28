@@ -12,9 +12,11 @@ jobs:
         run: yarn build
       - name: Build the resource pack
         run: node dist/main.js
-      - name: Save the built resouce pack as an artifact
+      - name: Save the built resource pack as an artifact
         uses: actions/upload-artifact@v3
         with:
           name: Resource Pack Outputs
           path: out/*.zip
           if-no-files-found: error
+      - name: Print the link to the artifact
+        run: 'echo "Built resource packs (one for each version) can be downloaded from: https://github.com/MMK21Hub/Capitalisation-Fixes/actions/runs/${{ github.run_id }}#artifacts" (packs are inside the zip file)'
