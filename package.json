@@ -5,7 +5,8 @@
   "main": "src/main.ts",
   "type": "module",
   "scripts": {
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
