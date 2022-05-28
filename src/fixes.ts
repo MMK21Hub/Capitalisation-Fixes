@@ -111,7 +111,7 @@ const fixes: Fix[] = [
     bug: "MC-249980",
     key: "advancements.husbandry.allay_deliver_cake_to_note_block.description",
     transformer: autoCapitaliser,
-    versions: ["22w14a", null],
+    versions: ["22w14a", "1.19-pre1"],
   }),
   new Fix({
     bug: "MC-226454",
