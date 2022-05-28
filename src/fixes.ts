@@ -123,6 +123,12 @@ const fixes: Fix[] = [
     "subtitles.entity.goat.horn_break",
     "subtitles.item.goat_horn.play",
   ]),
+  new Fix({
+    bug: "MC-250968",
+    key: "subtitles.entity.goat.horn_break",
+    transformer: new ReplaceTransformer(lang("entity.minecraft.goat"), "$&'s"),
+    languages: ["en_us"],
+  }),
 ]
 
 export default fixes
