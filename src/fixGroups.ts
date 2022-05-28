@@ -1,6 +1,9 @@
 import { Transformer } from "./builder.js"
 import Fix from "./Fix.js"
-import { FlexibleSearchValue } from "./minecraftHelpers.js"
+import {
+  FlexibleSearchValue,
+  MinecraftVersionSpecifier,
+} from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
@@ -56,11 +59,13 @@ export function autoCapitaliseGroup(
     keyPrefix?: string
     vanillaStrings?: string[]
     alwaysCapitalise?: FlexibleSearchValue[]
+    versions?: MinecraftVersionSpecifier
   } = {}
 ): Fix[] {
   let {
     keyPrefix = "",
     vanillaStrings = ["block.**", "item.**", "entity.**"],
+    versions,
   } = options
   if (keyPrefix && !keyPrefix.endsWith(".")) keyPrefix += "."
 
@@ -84,6 +89,7 @@ export function autoCapitaliseGroup(
         bug,
         key: `${keyPrefix}${key}`,
         transformer,
+        versions,
       })
   )
 }

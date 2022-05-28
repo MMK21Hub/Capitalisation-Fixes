@@ -119,10 +119,11 @@ const fixes: Fix[] = [
     // Replaces "XXX...YYY" with "XXX... YYY" (i.e. adds a space after the ellipsis)
     transformer: new ReplaceTransformer(/(\w)\.\.\.(\w)/, "$1... $2"),
   }),
-  ...autoCapitaliseGroup("MC-250932", [
-    "subtitles.entity.goat.horn_break",
-    "subtitles.item.goat_horn.play",
-  ]),
+  ...autoCapitaliseGroup(
+    "MC-250932",
+    ["subtitles.entity.goat.horn_break", "subtitles.item.goat_horn.play"],
+    { versions: ["22w17a", "1.19-pre1"] }
+  ),
   new Fix({
     bug: "MC-250968",
     key: "subtitles.entity.goat.horn_break",
