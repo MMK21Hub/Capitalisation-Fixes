@@ -8,7 +8,10 @@ export const cache = new Map<string, any>()
 const versionString = process.argv[2]
 
 await emitResourcePacks(fixes, {
-  targetVersions: "22w17a",
+  targetVersions: {
+    type: "latest",
+    branch: "snapshot",
+  },
   targetLanguages: ["en_us", "en_gb"],
   clearDirectory: true,
   packVersion: versionString,

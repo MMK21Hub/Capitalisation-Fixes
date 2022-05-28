@@ -206,7 +206,6 @@ async function generateTranslationStrings(
     console.log(`${key}: "${value}"`)
   )
   console.groupEnd()
-  console.log(" ")
 
   return result
 }
