@@ -20,14 +20,14 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 
 ### Capitalisation Fixes v2
 
-|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    | 22w16a    | 22w17a    | 22w18a    |
-| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   |
-| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   |
-| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; |
+|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    | 22w16a    | 22w17a–19a | 1.19-pre* |
+| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- | --------- | ---------- | --------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;   |
+| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;   |
+| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;   |
+| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   | &#9989;   | &#9989;    | &#9989;   |
+| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; | &#9989;    | &#9989;   |
+| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775;  | &#9989;   |
 
 |                                                                                                                           | 1.17.x   | 1.18.x  | 1.19.x   |
 | ------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | -------- |
@@ -82,7 +82,7 @@ These fixes used to be included in the pack but have since been fixed in the van
 
 This is a utility script that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`. It does two main jobs:
 
-- Run the build file to create the `.zip` files that can be distributed with the release.
+- Run the build tool to create the `.zip` files that can be distributed with the release.
 - Push any commits that only exist locally, to make sure that the tag on GitHub is based on the most recent commit.
 - Create a new git tag to mark the version. It then pushes the tag to GitHub.
 
