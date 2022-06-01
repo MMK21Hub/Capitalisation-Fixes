@@ -266,15 +266,15 @@ export async function getVanillaLanguageFile(
         ` (${versionManifest.versions.length} versions available)`
     )
 
-  // Get the language file from the minecraft-assets repository
+  // Get the language file from the mcmeta repository
   const languageFile = await fetch(
-    `https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/${version}/assets/minecraft/lang/${language}.json`
+    `https://github.com/misode/mcmeta/blob/${version}-assets-json/assets/minecraft/lang/${language}.json`
   ).then((res) => (res.status === 404 ? null : res.json()))
 
   // Throw if the request 404'd
   if (!languageFile)
     throw new Error(
-      `Could not find language file (${language}.json) in minecraft-assets repository. Does the language exist?`
+      `Could not find language file (${language}.json) in mcmeta repository. Does the language exist?`
     )
 
   // Asynchronously cache the language file
