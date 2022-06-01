@@ -1,2 +1,10 @@
 # Generated files
 *.zip
+dist/
+out/
+dep.svg
+
+node_modules/
+yarn-error.log
+
+.cache

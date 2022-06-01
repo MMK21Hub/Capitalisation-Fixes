@@ -1,5 +1,13 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+  echo "Specify a version number!" >&2
+  exit 1
+fi
+
 # Generate a Resource Pack ZIP file that can be distributed with the release
-zip -r "Capitalisation-Fixes-$1.zip" assets/** pack.mcmeta README.md pack.png
+yarn build && QUIET=1 node dist/main.js $1
+echo "Built Resource Pack ZIPs: $PWD/out"
 
 # Push all outstanding commits
 git push

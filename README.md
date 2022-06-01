@@ -82,7 +82,7 @@ These fixes used to be included in the pack but have since been fixed in the van
 
 This is a utility script that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`. It does two main jobs:
 
-- Create a `.zip` file that can be distributed with the GitHub release, with a name such as `Capitalisation-Fixes-v2.1.zip`
+- Run the build file to create the `.zip` files that can be distributed with the release.
 - Push any commits that only exist locally, to make sure that the tag on GitHub is based on the most recent commit.
 - Create a new git tag to mark the version. It then pushes the tag to GitHub.
 
