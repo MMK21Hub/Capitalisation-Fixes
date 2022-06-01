@@ -268,7 +268,7 @@ export async function getVanillaLanguageFile(
 
   // Get the language file from the mcmeta repository
   const languageFile = await fetch(
-    `https://github.com/misode/mcmeta/blob/${version}-assets-json/assets/minecraft/lang/${language}.json`
+    `https://raw.githubusercontent.com/misode/mcmeta/${version}-assets-json/assets/minecraft/lang/${language}.json`
   ).then((res) => (res.status === 404 ? null : res.json()))
 
   // Throw if the request 404'd
