@@ -388,7 +388,7 @@ export async function generateStats(
   async function processFix(fix: Fix) {
     const versionMatch = await checkVersion(fix)
     const languageMatch = await checkLanguage(fix)
-    // if (!versionMatch || !languageMatch) return
+    if (!versionMatch || !languageMatch) return
 
     if (fix.data.bug) bugReports.add(fix.data.bug)
     translationKeys.add(fix.data.key)
