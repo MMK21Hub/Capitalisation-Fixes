@@ -1,9 +1,21 @@
 console.log("Loading...")
 
-import { emitResourcePacks } from "./builder.js"
+import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
-import { VersionInfo } from "./minecraftHelpers.js"
+import { MinecraftVersionSpecifier, VersionInfo } from "./minecraftHelpers.js"
 import fetch from "node-fetch"
+
+async function printStats() {
+  const stats = await generateStats(fixes, {
+    language: ["en_us"],
+    version: targetVersions,
+  })
+
+  const { bugReports, translationKeys } = stats.count
+
+  console.log(`Fixed bugs: ${bugReports}`)
+  console.log(`Translation keys: ${translationKeys}`)
+}
 
 export const packDescription =
   "Fixes issues with text labels.\nSource: §9§nbit.ly/CapsFix"
@@ -15,19 +27,23 @@ export const versionsSummary = (await fetch(
 
 export const cache = new Map<string, any>()
 
-console.log("Building resource packs...")
-const versionString = process.argv[2]
+const commandLineArg = process.argv[2]
 
-await emitResourcePacks(fixes, {
-  targetVersions: {
-    type: "latest",
-    branch: "snapshot",
-  },
-  targetLanguages: ["en_us", "en_gb"],
-  clearDirectory: true,
-  packVersion: versionString,
-  // If no version was specified, just name the zip after the MC version it targets:
-  filename: versionString
-    ? undefined
-    : (minecraftVersion) => `${minecraftVersion}.zip`,
-})
+const targetVersions: MinecraftVersionSpecifier = {
+  type: "latest",
+  branch: "snapshot",
+}
+const targetLanguages = ["en_us", "en_gb"]
+
+commandLineArg === "--stats"
+  ? await printStats()
+  : await emitResourcePacks(fixes, {
+      targetVersions,
+      targetLanguages,
+      clearDirectory: true,
+      packVersion: commandLineArg,
+      // If no version was specified, just name the zip after the MC version it targets:
+      filename: commandLineArg
+        ? undefined
+        : (minecraftVersion) => `${minecraftVersion}.zip`,
+    })

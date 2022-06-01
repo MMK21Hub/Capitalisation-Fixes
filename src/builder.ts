@@ -329,6 +329,7 @@ export async function emitResourcePacks(
   buildOptions: BuildOptions
 ) {
   const outputDir = buildOptions.directory || "out"
+  console.log("Building resource packs...")
 
   // Prepare the output directory
   ensureDir(outputDir)
@@ -387,28 +388,29 @@ export async function generateStats(
   async function processFix(fix: Fix) {
     const versionMatch = await checkVersion(fix)
     const languageMatch = await checkLanguage(fix)
-    if (!versionMatch || !languageMatch) return
+    // if (!versionMatch || !languageMatch) return
 
-    if (fix.data.bug) bugReports.push(fix.data.bug)
-    translationKeys.push(fix.data.key)
+    if (fix.data.bug) bugReports.add(fix.data.bug)
+    translationKeys.add(fix.data.key)
   }
 
+  console.log("Generating stats...")
   const versions = filter.version
     ? await resolveMinecraftVersionSpecifier(filter.version)
     : null
   const languages = filter.language || null
 
-  const bugReports: string[] = []
-  const translationKeys: string[] = []
+  const bugReports = new Set<string>()
+  const translationKeys = new Set<string>()
 
-  Promise.all(fixes.map(processFix))
+  await Promise.all(fixes.map(processFix))
 
   return {
     bugReports,
     translationKeys,
     count: {
-      bugReports: bugReports.length,
-      translationKeys: translationKeys.length,
+      bugReports: bugReports.size,
+      translationKeys: translationKeys.size,
     },
   }
 }
