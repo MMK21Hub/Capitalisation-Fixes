@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 import path from "path"
-import { cache } from "./main.js"
+import { cache, versionsSummary } from "./main.js"
 import {
   FancyRange,
   StartAndEnd,
@@ -68,6 +68,31 @@ export type FlexibleSearchValue =
   | ContextSensitiveSearchValue
   | ContextSensitiveSearchValueSync
   | SearchValue
+export type ResourcePackMetadata = {
+  pack: {
+    pack_format: number
+    description: string
+  }
+}
+/** Metadata about a specific Minecraft version, as sourced from https://github.com/misode/mcmeta/tree/summary/versions */
+export interface VersionInfo {
+  id: MinecraftVersion
+  name: string
+  release_target: MinecraftVersion
+  type: "release" | "snapshot"
+  stable: boolean
+  data_version: number
+  protocol_version: number
+  data_pack_version: number
+  resource_pack_version: number
+  build_time: string
+  release_time: string
+  sha1: string
+}
+export interface PackMetaGenOptions {
+  format: number
+  description: string
+}
 
 export class UseTranslationString {
   readonly string
@@ -144,7 +169,7 @@ export async function resolveMinecraftVersionId<F = never>(
   const versionMatch = manifest.versions.find((v) => v.id === version)
   if (versionMatch) return versionMatch.id
   if (fallback) return fallback
-  throw new Error(`${version} is not a valid Minecraft version ID`)
+  throw new Error(`Invalid version identifier: ${version}`)
 }
 
 export function stringifyNumericMinecraftVersion({
@@ -300,4 +325,31 @@ export async function getTranslationString(
   )
 
   return fallbackLangFile[key] || null
+}
+
+export function getVersionInfo(version: MinecraftVersion): VersionInfo {
+  const matchedVersion = versionsSummary.find((v) => v.id === version)
+  if (!matchedVersion)
+    throw new Error(
+      `Could not find version information for ${version}. Only versions since 1.14 are available.`
+    )
+  return matchedVersion
+}
+
+export function packFormat(version: MinecraftVersion) {
+  const versionInfo = getVersionInfo(version)
+  return versionInfo["resource_pack_version"]
+}
+
+/** Generates the contents for a Minecraft-compatible `pack.mcmeta` file */
+export function packMetadata(
+  options: PackMetaGenOptions
+): ResourcePackMetadata {
+  const { format, description } = options
+  return {
+    pack: {
+      pack_format: format,
+      description,
+    },
+  }
 }

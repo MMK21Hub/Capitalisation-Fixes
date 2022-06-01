@@ -8,11 +8,14 @@ import {
   MinecraftLanguage,
   MinecraftVersion,
   MinecraftVersionSpecifier,
+  packFormat,
   resolveMinecraftVersionSpecifier,
+  ResourcePackMetadata,
 } from "./minecraftHelpers.js"
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 import TransformerLogger, { MessageType } from "./TransformerLogger.js"
 import type Fix from "./Fix.js"
+import { packDescription } from "./main.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -200,6 +203,8 @@ async function generateTranslationStrings(
     }
   }
 
+  if (process.env.QUIET) return result
+
   // Log the translation strings that we just generated
   console.group(`=== ${brand} ===`)
   Object.entries(result).forEach(([key, value]) =>
@@ -255,14 +260,19 @@ export async function generateMultipleVersionsLanguageFileData(
 
 async function generatePackZipData(
   languageFiles: Record<string, LanguageFileData>,
-  metaFiles: Record<string, Buffer>
+  packMetadata: ResourcePackMetadata,
+  metaFiles?: Record<string, Buffer>
 ) {
   const zip = new AdmZip()
 
   // Add each "meta file" to the zip
-  Object.entries(metaFiles).forEach(([path, contents]) =>
-    zip.addFile(path, contents)
-  )
+  if (metaFiles)
+    Object.entries(metaFiles).forEach(([path, contents]) =>
+      zip.addFile(path, contents)
+    )
+
+  // Add the pack.mcmeta
+  zip.addFile("pack.mcmeta", Buffer.from(JSON.stringify(packMetadata, null, 4)))
 
   // Add each language file to the zip
   Object.entries(languageFiles).forEach(([language, languageFile]) => {
@@ -282,9 +292,9 @@ async function generateMultiplePackZipData(
 ) {
   const result: Record<string, AdmZip> = {}
 
-  // Include our pack.mcmeta, pack.png and readme files in the zip
+  // Get the pack.png and README files from the repo, and include them in the zip
   const metaFiles: Record<string, Buffer> = {}
-  const metaFileNames = ["pack.mcmeta", "pack.png", "README.md"]
+  const metaFileNames = ["pack.png", "README.md"]
   for (const i in metaFileNames) {
     const file = metaFileNames[i]
     const filePath = path.join(metaFileDirectory, file)
@@ -294,8 +304,19 @@ async function generateMultiplePackZipData(
   await Promise.all(
     Object.entries(versionedLanguageFiles).map(
       async ([version, languageFiles]) => {
+        const metadata = {
+          pack: {
+            description: packDescription,
+            pack_format: packFormat(version),
+          },
+        }
+
         // Add the current version's language files to the result
-        result[version] = await generatePackZipData(languageFiles, metaFiles)
+        result[version] = await generatePackZipData(
+          languageFiles,
+          metadata,
+          metaFiles
+        )
       }
     )
   )
