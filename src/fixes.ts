@@ -1,5 +1,5 @@
 import Fix from "./Fix.js"
-import { fixGroup, autoCapitaliseGroup } from "./fixGroups.js"
+import { fixGroup, autoCapitaliseGroup, multiFixGroup } from "./fixGroups.js"
 import { getMilk } from "./languageHelpers.js"
 import { lang } from "./minecraftHelpers.js"
 import {
@@ -130,6 +130,14 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer(lang("entity.minecraft.goat"), "$&'s"),
     languages: ["en_us"],
   }),
+  ...multiFixGroup(
+    "MC-226484",
+    new ReplaceTransformer(/a Copper block/i, "copper"),
+    [
+      "advancements.husbandry.wax_on.description",
+      "advancements.husbandry.wax_off.description",
+    ]
+  ),
 ]
 
 export default fixes

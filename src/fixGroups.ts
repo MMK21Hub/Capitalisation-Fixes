@@ -32,6 +32,14 @@ export function fixGroup(
   )
 }
 
+export function multiFixGroup(
+  bug: string,
+  transformer: Transformer,
+  strings: string[]
+) {
+  return strings.map((key) => new Fix({ bug, key, transformer }))
+}
+
 export function titleCaseGroup(
   bug: string,
   translationKeys: string[],
