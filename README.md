@@ -28,6 +28,7 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 | **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;    | &#127775; | &#9989;    | &#9989;    | &#9989;   |
 | **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;    | &#9989;   | &#127775;  | &#9989;    | &#9989;   |
 | **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#127775;  | &#9989;   |
+| **[v2.6](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.6)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#127775; |
 
 |                                                                                                                           | 1.17.x   | 1.18.x  | 1.19.x   |
 | ------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | -------- |
