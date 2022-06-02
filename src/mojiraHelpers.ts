@@ -9,18 +9,7 @@ export function getBugXMLUrl(key: string, fields?: string[]) {
   return url
 }
 
-export async function getBugXML(
-  bug: string,
-  fields?: string[]
-): Promise<JSDOM> {
-  const url = getBugXMLUrl(bug, fields).href
-  const response = await fetch(url)
-
-  if (!response.ok)
-    throw new Error(
-      `Could not fetch XML data for bug ${bug} with URL ${url}: Server returned ${response.status} ${response.statusText}`
-    )
-
-  const text = await response.text()
-  return new JSDOM(text)
+export function getBugXML(bug: string, fields?: string[]): Promise<JSDOM> {
+  const url = getBugXMLUrl(bug, fields)
+  return JSDOM.fromURL(url.href)
 }

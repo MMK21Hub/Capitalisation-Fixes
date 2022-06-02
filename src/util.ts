@@ -1,3 +1,4 @@
+import { JSDOM } from "jsdom"
 import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
 import path from "node:path"
 
@@ -51,6 +52,8 @@ export function isSimpleRange<T>(
 ): specifier is StartAndEnd<T> {
   return Array.isArray(specifier) && typeof specifier[0] !== "object"
 }
+
+/* HTTP UTILS */
 
 export function urlPath(...paths: string[]): URL {
   return new URL(paths.join("/"))
