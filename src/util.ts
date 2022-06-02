@@ -52,6 +52,10 @@ export function isSimpleRange<T>(
   return Array.isArray(specifier) && typeof specifier[0] !== "object"
 }
 
+export function urlPath(...paths: string[]): URL {
+  return new URL(paths.join("/"))
+}
+
 /* ASYNC UTILS */
 
 // https://stackoverflow.com/a/46842181/11519302

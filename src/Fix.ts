@@ -4,6 +4,7 @@ import {
 } from "./minecraftHelpers.js"
 import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { Transformer } from "./builder.js"
+import { getBugXML } from "./mojiraHelpers.js"
 
 export interface FixOptions {
   /** The translation string that needs to be edited */
@@ -16,7 +17,6 @@ export interface FixOptions {
   languages?: MinecraftLanguage[]
   /** References the Mojira bug report for the bug that the fix fixes */
   bug?: string
-  skipBugValidation?: boolean
 }
 
 export interface FixData extends FixOptions {
@@ -29,22 +29,24 @@ export default class Fix {
   versions
   languages
   bug
-  skipBugValidation
+
+  async validateLinkedBug() {
+    if (!this.bug) return
+
+    if (!/[A-Z]+-\d+/.test(this.bug))
+      throw new Error(`Doesn't look like a bug report key: "${this.bug}"`)
+
+    await getBugXML(this.bug)
+  }
 
   constructor(options: FixOptions) {
-    if (Array.isArray(options.transformer)) {
-      // Automatically use a MultiTransformer if an array is provided
-      options.transformer = new MultiTransformer(options.transformer)
-    }
-
-    if (options.bug && !/[A-Z]+-\d+/.test(options.bug))
-      console.warn(`Doesn't look like a bug report key: "${options.bug}"`)
+    this.transformer = Array.isArray(options.transformer)
+      ? new MultiTransformer(options.transformer)
+      : options.transformer
 
     this.bug = options.bug
     this.key = options.key
-    this.transformer = options.transformer
     this.versions = options.versions
     this.languages = options.languages
-    this.skipBugValidation = options.skipBugValidation ?? false
   }
 }
