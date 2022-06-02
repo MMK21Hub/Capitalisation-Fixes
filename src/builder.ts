@@ -100,31 +100,29 @@ async function generateTranslationStrings(
 
   // Remove fixes that aren't for the target version
   fixes = await filter(fixes, async (fix) => {
-    if (!fix.data.versions) return true
-    const versions = await resolveMinecraftVersionSpecifier(fix.data.versions)
+    if (!fix.versions) return true
+    const versions = await resolveMinecraftVersionSpecifier(fix.versions)
     return versions.includes(targetVersion)
   })
 
   // Remove fixes that aren't for the target language
   fixes = fixes.filter(
-    (fix) => !fix.data.languages || fix.data.languages.includes(targetLanguage)
+    (fix) => !fix.languages || fix.languages.includes(targetLanguage)
   )
 
   const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
-    fixes.filter((f, i) => f.data.key === fix.data.key && index > i).length
+    fixes.filter((f, i) => f.key === fix.key && index > i).length
   const duplicateFixes = fixes.filter((fix, i) =>
     fixKeyIsDuplicated(fixes, fix, i)
   )
 
-  duplicateFixes.forEach(({ data: { key } }) =>
+  duplicateFixes.forEach(({ key }) =>
     console.warn(
       `[${brand}] Translation key ${key} has multiple fixes that target it`
     )
   )
 
-  for (const {
-    data: { key, transformer },
-  } of fixes) {
+  for (const { key, transformer } of fixes) {
     const transformerName = Object.getPrototypeOf(transformer).constructor.name
     const logger = new TransformerLogger()
 
@@ -370,19 +368,17 @@ export async function generateStats(
 ) {
   async function checkVersion(fix: Fix) {
     if (!versions) return true
-    if (!fix.data.versions) return true
+    if (!fix.versions) return true
 
-    const fixVersions = await resolveMinecraftVersionSpecifier(
-      fix.data.versions
-    )
+    const fixVersions = await resolveMinecraftVersionSpecifier(fix.versions)
     return fixVersions.some((version) => versions.includes(version))
   }
 
   async function checkLanguage(fix: Fix) {
     if (!languages) return true
-    if (!fix.data.languages) return true
+    if (!fix.languages) return true
 
-    return fix.data.languages.some((language) => languages.includes(language))
+    return fix.languages.some((language) => languages.includes(language))
   }
 
   async function processFix(fix: Fix) {
@@ -390,8 +386,8 @@ export async function generateStats(
     const languageMatch = await checkLanguage(fix)
     if (!versionMatch || !languageMatch) return
 
-    if (fix.data.bug) bugReports.add(fix.data.bug)
-    translationKeys.add(fix.data.key)
+    if (fix.bug) bugReports.add(fix.bug)
+    translationKeys.add(fix.key)
   }
 
   console.log("Generating stats...")

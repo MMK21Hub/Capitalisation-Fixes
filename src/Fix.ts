@@ -16,6 +16,7 @@ export interface FixOptions {
   languages?: MinecraftLanguage[]
   /** References the Mojira bug report for the bug that the fix fixes */
   bug?: string
+  skipBugValidation?: boolean
 }
 
 export interface FixData extends FixOptions {
@@ -23,7 +24,12 @@ export interface FixData extends FixOptions {
 }
 
 export default class Fix {
-  data
+  key
+  transformer
+  versions
+  languages
+  bug
+  skipBugValidation
 
   constructor(options: FixOptions) {
     if (Array.isArray(options.transformer)) {
@@ -34,6 +40,11 @@ export default class Fix {
     if (options.bug && !/[A-Z]+-\d+/.test(options.bug))
       console.warn(`Doesn't look like a bug report key: "${options.bug}"`)
 
-    this.data = options as FixData
+    this.bug = options.bug
+    this.key = options.key
+    this.transformer = options.transformer
+    this.versions = options.versions
+    this.languages = options.languages
+    this.skipBugValidation = options.skipBugValidation ?? false
   }
 }
