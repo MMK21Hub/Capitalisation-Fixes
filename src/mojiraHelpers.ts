@@ -1,5 +1,4 @@
-import { urlPath } from "./util.js"
-import fetch from "node-fetch"
+import { getSelectorText, urlPath } from "./util.js"
 import { JSDOM } from "jsdom"
 
 export function getBugXMLUrl(key: string, fields?: string[]) {
@@ -12,4 +11,17 @@ export function getBugXMLUrl(key: string, fields?: string[]) {
 export function getBugXML(bug: string, fields?: string[]): Promise<JSDOM> {
   const url = getBugXMLUrl(bug, fields)
   return JSDOM.fromURL(url.href)
+}
+
+export async function getBugResolution(bug: string) {
+  const dom = await getBugXML(bug, ["resolution", "status"])
+  const resolution = getSelectorText(dom, "resolution")
+  const status = getSelectorText(dom, "status")
+  const key = getSelectorText(dom, "key")
+
+  return {
+    resolution,
+    status,
+    key,
+  }
 }

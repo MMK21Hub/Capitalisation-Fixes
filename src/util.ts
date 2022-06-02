@@ -53,6 +53,26 @@ export function isSimpleRange<T>(
   return Array.isArray(specifier) && typeof specifier[0] !== "object"
 }
 
+/* DOM UTILS */
+
+export function getSelector(dom: JSDOM, selector: string) {
+  const match = dom.window.document.querySelector(selector)
+  if (!match) throw new Error(`Couldn't find selector: ${selector}`)
+  return match
+}
+
+export function getSelectorText(dom: JSDOM, selector: string) {
+  const element = getSelector(dom, selector)
+  if (element.textContent) return element.textContent.trim()
+
+  // Apparently you can just put your data inside a comment and call it "CDATA"
+  const cdataMatcher = /\[CDATA\[(.*)\]\]/
+  const cdataMatch = cdataMatcher.exec(element.outerHTML)
+  if (cdataMatch) return cdataMatch[1].trim()
+
+  throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
+}
+
 /* HTTP UTILS */
 
 export function urlPath(...paths: string[]): URL {
