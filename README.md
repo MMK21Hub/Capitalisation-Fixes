@@ -18,22 +18,24 @@ To benefit from the most newest bugfixes, you should keep up-to-date with the ne
 
 &#127775; - Denotes the recommend version of the pack for each Minecraft version.
 
-### Capitalisation Fixes v2
+### 1.19
 
-|                                                                                | 22w11a    | 22w12a–13a | 22w14a    | 22w15a–16a | 22w17a–19a | 1.19-pre1+ | 1.19-pre5 | 1.19-rc1  |
-| ------------------------------------------------------------------------------ | --------- | ---------- | --------- | ---------- | ---------- | ---------- | --------- | --------- |
-| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775;  | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;    | &#127775; | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;    | &#9989;   | &#127775;  | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#127775;  | &#9989;    | &#9989;   | &#9989;   |
-| **[v2.6](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.6)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#127775;  | &#9989;   | &#9989;   |
-| **[v2.7](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.7)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#127775; | &#127775; |
+|                                                                                | 22w11a    | 22w12a    | 22w13a    | 22w14a    | 22w15a    | 22w16a    | 22w17a–19a | 1.19-pre1+ | 1.19-pre5 | 1.19-rc1  |
+| ------------------------------------------------------------------------------ | --------- | --------- | --------- | --------- | --------- | --------- | ---------- | ---------- | --------- | --------- |
+| **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775; | &#127775; | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.2)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.3)** | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#9989;   | &#9989;   | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.4)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775; | &#127775; | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.5](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.5)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775;  | &#9989;    | &#9989;   | &#9989;   |
+| **[v2.6](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.6)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#127775;  | &#9989;   | &#9989;   |
+| **[v2.7](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.7)** | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;    | &#9989;    | &#127775; | &#127775; |
 
-|                                                                                                                           | 1.17.x   | 1.18.x  | 1.19.x   |
-| ------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | -------- |
-| **[v2.0-compat](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)** (1.18 Compatibility Release) | &#10060; | &#9989; | &#10060; |
+### 1.18
+
+|                                                                                                                           | 1.18.x  |
+| ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| **[v2.0-compat](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)** (1.18 Compatibility Release) | &#9989; |
 
 ### Capitalisation Fixes v1
 
