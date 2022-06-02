@@ -138,6 +138,14 @@ const fixes: Fix[] = [
       "advancements.husbandry.wax_off.description",
     ]
   ),
+  new Fix({
+    bug: "MC-252408",
+    key: "chat.disabled.profile",
+    // If there's a letter right at the end of a string, add a full stop to the end
+    transformer: new ReplaceTransformer(/\w$/, "$&."),
+    // Other languages still have the old translation string contents, so they aren't affected
+    languages: ["en_us"],
+  }),
 ]
 
 export default fixes

@@ -47,7 +47,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-29 modified translation strings are included in the resource pack, which fix a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+30 modified translation strings are included in the resource pack, which fix a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
@@ -67,6 +67,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
 - [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) (capitalisation)
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
+- ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 
 ### Previously-fixed strings
 
