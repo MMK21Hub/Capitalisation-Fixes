@@ -1,4 +1,4 @@
-import { getSelector, getSelectorId, getSelectorText, urlPath } from "./util.js"
+import { getSelectorId, getSelectorText, urlPath } from "./util.js"
 import { JSDOM } from "jsdom"
 
 // From https://bugs.mojang.com/rest/api/2/status
@@ -35,7 +35,7 @@ export function getBugXMLUrl(key: string, fields?: string[]) {
 
 export function getBugXML(bug: string, fields?: string[]): Promise<JSDOM> {
   const url = getBugXMLUrl(bug, fields)
-  return JSDOM.fromURL(url.href)
+  return JSDOM.fromURL(url.href).catch(console.log).then()
 }
 
 export async function getBugResolution(bug: string) {
@@ -49,4 +49,13 @@ export async function getBugResolution(bug: string) {
     status,
     key,
   }
+}
+
+export async function getBug(key: string) {
+  const url = urlPath("https://bugs.mojang.com/rest/api/2/issue/", key)
+  const response = await fetch(url.href)
+  if (response.status === 404) return null
+
+  const responseData = await response.json()
+  return responseData.key as string
 }

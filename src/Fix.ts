@@ -4,7 +4,12 @@ import {
 } from "./minecraftHelpers.js"
 import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { Transformer } from "./builder.js"
-import { getBugXML } from "./mojiraHelpers.js"
+import {
+  getBug,
+  getBugResolution,
+  getBugXML,
+  Resolution,
+} from "./mojiraHelpers.js"
 
 export interface FixOptions {
   /** The translation string that needs to be edited */
@@ -36,7 +41,29 @@ export default class Fix {
     if (!/[A-Z]+-\d+/.test(this.bug))
       throw new Error(`Doesn't look like a bug report key: "${this.bug}"`)
 
-    await getBugXML(this.bug)
+    const resolvedKey = await getBug(this.bug)
+    if (!resolvedKey) throw new Error(`Issue ${this.bug} does not exist!`)
+
+    if (resolvedKey !== this.bug) {
+      console.warn(
+        `Issue ${this.bug} redirects to ${resolvedKey}. Check that you're specifying the correct bug report.`
+      )
+      this.bug = resolvedKey
+    }
+
+    // const bugInfo = await getBugXML(this.bug)
+    const { resolution } = await getBugResolution(this.bug)
+
+    const badResolutions = [
+      Resolution.Invalid,
+      Resolution.Duplicate,
+      Resolution.Incomplete,
+      Resolution.WorksAsIntended,
+    ]
+    if (resolution && badResolutions.includes(resolution))
+      throw new Error(
+        `Bug report ${this.bug} has an inappropriate resolution (${Resolution[resolution]})`
+      )
   }
 
   constructor(options: FixOptions) {
