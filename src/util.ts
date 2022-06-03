@@ -73,6 +73,32 @@ export function getSelectorText(dom: JSDOM, selector: string) {
   throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
 }
 
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict?: true
+): T
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict: false
+): T | null
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict = true
+): T | null {
+  const element = getSelector(dom, selector)
+  const id = element.getAttribute("id")
+  if (!id) throw new Error(`Element doesn't have an id!\n${element.outerHTML}`)
+
+  const idNumber = parseInt(id)
+  if (isNaN(idNumber)) throw new Error(`Element id is not a number: ${id}`)
+  if (!strict && idNumber === -1) return null
+  if (idNumber < 0) throw new Error(`Element id is negative: ${id}`)
+  return idNumber as T
+}
+
 /* HTTP UTILS */
 
 export function urlPath(...paths: string[]): URL {
