@@ -7,6 +7,7 @@ import {
 } from "./util.js"
 import { JSDOM } from "jsdom"
 import fetch from "node-fetch"
+import { getMinecraftVersionId } from "./minecraftHelpers.js"
 
 // From https://bugs.mojang.com/rest/api/2/status
 export enum Status {
@@ -68,7 +69,7 @@ export async function getBugFixVersions(bug: string) {
 
   try {
     const fixVersions = getSelectorTextAll(dom, "fixVersion")
-    return fixVersions
+    return fixVersions.map(getMinecraftVersionId)
   } catch (error) {
     if (error instanceof SelectorNotFound) return []
     throw error

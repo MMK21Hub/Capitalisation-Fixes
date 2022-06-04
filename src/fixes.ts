@@ -122,7 +122,7 @@ const fixes: Fix[] = [
   ...autoCapitaliseGroup(
     "MC-250932",
     ["subtitles.entity.goat.horn_break", "subtitles.item.goat_horn.play"],
-    { versions: ["22w17a", "1.19-pre5"] }
+    { versions: ["22w17a", "1.19-pre1"] }
   ),
   new Fix({
     bug: "MC-250968",

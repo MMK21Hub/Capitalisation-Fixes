@@ -148,6 +148,22 @@ export async function getLatestVersion(
   return versionManifest.latest[type]
 }
 
+export function getMinecraftVersionId(targetVersion: string) {
+  const matchedVersion = versionsSummary.find(
+    (version) =>
+      version.id === targetVersion ||
+      version.name === targetVersion ||
+      version.sha1 === targetVersion
+  )
+
+  if (!matchedVersion)
+    throw new Error(
+      `Could not find a matching version ID, name or hash: ${targetVersion}`
+    )
+
+  return matchedVersion.id
+}
+
 export async function resolveFlexibleSearchValue(
   searchValue: FlexibleSearchValue,
   languageFileData: LanguageFileData,
@@ -224,7 +240,7 @@ export async function resolveMinecraftVersionSimpleRange(
   const startIndex = start ? versions.indexOf(start) : 0
   const endIndex = end ? versions.indexOf(end) : versions.length
 
-  return versions.slice(startIndex, endIndex + 1)
+  return versions.slice(startIndex, endIndex)
 }
 
 export async function resolveMinecraftVersionFancyRange(
