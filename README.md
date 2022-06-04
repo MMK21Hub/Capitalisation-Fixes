@@ -90,15 +90,54 @@ These fixes used to be included in the pack but have since been fixed in the van
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
 - [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
 
+## Build tool
+
+The language files that end up in the resource pack aren't created by hand. Instead, a Javascript tool applies a list of "fixes" to the vanilla translation strings, then packages all of its changes into a resource pack that can be distributed. The source code for all the fixes is in the [`src/fixes.ts`](src/fixes.ts) file, and [all the other `.ts` files](https://github.com/MMK21Hub/Capitalisation-Fixes/search?l=typescript) are the source code for the build tool.
+
+If you want to build the pack yourself, the setup is similar to any other Node.js project:
+
+```yaml
+# Clone this repository
+git clone https://github.com/MMK21Hub/Capitalisation-Fixes.git
+
+# Move into the folder containing the cloned repository
+cd Capitalisation-Fixes
+
+# Resolve and install dependencies
+yarn install
+
+# Compile the code into executable JavaScript
+yarn build
+```
+
+Then, you can actually run the build script. Here are some usage examples:
+
+```yaml
+# Build the resource pack. The output will be in the `out` folder, 
+# and the zip file will be named after the targeted Minecraft version.
+# If multiple versions are targeted, there will be one zip file for each.
+node dist/main.js
+
+# Specify a version number to use in the outputted zip filename
+node dist/main.js v2.6
+
+# Print some statistics instead of building the pack
+node dist/main.js --stats
+```
+
+At the moment, you can't configure the output using command line arguments. The build configuration can be changed by editing the [`src/main.ts`](src/main.ts) file instead. (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
+
 ## `new-version.sh`
 
-This is a utility script that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`. It does two main jobs:
+This is a utility script for Linux systems that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
+
+It performs three main jobs:
 
 - Run the build tool to create the `.zip` files that can be distributed with the release.
 - Push any commits that only exist locally, to make sure that the tag on GitHub is based on the most recent commit.
 - Create a new git tag to mark the version. It then pushes the tag to GitHub.
 
-For detailed information, check [the file itself](new-version.sh) - it's only four commands!
+For detailed information, check [the file itself](new-version.sh).
 
 ## Related projects
 
@@ -106,7 +145,7 @@ For detailed information, check [the file itself](new-version.sh) - it's only fo
 
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [18](#fixed-strings)                                                                                            | You are here! |
+| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [17](#fixed-strings)                                                                                            | You are here! |
 | [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
