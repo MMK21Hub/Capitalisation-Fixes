@@ -55,14 +55,26 @@ export function isSimpleRange<T>(
 
 /* DOM UTILS */
 
+export class SelectorNotFound extends Error {
+  constructor(message: string) {
+    super(message)
+  }
+}
+
 export function getSelector(dom: JSDOM, selector: string) {
   const match = dom.window.document.querySelector(selector)
-  if (!match) throw new Error(`Couldn't find selector: ${selector}`)
+  if (!match) throw new SelectorNotFound(`Couldn't find selector: ${selector}`)
   return match
 }
 
-export function getSelectorText(dom: JSDOM, selector: string) {
-  const element = getSelector(dom, selector)
+export function getSelectorAll(dom: JSDOM, selector: string) {
+  const matches = dom.window.document.querySelectorAll(selector)
+  if (!matches.length)
+    throw new SelectorNotFound(`Didn't match any elements: ${selector}`)
+  return matches
+}
+
+export function getElementText(element: Element) {
   if (element.textContent) return element.textContent.trim()
 
   // Apparently you can just put your data inside a comment and call it "CDATA"
@@ -71,6 +83,16 @@ export function getSelectorText(dom: JSDOM, selector: string) {
   if (cdataMatch) return cdataMatch[1].trim()
 
   throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
+}
+
+export function getSelectorText(dom: JSDOM, selector: string) {
+  const element = getSelector(dom, selector)
+  return getElementText(element)
+}
+
+export function getSelectorTextAll(dom: JSDOM, selector: string) {
+  const matchingElements = Array.from(getSelectorAll(dom, selector))
+  return matchingElements.map(getElementText)
 }
 
 export function getSelectorId<T extends number = number>(

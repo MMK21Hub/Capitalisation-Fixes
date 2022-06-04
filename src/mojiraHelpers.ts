@@ -1,5 +1,12 @@
-import { getSelectorId, getSelectorText, urlPath } from "./util.js"
+import {
+  getSelectorId,
+  getSelectorText,
+  getSelectorTextAll,
+  SelectorNotFound,
+  urlPath,
+} from "./util.js"
 import { JSDOM } from "jsdom"
+import fetch from "node-fetch"
 
 // From https://bugs.mojang.com/rest/api/2/status
 export enum Status {
@@ -13,17 +20,17 @@ export enum Status {
 
 // From https://bugs.mojang.com/rest/api/2/resolution
 export enum Resolution {
-  Fixed,
-  WontFix,
-  Duplicate,
-  Incomplete,
-  WorksAsIntended,
-  CannotReproduce,
-  Invalid,
-  AwaitingResponse,
-  Done,
-  WontDo,
-  Declined,
+  Fixed = 1,
+  WontFix = 2,
+  Duplicate = 3,
+  Incomplete = 4,
+  WorksAsIntended = 6,
+  CannotReproduce = 5,
+  Invalid = 7,
+  AwaitingResponse = 10001,
+  Done = 10003,
+  WontDo = 10004,
+  Declined = 10005,
 }
 
 export function getBugXMLUrl(key: string, fields?: string[]) {
@@ -35,7 +42,12 @@ export function getBugXMLUrl(key: string, fields?: string[]) {
 
 export function getBugXML(bug: string, fields?: string[]): Promise<JSDOM> {
   const url = getBugXMLUrl(bug, fields)
-  return JSDOM.fromURL(url.href).catch(console.log).then()
+  return JSDOM.fromURL(url.href)
+    .catch((error: Error) => {
+      console.error(`getBugXML(): HTTP request failed! (${url.href})`)
+      throw error
+    })
+    .then()
 }
 
 export async function getBugResolution(bug: string) {
@@ -51,11 +63,32 @@ export async function getBugResolution(bug: string) {
   }
 }
 
+export async function getBugFixVersions(bug: string) {
+  const dom = await getBugXML(bug, ["fixVersions"])
+
+  try {
+    const fixVersions = getSelectorTextAll(dom, "fixVersion")
+    return fixVersions
+  } catch (error) {
+    if (error instanceof SelectorNotFound) return []
+    throw error
+  }
+}
+
 export async function getBug(key: string) {
-  const url = urlPath("https://bugs.mojang.com/rest/api/2/issue/", key)
+  const url = urlPath("https://bugs.mojang.com/rest/api/2/issue", key)
   const response = await fetch(url.href)
   if (response.status === 404) return null
 
   const responseData = await response.json()
-  return responseData.key as string
+
+  if (
+    typeof responseData === "object" &&
+    responseData &&
+    "key" in responseData &&
+    // @ts-ignore
+    typeof responseData.key === "string"
+  )
+    // @ts-ignore https://github.com/microsoft/TypeScript/issues/25720
+    return responseData.key
 }

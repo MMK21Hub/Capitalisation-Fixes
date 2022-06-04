@@ -1,13 +1,14 @@
 import {
   MinecraftLanguage,
   MinecraftVersionSpecifier,
+  resolveMinecraftVersionSpecifier,
 } from "./minecraftHelpers.js"
 import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { Transformer } from "./builder.js"
 import {
   getBug,
+  getBugFixVersions,
   getBugResolution,
-  getBugXML,
   Resolution,
 } from "./mojiraHelpers.js"
 
@@ -35,6 +36,43 @@ export default class Fix {
   languages
   bug
 
+  async validateFixedBug() {
+    if (!this.bug)
+      return console.warn(
+        "Fix#validateFixedBug() should only be called when a linked bug is present"
+      )
+    const fixVersions = await getBugFixVersions(this.bug)
+    if (fixVersions.length === 0)
+      return console.warn(
+        "Fix#validateFixedBug() should only be called when the linked bug is fixed"
+      )
+
+    if (!this.versions)
+      return console.warn(
+        `Linked bug ${this.bug} has been fixed upstream, but there is no version constraint on the fix. ` +
+          `You should add a version constraint to avoid applying unnecessary fixes.`
+      )
+
+    const resolvedVersions = await resolveMinecraftVersionSpecifier(
+      this.versions
+    )
+
+    // Only one version was specified, so it's probably OK
+    if (resolvedVersions.length === 1) return
+
+    // TODO: Get the start and end of both version ranges (this.versions and fixVersions), and compare the version numbers
+    const intersectingVersions = fixVersions.filter((v) =>
+      resolvedVersions.includes(v)
+    )
+    if (intersectingVersions.length)
+      console.warn(
+        `Fix for ${this.bug} is being applied to a version that it's been fixed in: ${intersectingVersions[0]}. ` +
+          `You should update the constraint to ensure that only affected versions have the fix applied to them.`
+      )
+
+    // TODO: Do a similar thing for the Affects Version(s) field
+  }
+
   async validateLinkedBug() {
     if (!this.bug) return
 
@@ -51,7 +89,6 @@ export default class Fix {
       this.bug = resolvedKey
     }
 
-    // const bugInfo = await getBugXML(this.bug)
     const { resolution } = await getBugResolution(this.bug)
 
     const badResolutions = [
@@ -64,6 +101,10 @@ export default class Fix {
       throw new Error(
         `Bug report ${this.bug} has an inappropriate resolution (${Resolution[resolution]})`
       )
+
+    const fixedResolutions = [Resolution.Fixed, Resolution.Done]
+    if (resolution && fixedResolutions.includes(resolution))
+      await this.validateFixedBug()
   }
 
   constructor(options: FixOptions) {

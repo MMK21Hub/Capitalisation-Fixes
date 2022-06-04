@@ -329,14 +329,22 @@ export async function emitResourcePacks(
   const outputDir = buildOptions.directory || "out"
   console.log("Building resource packs...")
 
+  // Perform validation on the provided fixes
+  const validationResults = Promise.all(
+    fixes.map((fix) => fix.validateLinkedBug())
+  )
+
   // Prepare the output directory
-  ensureDir(outputDir)
-  if (buildOptions.clearDirectory) clearDir(outputDir)
+  await ensureDir(outputDir)
+  if (buildOptions.clearDirectory) await clearDir(outputDir)
 
   if (!buildOptions.packVersion)
     console.warn(
       "No pack version specified. Published builds should be branded with a version number."
     )
+
+  // Validation needs to be complete before we start processing the fixes
+  await validationResults
 
   const languageFiles = await generateMultipleVersionsLanguageFileData(
     buildOptions.targetVersions,
