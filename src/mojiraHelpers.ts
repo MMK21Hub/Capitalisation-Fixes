@@ -75,7 +75,7 @@ export async function getBugFixVersions(bug: string) {
   }
 }
 
-export async function getBug(key: string) {
+export async function getBug(key: string): Promise<string | null> {
   const url = urlPath("https://bugs.mojang.com/rest/api/2/issue", key)
   const response = await fetch(url.href)
   if (response.status === 404) return null
@@ -91,4 +91,6 @@ export async function getBug(key: string) {
   )
     // @ts-ignore https://github.com/microsoft/TypeScript/issues/25720
     return responseData.key
+
+  throw new Error(`getBug(): Unexpected API response: ${responseData}`)
 }

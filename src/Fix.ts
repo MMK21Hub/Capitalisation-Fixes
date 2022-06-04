@@ -46,6 +46,7 @@ export default class Fix {
       return console.warn(
         "Fix#validateFixedBug() should only be called when the linked bug is fixed"
       )
+    const fixVersion = fixVersions.at(-1)
 
     if (!this.versions)
       return console.warn(
@@ -61,12 +62,10 @@ export default class Fix {
     if (resolvedVersions.length === 1) return
 
     // TODO: Get the start and end of both version ranges (this.versions and fixVersions), and compare the version numbers
-    const intersectingVersions = fixVersions.filter((v) =>
-      resolvedVersions.includes(v)
-    )
-    if (intersectingVersions.length)
+    const matchingVersion = resolvedVersions.find((v) => v == fixVersion)
+    if (matchingVersion)
       console.warn(
-        `Fix for ${this.bug} is being applied to a version that it's been fixed in: ${intersectingVersions[0]}. ` +
+        `Fix for ${this.bug} is being applied to a version that it's been fixed in: ${matchingVersion}. ` +
           `You should update the constraint to ensure that only affected versions have the fix applied to them.`
       )
 
