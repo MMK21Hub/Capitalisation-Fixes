@@ -6,7 +6,7 @@ import { MinecraftVersionSpecifier, VersionInfo } from "./minecraftHelpers.js"
 import fetch from "node-fetch"
 
 async function printStats() {
-  const stats = await generateStats(fixes)
+  const stats = await generateStats(fixes, { version: targetVersions })
 
   const { bugReports, translationKeys } = stats.count
 
