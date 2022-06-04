@@ -230,6 +230,8 @@ export async function resolveMinecraftVersionSimpleRange(
     removeEnd?: boolean
   } = {}
 ) {
+  const { removeStart = false, removeEnd = true } = options
+
   // Don't return any items if no range was provided
   if (!range) return []
 
@@ -237,8 +239,12 @@ export async function resolveMinecraftVersionSimpleRange(
   const versionManifest = await getVersionManifest()
   const versions: string[] = versionManifest.versions.map((v) => v.id).reverse()
 
-  const startIndex = start ? versions.indexOf(start) : 0
-  const endIndex = end ? versions.indexOf(end) : versions.length
+  let startIndex = start ? versions.indexOf(start) : 0
+  let endIndex = end ? versions.indexOf(end) : versions.length
+  endIndex++
+
+  if (removeStart) startIndex++
+  if (removeEnd) endIndex--
 
   return versions.slice(startIndex, endIndex)
 }
