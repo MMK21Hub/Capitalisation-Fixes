@@ -58,9 +58,6 @@ export default class Fix {
       this.versions
     )
 
-    // Only one version was specified, so it's probably OK
-    if (resolvedVersions.length === 1) return
-
     // TODO: Get the start and end of both version ranges (this.versions and fixVersions), and compare the version numbers
     const matchingVersion = resolvedVersions.find((v) => v == fixVersion)
     if (matchingVersion)
