@@ -3,24 +3,31 @@
 <p>Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
 <p>In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
 
-- It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that supports 1.18.x versions, including the `22w13oneBlockAtATime` April Fools snapshot.
-- It works for the `en_uk` and `en_us` languages
-- If you have feedback, you can DM `MMK21Games#2121` on Discord
-- You can also submit bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).
+## Quick download links
+
+- **[Capitalisation Fixes v2.7 for Minecraft 1.19](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.7/Capitalisation-Fixes-v2.7-1.19-pre5.zip)** (Recommended)
+- **[Capitalisation Fixes v2.0 for Minecraft 1.18.x](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
+- **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
+
+## Information
+
+- It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
+- It works for the `en_gb` and `en_us` languages
+- You can submit feedback and bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21Games#2121` on Discord
 
 To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
 
 ## Compatibility table
 
-Not all versions of the resource pack are compatible with all versions of MC, so check the table before deciding on the version of ~~Minecraft~~ the resource pack to use.
+Not all versions of the resource pack are compatible with all versions of MC, so check the table before deciding on the version of the resource pack to use.
 
 To benefit from the most newest bugfixes, you should keep up-to-date with the newest version of the resource pack.
 
-&#127775; - Denotes the recommend version of the pack for each Minecraft version.
+&#127775; Denotes the recommend version of the pack for each Minecraft version.
 
 ### 1.19
 
-|                                                                                | 22w11a    | 22w12a–13a | 22w14a    | 22w15a–16a | 22w17a–19a | 1.19-pre1+ | 1.19-pre5 | 1.19-rc1+  |
+|                                                                                | 22w11a    | 22w12a–13a | 22w14a    | 22w15a–16a | 22w17a–19a | 1.19-pre1+ | 1.19-pre5 | 1.19-rc1+ |
 | ------------------------------------------------------------------------------ | --------- | ---------- | --------- | ---------- | ---------- | ---------- | --------- | --------- |
 | **[v2.0](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0)** | &#127775; | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
 | **[v2.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.1)** | &#9989;   | &#127775;  | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   |
@@ -52,7 +59,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 30 modified translation strings are included in the resource pack, which fix a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
-- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) (capitalisation)
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
@@ -68,7 +74,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
-- [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) (capitalisation)
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 
@@ -82,6 +87,8 @@ These fixes used to be included in the pack but have since been fixed in the van
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) Fixed in 22w15a
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) Fixed in 22w15a
 - [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a
+- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
+- [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
 
 ## `new-version.sh`
 
