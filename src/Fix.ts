@@ -1,5 +1,5 @@
 import {
-  getMinecraftVersionIndex,
+  findVersionIndex,
   MinecraftLanguage,
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
@@ -88,10 +88,8 @@ export default class Fix {
       return console.warn(`${this.bug} has no Affects Version/s!`)
     if (!firstApplicableVersion)
       throw new Error(`Validating fix for ${this.bug}: Resolved versions 🦀`)
-    const affectedVersionsStart = getMinecraftVersionIndex(firstAffectedVersion)
-    const applicableVersionsStart = getMinecraftVersionIndex(
-      firstApplicableVersion
-    )
+    const affectedVersionsStart = findVersionIndex(firstAffectedVersion)
+    const applicableVersionsStart = findVersionIndex(firstApplicableVersion)
 
     if (applicableVersionsStart < affectedVersionsStart) {
       return console.warn(

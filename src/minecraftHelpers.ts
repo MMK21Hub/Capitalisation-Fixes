@@ -148,30 +148,48 @@ export async function getLatestVersion(
   return versionManifest.latest[type]
 }
 
-export function getMinecraftVersionId(targetVersion: string) {
-  const index = getMinecraftVersionIndex(targetVersion)
-  const versionInfo = versionsSummary.at(index)
-  if (!versionInfo)
+export function getVersion(target: MinecraftVersion | number): VersionInfo {
+  const matchedVersion = versionsSummary.find((version) =>
+    typeof target === "string"
+      ? version.id === target
+      : version.data_version === target
+  )
+
+  if (typeof target === "number")
+    target.toString = () => `data version #${target}`
+
+  if (!matchedVersion)
     throw new Error(
-      `Couldn't get version information for index ${index}. This means that getMinecraftVersionIndex() is buggy.`
+      `Could not find version information for ${target}. Only versions since 1.14 are available.`
     )
-  return versionInfo.id
+
+  return matchedVersion
 }
 
-export function getMinecraftVersionIndex(targetVersion: string) {
-  const matchedIndex = versionsSummary.findIndex(
+export function findVersionInfo(targetVersion: string) {
+  const matchedVersion = versionsSummary.find(
     (version) =>
       version.id === targetVersion ||
       version.name === targetVersion ||
       version.sha1 === targetVersion
   )
 
-  if (!matchedIndex)
+  if (!matchedVersion)
     throw new Error(
       `Could not find a matching version ID, name or hash: ${targetVersion}`
     )
 
-  return matchedIndex
+  return matchedVersion
+}
+
+/** Normalises a version name, returning an ID */
+export function toVersionID(targetVersion: string) {
+  return findVersionInfo(targetVersion).id
+}
+
+/** Gets the data version ("index") of a version name/id/hash */
+export function findVersionIndex(targetVersion: string) {
+  return findVersionInfo(targetVersion).data_version
 }
 
 export async function resolveFlexibleSearchValue(
@@ -359,17 +377,8 @@ export async function getTranslationString(
   return fallbackLangFile[key] || null
 }
 
-export function getVersionInfo(version: MinecraftVersion): VersionInfo {
-  const matchedVersion = versionsSummary.find((v) => v.id === version)
-  if (!matchedVersion)
-    throw new Error(
-      `Could not find version information for ${version}. Only versions since 1.14 are available.`
-    )
-  return matchedVersion
-}
-
 export function packFormat(version: MinecraftVersion) {
-  const versionInfo = getVersionInfo(version)
+  const versionInfo = getVersion(version)
   return versionInfo["resource_pack_version"]
 }
 
