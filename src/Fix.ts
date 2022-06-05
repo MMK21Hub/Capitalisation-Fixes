@@ -1,4 +1,5 @@
 import {
+  getMinecraftVersionIndex,
   MinecraftLanguage,
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
@@ -7,6 +8,7 @@ import { MultiTransformer } from "./transformers/MultiTransformer.js"
 import { Transformer } from "./builder.js"
 import {
   getBug,
+  getBugAffectsVersions,
   getBugFixVersions,
   getBugResolution,
   Resolution,
@@ -66,7 +68,17 @@ export default class Fix {
           `You should update the constraint to ensure that only affected versions have the fix applied to them.`
       )
 
-    // TODO: Do a similar thing for the Affects Version(s) field
+    const affectsVersions = await getBugAffectsVersions(this.bug)
+    const firstAffectedVersion = affectsVersions.at(0)
+    const lastApplicableVersion = resolvedVersions.at(-1)
+    if (!firstAffectedVersion)
+      return console.warn(`${this.bug} has no Affects Version/s!`)
+    if (!lastApplicableVersion)
+      throw new Error(`Validating fix for ${this.bug}: Resolved versions 🦀`)
+    const affectedVersionsStart = getMinecraftVersionIndex(firstAffectedVersion)
+    const applicableVersionsEnd = getMinecraftVersionIndex(
+      lastApplicableVersion
+    )
   }
 
   async validateLinkedBug() {
