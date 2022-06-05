@@ -162,13 +162,14 @@ For detailed information, check [the file itself](new-version.sh).
 
 ### Fabric Mods
 
-| Name                                                            | Version(s) | Fixed bug(s)                                                            | Side   | Notes                                                                                |
-| --------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
-| [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)           | 1.18, 1.19 | [200+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
-| [Debugify](https://modrinth.com/mod/debugify)                   | 1.18.2     | [70+](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md)      | Both   | ⚠️ Falls into the trap of "fixing" behaviour that isn't considered a bug by Mojang    |
-| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18.2     | [9](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
-| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
-| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
-| [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1     | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
-| [Raised](https://modrinth.com/mod/raised)                       | 1.18, 1.19 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
-| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.17  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
+| Name                                                                                         | Version(s) | Fixed bug(s)                                                            | Side   | Notes                                                                                |
+| -------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)                                        | 1.18, 1.19 | [200+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
+| [Debugify](https://modrinth.com/mod/debugify)                                                | 1.18.2     | [70+](https://github.com/W-OVERFLOW/Debugify/blob/1.18/PATCHED.md)      | Both   | ⚠️ Falls into the trap of "fixing" behaviour that isn't considered a bug by Mojang    |
+| [Blanket client-tweaks](https://modrinth.com/mod/blanket)                                    | 1.18.2     | [9](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
+| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)                                          | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
+| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix)                              | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
+| [Subspace Train](https://modrinth.com/mod/subspace-train)                                    | 1.17.1     | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
+| [Raised](https://modrinth.com/mod/raised)                                                    | 1.18, 1.19 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
+| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)                                      | 1.15–1.17  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
+| [kennytvs-epic-force-close-loading-screen-mod-for-fabric](https://modrinth.com/mod/blWBX5n1) | 1.18, 1.19 | [MC-249059](https://bugs.mojang.com/browse/MC-249059)                   | Client |
