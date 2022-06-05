@@ -172,4 +172,5 @@ For detailed information, check [the file itself](new-version.sh).
 | [Subspace Train](https://modrinth.com/mod/subspace-train)                                    | 1.17.1     | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
 | [Raised](https://modrinth.com/mod/raised)                                                    | 1.18, 1.19 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
 | [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)                                      | 1.15–1.17  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
+| [Title Fixer](https://modrinth.com/mod/title-fixer)                                          | 1.16–1.17  | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                   | Client |
 | [kennytvs-epic-force-close-loading-screen-mod-for-fabric](https://modrinth.com/mod/blWBX5n1) | 1.18, 1.19 | [MC-249059](https://bugs.mojang.com/browse/MC-249059)                   | Client |
