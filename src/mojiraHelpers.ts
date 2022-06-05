@@ -64,16 +64,24 @@ export async function getBugResolution(bug: string) {
   }
 }
 
-export async function getBugFixVersions(bug: string) {
-  const dom = await getBugXML(bug, ["fixVersions"])
-
+function getVersionsFromXML(dom: JSDOM, selector: string) {
   try {
-    const fixVersions = getSelectorTextAll(dom, "fixVersion")
+    const fixVersions = getSelectorTextAll(dom, selector)
     return fixVersions.map(getMinecraftVersionId)
   } catch (error) {
     if (error instanceof SelectorNotFound) return []
     throw error
   }
+}
+
+export async function getBugFixVersions(bug: string) {
+  const dom = await getBugXML(bug, ["fixVersions"])
+  return getVersionsFromXML(dom, "fixVersion")
+}
+
+export async function getBugAffectsVersions(bug: string) {
+  const dom = await getBugXML(bug, ["version"])
+  return getVersionsFromXML(dom, "version")
 }
 
 export async function getBug(key: string): Promise<string | null> {
