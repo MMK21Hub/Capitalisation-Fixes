@@ -149,19 +149,25 @@ export async function getLatestVersion(
 }
 
 export function getMinecraftVersionId(targetVersion: string) {
-  const matchedVersion = versionsSummary.find(
+  const index = getMinecraftVersionIndex(targetVersion)
+  const versionInfo = getVersionInfo(index)
+  return versionInfo.id
+}
+
+export function getMinecraftVersionIndex(targetVersion: string) {
+  const matchedIndex = versionsSummary.findIndex(
     (version) =>
       version.id === targetVersion ||
       version.name === targetVersion ||
       version.sha1 === targetVersion
   )
 
-  if (!matchedVersion)
+  if (!matchedIndex)
     throw new Error(
       `Could not find a matching version ID, name or hash: ${targetVersion}`
     )
 
-  return matchedVersion.id
+  return matchedIndex
 }
 
 export async function resolveFlexibleSearchValue(
@@ -349,7 +355,11 @@ export async function getTranslationString(
   return fallbackLangFile[key] || null
 }
 
-export function getVersionInfo(version: MinecraftVersion): VersionInfo {
+export function getVersionInfo(
+  version: MinecraftVersion | number
+): VersionInfo {
+  if (typeof version === "number") return versionsSummary[version]
+
   const matchedVersion = versionsSummary.find((v) => v.id === version)
   if (!matchedVersion)
     throw new Error(
