@@ -81,7 +81,7 @@ export async function getBugFixVersions(bug: string) {
 
 export async function getBugAffectsVersions(bug: string) {
   const dom = await getBugXML(bug, ["version"])
-  return getVersionsFromXML(dom, "version")
+  return getVersionsFromXML(dom, "item version")
 }
 
 export async function getBug(key: string): Promise<string | null> {
