@@ -148,6 +148,50 @@ export async function getLatestVersion(
   return versionManifest.latest[type]
 }
 
+export function getVersion(target: MinecraftVersion | number): VersionInfo {
+  const matchedVersion = versionsSummary.find((version) =>
+    typeof target === "string"
+      ? version.id === target
+      : version.data_version === target
+  )
+
+  if (typeof target === "number")
+    target.toString = () => `data version #${target}`
+
+  if (!matchedVersion)
+    throw new Error(
+      `Could not find version information for ${target}. Only versions since 1.14 are available.`
+    )
+
+  return matchedVersion
+}
+
+export function findVersionInfo(targetVersion: string) {
+  const matchedVersion = versionsSummary.find(
+    (version) =>
+      version.id === targetVersion ||
+      version.name === targetVersion ||
+      version.sha1 === targetVersion
+  )
+
+  if (!matchedVersion)
+    throw new Error(
+      `Could not find a matching version ID, name or hash: ${targetVersion}`
+    )
+
+  return matchedVersion
+}
+
+/** Normalises a version name, returning an ID */
+export function toVersionID(targetVersion: string) {
+  return findVersionInfo(targetVersion).id
+}
+
+/** Gets the data version ("index") of a version name/id/hash */
+export function findVersionIndex(targetVersion: string) {
+  return findVersionInfo(targetVersion).data_version
+}
+
 export async function resolveFlexibleSearchValue(
   searchValue: FlexibleSearchValue,
   languageFileData: LanguageFileData,
@@ -214,6 +258,8 @@ export async function resolveMinecraftVersionSimpleRange(
     removeEnd?: boolean
   } = {}
 ) {
+  const { removeStart = false, removeEnd = true } = options
+
   // Don't return any items if no range was provided
   if (!range) return []
 
@@ -221,10 +267,14 @@ export async function resolveMinecraftVersionSimpleRange(
   const versionManifest = await getVersionManifest()
   const versions: string[] = versionManifest.versions.map((v) => v.id).reverse()
 
-  const startIndex = start ? versions.indexOf(start) : 0
-  const endIndex = end ? versions.indexOf(end) : versions.length
+  let startIndex = start ? versions.indexOf(start) : 0
+  let endIndex = end ? versions.indexOf(end) : versions.length
+  endIndex++
 
-  return versions.slice(startIndex, endIndex + 1)
+  if (removeStart) startIndex++
+  if (removeEnd) endIndex--
+
+  return versions.slice(startIndex, endIndex)
 }
 
 export async function resolveMinecraftVersionFancyRange(
@@ -327,17 +377,8 @@ export async function getTranslationString(
   return fallbackLangFile[key] || null
 }
 
-export function getVersionInfo(version: MinecraftVersion): VersionInfo {
-  const matchedVersion = versionsSummary.find((v) => v.id === version)
-  if (!matchedVersion)
-    throw new Error(
-      `Could not find version information for ${version}. Only versions since 1.14 are available.`
-    )
-  return matchedVersion
-}
-
 export function packFormat(version: MinecraftVersion) {
-  const versionInfo = getVersionInfo(version)
+  const versionInfo = getVersion(version)
   return versionInfo["resource_pack_version"]
 }
 

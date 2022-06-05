@@ -1,3 +1,4 @@
+import { JSDOM } from "jsdom"
 import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
 import path from "node:path"
 
@@ -50,6 +51,80 @@ export function isSimpleRange<T>(
   specifier: Range<T>
 ): specifier is StartAndEnd<T> {
   return Array.isArray(specifier) && typeof specifier[0] !== "object"
+}
+
+/* DOM UTILS */
+
+export class SelectorNotFound extends Error {
+  constructor(message: string) {
+    super(message)
+  }
+}
+
+export function getSelector(dom: JSDOM, selector: string) {
+  const match = dom.window.document.querySelector(selector)
+  if (!match) throw new SelectorNotFound(`Couldn't find selector: ${selector}`)
+  return match
+}
+
+export function getSelectorAll(dom: JSDOM, selector: string) {
+  const matches = dom.window.document.querySelectorAll(selector)
+  if (!matches.length)
+    throw new SelectorNotFound(`Didn't match any elements: ${selector}`)
+  return matches
+}
+
+export function getElementText(element: Element) {
+  if (element.textContent) return element.textContent.trim()
+
+  // Apparently you can just put your data inside a comment and call it "CDATA"
+  const cdataMatcher = /\[CDATA\[(.*)\]\]/
+  const cdataMatch = cdataMatcher.exec(element.outerHTML)
+  if (cdataMatch) return cdataMatch[1].trim()
+
+  throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
+}
+
+export function getSelectorText(dom: JSDOM, selector: string) {
+  const element = getSelector(dom, selector)
+  return getElementText(element)
+}
+
+export function getSelectorTextAll(dom: JSDOM, selector: string) {
+  const matchingElements = Array.from(getSelectorAll(dom, selector))
+  return matchingElements.map(getElementText)
+}
+
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict?: true
+): T
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict: false
+): T | null
+export function getSelectorId<T extends number = number>(
+  dom: JSDOM,
+  selector: string,
+  strict = true
+): T | null {
+  const element = getSelector(dom, selector)
+  const id = element.getAttribute("id")
+  if (!id) throw new Error(`Element doesn't have an id!\n${element.outerHTML}`)
+
+  const idNumber = parseInt(id)
+  if (isNaN(idNumber)) throw new Error(`Element id is not a number: ${id}`)
+  if (!strict && idNumber === -1) return null
+  if (idNumber < 0) throw new Error(`Element id is negative: ${id}`)
+  return idNumber as T
+}
+
+/* HTTP UTILS */
+
+export function urlPath(...paths: string[]): URL {
+  return new URL(paths.join("/"))
 }
 
 /* ASYNC UTILS */
