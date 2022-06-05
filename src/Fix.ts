@@ -66,9 +66,11 @@ export default class Fix {
     const fixedVersionsStart = findVersionIndex(fixVersion)
 
     if (applicableVersionsEnd >= fixedVersionsStart) {
+      const extraVersions = applicableVersionsEnd - fixedVersionsStart + 1
       console.warn(
         `Version range for ${this.bug} fix overlaps with versions where the bug is fixed upstream. ` +
-          `Bug was fixed upstream in version ${fixVersion}, but the last version included in the range is ${lastApplicableVersion}.`
+          `Bug was fixed upstream in version ${fixVersion}, but the last version included in the range is ${lastApplicableVersion}. ` +
+          `This means that ${extraVersions} version(s) will have the fix unnecessarily applied.`
       )
     }
   }
