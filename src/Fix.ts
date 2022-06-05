@@ -67,10 +67,21 @@ export default class Fix {
         `Fix for ${this.bug} is being applied to a version that it's been fixed in: ${matchingVersion}. ` +
           `You should update the constraint to ensure that only affected versions have the fix applied to them.`
       )
+  }
+
+  async validateBugAffectsVersions() {
+    if (!this.bug)
+      return console.warn(
+        "Fix#validateFixedBug() should only be called when a linked bug is present"
+      )
+
+    const applicableVersions = await resolveMinecraftVersionSpecifier(
+      this.versions
+    )
 
     const affectsVersions = await getBugAffectsVersions(this.bug)
     const firstAffectedVersion = affectsVersions.at(0)
-    const lastApplicableVersion = resolvedVersions.at(-1)
+    const lastApplicableVersion = applicableVersions.at(-1)
     if (!firstAffectedVersion)
       return console.warn(`${this.bug} has no Affects Version/s!`)
     if (!lastApplicableVersion)
@@ -113,6 +124,8 @@ export default class Fix {
     const fixedResolutions = [Resolution.Fixed, Resolution.Done]
     if (resolution && fixedResolutions.includes(resolution))
       await this.validateFixedBug()
+
+    await this.validateBugAffectsVersions()
   }
 
   constructor(options: FixOptions) {
