@@ -48,7 +48,6 @@ export default class Fix {
       return console.warn(
         "Fix#validateFixedBug() should only be called when the linked bug is fixed"
       )
-    const fixVersion = fixVersions.at(-1)
 
     if (!this.versions)
       return console.warn(
@@ -56,17 +55,22 @@ export default class Fix {
           `You should add a version constraint to avoid applying unnecessary fixes.`
       )
 
-    const resolvedVersions = await resolveMinecraftVersionSpecifier(
+    const fixVersion = fixVersions.at(-1)!
+    const applicableVersions = await resolveMinecraftVersionSpecifier(
       this.versions
     )
+    const lastApplicableVersion = applicableVersions.at(-1)
+    if (!lastApplicableVersion)
+      return new Error(`Fix#versions didn't return anything when resolved!`)
+    const applicableVersionsEnd = findVersionIndex(lastApplicableVersion)
+    const fixedVersionsStart = findVersionIndex(fixVersion)
 
-    // TODO: Get the start and end of both version ranges (this.versions and fixVersions), and compare the version numbers
-    const matchingVersion = resolvedVersions.find((v) => v == fixVersion)
-    if (matchingVersion)
+    if (applicableVersionsEnd >= fixedVersionsStart) {
       console.warn(
-        `Fix for ${this.bug} is being applied to a version that it's been fixed in: ${matchingVersion}. ` +
-          `You should update the constraint to ensure that only affected versions have the fix applied to them.`
+        `Version range for fix for ${this.bug} overlaps with versions where the bug has been fixed. ` +
+          `Bug was fixed upstream in version ${fixVersion}, but the version range for the fix ends at ${lastApplicableVersion}.`
       )
+    }
   }
 
   async validateBugAffectsVersions() {
