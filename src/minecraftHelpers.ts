@@ -150,7 +150,11 @@ export async function getLatestVersion(
 
 export function getMinecraftVersionId(targetVersion: string) {
   const index = getMinecraftVersionIndex(targetVersion)
-  const versionInfo = versionsSummary[index]
+  const versionInfo = versionsSummary.at(index)
+  if (!versionInfo)
+    throw new Error(
+      `Couldn't get version information for index ${index}. This means that getMinecraftVersionIndex() is buggy.`
+    )
   return versionInfo.id
 }
 
