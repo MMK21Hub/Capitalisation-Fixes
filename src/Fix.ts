@@ -67,8 +67,8 @@ export default class Fix {
 
     if (applicableVersionsEnd >= fixedVersionsStart) {
       console.warn(
-        `Version range for fix for ${this.bug} overlaps with versions where the bug has been fixed. ` +
-          `Bug was fixed upstream in version ${fixVersion}, but the version range for the fix ends at ${lastApplicableVersion}.`
+        `Version range for ${this.bug} fix overlaps with versions where the bug is fixed upstream. ` +
+          `Bug was fixed upstream in version ${fixVersion}, but the last version included in the range is ${lastApplicableVersion}.`
       )
     }
   }
