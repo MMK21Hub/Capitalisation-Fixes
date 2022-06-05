@@ -150,7 +150,7 @@ export async function getLatestVersion(
 
 export function getMinecraftVersionId(targetVersion: string) {
   const index = getMinecraftVersionIndex(targetVersion)
-  const versionInfo = getVersionInfo(index)
+  const versionInfo = versionsSummary[index]
   return versionInfo.id
 }
 
@@ -355,11 +355,7 @@ export async function getTranslationString(
   return fallbackLangFile[key] || null
 }
 
-export function getVersionInfo(
-  version: MinecraftVersion | number
-): VersionInfo {
-  if (typeof version === "number") return versionsSummary[version]
-
+export function getVersionInfo(version: MinecraftVersion): VersionInfo {
   const matchedVersion = versionsSummary.find((v) => v.id === version)
   if (!matchedVersion)
     throw new Error(
