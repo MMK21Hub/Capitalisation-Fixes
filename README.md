@@ -12,7 +12,7 @@
 ## Information
 
 - It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
-- It works for the `en_gb` and `en_us` languages
+- It currently supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
 - You can submit feedback and bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21Games#2121` on Discord
 
 To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
