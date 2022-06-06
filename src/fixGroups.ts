@@ -35,9 +35,16 @@ export function fixGroup(
 export function multiFixGroup(
   bug: string,
   transformer: Transformer,
-  strings: string[]
+  translationKeys: string[],
+  options: {
+    keyPrefix?: string
+  } = {}
 ) {
-  return strings.map((key) => new Fix({ bug, key, transformer }))
+  const { keyPrefix } = options
+  const targetKeys = keyPrefix
+    ? translationKeys.map((key) => `${keyPrefix}${key}`)
+    : translationKeys
+  return targetKeys.map((key) => new Fix({ bug, key, transformer }))
 }
 
 export function titleCaseGroup(
