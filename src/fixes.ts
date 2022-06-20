@@ -146,6 +146,12 @@ const fixes: Fix[] = [
     // Other languages still have the old translation string contents, so they aren't affected
     languages: ["en_us"],
   }),
+  new Fix({
+    bug: "MC-253178",
+    key: "gui.abuseReport.reason.non_consensual_intimate_imagery",
+    transformer: new ReplaceTransformer("consentual", "consensual"),
+    languages: ["en_us"],
+  }),
 ]
 
 export default fixes

@@ -76,6 +76,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
+- ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
 
 ### Previously-fixed strings
 
