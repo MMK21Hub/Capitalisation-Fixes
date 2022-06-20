@@ -152,6 +152,15 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer("consentual", "consensual"),
     languages: ["en_us"],
   }),
+  new Fix({
+    bug: "MC-253183",
+    key: "gui.chatSelection.fold",
+    transformer: new ReplaceTransformer(
+      /^(.+)(Unrelated)(.*)/,
+      (_, groups) => groups[0] + groups[1].toLowerCase() + groups[2]
+    ),
+    languages: ["en_us"],
+  }),
 ]
 
 export default fixes

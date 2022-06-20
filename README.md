@@ -67,8 +67,8 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
 - [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
 - ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) (capitalisation of action button labels)
-- ["Include entities" button in the structure block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
-- ["Data mode" and "Load mode" buttons in the structure block interface](https://bugs.mojang.com/browse/MC-195780) (capitalisation of action button labels)
+- ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
+- ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) (capitalisation of action button labels)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
 - ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
@@ -77,6 +77,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
+- [Unrelated messages placeholder in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) (unnecessary capitalisation)
 
 ### Previously-fixed strings
 
