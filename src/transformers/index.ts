@@ -30,15 +30,7 @@ export class OverrideTransformer extends Transformer {
 export type Replacer = string | ReplacerFunction
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter
-type ReplacerFunction = (
-  substring: string,
-  ...args: [
-    ...string[], // Capture groups (if the input was a Regex)
-    number, // Offset of the matched substring
-    string, // Entire input string
-    Record<string, string> | undefined // Named capture groups (undefined if there aren't any)
-  ]
-) => string
+type ReplacerFunction = (substring: string, groups: string[]) => string
 
 /** Replaces a specified search string with another string */
 export class ReplaceTransformer extends Transformer {
@@ -54,10 +46,22 @@ export class ReplaceTransformer extends Transformer {
         version
       )
 
-      const replacer: ReplacerFunction = (substring: string, ...args: any) =>
-        typeof replaceValue === "function"
-          ? replaceValue(substring, ...args)
-          : replaceValue
+      const replacer: ReplacerFunction = (
+        substring: string,
+        ...args: unknown[]
+      ) => {
+        if (typeof replaceValue === "string") return replaceValue
+
+        const captureGroups: string[] = []
+        let captureGroupsEnd: number
+        args.forEach((arg, i) => {
+          if (i > captureGroupsEnd) return
+          if (typeof arg === "string") return captureGroups.push(arg)
+          captureGroupsEnd = i
+        })
+
+        return replaceValue(substring, captureGroups)
+      }
 
       return {
         // The built-in type for the parameters passed to the replacer function is just any[]
