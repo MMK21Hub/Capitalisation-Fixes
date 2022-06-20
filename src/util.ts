@@ -1,5 +1,12 @@
 import { JSDOM } from "jsdom"
-import { mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises"
+import {
+  mkdir,
+  readdir,
+  readFile,
+  rm,
+  unlink,
+  writeFile,
+} from "node:fs/promises"
 import path from "node:path"
 
 /** Specify a value, or provide a function that returns that value */
@@ -188,7 +195,10 @@ export function ensureDir(path: string): Promise<boolean> {
 }
 
 /** Deletes all the files in a folder */
-export async function clearDir(directoryPath: string) {
+export async function clearDir(
+  directoryPath: string,
+  recursive: boolean = true
+) {
   const contents = await readdir(directoryPath)
 
   // Return false if the directory is empty
@@ -196,7 +206,7 @@ export async function clearDir(directoryPath: string) {
 
   // Delete all the files in the directory (asynchronously)
   await Promise.all(
-    contents.map((file) => unlink(path.resolve(directoryPath, file)))
+    contents.map((file) => rm(path.resolve(directoryPath, file), { recursive }))
   )
 
   return true

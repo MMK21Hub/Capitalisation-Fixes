@@ -336,7 +336,7 @@ export async function emitResourcePacks(
 
   // Prepare the output directory
   await ensureDir(outputDir)
-  if (buildOptions.clearDirectory) await clearDir(outputDir)
+  if (buildOptions.clearDirectory) await clearDir(outputDir, false)
 
   if (!buildOptions.packVersion)
     console.warn(

@@ -22,7 +22,7 @@
       "new Fix({",
       "  bug: \"$1\",",
       "  key: \"$2\",",
-      "  transformer: new $3,",
+      "  transformer: new $0,",
       "}),"
     ]
   },
