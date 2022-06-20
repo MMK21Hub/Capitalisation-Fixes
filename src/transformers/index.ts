@@ -27,15 +27,25 @@ export class OverrideTransformer extends Transformer {
   }
 }
 
+export type Replacer = string | ReplacerFunction
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter
+type ReplacerFunction = (
+  substring: string,
+  ...args: [
+    ...string[], // Capture groups (if the input was a Regex)
+    number, // Offset of the matched substring
+    string, // Entire input string
+    Record<string, string> | undefined // Named capture groups (undefined if there aren't any)
+  ]
+) => string
+
 /** Replaces a specified search string with another string */
 export class ReplaceTransformer extends Transformer {
   searchValue
   replaceValue
 
-  constructor(
-    searchValue: FlexibleSearchValue,
-    replaceValue: string | ((substring: string) => string)
-  ) {
+  constructor(searchValue: FlexibleSearchValue, replaceValue: Replacer) {
     super(async ({ oldValue, languageFileData, language, version }) => {
       searchValue = await resolveFlexibleSearchValue(
         searchValue,
@@ -44,13 +54,14 @@ export class ReplaceTransformer extends Transformer {
         version
       )
 
-      const replacer = (substring: string) =>
+      const replacer: ReplacerFunction = (substring: string, ...args: any) =>
         typeof replaceValue === "function"
-          ? replaceValue(substring)
+          ? replaceValue(substring, ...args)
           : replaceValue
 
       return {
-        value: oldValue?.replace(searchValue, replacer),
+        // The built-in type for the parameters passed to the replacer function is just any[]
+        value: oldValue?.replace(searchValue, replacer as any),
       }
     })
 
