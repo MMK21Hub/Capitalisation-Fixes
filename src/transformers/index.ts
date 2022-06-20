@@ -54,11 +54,14 @@ export class ReplaceTransformer extends Transformer {
 
         const captureGroups: string[] = []
         let captureGroupsEnd: number
-        args.forEach((arg, i) => {
-          if (i > captureGroupsEnd) return
-          if (typeof arg === "string") return captureGroups.push(arg)
+        for (const [i, arg] of args.entries()) {
+          if (typeof arg === "string") {
+            captureGroups.push(arg)
+            continue
+          }
           captureGroupsEnd = i
-        })
+          break
+        }
 
         return replaceValue(substring, captureGroups)
       }
