@@ -32,7 +32,10 @@ export class ReplaceTransformer extends Transformer {
   searchValue
   replaceValue
 
-  constructor(searchValue: FlexibleSearchValue, replaceValue: string) {
+  constructor(
+    searchValue: FlexibleSearchValue,
+    replaceValue: string | ((substring: string) => string)
+  ) {
     super(async ({ oldValue, languageFileData, language, version }) => {
       searchValue = await resolveFlexibleSearchValue(
         searchValue,
@@ -41,8 +44,13 @@ export class ReplaceTransformer extends Transformer {
         version
       )
 
+      const replacer = (substring: string) =>
+        typeof replaceValue === "function"
+          ? replaceValue(substring)
+          : replaceValue
+
       return {
-        value: oldValue?.replace(searchValue, replaceValue),
+        value: oldValue?.replace(searchValue, replacer),
       }
     })
 
