@@ -50,7 +50,10 @@ export class ReplaceTransformer extends Transformer {
         substring: string,
         ...args: unknown[]
       ) => {
-        if (typeof replaceValue === "string") return replaceValue
+        if (typeof replaceValue === "string")
+          throw new Error(
+            "Don't use the replacer function if the search value is a string. Instead, just directly pass the string to oldValue.replace()."
+          )
 
         const captureGroups: string[] = []
         for (const [i, arg] of args.entries()) {
@@ -61,9 +64,14 @@ export class ReplaceTransformer extends Transformer {
         return replaceValue(substring, captureGroups)
       }
 
+      const newValue =
+        typeof replaceValue === "string"
+          ? oldValue?.replace(searchValue, replaceValue)
+          : // The built-in type for the parameters passed to the replacer function is just any[]
+            oldValue?.replace(searchValue, replacer as any)
+
       return {
-        // The built-in type for the parameters passed to the replacer function is just any[]
-        value: oldValue?.replace(searchValue, replacer as any),
+        value: newValue,
       }
     })
 
