@@ -128,7 +128,7 @@ async function generateTranslationStrings(
 
     const oldValue =
       originalLanguageFile[key] ||
-      (await getTranslationString("key", {
+      (await getTranslationString(key, {
         language: targetLanguage,
         version: targetVersion,
       }))
