@@ -5,6 +5,7 @@ import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
+  ContextualReplaceTransformer,
   ReplaceTransformer,
   TitleCaseTransformer,
 } from "./transformers/index.js"
@@ -160,6 +161,14 @@ const fixes: Fix[] = [
       (_, groups) => groups[0] + groups[1].toLowerCase() + groups[2]
     ),
     languages: ["en_us"],
+  }),
+  new Fix({
+    bug: "MC-253223",
+    key: "gui.abuseReport.reason.terrorism_or_violent_extremism.description",
+    transformer: new ContextualReplaceTransformer(
+      { before: /threatening /, target: /with /, after: /acts / },
+      ""
+    ),
   }),
 ]
 

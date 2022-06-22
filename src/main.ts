@@ -35,7 +35,7 @@ const targetLanguages = ["en_us", "en_gb"]
 commandLineArg === "--stats"
   ? await printStats()
   : await emitResourcePacks(fixes, {
-      targetVersions,
+      targetVersions: "22w24a",
       targetLanguages,
       clearDirectory: true,
       packVersion: commandLineArg,

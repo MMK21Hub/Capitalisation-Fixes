@@ -72,6 +72,36 @@ export class ReplaceTransformer extends Transformer {
   }
 }
 
+/** Similar to {@link ReplaceTransformer}, but can take into account context (stuff surrounding the target string) */
+export class ContextualReplaceTransformer extends Transformer {
+  constructor(
+    search: { before?: RegExp; target: RegExp; after?: RegExp },
+    replace: string
+  ) {
+    super(({ oldValue }) => {
+      if (!oldValue) throw new MissingValueError()
+
+      const fullRegex = new RegExp(
+        `(?<before>${search.before?.source})(?<target>${search.target.source})(?<after>${search.after?.source})`
+      )
+
+      const newValue = oldValue.replace(
+        fullRegex,
+        `$<before>${replace}$<after>`
+      )
+
+      return { value: newValue }
+
+      // const match = fullRegex.exec(oldValue)
+      // const matchedTarget = match?.groups?.["target"]
+      // if (!matchedTarget)
+      //   return logger.error(
+      //     "Could not find any matches for the provided search expression."
+      //   )
+    })
+  }
+}
+
 /** Converts the whole string into Title Case. Useful for button labels etc. */
 export class TitleCaseTransformer extends Transformer {
   constructor() {
