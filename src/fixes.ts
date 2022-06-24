@@ -6,6 +6,7 @@ import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
   ContextualReplaceTransformer,
+  RemoveWordTransformer,
   ReplaceTransformer,
   TitleCaseTransformer,
 } from "./transformers/index.js"
@@ -165,10 +166,10 @@ const fixes: Fix[] = [
   new Fix({
     bug: "MC-253223",
     key: "gui.abuseReport.reason.terrorism_or_violent_extremism.description",
-    transformer: new ContextualReplaceTransformer(
-      { before: /threatening /, target: /with /, after: /acts / },
-      ""
-    ),
+    transformer: new RemoveWordTransformer(/with/, {
+      matchBefore: /threatening/,
+      matchAfter: /acts/,
+    }),
   }),
 ]
 

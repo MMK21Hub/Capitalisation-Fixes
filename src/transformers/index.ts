@@ -266,3 +266,23 @@ export class CapitaliseFromTranslationStringsTransformer
     this.options = options
   }
 }
+
+export class RemoveWordTransformer extends ContextualReplaceTransformer {
+  constructor(
+    word: RegExp,
+    options: {
+      matchBefore?: RegExp
+      matchAfter?: RegExp
+    }
+  ) {
+    super(
+      {
+        before:
+          options.matchBefore && new RegExp(options.matchBefore.source + " "),
+        target: new RegExp(word.source + " "),
+        after: options.matchBefore,
+      },
+      ""
+    )
+  }
+}
