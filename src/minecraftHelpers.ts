@@ -274,6 +274,11 @@ export async function resolveMinecraftVersionSimpleRange(
   if (removeStart) startIndex++
   if (removeEnd) endIndex--
 
+  if (endIndex < startIndex)
+    throw new Error(
+      `Invalid version range! Range end (${end}) is newer than range start (${start}).`
+    )
+
   return versions.slice(startIndex, endIndex)
 }
 
