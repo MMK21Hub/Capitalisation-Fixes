@@ -280,7 +280,7 @@ export class RemoveWordTransformer extends ContextualReplaceTransformer {
         before:
           options.matchBefore && new RegExp(options.matchBefore.source + " "),
         target: new RegExp(word.source + " "),
-        after: options.matchBefore,
+        after: options.matchAfter,
       },
       ""
     )
