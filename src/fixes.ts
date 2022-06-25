@@ -190,6 +190,7 @@ const fixes: Fix[] = [
     transformer: new OverrideTransformer(
       "Someone is talking about or threatening to harm themselves in real life."
     ),
+    versions: ["22w24a", null],
   }),
 ]
 
