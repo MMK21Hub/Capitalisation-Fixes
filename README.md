@@ -57,7 +57,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-28 modified translation strings are included in the resource pack, which fix a total of 17 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+33 modified translation strings are included in the resource pack, which fix a total of 22 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
@@ -149,7 +149,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [17](#fixed-strings)                                                                                            | You are here! |
+| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [22](#fixed-strings)                                                                                            | You are here! |
 | [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
@@ -169,7 +169,7 @@ For detailed information, check [the file itself](new-version.sh).
 | Name                                                                                         | Version(s) | Fixed bug(s)                                                            | Side   | Notes                                                                                |
 | -------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
 | [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)                                        | 1.18, 1.19 | [260+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
-| [Blanket client-tweaks](https://modrinth.com/mod/blanket)                                    | 1.18.2     | [9](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
+| [Blanket client-tweaks](https://modrinth.com/mod/blanket)                                    | 1.18.2     | [8](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
 | [More Culling](https://modrinth.com/mod/moreculling)                                         | 1.18.2     | [5](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client | Currently in alpha testing                                                           |
 | [Mc122477Fix](https://modrinth.com/mod/mc122477fix)                                          | 1.15–1.17  | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
 | [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix)                              | 1.16–1.18  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
