@@ -79,6 +79,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
 - [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) (unnecessary capitalisation)
 - [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) (unnecessary preposition)
+- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) (plural can be incorrect)
 
 ### Previously-fixed strings
 

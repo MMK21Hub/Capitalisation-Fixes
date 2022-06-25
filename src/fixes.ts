@@ -175,6 +175,12 @@ const fixes: Fix[] = [
     }),
     versions: ["22w24a", "1.19.1-rc1"],
   }),
+  new Fix({
+    bug: "MC-253102",
+    key: "gui.chatReport.selected_chat",
+    transformer: new ReplaceTransformer("Messages", "Message(s)"),
+    versions: ["22w24a", "1.19.1-pre1"],
+  }),
 ]
 
 export default fixes
