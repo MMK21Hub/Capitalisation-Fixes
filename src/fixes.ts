@@ -132,6 +132,7 @@ const fixes: Fix[] = [
     key: "subtitles.entity.goat.horn_break",
     transformer: new ReplaceTransformer(lang("entity.minecraft.goat"), "$&'s"),
     languages: ["en_us"],
+    versions: ["22w17a", null],
   }),
   ...multiFixGroup(
     "MC-226484",
@@ -148,7 +149,7 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer(/\w$/, "$&."),
     // Other languages still have the old translation string contents, so they aren't affected
     languages: ["en_us"],
-    versions: ["22w24a", null],
+    versions: ["1.19-pre5", null],
   }),
   new Fix({
     bug: "MC-253178",
