@@ -26,11 +26,11 @@ export const cache = new Map<string, any>()
 
 const commandLineArg = process.argv[2]
 
-// const targetVersions: MinecraftVersionSpecifier = {
-//   type: "latest",
-//   branch: "snapshot",
-// }
-const targetVersions = "22w24a"
+const targetVersions: MinecraftVersionSpecifier = {
+  type: "latest",
+  branch: "snapshot",
+}
+// const targetVersions = "22w24a"
 const targetLanguages = ["en_us", "en_gb"]
 
 commandLineArg === "--stats"

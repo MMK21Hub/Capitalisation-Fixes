@@ -58,7 +58,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-33 modified translation strings are included in the resource pack, which fix a total of 22 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+29 modified translation strings are included in the resource pack, fixing a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
@@ -78,10 +78,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
-- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) (unnecessary preposition)
 - [Imminent harm chat report reason description](https://bugs.mojang.com/browse/MC-253182) (misleading/redundant clause)
-- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) (plural can be incorrect)
-- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) (unnecessary capitalisation)
 
 ### Previously-fixed strings
 
@@ -95,6 +92,9 @@ These fixes used to be included in the pack but have since been fixed in the van
 - [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
 - [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
+- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) (unnecessary preposition)
+- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) (plural can be incorrect)
+- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) (unnecessary capitalisation)
 
 ## Build tool
 
@@ -151,7 +151,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [22](#fixed-strings)                                                                                            | You are here! |
+| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [18](#fixed-strings)                                                                                            | You are here! |
 | [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
