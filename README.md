@@ -177,3 +177,4 @@ For detailed information, check [the file itself](new-version.sh).
 | [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)                                      | 1.15–1.17  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
 | [Title Fixer](https://modrinth.com/mod/title-fixer)                                          | 1.16–1.17  | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                   | Client |
 | [kennytvs-epic-force-close-loading-screen-mod-for-fabric](https://modrinth.com/mod/blWBX5n1) | 1.18, 1.19 | [MC-249059](https://bugs.mojang.com/browse/MC-249059)                   | Client |
+| [Head Name Fix](https://modrinth.com/mod/headfix)                                            | 1.16—1.19  | [MC-174496](https://bugs.mojang.com/browse/MC-174496)                   | Server |
