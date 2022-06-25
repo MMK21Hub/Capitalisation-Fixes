@@ -6,6 +6,7 @@ import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
   ContextualReplaceTransformer,
+  OverrideTransformer,
   RemoveWordTransformer,
   ReplaceTransformer,
   TitleCaseTransformer,
@@ -180,6 +181,15 @@ const fixes: Fix[] = [
     key: "gui.chatReport.selected_chat",
     transformer: new ReplaceTransformer("Messages", "Message(s)"),
     versions: ["22w24a", "1.19.1-pre1"],
+  }),
+  new Fix({
+    bug: "MC-253182",
+    key: "gui.abuseReport.reason.self_harm_or_suicide.description",
+    // Correct translation string provided by a Mojang employee: https://bugs.mojang.com/browse/MC-253182?focusedCommentId=1175803&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-1175803
+    // Change is too complex to express with transformers, so I've just used an OverrideTransformer for this one
+    transformer: new OverrideTransformer(
+      "Someone is talking about or threatening to harm themselves in real life."
+    ),
   }),
 ]
 
