@@ -147,12 +147,14 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer(/\w$/, "$&."),
     // Other languages still have the old translation string contents, so they aren't affected
     languages: ["en_us"],
+    versions: ["22w24a", null],
   }),
   new Fix({
     bug: "MC-253178",
     key: "gui.abuseReport.reason.non_consensual_intimate_imagery",
     transformer: new ReplaceTransformer("consentual", "consensual"),
     languages: ["en_us"],
+    versions: ["22w24a", "1.19.1-pre1"],
   }),
   new Fix({
     bug: "MC-253183",
@@ -162,6 +164,7 @@ const fixes: Fix[] = [
       (_, groups) => groups[0] + groups[1].toLowerCase() + groups[2]
     ),
     languages: ["en_us"],
+    versions: ["22w24a", "1.19.1-pre1"],
   }),
   new Fix({
     bug: "MC-253223",
@@ -170,6 +173,7 @@ const fixes: Fix[] = [
       matchBefore: /threatening/,
       matchAfter: /acts/,
     }),
+    versions: ["22w24a", "1.19.1-rc1"],
   }),
 ]
 
