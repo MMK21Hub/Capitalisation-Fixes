@@ -5,7 +5,6 @@ import { lang } from "./minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
-  ContextualReplaceTransformer,
   OverrideTransformer,
   RemoveWordTransformer,
   ReplaceTransformer,
@@ -15,6 +14,9 @@ import {
 const autoCapitaliser = new CapitaliseFromTranslationStringsTransformer({
   vanillaStrings: ["block.**", "item.**", "entity.**"],
 })
+
+/** If there's a letter right at the end of a string, add a full stop to the end */
+const addFullStop = new ReplaceTransformer(/\w$/, "$&.")
 
 const fixes: Fix[] = [
   new Fix({
@@ -145,9 +147,7 @@ const fixes: Fix[] = [
   new Fix({
     bug: "MC-252408",
     key: "chat.disabled.profile",
-    // If there's a letter right at the end of a string, add a full stop to the end
-    transformer: new ReplaceTransformer(/\w$/, "$&."),
-    // Other languages still have the old translation string contents, so they aren't affected
+    transformer: addFullStop,
     languages: ["en_us"],
     versions: ["1.19-pre5", null],
   }),
@@ -192,6 +192,12 @@ const fixes: Fix[] = [
       "Someone is talking about or threatening to harm themselves in real life."
     ),
     versions: ["22w24a", null],
+  }),
+  new Fix({
+    bug: "MC-253741",
+    key: "chat.tag.not_secure",
+    transformer: addFullStop,
+    versions: ["1.19-pre2", null],
   }),
 ]
 

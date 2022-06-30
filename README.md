@@ -59,7 +59,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-29 modified translation strings are included in the resource pack, fixing a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+30 modified translation strings are included in the resource pack, fixing a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
@@ -79,7 +79,8 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
-- [Imminent harm chat report reason description](https://bugs.mojang.com/browse/MC-253182) (misleading/redundant clause)
+- [Imminent Harm chat report reason description](https://bugs.mojang.com/browse/MC-253182) (misleading/redundant clause)
+- [Not Secure chat message status](https://bugs.mojang.com/browse/MC-253741) (missing full stop)
 
 ### Previously-fixed strings
 
@@ -152,7 +153,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [18](#fixed-strings)                                                                                            | You are here! |
+| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [19](#fixed-strings)                                                                                            | You are here! |
 | [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
