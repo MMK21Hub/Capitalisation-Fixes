@@ -197,7 +197,7 @@ const fixes: Fix[] = [
     bug: "MC-253741",
     key: "chat.tag.not_secure",
     transformer: addFullStop,
-    versions: ["1.19-pre2", null],
+    versions: ["1.19.1-pre2", null],
   }),
 ]
 
