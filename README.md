@@ -81,7 +81,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
 - [Imminent Harm chat report reason description](https://bugs.mojang.com/browse/MC-253182) (misleading/redundant clause)
-- [Not Secure chat message status](https://bugs.mojang.com/browse/MC-253741) (missing full stop)
 
 ### Previously-fixed strings
 

@@ -193,12 +193,6 @@ const fixes: Fix[] = [
     ),
     versions: ["22w24a", null],
   }),
-  new Fix({
-    bug: "MC-253741",
-    key: "chat.tag.not_secure",
-    transformer: addFullStop,
-    versions: ["1.19.1-pre2", null],
-  }),
 ]
 
 export default fixes
