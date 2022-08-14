@@ -46,12 +46,15 @@ export type NumericMinecraftSnapshot = {
   /** A lowercase letter (a-z) that separates snapshots within the same week (e.g. the "a" in "22w11a") */
   letter: string
 }
-/** Used to refer to a group, range, or single version of Minecraft */
-export type MinecraftVersionSpecifier =
-  | Range<MinecraftVersion>
+/** Refers to a single version of minecraft, through a version number as a string or object, or a {@link MinecraftVersionTarget} */
+export type SingleMinecraftVersionSpecifier =
   | MinecraftVersion
   | MinecraftVersionTarget
   | NumericMinecraftVersion
+/** Used to refer to a group, range, or single version of Minecraft */
+export type MinecraftVersionSpecifier =
+  | Range<SingleMinecraftVersionSpecifier>
+  | SingleMinecraftVersionSpecifier
 export type LanguageFileData = Record<string, string>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
 export type ContextSensitiveSearchValue = ResolvableAsync<
@@ -192,6 +195,14 @@ export function findVersionIndex(targetVersion: string) {
   return findVersionInfo(targetVersion).data_version
 }
 
+export function isSingleVersionSpecifier(
+  specifier: MinecraftVersionSpecifier
+): specifier is SingleMinecraftVersionSpecifier {
+  return (
+    typeof specifier === "string" || "type" in specifier || "main" in specifier
+  )
+}
+
 export async function resolveFlexibleSearchValue(
   searchValue: FlexibleSearchValue,
   languageFileData: LanguageFileData,
@@ -234,15 +245,25 @@ export async function resolveNumericMinecraftVersion(
   return resolveMinecraftVersionId(versionString)
 }
 
+export async function resolveSingleMinecraftVersionSpecifier(
+  specifier: SingleMinecraftVersionSpecifier
+): Promise<string> {
+  if (typeof specifier === "string")
+    return await resolveMinecraftVersionId(specifier)
+  if ("type" in specifier) return await getLatestVersion(specifier.branch)
+  if ("main" in specifier)
+    return await resolveNumericMinecraftVersion(specifier)
+
+  throw new Error(`Invalid version specifier!`)
+}
+
 export async function resolveMinecraftVersionSpecifier(
   specifier: MinecraftVersionSpecifier | undefined
 ): Promise<string[]> {
   if (!specifier) return []
-  if (typeof specifier === "string")
-    return [await resolveMinecraftVersionId(specifier)]
-  if ("type" in specifier) return [await getLatestVersion(specifier.branch)]
-  if ("main" in specifier)
-    return [await resolveNumericMinecraftVersion(specifier)]
+
+  if (isSingleVersionSpecifier(specifier))
+    return [await resolveSingleMinecraftVersionSpecifier(specifier)]
 
   const matchingVersions = isSimpleRange(specifier)
     ? await resolveMinecraftVersionSimpleRange(specifier)
@@ -252,7 +273,7 @@ export async function resolveMinecraftVersionSpecifier(
 }
 
 export async function resolveMinecraftVersionSimpleRange(
-  range: StartAndEnd<string>,
+  range: StartAndEnd<SingleMinecraftVersionSpecifier>,
   options: {
     removeStart?: boolean
     removeEnd?: boolean
@@ -263,9 +284,16 @@ export async function resolveMinecraftVersionSimpleRange(
   // Don't return any items if no range was provided
   if (!range) return []
 
-  const [start, end] = range
   const versionManifest = await getVersionManifest()
   const versions: string[] = versionManifest.versions.map((v) => v.id).reverse()
+
+  const [startSpecifier, endSpecifier] = range
+  const start = startSpecifier
+    ? await resolveSingleMinecraftVersionSpecifier(startSpecifier)
+    : null
+  const end = endSpecifier
+    ? await resolveSingleMinecraftVersionSpecifier(endSpecifier)
+    : null
 
   let startIndex = start ? versions.indexOf(start) : 0
   let endIndex = end ? versions.indexOf(end) : versions.length
@@ -283,7 +311,7 @@ export async function resolveMinecraftVersionSimpleRange(
 }
 
 export async function resolveMinecraftVersionFancyRange(
-  range: FancyRange<string>
+  range: FancyRange<SingleMinecraftVersionSpecifier>
 ): Promise<string[]> {
   // Local function shorthands:
   const resolveRange = resolveMinecraftVersionSimpleRange
