@@ -29,15 +29,8 @@ export const cache = new Map<string, any>()
 const commandLineArg = process.argv[2]
 
 const targetVersions: MinecraftVersionSpecifier = {
-  start: "1.19",
-  end: {
-    type: "latest",
-    branch: "snapshot",
-  },
-  filter: {
-    type: MinecraftVersionType.Release,
-  },
-  exclusiveEnd: false,
+  type: "latest",
+  branch: "snapshot",
 }
 // const targetVersions = "22w24a"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
