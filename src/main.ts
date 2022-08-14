@@ -1,10 +1,11 @@
-console.log("Loading...")
-
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
-import { MinecraftVersionSpecifier, VersionInfo } from "./minecraftHelpers.js"
+import {
+  MinecraftVersionSpecifier,
+  MinecraftVersionType,
+  VersionInfo,
+} from "./minecraftHelpers.js"
 import fetch from "node-fetch"
-import { StartAndEnd } from "./util.js"
 
 async function printStats() {
   const stats = await generateStats(fixes, { version: targetVersions })
@@ -28,8 +29,15 @@ export const cache = new Map<string, any>()
 const commandLineArg = process.argv[2]
 
 const targetVersions: MinecraftVersionSpecifier = {
-  type: "latest",
-  branch: "snapshot",
+  start: "1.19",
+  end: {
+    type: "latest",
+    branch: "snapshot",
+  },
+  filter: {
+    type: MinecraftVersionType.Release,
+  },
+  exclusiveEnd: false,
 }
 // const targetVersions = "22w24a"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
