@@ -46,6 +46,14 @@ export type NumericMinecraftSnapshot = {
   /** A lowercase letter (a-z) that separates snapshots within the same week (e.g. the "a" in "22w11a") */
   letter: string
 }
+export type MinecraftVersionFilterBody = {
+  types?: MinecraftVersionType[]
+  versions?: MinecraftVersionSpecifier
+}
+export type MinecraftVersionFilter = {
+  exclude?: MinecraftVersionFilterBody
+  include?: MinecraftVersionFilterBody
+}
 /** Refers to a single version of minecraft, through a version number as a string or object, or a {@link MinecraftVersionTarget} */
 export type SingleMinecraftVersionSpecifier =
   | MinecraftVersion
@@ -77,6 +85,12 @@ export type ResourcePackMetadata = {
     description: string
   }
 }
+
+export interface MinecraftVersionFancyRange
+  extends FancyRange<SingleMinecraftVersionSpecifier> {
+  filter?: MinecraftVersionFilter
+}
+
 /** Metadata about a specific Minecraft version, as sourced from https://github.com/misode/mcmeta/tree/summary/versions */
 export interface VersionInfo {
   id: MinecraftVersion
@@ -95,6 +109,16 @@ export interface VersionInfo {
 export interface PackMetaGenOptions {
   format: number
   description: string
+}
+
+export enum MinecraftVersionType {
+  Release = "release",
+  /** Any development version, i.e. snapshots, pre-releases or release candidates */
+  Development = "development",
+  /** A snapshot, i.e. an early development version named in the format 22w45a. If you want to include pre-releases and release candidates, use {@link MinecraftVersionType.Development}. */
+  Snapshot = "snapshot",
+  PreRelease = "pre-release",
+  ReleaseCandidate = "release-candidate",
 }
 
 export class UseTranslationString {
