@@ -46,13 +46,9 @@ export type NumericMinecraftSnapshot = {
   /** A lowercase letter (a-z) that separates snapshots within the same week (e.g. the "a" in "22w11a") */
   letter: string
 }
-export type MinecraftVersionFilterBody = {
+export type MinecraftVersionFilter = {
   types?: MinecraftVersionType[]
   versions?: MinecraftVersionSpecifier
-}
-export type MinecraftVersionFilter = {
-  exclude?: MinecraftVersionFilterBody
-  include?: MinecraftVersionFilterBody
 }
 /** Refers to a single version of minecraft, through a version number as a string or object, or a {@link MinecraftVersionTarget} */
 export type SingleMinecraftVersionSpecifier =
@@ -88,6 +84,7 @@ export type ResourcePackMetadata = {
 
 export interface MinecraftVersionFancyRange
   extends FancyRange<SingleMinecraftVersionSpecifier> {
+  /** Only include versions that also match a specified Minecraft version filter */
   filter?: MinecraftVersionFilter
 }
 
