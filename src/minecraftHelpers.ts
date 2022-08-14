@@ -57,6 +57,7 @@ export type SingleMinecraftVersionSpecifier =
 /** Used to refer to a group, range, or single version of Minecraft */
 export type MinecraftVersionSpecifier =
   | Range<SingleMinecraftVersionSpecifier>
+  | MinecraftVersionFancyRange
   | SingleMinecraftVersionSpecifier
 export type LanguageFileData = Record<string, string>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
