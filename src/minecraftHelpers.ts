@@ -47,8 +47,7 @@ export type NumericMinecraftSnapshot = {
   letter: string
 }
 export type MinecraftVersionFilter = {
-  types?: MinecraftVersionType[]
-  versions?: MinecraftVersionSpecifier
+  type?: MinecraftVersionType
 }
 /** Refers to a single version of minecraft, through a version number as a string or object, or a {@link MinecraftVersionTarget} */
 export type SingleMinecraftVersionSpecifier =
@@ -216,6 +215,24 @@ export function findVersionIndex(targetVersion: string) {
   return findVersionInfo(targetVersion).data_version
 }
 
+export function checkMinecraftVersionTypes(
+  targetVersion: string,
+  testType: MinecraftVersionType
+) {
+  const { type, id } = findVersionInfo(targetVersion)
+
+  if (testType === MinecraftVersionType.Development) return type !== "release"
+  if (testType === MinecraftVersionType.Release) return type === "release"
+
+  if (testType === MinecraftVersionType.PreRelease) return /.*-pre\d+/.test(id)
+  if (testType === MinecraftVersionType.ReleaseCandidate)
+    return /.*-rc\d+/.test(id)
+  if (testType === MinecraftVersionType.Snapshot)
+    return /\d+w\d+[a-z]+/.test(id)
+
+  return false
+}
+
 export function isSingleVersionSpecifier(
   specifier: MinecraftVersionSpecifier
 ): specifier is SingleMinecraftVersionSpecifier {
@@ -332,7 +349,7 @@ export async function resolveMinecraftVersionSimpleRange(
 }
 
 export async function resolveMinecraftVersionFancyRange(
-  range: FancyRange<SingleMinecraftVersionSpecifier>
+  range: MinecraftVersionFancyRange
 ): Promise<string[]> {
   // Local function shorthands:
   const resolveRange = resolveMinecraftVersionSimpleRange
@@ -350,7 +367,13 @@ export async function resolveMinecraftVersionFancyRange(
   // Add any items that need to be included
   filteredRange.push(...inclusionRange)
 
-  return filteredRange
+  if (!range.filter) return filteredRange
+
+  return filteredRange.filter((version) => {
+    if (range.filter?.type)
+      return checkMinecraftVersionTypes(version, range.filter.type)
+    return true
+  })
 }
 
 export async function getVanillaLanguageFile(
