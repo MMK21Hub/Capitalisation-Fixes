@@ -11,7 +11,7 @@
 
 ## Information
 
-- It currently targets the 1.19 snapshots, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
+- It currently targets the 1.19 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
 - It currently supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
 - You can submit feedback and bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21Games#2121` on Discord
 
