@@ -156,7 +156,7 @@ For detailed information, check [the file itself](new-version.sh).
 | Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
 | **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [19](#fixed-strings)                                                                                            | You are here! |
-| [Wither Skull Messages](https://bugs.mojang.com/browse/MC-186148?focusedCommentId=714784&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-714784) | 1.16       | [MC-186148](https://bugs.mojang.com/browse/MC-186148) and [MC-186851](https://bugs.mojang.com/browse/MC-186851) |               |
+
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
