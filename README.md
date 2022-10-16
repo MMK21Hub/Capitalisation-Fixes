@@ -62,7 +62,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-30 modified translation strings are included in the resource pack, fixing a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+30 modified translation strings are included in the resource pack, fixing a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
@@ -81,12 +81,12 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
-- ["Non-consentual intimate imagery" chat report reason](https://bugs.mojang.com/browse/MC-253178) (misspelling)
-- [Imminent Harm chat report reason description](https://bugs.mojang.com/browse/MC-253182) (misleading/redundant clause)
+- [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
 
 ### Previously-fixed strings
 
 These fixes used to be included in the pack but have since been fixed in the vanilla game, so they're longer necessary.
+They can be found in old versions of the pack.
 
 - [Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422) Fixed in 22w14a
 - ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025) Fixed in 22w15a
@@ -153,10 +153,9 @@ For detailed information, check [the file itself](new-version.sh).
 
 ### Resource Packs
 
-| Name                                                                                                                                                                           | Version(s) | Fixed bug(s)                                                                                                    | Notes         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
-| **Capitalisation Fixes**                                                                                                                                                       | 1.19       | [19](#fixed-strings)                                                                                            | You are here! |
-
+| Name                     | Version(s) | Fixed bug(s)         | Notes         |
+| ------------------------ | ---------- | -------------------- | ------------- |
+| **Capitalisation Fixes** | 1.19       | [18](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
