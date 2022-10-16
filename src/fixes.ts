@@ -193,6 +193,15 @@ const fixes: Fix[] = [
     ),
     versions: ["22w24a", "1.19.1-pre3"],
   }),
+  ...multiFixGroup(
+    "MC-256424",
+    new ReplaceTransformer(/gamemode/i, "game mode"),
+    [
+      "debug.creative_spectator.help",
+      "debug.creative_spectator.error",
+      "argument.entity.options.gamemode.description",
+    ]
+  ),
 ]
 
 export default fixes
