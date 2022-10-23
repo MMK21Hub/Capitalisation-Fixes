@@ -4,7 +4,15 @@ dist/
 out/
 dep.svg
 
+# Local package installation
 node_modules/
 yarn-error.log
 
+# Caches
 .cache
+
+# Local config
+.env
+
+# Other persistent data files
+confirmed.txt

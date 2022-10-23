@@ -5,11 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Run build tool",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/dist/main.js",
+      "outFiles": ["${workspaceFolder}/dist/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run publisher script",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/dist/publisher/main.js",
       "outFiles": ["${workspaceFolder}/dist/*.js"]
     }
   ]
