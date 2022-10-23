@@ -1,4 +1,8 @@
-import { resolveURLParams, URLSearchParamsResolvable } from "../util.js"
+import {
+  FetchableMethods,
+  resolveURLParams,
+  URLSearchParamsResolvable,
+} from "../util.js"
 import fetch, { Headers } from "node-fetch"
 
 export interface ModrinthClientOptions {
@@ -10,6 +14,7 @@ export interface ModrinthClientOptions {
 export interface RequestOptions {
   path: string[]
   params?: URLSearchParamsResolvable
+  verb?: FetchableMethods
 }
 
 export default class {
@@ -23,14 +28,14 @@ export default class {
   }
 
   async request<T>(options: string[] | RequestOptions) {
-    const resolveOptions = (param: typeof options) =>
+    const resolveOptions: (param: typeof options) => RequestOptions = (param) =>
       Array.isArray(param)
         ? {
             path: param,
           }
         : param
 
-    const { path, params } = resolveOptions(options)
+    const { path, params, verb: method = "GET" } = resolveOptions(options)
 
     const url = this.createURL(...path)
     if (params) url.search = resolveURLParams(params).toString()
@@ -40,6 +45,7 @@ export default class {
 
     const response = await fetch(url.toString(), {
       headers,
+      method,
     })
 
     if (!response.ok)

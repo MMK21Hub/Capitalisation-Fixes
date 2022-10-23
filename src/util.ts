@@ -144,6 +144,22 @@ export function resolveURLParams(params: URLSearchParamsResolvable) {
   return finalParams
 }
 
+export type HTTPMethods =
+  | "GET"
+  | "HEAD"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "CONNECT"
+  | "OPTIONS"
+  | "TRACE"
+  | "PATCH"
+
+// TRACK is a the equivalent of TRACE, but only supported by the IIS web server
+export type ForbiddenMethods = "CONNECT" | "TRACE" | "TRACK"
+
+export type FetchableMethods = Exclude<HTTPMethods, ForbiddenMethods>
+
 /* ASYNC UTILS */
 
 // https://stackoverflow.com/a/46842181/11519302

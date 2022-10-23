@@ -9,4 +9,12 @@ const client = new ModrinthClient({
   token: process.env.MODRINTH_API,
 })
 
-console.log(await client.request(["project", process.env.MODRINTH_PROJECT_ID!]))
+console.log(
+  await client.request({
+    path: ["project", process.env.MODRINTH_PROJECT_ID!],
+    verb: "GET",
+    params: {
+      a: "b",
+    },
+  })
+)
