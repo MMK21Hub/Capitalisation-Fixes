@@ -1,4 +1,4 @@
-import { URLSearchParamsResolvable } from "../util"
+import { resolveURLParams, URLSearchParamsResolvable } from "../util"
 
 export interface ModrinthClientOptions {
   token?: string
@@ -8,7 +8,7 @@ export interface ModrinthClientOptions {
 
 export interface RequestOptions {
   path: string[]
-  params: URLSearchParamsResolvable
+  params?: URLSearchParamsResolvable
 }
 
 export default class {
@@ -29,9 +29,10 @@ export default class {
           }
         : param
 
-    const { path } = resolveOptions(options)
+    const { path, params } = resolveOptions(options)
 
     const url = this.createURL(...path)
+    if (params) url.search = resolveURLParams(params).toString()
   }
 
   constructor(options: ModrinthClientOptions = {}) {
