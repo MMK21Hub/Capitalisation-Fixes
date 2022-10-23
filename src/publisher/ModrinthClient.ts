@@ -21,7 +21,7 @@ export default class {
     return new URL(this.baseURL.href + [this.apiVersion, ...sections].join("/"))
   }
 
-  async request(options: string[] | RequestOptions) {
+  async request<T>(options: string[] | RequestOptions) {
     const resolveOptions = (param: typeof options) =>
       Array.isArray(param)
         ? {
@@ -33,6 +33,19 @@ export default class {
 
     const url = this.createURL(...path)
     if (params) url.search = resolveURLParams(params).toString()
+
+    const headers = new Headers()
+    if (this.token) headers.set("Authorization", this.token)
+
+    const response = await fetch(url, {
+      headers,
+    })
+
+    if (!response.ok)
+      throw new Error(`HTTP request responded with ${response.status}`)
+
+    const responseBody = await response.json()
+    return responseBody as T
   }
 
   constructor(options: ModrinthClientOptions = {}) {
