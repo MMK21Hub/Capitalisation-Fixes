@@ -9,6 +9,7 @@ export interface ModrinthClientOptions {
   token?: string
   baseURL?: string | URL
   version?: "v2" | string
+  brand?: string
 }
 
 export interface RequestOptions {
@@ -22,6 +23,7 @@ export default class {
   token
   baseURL
   apiVersion
+  brand
 
   createURL(...sections: string[]): URL {
     sections = sections.map((section) => encodeURIComponent(section))
@@ -47,6 +49,7 @@ export default class {
     if (params) url.search = resolveURLParams(params).toString()
 
     const headers = new Headers()
+    headers.set("User-Agent", this.brand)
     if (this.token) headers.set("Authorization", this.token)
 
     const response = await fetch(url.toString(), {
@@ -67,10 +70,12 @@ export default class {
       token,
       baseURL = "https://api.modrinth.com",
       version = "v2",
+      brand = "Capitalisation-Fixes Modrinth API Client",
     } = options
 
     this.token = token
     this.baseURL = new URL(baseURL)
     this.apiVersion = version
+    this.brand = brand
   }
 }
