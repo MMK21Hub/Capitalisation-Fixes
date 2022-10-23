@@ -3,7 +3,7 @@ import {
   resolveURLParams,
   URLSearchParamsResolvable,
 } from "../util.js"
-import fetch, { Headers } from "node-fetch"
+import fetch, { Headers, BodyInit } from "node-fetch"
 
 export interface ModrinthClientOptions {
   token?: string
@@ -15,6 +15,7 @@ export interface RequestOptions {
   path: string[]
   params?: URLSearchParamsResolvable
   verb?: FetchableMethods
+  body?: BodyInit
 }
 
 export default class {
@@ -35,7 +36,12 @@ export default class {
           }
         : param
 
-    const { path, params, verb: method = "GET" } = resolveOptions(options)
+    const {
+      path,
+      params,
+      verb: method = "GET",
+      body = null,
+    } = resolveOptions(options)
 
     const url = this.createURL(...path)
     if (params) url.search = resolveURLParams(params).toString()
@@ -46,6 +52,7 @@ export default class {
     const response = await fetch(url.toString(), {
       headers,
       method,
+      body,
     })
 
     if (!response.ok)
