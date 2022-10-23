@@ -30,6 +30,14 @@ export default class {
     return new URL(this.baseURL.href + [this.apiVersion, ...sections].join("/"))
   }
 
+  generateHeaders() {
+    const headers = new Headers()
+    headers.set("User-Agent", this.brand)
+    if (this.token) headers.set("Authorization", this.token)
+
+    return headers
+  }
+
   async request<T>(options: string[] | RequestOptions) {
     const resolveOptions: (param: typeof options) => RequestOptions = (param) =>
       Array.isArray(param)
@@ -48,12 +56,8 @@ export default class {
     const url = this.createURL(...path)
     if (params) url.search = resolveURLParams(params).toString()
 
-    const headers = new Headers()
-    headers.set("User-Agent", this.brand)
-    if (this.token) headers.set("Authorization", this.token)
-
     const response = await fetch(url.toString(), {
-      headers,
+      headers: this.generateHeaders(),
       method,
       body,
     })
