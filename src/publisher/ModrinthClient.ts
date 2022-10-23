@@ -1,4 +1,5 @@
-import { resolveURLParams, URLSearchParamsResolvable } from "../util"
+import { resolveURLParams, URLSearchParamsResolvable } from "../util.js"
+import fetch, { Headers } from "node-fetch"
 
 export interface ModrinthClientOptions {
   token?: string
@@ -37,7 +38,7 @@ export default class {
     const headers = new Headers()
     if (this.token) headers.set("Authorization", this.token)
 
-    const response = await fetch(url, {
+    const response = await fetch(url.toString(), {
       headers,
     })
 

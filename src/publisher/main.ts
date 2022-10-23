@@ -9,4 +9,4 @@ const client = new ModrinthClient({
   token: process.env.MODRINTH_API,
 })
 
-console.log(client.createURL("hello", "there").toString())
+console.log(await client.request(["project", process.env.MODRINTH_PROJECT_ID!]))
