@@ -1,4 +1,4 @@
-export type URLSearchParamsResolvable = URLSearchParams | Record<string, string>
+import { URLSearchParamsResolvable } from "../util"
 
 export interface ModrinthClientOptions {
   token?: string

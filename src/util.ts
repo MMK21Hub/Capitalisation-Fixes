@@ -130,8 +130,18 @@ export function getSelectorId<T extends number = number>(
 
 /* HTTP UTILS */
 
+export type URLSearchParamsResolvable = URLSearchParams | Record<string, string>
+
 export function urlPath(...paths: string[]): URL {
   return new URL(paths.join("/"))
+}
+
+export function resolveURLParams(params: URLSearchParamsResolvable) {
+  if (params instanceof URLSearchParams) return params
+
+  const finalParams = new URLSearchParams()
+  Object.entries(params).forEach(([key, value]) => finalParams.set(key, value))
+  return finalParams
 }
 
 /* ASYNC UTILS */
