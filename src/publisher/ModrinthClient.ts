@@ -19,6 +19,14 @@ export interface RequestOptions {
   body?: BodyInit
 }
 
+// modrinth-api-types when?
+export interface VersionInput {}
+
+export interface NamedFile {
+  filename: string
+  data: Blob
+}
+
 export default class {
   token
   baseURL
@@ -30,9 +38,10 @@ export default class {
     return new URL(this.baseURL.href + [this.apiVersion, ...sections].join("/"))
   }
 
-  generateHeaders() {
+  private generateHeaders() {
     const headers = new Headers()
     headers.set("User-Agent", this.brand)
+    headers.set("Accept", "application/json")
     if (this.token) headers.set("Authorization", this.token)
 
     return headers
@@ -67,6 +76,47 @@ export default class {
 
     const responseBody = await response.json()
     return responseBody as T
+  }
+
+  // This is a messy way of organising the functions,
+  // but I probably won't get around to rewriting it.
+  rest = {
+    createVersion(
+      projectId: string,
+      version: VersionInput,
+      files: Record<string, Blob>
+    ) {
+      const formData = new FormData()
+
+      const namedFiles = new Map<string, NamedFile>()
+      Object.entries(files).forEach(([filename, data]) => {
+        // Generates a unique id ("name") for the file
+        const getName = () => `${filename}-${count}`
+        let count = 0
+        while (namedFiles.has(getName())) {
+          count++
+        }
+        const finalName = getName()
+
+        // Adds the file to the map, using the id as the index
+        const namedFile: NamedFile = {
+          data,
+          filename,
+        }
+        namedFiles.set(finalName, namedFile)
+      })
+
+      return namedFiles
+
+      const fileParts = []
+
+      formData.append(
+        "data",
+        JSON.stringify({
+          file_parts,
+        })
+      )
+    },
   }
 
   constructor(options: ModrinthClientOptions = {}) {

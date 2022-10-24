@@ -11,11 +11,12 @@ const client = new ModrinthClient({
 })
 
 console.log(
-  await client.request({
-    path: ["project", process.env.MODRINTH_PROJECT_ID!],
-    verb: "GET",
-    params: {
-      a: "b",
-    },
-  })
+  client.rest.createVersion(
+    process.env.MODRINTH_PROJECT_ID!,
+    {},
+    {
+      "rp.zip": new Blob(),
+      "rp2.zip": new Blob(),
+    }
+  )
 )
