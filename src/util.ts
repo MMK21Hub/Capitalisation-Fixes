@@ -1,4 +1,5 @@
 import { JSDOM } from "jsdom"
+import { Response } from "node-fetch"
 import {
   mkdir,
   readdir,
@@ -171,6 +172,20 @@ export type HTTPMethods =
 export type ForbiddenMethods = "CONNECT" | "TRACE" | "TRACK"
 
 export type FetchableMethods = Exclude<HTTPMethods, ForbiddenMethods>
+
+export class RequestError<T = unknown> {
+  responseCode
+  responseCodeText
+  url
+  message
+
+  constructor(response: Response, message: T) {
+    this.responseCode = response.status
+    this.responseCodeText = response.statusText
+    this.url = response.url
+    this.message = message
+  }
+}
 
 /* ASYNC UTILS */
 

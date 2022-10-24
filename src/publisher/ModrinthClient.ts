@@ -1,6 +1,7 @@
 import {
   FetchableMethods,
   RecordLike,
+  RequestError,
   resolveURLParams,
   toMap,
   URLSearchParamsResolvable,
@@ -77,6 +78,13 @@ export interface NamedFile {
   data: Blob
 }
 
+export interface ErrorResponseBody {
+  error: string
+  description: string
+}
+
+export class ModrinthError extends RequestError<ErrorResponseBody | null> {}
+
 export default class {
   token
   baseURL
@@ -121,8 +129,10 @@ export default class {
       body,
     })
 
-    if (!response.ok)
-      throw new Error(`HTTP request responded with ${response.status}`)
+    if (!response.ok) {
+      const responseBody = (await response.json()) as ErrorResponseBody
+      throw new ModrinthError(response, responseBody)
+    }
 
     const responseBody = await response.json()
     return responseBody as T
