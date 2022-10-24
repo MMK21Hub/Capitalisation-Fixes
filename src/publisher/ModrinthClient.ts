@@ -131,7 +131,7 @@ export default class {
   // This is a messy way of organising the functions,
   // but I probably won't get around to rewriting it.
   rest = {
-    createVersion(version: VersionInit) {
+    createVersion: (version: VersionInit) => {
       const files = toMap(version.files)
 
       // Processing the provided map of files to get the format that we need for the request
