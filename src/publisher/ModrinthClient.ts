@@ -169,6 +169,13 @@ export default class {
       })
 
       // Now we're ready to send the request
+      // The content-type will automatically be set when we provide form data
+      // as a request body, so we don't need to do that here.
+      return this.request({
+        path: ["version"],
+        verb: "POST",
+        body: formData,
+      })
     },
   }
 
