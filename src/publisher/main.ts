@@ -12,12 +12,8 @@ const client = new ModrinthClient({
 })
 
 console.log(
-  client.rest.createVersion(
-    process.env.MODRINTH_PROJECT_ID!,
-    {},
-    {
-      "rp.zip": new Blob(),
-      "rp2.zip": new Blob(),
-    }
-  )
+  client.rest.createVersion(process.env.MODRINTH_PROJECT_ID!, {}, [
+    ["rp.zip", new Blob(["hi"])],
+    ["rp.zip", new Blob(["hello"])],
+  ])
 )

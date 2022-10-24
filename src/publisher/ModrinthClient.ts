@@ -1,6 +1,8 @@
 import {
   FetchableMethods,
+  RecordLike,
   resolveURLParams,
+  toMap,
   URLSearchParamsResolvable,
 } from "../util.js"
 import fetch, { Headers, BodyInit, FormData } from "node-fetch"
@@ -84,12 +86,13 @@ export default class {
     createVersion(
       projectId: string,
       version: VersionInput,
-      files: Record<string, Blob>
+      files: RecordLike<string, Blob>
     ) {
-      const formData = new FormData()
+      const fileMap = toMap(files)
+      console.log(files)
 
       const namedFiles = new Map<string, NamedFile>()
-      Object.entries(files).forEach(([filename, data]) => {
+      fileMap.forEach((data, filename) => {
         // Generates a unique id ("name") for the file
         const getName = () => `${filename}-${count}`
         let count = 0
@@ -103,12 +106,13 @@ export default class {
           data,
           filename,
         }
+        debugger
         namedFiles.set(finalName, namedFile)
       })
 
       return namedFiles
 
-      const fileParts = []
+      const formData = new FormData()
 
       formData.append(
         "data",

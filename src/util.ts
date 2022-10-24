@@ -60,6 +60,18 @@ export function isSimpleRange<T>(
   return Array.isArray(specifier) && typeof specifier[0] !== "object"
 }
 
+/* DATA MANIPULATION */
+
+export type RecordLike<K extends string | number | symbol, T> =
+  | Record<K, T>
+  | [K, T][]
+
+export function toMap<T>(recordLike: RecordLike<string, T>): Map<string, T> {
+  return Array.isArray(recordLike)
+    ? new Map(recordLike)
+    : new Map(Object.entries(recordLike))
+}
+
 /* DOM UTILS */
 
 export class SelectorNotFound extends Error {
