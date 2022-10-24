@@ -145,12 +145,10 @@ export default class {
           console.warn(`There are multiple files named ${filename}`)
 
         // Adds the file to the map, using the id as the index
-        const namedFile: NamedFile = {
+        namedFiles.set(finalName, {
           data,
           filename,
-        }
-        debugger
-        namedFiles.set(finalName, namedFile)
+        })
       })
 
       const versionData: VersionInput = {
