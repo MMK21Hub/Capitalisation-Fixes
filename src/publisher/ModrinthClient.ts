@@ -44,7 +44,7 @@ export interface VersionInput {
   project_id: string
   file_parts: string[]
   /** The multipart field name of the primary file */
-  primary_file: string[]
+  primary_file?: string[]
 }
 
 export type DependencyType =
@@ -66,7 +66,9 @@ export interface Dependency {
   dependency_type: DependencyType
 }
 
-export type VersionInit = Omit<VersionInput, "file_parts" | "primary_file">
+export type VersionInit = Omit<VersionInput, "file_parts" | "primary_file"> & {
+  files: RecordLike<string, Blob>
+}
 
 export interface NamedFile {
   filename: string
@@ -127,16 +129,11 @@ export default class {
   // This is a messy way of organising the functions,
   // but I probably won't get around to rewriting it.
   rest = {
-    createVersion(
-      projectId: string,
-      version: VersionInit,
-      files: RecordLike<string, Blob>
-    ) {
-      const fileMap = toMap(files)
-      console.log(files)
+    createVersion(version: VersionInit) {
+      const files = toMap(version.files)
 
       const namedFiles = new Map<string, NamedFile>()
-      fileMap.forEach((data, filename) => {
+      files.forEach((data, filename) => {
         // Generates a unique id ("name") for the file
         const getName = () => `${filename}-${count}`
         let count = 0
@@ -156,15 +153,13 @@ export default class {
         namedFiles.set(finalName, namedFile)
       })
 
-      const formData = new FormData()
+      const versionData: VersionInput = {
+        file_parts: Array.from(files.keys()),
+        ...version,
+      }
 
-      formData.append(
-        "data",
-        JSON.stringify({
-          file_parts: Array.from(fileMap.keys()),
-          ...version,
-        })
-      )
+      const formData = new FormData()
+      formData.append("data", JSON.stringify(versionData))
     },
   }
 
