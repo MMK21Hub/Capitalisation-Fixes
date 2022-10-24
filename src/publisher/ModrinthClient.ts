@@ -21,8 +21,52 @@ export interface RequestOptions {
   body?: BodyInit
 }
 
+// Manually copied from https://docs.modrinth.com/api-spec/#tag/versions/operation/createVersion
 // modrinth-api-types when?
-export interface VersionInput {}
+export interface VersionInput {
+  /** The name of this version */
+  name: string
+  /** The version number. Ideally will follow semantic versioning */
+  version_number: string
+  /** The changelog for this version */
+  changelog?: string | null
+  /** A list of specific versions of projects that this version depends on */
+  dependencies?: Dependency[] | null
+  /** A list of versions of Minecraft that this version supports */
+  game_versions: string[]
+  /** The release channel for this version */
+  version_type: VersionType
+  /** The mod loaders that this version supports */
+  loaders: string[]
+  /** Whether the version is featured or not */
+  featured: boolean
+  /** The ID of the project this version is for */
+  project_id: string
+  file_parts: string[]
+  /** The multipart field name of the primary file */
+  primary_file: string[]
+}
+
+export type DependencyType =
+  | "required"
+  | "optional"
+  | "incompatible"
+  | "embedded"
+
+export type VersionType = "release" | "beta" | "alpha"
+
+export interface Dependency {
+  /** The ID of the version that this version depends on */
+  version_is: string | null
+  /** The ID of the project that this version depends on */
+  project_id: string | null
+  /** The file name of the dependency, mostly used for showing external dependencies on modpacks */
+  file_name: string | null
+  /** The type of dependency that this version has */
+  dependency_type: DependencyType
+}
+
+export type VersionInit = Omit<VersionInput, "file_parts" | "primary_file">
 
 export interface NamedFile {
   filename: string
@@ -85,7 +129,7 @@ export default class {
   rest = {
     createVersion(
       projectId: string,
-      version: VersionInput,
+      version: VersionInit,
       files: RecordLike<string, Blob>
     ) {
       const fileMap = toMap(files)
@@ -112,14 +156,13 @@ export default class {
         namedFiles.set(finalName, namedFile)
       })
 
-      return namedFiles
-
       const formData = new FormData()
 
       formData.append(
         "data",
         JSON.stringify({
-          file_parts,
+          file_parts: Array.from(fileMap.keys()),
+          ...version,
         })
       )
     },
