@@ -1,15 +1,10 @@
 import { JSDOM } from "jsdom"
 import { Response } from "node-fetch"
-import {
-  mkdir,
-  readdir,
-  readFile,
-  rm,
-  unlink,
-  writeFile,
-} from "node:fs/promises"
+import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 
+/** Makes the provided keys (K) of the object (T) optional */
+export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 /** Specify a value, or provide a function that returns that value */
 export type FunctionMaybe<T, A extends any[] = []> = T | ((...args: A) => T)
 /** Like {@link FunctionMaybe}, but with named arguments for readability */

@@ -1,5 +1,6 @@
 import {
   FetchableMethods,
+  Optional,
   RecordLike,
   RequestError,
   resolveURLParams,
@@ -67,7 +68,10 @@ export interface Dependency {
   dependency_type: DependencyType
 }
 
-export type VersionInit = Omit<VersionInput, "file_parts" | "primary_file"> & {
+export type VersionInit = Optional<
+  Omit<VersionInput, "file_parts" | "primary_file">,
+  "featured" | "version_type"
+> & {
   files: RecordLike<string, Blob>
 }
 
@@ -170,6 +174,10 @@ export default class {
         // Provide an empty array of dependencies by default.
         // (Workaround for https://github.com/modrinth/labrinth/issues/469)
         dependencies: [],
+        // Provide the other defaults
+        featured: false,
+        version_type: "release",
+        // Add all the other keys
         ...version,
         file_parts: Array.from(files.keys()),
       }

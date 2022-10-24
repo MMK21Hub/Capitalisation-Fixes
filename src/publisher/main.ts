@@ -13,7 +13,6 @@ const client = new ModrinthClient({
 
 console.log(
   await client.rest.createVersion({
-    featured: false,
     files: {
       "nothing to see here.zip": new Blob(["hello"]),
     },
@@ -22,6 +21,5 @@ console.log(
     name: "Cool version",
     project_id: process.env.MODRINTH_PROJECT_ID!,
     version_number: "2.0",
-    version_type: "release",
   })
 )
