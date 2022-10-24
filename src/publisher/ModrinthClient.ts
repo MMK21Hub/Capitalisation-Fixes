@@ -131,7 +131,9 @@ export default class {
 
     if (!response.ok) {
       const responseBody = (await response.json()) as ErrorResponseBody
-      throw new ModrinthError(response, responseBody)
+      const error = new ModrinthError(response, responseBody)
+      debugger
+      throw error
     }
 
     const responseBody = await response.json()
@@ -165,8 +167,11 @@ export default class {
       })
 
       const versionData: VersionInput = {
-        file_parts: Array.from(files.keys()),
+        // Provide an empty array of dependencies by default.
+        // (Workaround for https://github.com/modrinth/labrinth/issues/469)
+        dependencies: [],
         ...version,
+        file_parts: Array.from(files.keys()),
       }
 
       // Preparing the form data request body

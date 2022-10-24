@@ -7,13 +7,21 @@ dotenv.config()
 
 const client = new ModrinthClient({
   baseURL: process.env.MODRINTH_API || "https://staging-api.modrinth.com",
-  token: process.env.MODRINTH_API,
+  token: process.env.MODRINTH_TOKEN,
   brand: process.env.CLIENT_BRAND || "Capitalisation-Fixes Publisher Script",
 })
 
 console.log(
-  client.rest.createVersion(process.env.MODRINTH_PROJECT_ID!, {}, [
-    ["rp.zip", new Blob(["hi"])],
-    ["rp.zip", new Blob(["hello"])],
-  ])
+  await client.rest.createVersion({
+    featured: false,
+    files: {
+      "nothing to see here.zip": new Blob(["hello"]),
+    },
+    game_versions: ["22w42a"],
+    loaders: ["fabric"],
+    name: "Cool version",
+    project_id: process.env.MODRINTH_PROJECT_ID!,
+    version_number: "2.0",
+    version_type: "release",
+  })
 )
