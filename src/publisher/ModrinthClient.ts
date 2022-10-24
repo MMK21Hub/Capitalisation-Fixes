@@ -71,7 +71,9 @@ export type VersionInit = Omit<VersionInput, "file_parts" | "primary_file"> & {
 }
 
 export interface NamedFile {
+  /** @example "fabric-api-0.64.0+1.19.2.jar" */
   filename: string
+  /** A blob of the contents of the file. Must have the correct content-type. */
   data: Blob
 }
 
@@ -132,6 +134,7 @@ export default class {
     createVersion(version: VersionInit) {
       const files = toMap(version.files)
 
+      // Processing the provided map of files to get the format that we need for the request
       const namedFiles = new Map<string, NamedFile>()
       files.forEach((data, filename) => {
         // Generates a unique id ("name") for the file
@@ -156,8 +159,16 @@ export default class {
         ...version,
       }
 
+      // Preparing the form data request body
       const formData = new FormData()
       formData.append("data", JSON.stringify(versionData))
+
+      // Add all the files to the form data
+      namedFiles.forEach(({ data, filename }, id) => {
+        formData.append(id, data, filename)
+      })
+
+      // Now we're ready to send the request
     },
   }
 
