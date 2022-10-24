@@ -3,7 +3,7 @@ import {
   resolveURLParams,
   URLSearchParamsResolvable,
 } from "../util.js"
-import fetch, { Headers, BodyInit } from "node-fetch"
+import fetch, { Headers, BodyInit, FormData } from "node-fetch"
 
 export interface ModrinthClientOptions {
   token?: string

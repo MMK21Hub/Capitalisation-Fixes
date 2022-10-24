@@ -1,5 +1,6 @@
 import ModrinthClient from "./ModrinthClient.js"
 import dotenv from "dotenv"
+import { Blob } from "node-fetch"
 
 // Load environment variables from the .env file
 dotenv.config()
