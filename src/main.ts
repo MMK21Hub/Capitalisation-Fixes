@@ -1,19 +1,28 @@
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
-import {
-  MinecraftVersionSpecifier,
-  MinecraftVersionType,
-  VersionInfo,
-} from "./minecraftHelpers.js"
+import { MinecraftVersionSpecifier, VersionInfo } from "./minecraftHelpers.js"
 import fetch from "node-fetch"
 
-async function printStats() {
+export async function printStats() {
   const stats = await generateStats(fixes, { version: targetVersions })
 
   const { bugReports, translationKeys } = stats.count
 
   console.log(`Fixed bugs: ${bugReports}`)
   console.log(`Translation keys: ${translationKeys}`)
+}
+
+export async function buildPack() {
+  return await emitResourcePacks(fixes, {
+    targetVersions,
+    targetLanguages,
+    clearDirectory: true,
+    packVersion: commandLineArg,
+    // If no version was specified, just name the zip after the MC version it targets:
+    filename: commandLineArg
+      ? undefined
+      : (minecraftVersion) => `${minecraftVersion}.zip`,
+  })
 }
 
 export const packDescription =
@@ -36,15 +45,4 @@ const targetVersions: MinecraftVersionSpecifier = {
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
 const targetLanguages = ["en_us", "en_gb"]
 
-commandLineArg === "--stats"
-  ? await printStats()
-  : await emitResourcePacks(fixes, {
-      targetVersions,
-      targetLanguages,
-      clearDirectory: true,
-      packVersion: commandLineArg,
-      // If no version was specified, just name the zip after the MC version it targets:
-      filename: commandLineArg
-        ? undefined
-        : (minecraftVersion) => `${minecraftVersion}.zip`,
-    })
+commandLineArg === "--stats" ? await printStats() : await buildPack()

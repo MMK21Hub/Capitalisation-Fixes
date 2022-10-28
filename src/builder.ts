@@ -1,5 +1,5 @@
 import path from "node:path"
-import { readFile } from "node:fs/promises"
+import { readFile, writeFile } from "node:fs/promises"
 import AdmZip from "adm-zip"
 import {
   getTranslationString,
@@ -66,6 +66,10 @@ interface BuildOptions {
   packVersion?: string
   clearDirectory?: boolean
   filename?: FunctionMaybe<string, [string, string?]>
+}
+
+export interface OutFileMetadata {
+  minecraftVersion: MinecraftVersion
 }
 
 export class MissingValueError extends Error {
@@ -353,6 +357,10 @@ export async function emitResourcePacks(
   )
   const zipFiles = await generateMultiplePackZipData(languageFiles, ".")
 
+  /** A map of filenames to that file's metadata. */
+  const zipFileIndex = new Map<string, OutFileMetadata>()
+
+  // Save each of the in-memory zip files to the disk
   Object.entries(zipFiles).forEach(([version, zip]) => {
     const suffix = buildOptions.packVersion
       ? `-${buildOptions.packVersion}`
@@ -364,7 +372,17 @@ export async function emitResourcePacks(
         : buildOptions.filename || defaultFilename
     const zipPath = path.join(outputDir, filename)
     zip.writeZip(zipPath)
+
+    zipFileIndex.set(zipPath, {
+      minecraftVersion: version,
+    })
   })
+
+  // Save the index.json file
+  const outFileIndexFilename = "index.json"
+  const outFileIndexData = JSON.stringify(Array.from(zipFileIndex.entries()))
+  const outFileIndexPath = path.join(outputDir, outFileIndexFilename)
+  await writeFile(outFileIndexPath, outFileIndexData, "utf-8")
 }
 
 export async function generateStats(
