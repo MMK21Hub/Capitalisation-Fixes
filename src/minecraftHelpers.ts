@@ -480,11 +480,13 @@ export function packMetadata(
  * This isn't an actual Minecraft version, but it represents an upcoming version that hasn't been released yet.
  * When bug reports are fixed, they are often marked as fixed on Mojira before the version containing that fix has been released,
  * so the fix version is set to "Future Update".
+ *
+ * Note: No functions actually return this value at the moment, instead choosing to ignore future versions.
  */
 export const FUTURE_VERSION = Symbol("futureVersion")
 
 /**
- * Returns true if the provided version string is a future version
+ * Returns true if the provided version name is a future version
  * (see {@link FUTURE_VERSION} for more info) and not an actual version.
  */
 export function isFutureVersion(version: string) {

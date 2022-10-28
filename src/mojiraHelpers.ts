@@ -7,7 +7,7 @@ import {
 } from "./util.js"
 import { JSDOM } from "jsdom"
 import fetch from "node-fetch"
-import { toVersionID } from "./minecraftHelpers.js"
+import { isFutureVersion, toVersionID } from "./minecraftHelpers.js"
 
 // From https://bugs.mojang.com/rest/api/2/status
 export enum Status {
@@ -64,16 +64,31 @@ export async function getBugResolution(bug: string) {
   }
 }
 
-function getVersionsFromXML(dom: JSDOM, selector: string) {
+/** @returns An array of version names (or maybe IDs, sometimes) */
+function getRawVersionsFromXML(dom: JSDOM, selector: string) {
   try {
-    const fixVersions = getSelectorTextAll(dom, selector)
-    return fixVersions.map(toVersionID)
+    const versionNames = getSelectorTextAll(dom, selector)
+    return versionNames
   } catch (error) {
     if (error instanceof SelectorNotFound) return []
     throw error
   }
 }
 
+/** @returns An array of version IDs */
+function getVersionsFromXML(dom: JSDOM, selector: string) {
+  const selectedVersions = getRawVersionsFromXML(dom, selector)
+  const versionIds = selectedVersions
+    // Get rid of future versions, since they refer to the future,
+    // so are not useful to us. E.g. a bug marked as fixed for a
+    // future version has not actually been fixed in any version.
+    // (But it will be fixed in the near future.)
+    .filter((version) => !isFutureVersion(version))
+    .map(toVersionID)
+  return versionIds
+}
+
+/** Tip: If there are multiple fix versions, or there's a fix version but the report has been reopened, then it means that Mojang made a failed attempt to fix the bug. */
 export async function getBugFixVersions(bug: string) {
   const dom = await getBugXML(bug, ["fixVersions"])
   return getVersionsFromXML(dom, "fixVersion")
@@ -82,6 +97,28 @@ export async function getBugFixVersions(bug: string) {
 export async function getBugAffectsVersions(bug: string) {
   const dom = await getBugXML(bug, ["version"])
   return getVersionsFromXML(dom, "item version")
+}
+
+/** Returns true if the bug is fixed, and the fix has is public (i.e. not an unreleased version) */
+export async function isFixed(bug: string) {
+  const fixedResolutions = [Resolution.Fixed, Resolution.Done]
+  const { resolution } = await getBugResolution(bug)
+  if (resolution && fixedResolutions.includes(resolution)) {
+    // Get the fix version names, as provided by the API
+    const bugInfo = await getBugXML(bug, ["fixVersions"])
+    const fixVersions = getRawVersionsFromXML(bugInfo, "fixVersion")
+
+    // If the last listed fix version is a future update,
+    // then the fix has not been released yet.
+    const significantFixVersion = fixVersions.at(-1)
+    if (significantFixVersion && isFutureVersion(significantFixVersion))
+      return false
+
+    // The bug has a fix version (and it's not a future version)
+    return true
+  }
+
+  return false
 }
 
 export async function getBug(key: string): Promise<string | null> {

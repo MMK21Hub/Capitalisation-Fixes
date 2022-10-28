@@ -11,6 +11,7 @@ import {
   getBugAffectsVersions,
   getBugFixVersions,
   getBugResolution,
+  isFixed,
   Resolution,
 } from "./mojiraHelpers.js"
 
@@ -134,9 +135,7 @@ export default class Fix {
         `Bug report ${this.bug} has an inappropriate resolution (${Resolution[resolution]})`
       )
 
-    const fixedResolutions = [Resolution.Fixed, Resolution.Done]
-    if (resolution && fixedResolutions.includes(resolution))
-      await this.validateFixedBug()
+    if (await isFixed(this.bug)) await this.validateFixedBug()
 
     await this.validateBugAffectsVersions()
   }
