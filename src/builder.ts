@@ -326,6 +326,17 @@ async function generateMultiplePackZipData(
   return result
 }
 
+/** Saves an index of the generated zip files to the outputDir */
+async function emitOutFileIndex(
+  index: Map<string, OutFileMetadata>,
+  outputDir: string
+) {
+  const filename = "index.json"
+  const data = JSON.stringify(Array.from(index.entries()))
+  const filePath = path.join(outputDir, filename)
+  await writeFile(filePath, data, "utf-8")
+}
+
 export async function emitResourcePacks(
   fixes: Fix[],
   buildOptions: BuildOptions
@@ -379,10 +390,7 @@ export async function emitResourcePacks(
   })
 
   // Save the index.json file
-  const outFileIndexFilename = "index.json"
-  const outFileIndexData = JSON.stringify(Array.from(zipFileIndex.entries()))
-  const outFileIndexPath = path.join(outputDir, outFileIndexFilename)
-  await writeFile(outFileIndexPath, outFileIndexData, "utf-8")
+  await emitOutFileIndex(zipFileIndex, outputDir)
 }
 
 export async function generateStats(
