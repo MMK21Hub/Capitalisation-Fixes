@@ -190,7 +190,7 @@ export function getVersion(target: MinecraftVersion | number): VersionInfo {
   return matchedVersion
 }
 
-export function findVersionInfo(targetVersion: string) {
+export function findVersionInfo(targetVersion: string): VersionInfo {
   const matchedVersion = versionsSummary.find(
     (version) =>
       version.id === targetVersion ||
@@ -474,4 +474,24 @@ export function packMetadata(
       description,
     },
   }
+}
+
+/**
+ * This isn't an actual Minecraft version, but it represents an upcoming version that hasn't been released yet.
+ * When bug reports are fixed, they are often marked as fixed on Mojira before the version containing that fix has been released,
+ * so the fix version is set to "Future Update".
+ */
+export const FUTURE_VERSION = Symbol("futureVersion")
+
+/**
+ * Returns true if the provided version string is a future version
+ * (see {@link FUTURE_VERSION} for more info) and not an actual version.
+ */
+export function isFutureVersion(version: string) {
+  /**
+   * Before 6 September 2022, future versions were named like "Future Version 1.15+"
+   * (which would refer to a snapshot for 1.15). This regex matches those versions.
+   */
+  const oldFutureVersionFormat = /Future Version 1\.\d+\+/gm
+  return version === "Future Update" || oldFutureVersionFormat.test(version)
 }
