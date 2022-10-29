@@ -69,7 +69,18 @@ interface BuildOptions {
 }
 
 export interface OutFileMetadata {
+  /**
+   * The version of Minecraft that the pack is built for.
+   * Has to be a single, literal Minecraft version ID (not a version specifier).
+   * @example "1.19.1-pre1"
+   */
   minecraftVersion: MinecraftVersion
+  /**
+   * The version of that the pack is branded with, i.e. the current version of Capitalisation Fixes.
+   * Some built resource packs don't have a version number, e.g. ones built for development of the pack.
+   * @example "v2.13"
+   */
+  versionBrand?: string
 }
 
 export class MissingValueError extends Error {
@@ -386,6 +397,7 @@ export async function emitResourcePacks(
 
     zipFileIndex.set(zipPath, {
       minecraftVersion: version,
+      versionBrand: buildOptions.packVersion,
     })
   })
 
