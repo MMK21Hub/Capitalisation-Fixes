@@ -395,7 +395,7 @@ export async function emitResourcePacks(
     const zipPath = path.join(outputDir, filename)
     zip.writeZip(zipPath)
 
-    zipFileIndex.set(zipPath, {
+    zipFileIndex.set(filename, {
       minecraftVersion: version,
       versionBrand: buildOptions.packVersion,
     })
