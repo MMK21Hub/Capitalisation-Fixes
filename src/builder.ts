@@ -68,6 +68,8 @@ interface BuildOptions {
   filename?: FunctionMaybe<string, [string, string?]>
 }
 
+export type OutFileIndex = Map<string, OutFileMetadata>
+
 export interface OutFileMetadata {
   /**
    * The version of Minecraft that the pack is built for.
@@ -338,10 +340,7 @@ async function generateMultiplePackZipData(
 }
 
 /** Saves an index of the generated zip files to the outputDir */
-async function emitOutFileIndex(
-  index: Map<string, OutFileMetadata>,
-  outputDir: string
-) {
+async function emitOutFileIndex(index: OutFileIndex, outputDir: string) {
   const filename = "index.json"
   const data = JSON.stringify(Array.from(index.entries()))
   const filePath = path.join(outputDir, filename)
@@ -380,7 +379,7 @@ export async function emitResourcePacks(
   const zipFiles = await generateMultiplePackZipData(languageFiles, ".")
 
   /** A map of filenames to that file's metadata. */
-  const zipFileIndex = new Map<string, OutFileMetadata>()
+  const zipFileIndex: OutFileIndex = new Map()
 
   // Save each of the in-memory zip files to the disk
   Object.entries(zipFiles).forEach(([version, zip]) => {
