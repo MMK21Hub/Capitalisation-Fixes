@@ -83,6 +83,15 @@ export interface OutFileMetadata {
    * @example "v2.13"
    */
   versionBrand?: string
+  /**
+   * The "position" of this file amongst all the files that were generated in this run.
+   * A smaller number means that the target version is older.
+   */
+  index: number
+  /**
+   * The number of files that were generated in this run. Useful when combined with the {@link index}.
+   */
+  totalFiles: number
 }
 
 export class MissingValueError extends Error {
@@ -382,7 +391,7 @@ export async function emitResourcePacks(
   const zipFileIndex: OutFileIndex = new Map()
 
   // Save each of the in-memory zip files to the disk
-  Object.entries(zipFiles).forEach(([version, zip]) => {
+  Object.entries(zipFiles).forEach(([version, zip], index) => {
     const suffix = buildOptions.packVersion
       ? `-${buildOptions.packVersion}`
       : ""
@@ -396,6 +405,8 @@ export async function emitResourcePacks(
     const fileMetadata: OutFileMetadata = {
       minecraftVersion: version,
       versionBrand: buildOptions.packVersion,
+      index,
+      totalFiles: Object.values(zipFiles).length,
     }
     const infoFileContents = {
       ...fileMetadata,

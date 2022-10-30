@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 import { Blob } from "node-fetch"
 import { readFile } from "fs/promises"
 import { join } from "path"
-import { OutFileIndex } from "../builder.js"
+import { OutFileIndex, OutFileMetadata } from "../builder.js"
 import { createInterface } from "readline"
 
 /**
@@ -49,6 +49,42 @@ function findPackVersion(packIndex: OutFileIndex): string {
   return packVersion
 }
 
+function generateChangelog({
+  minecraftVersion,
+  versionBrand,
+  index,
+  totalFiles,
+}: OutFileMetadata): string {
+  if (!versionBrand)
+    return `Development build for Minecraft ${minecraftVersion}`
+
+  const githubRelease = `https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/${versionBrand}`
+
+  const versionsBehind = totalFiles - 1 - index
+  const olderVersionsNote =
+    versionsBehind !== 0
+      ? `Note: ${minecraftVersion} is ${versionsBehind} versions behind the latest Minecraft version that this release supports. Not all mentioned changes may apply.`
+      : ""
+
+  /* Markdown is supported. Use level-three headings (and below) to avoid clashing with Modrinth's UI. */
+  return `
+**Capitalisation Fixes ${versionBrand} for Minecraft ${versionBrand}**
+
+${olderVersionsNote}
+### Release notes
+
+This section would be hand-written
+- Maybe take it from GH releases
+- We added 10 new bugfixes
+- Optimizations to the build tool
+- Added support for Pirate English
+
+----
+
+[*View this release on Github*](${githubRelease})
+  `.trim()
+}
+
 async function publishReleases() {
   if (!process.env.MODRINTH_PROJECT_ID)
     throw new Error(
@@ -57,8 +93,9 @@ async function publishReleases() {
 
   const newReleases: unknown[] = []
   let hasErrored = false
-  for (const [filename, { minecraftVersion }] of index.entries()) {
+  for (const [filename, fileInfo] of index.entries()) {
     if (hasErrored) break
+    const { minecraftVersion } = fileInfo
     const fileContents = await readFile(join(outputDir, filename))
     const name = `${packVersion} (${minecraftVersion})`
 
@@ -70,6 +107,7 @@ async function publishReleases() {
         name: name,
         project_id: process.env.MODRINTH_PROJECT_ID,
         version_number: `${packVersion}-${minecraftVersion}`,
+        changelog: generateChangelog(fileInfo),
       })
       .catch((e) => {
         console.error(e)
@@ -117,6 +155,11 @@ if (carefulMode) {
   )
 }
 
+// Bypass asking for user input if the VSCode debugger is being used
+// It would be better to check for an interactive shell instead
+const isVscode = !!process.env.VSCODE_INSPECTOR_OPTIONS
+if (isVscode) await publishReleases()
+
 const hint = carefulMode ? "(yes/NO)" : "(Y/n)"
 
 rl.question(
@@ -133,5 +176,6 @@ rl.question(
     // There's no going back now!
     const newReleases = await publishReleases()
     console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
+    process.exit(0)
   }
 )
