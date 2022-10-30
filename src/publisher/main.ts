@@ -4,6 +4,7 @@ import { Blob } from "node-fetch"
 import { readFile } from "fs/promises"
 import { join } from "path"
 import { OutFileIndex } from "../builder.js"
+import { createInterface } from "readline"
 
 /**
  * Goes through all the files in the index.
@@ -48,6 +49,42 @@ function findPackVersion(packIndex: OutFileIndex): string {
   return packVersion
 }
 
+async function publishReleases() {
+  if (!process.env.MODRINTH_PROJECT_ID)
+    throw new Error(
+      "MODRINTH_PROJECT_ID must be provided to specify the Modrinth project to publish the releases to."
+    )
+
+  const newReleases: unknown[] = []
+  let hasErrored = false
+  for (const [filename, { minecraftVersion }] of index.entries()) {
+    if (hasErrored) break
+    const fileContents = await readFile(join(outputDir, filename))
+    const name = `${packVersion} (${minecraftVersion})`
+
+    const responseData = await client.rest
+      .createVersion({
+        files: [[filename, new Blob([fileContents])]],
+        game_versions: [minecraftVersion],
+        loaders: ["minecraft"],
+        name: name,
+        project_id: process.env.MODRINTH_PROJECT_ID,
+        version_number: `${packVersion}-${minecraftVersion}`,
+      })
+      .catch((e) => {
+        console.error(e)
+        throw new Error(
+          `Failed to upload a release to Modrinth! See error above.`
+        )
+      })
+
+    console.log(`Successfully published version ${name}`)
+    newReleases.push(responseData)
+  }
+
+  return newReleases
+}
+
 // Load environment variables from the .env file
 dotenv.config()
 
@@ -61,19 +98,18 @@ const outputDir = "out"
 const indexFile = join(outputDir, "index.json")
 const indexEntries = JSON.parse(await readFile(indexFile, "utf-8"))
 const index: OutFileIndex = new Map(indexEntries)
-
 const packVersion = findPackVersion(index)
-console.log(packVersion)
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
 
-// console.log(
-//   await client.rest.createVersion({
-//     files: {
-//       "nothing to see here.zip": new Blob(["hello"]),
-//     },
-//     game_versions: ["22w42a"],
-//     loaders: ["fabric"],
-//     name: "Cool version",
-//     project_id: process.env.MODRINTH_PROJECT_ID!,
-//     version_number: "2.0",
-//   })
-// )
+console.log(`Found ${index.size} file(s) for version ${packVersion}.`)
+rl.question(
+  `Publish ${index.size} release(s) to Modrinth? (Y/n) `,
+  async (answer) => {
+    if (answer.toLowerCase().at(0) === "n") return console.log("Goodbye then!")
+    const newReleases = await publishReleases()
+    console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
+  }
+)
