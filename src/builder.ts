@@ -392,12 +392,23 @@ export async function emitResourcePacks(
         ? buildOptions.filename(version, buildOptions.packVersion)
         : buildOptions.filename || defaultFilename
     const zipPath = path.join(outputDir, filename)
-    zip.writeZip(zipPath)
 
-    zipFileIndex.set(filename, {
+    const fileMetadata: OutFileMetadata = {
       minecraftVersion: version,
       versionBrand: buildOptions.packVersion,
-    })
+    }
+    const infoFileContents = {
+      ...fileMetadata,
+      license: "CC0",
+      licenseDescription: "Public-domain equivalent. No rights reserved.",
+      url: "https://modrinth.com/resourcepack/capitalisation-fixes",
+      source: "https://github.com/MMK21Hub/Capitalisation-Fixes",
+    }
+    const infoFile = Buffer.from(JSON.stringify(infoFileContents, null, 4))
+    zip.addFile("capitalisation_fixes.json", infoFile)
+
+    zip.writeZip(zipPath)
+    zipFileIndex.set(filename, fileMetadata)
   })
 
   // Save the index.json file
