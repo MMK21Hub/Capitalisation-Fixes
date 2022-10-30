@@ -41,10 +41,10 @@ export const cache = new Map<string, any>()
 
 const commandLineArg = process.argv[2]
 
-// const targetVersions: MinecraftVersionFancyRange = {
-//   start: "1.19.2",
-// }
-const targetVersions = "1.19.2"
+const targetVersions: MinecraftVersionFancyRange = {
+  start: "22w42a",
+}
+// const targetVersions = "1.19.2"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
 const targetLanguages = ["en_us", "en_gb"]
 

@@ -16,3 +16,4 @@ yarn-error.log
 
 # Other persistent data files
 confirmed.txt
+release/

@@ -78,15 +78,11 @@ ${minecraftVersion} is ${versionsBehindString} versions behind the latest Minecr
   return `
 ${olderVersionsNote}
 
-What a buig update today!
-- Fixed some bugs
-- Other improvements
-- Removed the rest of this changelog
+Fixed a single translation string
 
 ----
 
-**Capitalisation Fixes ${versionBrand} for Minecraft ${versionBrand}**
-- [View this release on Github](${githubRelease})
+[*View this release on Github*](${githubRelease})
   `.trim()
 }
 
