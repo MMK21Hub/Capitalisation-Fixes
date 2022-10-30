@@ -1,10 +1,12 @@
 import ModrinthClient from "./ModrinthClient.js"
 import dotenv from "dotenv"
 import { Blob } from "node-fetch"
-import { readFile } from "fs/promises"
+import { readFile, writeFile } from "fs/promises"
 import { join } from "path"
 import { OutFileIndex, OutFileMetadata } from "../builder.js"
 import { createInterface } from "readline"
+import { ensureDir } from "../util.js"
+import { exec } from "child_process"
 
 /**
  * Goes through all the files in the index.
@@ -49,12 +51,27 @@ function findPackVersion(packIndex: OutFileIndex): string {
   return packVersion
 }
 
-function generateChangelog({
-  minecraftVersion,
-  versionBrand,
-  index,
-  totalFiles,
-}: OutFileMetadata): string {
+async function askForChangelog(): Promise<string> {
+  const releaseConfigFolder = "release"
+  const changelogFileName = "changelog.md"
+  const changelogFilePath = join(releaseConfigFolder, changelogFileName)
+  await ensureDir(releaseConfigFolder)
+  await writeFile(changelogFilePath, Buffer.from(""), {
+    flag: "a",
+  })
+
+  return new Promise(async (resolve) => {
+    exec(`editor "${changelogFilePath}"`, async () => {
+      const fileContent = await readFile(changelogFilePath, "utf-8")
+      resolve(fileContent)
+    })
+  })
+}
+
+function generateChangelog(
+  { minecraftVersion, versionBrand, index, totalFiles }: OutFileMetadata,
+  releaseNotes: string
+): string {
   if (!versionBrand)
     return `Development build for Minecraft ${minecraftVersion}`
 
@@ -78,7 +95,7 @@ ${minecraftVersion} is ${versionsBehindString} versions behind the latest Minecr
   return `
 ${olderVersionsNote}
 
-Fixed a single translation string
+${releaseNotes}
 
 ----
 
@@ -86,7 +103,7 @@ Fixed a single translation string
   `.trim()
 }
 
-async function publishReleases() {
+async function publishReleases(changelogBody: string) {
   if (!process.env.MODRINTH_PROJECT_ID)
     throw new Error(
       "MODRINTH_PROJECT_ID must be provided to specify the Modrinth project to publish the releases to."
@@ -106,7 +123,7 @@ async function publishReleases() {
         name: name,
         project_id: process.env.MODRINTH_PROJECT_ID,
         version_number: `${packVersion}-${minecraftVersion}`,
-        changelog: generateChangelog(fileInfo),
+        changelog: generateChangelog(fileInfo, changelogBody),
       })
       .catch((e) => {
         console.error(e)
@@ -157,7 +174,7 @@ if (carefulMode) {
 // Bypass asking for user input if the VSCode debugger is being used
 // It would be better to check for an interactive shell instead
 const isVscode = !!process.env.VSCODE_INSPECTOR_OPTIONS
-if (isVscode) await publishReleases()
+if (isVscode) await publishReleases("Dummy changelog text")
 
 const hint = carefulMode ? "(yes/NO)" : "(Y/n)"
 
@@ -172,8 +189,10 @@ rl.question(
       )
     if (answer.at(0) === "n") return console.log("Goodbye then!")
 
+    const changelogText = await askForChangelog()
+
     // There's no going back now!
-    const newReleases = await publishReleases()
+    const newReleases = await publishReleases(changelogText)
     console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
     process.exit(0)
   }

@@ -6,7 +6,10 @@ dep.svg
 
 # Local package installation
 node_modules/
+
+# Log files
 yarn-error.log
+log.txt
 
 # Caches
 .cache
