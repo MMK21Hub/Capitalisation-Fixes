@@ -93,9 +93,7 @@ async function publishReleases() {
     )
 
   const newReleases: unknown[] = []
-  let hasErrored = false
   for (const [filename, fileInfo] of index.entries()) {
-    if (hasErrored) break
     const { minecraftVersion } = fileInfo
     const fileContents = await readFile(join(outputDir, filename))
     const name = `${packVersion} (${minecraftVersion})`
