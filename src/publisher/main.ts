@@ -78,7 +78,7 @@ async function publishReleases() {
         )
       })
 
-    console.log(`Successfully published version ${name}`)
+    console.log(`Successfully published version "${name}"`)
     newReleases.push(responseData)
   }
 
@@ -105,10 +105,32 @@ const rl = createInterface({
 })
 
 console.log(`Found ${index.size} file(s) for version ${packVersion}.`)
+console.log(`Using API: ${client.baseURL}`)
+
+const carefulMode = client.baseURL.hostname === "api.modrinth.com"
+if (carefulMode) {
+  console.log(
+    "\x1b[31m" +
+      "This is the public, production instance of Modrinth. " +
+      "Your release is going live!" +
+      "\x1b[0m"
+  )
+}
+
+const hint = carefulMode ? "(yes/NO)" : "(Y/n)"
+
 rl.question(
-  `Publish ${index.size} release(s) to Modrinth? (Y/n) `,
+  `Publish ${index.size} release(s) to Modrinth? ${hint} `,
   async (answer) => {
-    if (answer.toLowerCase().at(0) === "n") return console.log("Goodbye then!")
+    // Checking that the action has been confirmed
+    answer = answer.toLowerCase()
+    if (carefulMode && answer !== "yes")
+      return console.log(
+        'You must type "yes" to confirm publishing this release.'
+      )
+    if (answer.at(0) === "n") return console.log("Goodbye then!")
+
+    // There's no going back now!
     const newReleases = await publishReleases()
     console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
   }
