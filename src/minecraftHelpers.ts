@@ -355,7 +355,10 @@ export async function resolveMinecraftVersionFancyRange(
   // Local function shorthands:
   const resolveRange = resolveMinecraftVersionSimpleRange
 
-  const fullRange = await resolveRange([range.start, range.end], {
+  const start = range.start || null
+  const end = range.end || null
+
+  const fullRange = await resolveRange([start, end], {
     removeStart: range.exclusiveStart,
     removeEnd: range.exclusiveEnd,
   })

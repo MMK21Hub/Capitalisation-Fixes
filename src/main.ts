@@ -1,6 +1,10 @@
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
-import { MinecraftVersionSpecifier, VersionInfo } from "./minecraftHelpers.js"
+import {
+  MinecraftVersionFancyRange,
+  MinecraftVersionSpecifier,
+  VersionInfo,
+} from "./minecraftHelpers.js"
 import fetch from "node-fetch"
 
 export async function printStats() {
@@ -37,11 +41,10 @@ export const cache = new Map<string, any>()
 
 const commandLineArg = process.argv[2]
 
-const targetVersions: MinecraftVersionSpecifier = {
-  type: "latest",
-  branch: "snapshot",
-}
-// const targetVersions = "22w24a"
+// const targetVersions: MinecraftVersionFancyRange = {
+//   start: "1.19.2",
+// }
+const targetVersions = "1.19.2"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
 const targetLanguages = ["en_us", "en_gb"]
 

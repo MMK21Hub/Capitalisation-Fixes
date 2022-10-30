@@ -23,8 +23,8 @@ export type FunctionMaybeArgs<T, A extends Record<string, any>> = FunctionMaybe<
 export type StartAndEnd<T> = [T | null, T | null]
 /** Represents a {@link Range}, with options for excluding parts within that range */
 export type FancyRange<T> = {
-  start: T
-  end: T
+  start?: T
+  end?: T
   exclude?: Range<T>
   include?: Range<T>
   exclusiveStart?: boolean

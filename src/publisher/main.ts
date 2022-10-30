@@ -61,27 +61,32 @@ function generateChangelog({
   const githubRelease = `https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/${versionBrand}`
 
   const versionsBehind = totalFiles - 1 - index
+  const versionsBehindString =
+    versionsBehind === 1
+      ? "1 version behind"
+      : `${versionsBehind} versions behind`
   const olderVersionsNote =
     versionsBehind !== 0
-      ? `Note: ${minecraftVersion} is ${versionsBehind} versions behind the latest Minecraft version that this release supports. Not all mentioned changes may apply.`
+      ? `\
+<details>
+<summary>Release notes may be inaccurate</summary>
+${minecraftVersion} is ${versionsBehindString} versions behind the latest Minecraft version that this release supports, so some/all of the changes mentioned in the release notes may not apply.
+</details>`
       : ""
 
   /* Markdown is supported. Use level-three headings (and below) to avoid clashing with Modrinth's UI. */
   return `
-**Capitalisation Fixes ${versionBrand} for Minecraft ${versionBrand}**
-
 ${olderVersionsNote}
-### Release notes
 
-This section would be hand-written
-- Maybe take it from GH releases
-- We added 10 new bugfixes
-- Optimizations to the build tool
-- Added support for Pirate English
+What a buig update today!
+- Fixed some bugs
+- Other improvements
+- Removed the rest of this changelog
 
 ----
 
-[*View this release on Github*](${githubRelease})
+**Capitalisation Fixes ${versionBrand} for Minecraft ${versionBrand}**
+- [View this release on Github](${githubRelease})
   `.trim()
 }
 
@@ -142,7 +147,7 @@ const rl = createInterface({
   output: process.stdout,
 })
 
-console.log(`Found ${index.size} file(s) for version ${packVersion}.`)
+console.log(`Found ${index.size} file(s) for version ${packVersion}`)
 console.log(`Using API: ${client.baseURL}`)
 
 const carefulMode = client.baseURL.hostname === "api.modrinth.com"
