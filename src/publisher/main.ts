@@ -56,6 +56,7 @@ async function askForChangelog(): Promise<string> {
   const changelogFileName = "changelog.md"
   const changelogFilePath = join(releaseConfigFolder, changelogFileName)
   await ensureDir(releaseConfigFolder)
+  // Create the file (with no content) if it doesn't already exist:
   await writeFile(changelogFilePath, Buffer.from(""), {
     flag: "a",
   })

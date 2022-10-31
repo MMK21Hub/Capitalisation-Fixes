@@ -136,18 +136,6 @@ async function generateTranslationStrings(
     (fix) => !fix.languages || fix.languages.includes(targetLanguage)
   )
 
-  const fixKeyIsDuplicated = (fixes: Fix[], fix: Fix, index: number) =>
-    fixes.filter((f, i) => f.key === fix.key && index > i).length
-  const duplicateFixes = fixes.filter((fix, i) =>
-    fixKeyIsDuplicated(fixes, fix, i)
-  )
-
-  duplicateFixes.forEach(({ key }) =>
-    console.warn(
-      `[${brand}] Translation key ${key} has multiple fixes that target it`
-    )
-  )
-
   for (const { key, transformer } of fixes) {
     const transformerName = Object.getPrototypeOf(transformer).constructor.name
     const logger = new TransformerLogger()
