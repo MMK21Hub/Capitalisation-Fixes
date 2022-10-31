@@ -183,29 +183,6 @@ if (carefulMode) {
   )
 }
 
-// Bypass asking for user input if the VSCode debugger is being used
-// It would be better to check for an interactive shell instead
-const isVscode = !!process.env.VSCODE_INSPECTOR_OPTIONS
-if (isVscode) await publishReleases("Dummy changelog text")
-
-const hint = carefulMode ? "(yes/NO)" : "(Y/n)"
-
-rl.question(
-  `Publish ${index.size} release(s) to Modrinth? ${hint} `,
-  async (answer) => {
-    // Checking that the action has been confirmed
-    answer = answer.toLowerCase()
-    if (carefulMode && answer !== "yes")
-      return console.log(
-        'You must type "yes" to confirm publishing this release.'
-      )
-    if (answer.at(0) === "n") return console.log("Goodbye then!")
-
-    const changelogText = await getReleaseNotes()
-
-    // There's no going back now!
-    const newReleases = await publishReleases(changelogText)
-    console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
-    process.exit(0)
-  }
-)
+const changelogText = await getReleaseNotes()
+const newReleases = await publishReleases(changelogText)
+console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
