@@ -6,7 +6,7 @@ import { join } from "path"
 import { OutFileIndex, OutFileMetadata } from "../builder.js"
 import { createInterface } from "readline"
 import { ensureDir } from "../util.js"
-import { exec } from "child_process"
+import { exec, spawn } from "child_process"
 
 /**
  * Goes through all the files in the index.
@@ -51,20 +51,31 @@ function findPackVersion(packIndex: OutFileIndex): string {
   return packVersion
 }
 
-async function askForChangelog(): Promise<string> {
+async function getReleaseNotes(): Promise<string> {
   const releaseConfigFolder = "release"
-  const changelogFileName = "changelog.md"
-  const changelogFilePath = join(releaseConfigFolder, changelogFileName)
+  const filename = "changelog.md"
+  const filePath = join(releaseConfigFolder, filename)
   await ensureDir(releaseConfigFolder)
   // Create the file (with no content) if it doesn't already exist:
-  await writeFile(changelogFilePath, Buffer.from(""), {
+  await writeFile(filePath, Buffer.from(""), {
     flag: "a",
   })
 
-  return new Promise(async (resolve) => {
-    exec(`editor "${changelogFilePath}"`, async () => {
-      const fileContent = await readFile(changelogFilePath, "utf-8")
-      resolve(fileContent)
+  console.log(
+    `Write the release notes by editing the file at ${filePath} with your preferred text editor.`
+  )
+
+  return new Promise((resolve, reject) => {
+    rl.question("Press enter here once you're done. ", async () => {
+      const fileData = await readFile(filePath, "utf-8")
+      if (!fileData) reject("Release notes file is empty!")
+      console.log("\x1b[36m" + fileData + "\x1b[0m")
+      rl.question(
+        "Publish the above text as the release notes? [Press Enter] ",
+        () => {
+          resolve(fileData)
+        }
+      )
     })
   })
 }
@@ -190,7 +201,7 @@ rl.question(
       )
     if (answer.at(0) === "n") return console.log("Goodbye then!")
 
-    const changelogText = await askForChangelog()
+    const changelogText = await getReleaseNotes()
 
     // There's no going back now!
     const newReleases = await publishReleases(changelogText)
