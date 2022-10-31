@@ -6,7 +6,6 @@ import { join } from "path"
 import { OutFileIndex, OutFileMetadata } from "../builder.js"
 import { createInterface } from "readline"
 import { ensureDir } from "../util.js"
-import { exec, spawn } from "child_process"
 
 /**
  * Goes through all the files in the index.
@@ -71,7 +70,7 @@ async function getReleaseNotes(): Promise<string> {
       if (!fileData) reject("Release notes file is empty!")
       console.log("\x1b[36m" + fileData + "\x1b[0m")
       rl.question(
-        "Publish the above text as the release notes? [Press Enter] ",
+        "Press enter to use the above text as the release notes. ",
         () => {
           resolve(fileData)
         }
@@ -186,3 +185,4 @@ if (carefulMode) {
 const changelogText = await getReleaseNotes()
 const newReleases = await publishReleases(changelogText)
 console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
+process.exit()
