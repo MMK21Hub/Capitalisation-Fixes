@@ -97,8 +97,11 @@ function generateChangelog(
     versionsBehind !== 0
       ? `\
 <details>
-<summary>Release notes may be inaccurate</summary>
+<summary>Not all changes may apply to ${minecraftVersion}</summary>
 ${minecraftVersion} is ${versionsBehindString} versions behind the latest Minecraft version that this release supports, so some/all of the changes mentioned in the release notes may not apply.
+For example, some bugs are only present in newer versions, so the fix for them will only be included in the applicable versions.
+
+For more information, take a look at the [compatibility table](https://github.com/MMK21Hub/Capitalisation-Fixes#compatibility-table).
 </details>`
       : ""
 
@@ -185,4 +188,5 @@ if (carefulMode) {
 const changelogText = await getReleaseNotes()
 const newReleases = await publishReleases(changelogText)
 console.log(`Published ${newReleases.length} release(s) to Modrinth!`)
+console.log("Next step: Manually (un)mark featured versions as appropriate.")
 process.exit()
