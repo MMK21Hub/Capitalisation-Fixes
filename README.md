@@ -19,14 +19,14 @@ To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitali
 
 ## Compatibility table
 
-Not all versions of the resource pack are compatible with all versions of MC, so check the table before deciding on the version of the resource pack to use.
+The tables below show you the versions of Minecraft that different releases of Capitalisation Fixes will work with. The &#127775; symbol denotes the best version of the pack to use for each Minecraft version.
 
-To benefit from the newest bugfixes, you should keep up-to-date with the latest release of the resource pack.
+Newer releases of the pack (v2.9+) often have multiple variants for different Minecraft versions. This is done through attaching multiple files in [GitHub Releases](https://github.com/MMK21Hub/Capitalisation-Fixes/releases)
+and by publishing multiple editions of each release on [Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes/versions). Each variant is optimised for its corresponding Minecraft version,
+meaning that they contain all of the fixes applicable to that version — nothing more and nothing less.
 
-Newer releases of the pack (v2.9+) are often available for multiple Minecraft versions. This is done through attaching multiple files in [GitHub Releases](https://github.com/MMK21Hub/Capitalisation-Fixes/releases)
-and by publishing multiple editions of each release on [Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes/versions).
-
-&#127775; Denotes the recommend version of the pack for each Minecraft version.
+To benefit from the newest bugfixes, you should keep up-to-date with the latest release of the resource pack. If you're running an older version of Minecraft but still want to use the latest version of the pack,
+you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.3
 
@@ -50,7 +50,7 @@ and by publishing multiple editions of each release on [Modrinth](https://modrin
 | **[v2.9](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.9)**   | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#127775;   | &#127775;  | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.10](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.10)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.11](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.11)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#127775;   | &#9989;   | &#9989;   |
-| **[v2.12](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.12)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#127775; |
+| **[v2.12](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.12)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#127775; |
 
 ### 1.18
