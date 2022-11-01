@@ -5,17 +5,18 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.12 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.12/Capitalisation-Fixes-v2.12-1.19.2.zip)** (Recommended)
-- **[Capitalisation Fixes v2.0 for Minecraft 1.18.x](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
+- **[Capitalisation Fixes v2.13 for Minecraft 1.19.3 (22w43a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-22w43a.zip)**
+- **[Capitalisation Fixes v2.13 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-1.19.2.zip)** (Recommended)
+- **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
 
 ## Information
 
 - It currently targets the 1.19 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
 - It currently supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
-- You can submit feedback and bug reports under the ['Issues' tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21Games#2121` on Discord
+- You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21Games#2121` on Discord
 
-To download, go to the ['Versions' section](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
+To download, go to the [Releases tab](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
 
 ## Compatibility table
 
