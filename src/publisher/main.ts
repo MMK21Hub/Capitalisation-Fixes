@@ -88,27 +88,8 @@ function generateChangelog(
 
   const githubRelease = `https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/${versionBrand}`
 
-  const versionsBehind = totalFiles - 1 - index
-  const versionsBehindString =
-    versionsBehind === 1
-      ? "1 version behind"
-      : `${versionsBehind} versions behind`
-  const olderVersionsNote =
-    versionsBehind !== 0
-      ? `\
-<details>
-<summary>Not all changes may apply to ${minecraftVersion}</summary>
-${minecraftVersion} is ${versionsBehindString} versions behind the latest Minecraft version that this release supports, so some/all of the changes mentioned in the release notes may not apply.
-For example, some bugs are only present in newer versions, so the fix for them will only be included in the applicable versions.
-
-For more information, take a look at the [compatibility table](https://github.com/MMK21Hub/Capitalisation-Fixes#compatibility-table).
-</details>`
-      : ""
-
   /* Markdown is supported. Use level-three headings (and below) to avoid clashing with Modrinth's UI. */
   return `
-${olderVersionsNote}
-
 ${releaseNotes}
 
 ----
