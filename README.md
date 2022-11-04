@@ -5,7 +5,7 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.13 for Minecraft 1.19.3 (22w43a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-22w43a.zip)**
+- **[Capitalisation Fixes v2.13 for Minecraft 1.19.3 (22w44a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-22w44a.zip)**
 - **[Capitalisation Fixes v2.13 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-1.19.2.zip)** (Recommended)
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
@@ -31,9 +31,9 @@ you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.3
 
-|                                                                                  | 22w42a    | 22w43a    |
-| -------------------------------------------------------------------------------- | --------- | --------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#127775; | &#127775; |
+|                                                                                  | 22w42a    | 22w43a    | 22w44a    |
+| -------------------------------------------------------------------------------- | --------- | --------- | --------- |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#127775; | &#127775; | &#127775; |
 
 ### 1.19
 
