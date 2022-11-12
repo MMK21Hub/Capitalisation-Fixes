@@ -75,6 +75,16 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 30 modified translation strings are included in the resource pack, fixing a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
+Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
+
+| Minecraft version        | Translation strings | Fixed bugs |
+| ------------------------ | ------------------- | ---------- |
+| Latest release (1.19.2)  | 18                  | 30         |
+| Latest snapshot (22w45a) | 16                  | 27         |
+| Total                    | 18                  | 30         |
+
+And here's the list of translation strings that have fixes:
+
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
@@ -95,19 +105,21 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 ### Previously-fixed strings
 
 These fixes used to be included in the pack but have since been fixed in the vanilla game, so they're longer necessary.
-They can be found in old versions of the pack.
+They can be found in old releases of the pack. <!-- FIXME: Update to take the new "variants" system into account. -->
 
 - [Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422) Fixed in 22w14a
 - ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025) Fixed in 22w15a
 - ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920) Fixed in 22w15a
 - [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) Fixed in 22w15a
 - [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) Fixed in 22w15a
-- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a
-- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
+- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a<!-- Not in source code -->
+- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1<!-- Present in source code -->
 - [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
-- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) (unnecessary preposition)
-- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) (plural can be incorrect)
-- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) (unnecessary capitalisation)
+- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) Fixed in 1.19.1-pre1
+- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) Fixed in 1.19.1-pre1
+- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) Fixed in 1.19.1-pre5
+- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) Fixed in 22w44a
+- ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) Fixed in 22w44a
 
 ## Build tool
 
