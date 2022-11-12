@@ -10,6 +10,13 @@ if [[ $(git tag -l $1) ]]; then
   exit 2
 fi
 
+if [[ $(git status -s --porcelain) ]]; then
+  echo "Warning: You have uncommited changes!" >&2
+  echo "Please chack that you don't intend to include them in the release." >&2
+  git status -s
+  read -r -p "Press Ctrl+C to cancel, or Enter to continue. "
+fi
+
 # Generate a Resource Pack ZIP file that can be distributed with the release
 yarn build && QUIET=1 node dist/main.js $1
 BUILD_STATUS=$?
