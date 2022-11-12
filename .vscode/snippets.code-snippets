@@ -24,7 +24,8 @@
       "  key: \"$2\",",
       "  transformer: new $0,",
       "}),"
-    ]
+    ],
+    "scope": "typescript"
   },
 
   "Fix Template: Title Case": {
@@ -35,6 +36,13 @@
       "  key: \"$2\",",
       "  transformer: new TitleCaseTransformer(),",
       "}),"
-    ]
+    ],
+    "scope": "typescript"
+  },
+
+  "Mojira Link": {
+    "prefix": "mc",
+    "body": "[$1](https://bugs.mojang.com/browse/$1)$0",
+    "scope": "markdown"
   }
 }
