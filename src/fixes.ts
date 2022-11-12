@@ -42,16 +42,16 @@ const fixes: Fix[] = [
     key: "structure_block.include_entities",
     transformer: new TitleCaseTransformer(),
   }),
-  new Fix({
-    bug: "MC-195780",
-    key: "structure_block.mode_info.load",
-    transformer: new TitleCaseTransformer(),
-  }),
-  new Fix({
-    bug: "MC-195780",
-    key: "structure_block.mode_info.data",
-    transformer: new TitleCaseTransformer(),
-  }),
+  ...fixGroup(
+    "MC-195780",
+    {
+      "structure_block.mode_info.load": new TitleCaseTransformer(),
+      "structure_block.mode_info.data": new TitleCaseTransformer(),
+    },
+    {
+      versions: [null, "22w44a"],
+    }
+  ),
   new Fix({
     bug: "MC-220096",
     key: "options.graphics.warning.cancel",
@@ -93,6 +93,7 @@ const fixes: Fix[] = [
     bug: "MC-244721",
     key: "selectWorld.backupEraseCache",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "22w44a"],
   }),
   new Fix({
     bug: "MC-222876",
