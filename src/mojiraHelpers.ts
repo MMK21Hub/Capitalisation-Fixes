@@ -41,10 +41,19 @@ export function getBugXMLUrl(key: string, fields?: string[]) {
   return url
 }
 
-export function getBugXML(bug: string, fields?: string[]): Promise<JSDOM> {
+export function getBugXML(
+  bug: string,
+  fields?: string[],
+  retry = true
+): Promise<JSDOM> {
   const url = getBugXMLUrl(bug, fields)
   return JSDOM.fromURL(url.href)
     .catch((error: Error) => {
+      if (retry) {
+        console.warn("getBugXML(): HTTP request failed, retrying.")
+        return getBugXML(bug, fields, retry)
+      }
+
       console.error(`getBugXML(): HTTP request failed! (${url.href})`)
       throw error
     })
