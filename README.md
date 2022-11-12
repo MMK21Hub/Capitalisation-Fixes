@@ -5,8 +5,8 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.13 for Minecraft 1.19.3 (22w44a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-22w44a.zip)**
-- **[Capitalisation Fixes v2.13 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.13/Capitalisation-Fixes-v2.13-1.19.2.zip)** (Recommended)
+- **[Capitalisation Fixes v2.14 for Minecraft 1.19.3 (22w45a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.14/Capitalisation-Fixes-v2.14-22w45a.zip)**
+- **[Capitalisation Fixes v2.14 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.14/Capitalisation-Fixes-v2.14-1.19.2.zip)** (Recommended)
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
 
@@ -31,9 +31,10 @@ you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.3
 
-|                                                                                  | 22w42a    | 22w43a    | 22w44a    |
-| -------------------------------------------------------------------------------- | --------- | --------- | --------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#127775; | &#127775; | &#127775; |
+|                                                                                  | 22w42a–22w45a |
+| -------------------------------------------------------------------------------- | ------------- |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       |
+| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#127775;     |
 
 ### 1.19
 
@@ -52,7 +53,8 @@ you can [build a custom version of the pack](#build-tool).
 | **[v2.10](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.10)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.11](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.11)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#127775;   | &#9989;   | &#9989;   |
 | **[v2.12](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.12)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#127775; |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
+| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#127775; |
 
 ### 1.18
 
