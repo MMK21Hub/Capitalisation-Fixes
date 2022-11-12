@@ -18,10 +18,12 @@ import {
 export type MinecraftLanguage = string
 /** A single Minecraft version ID */
 export type MinecraftVersion = string
+/** The two update policies that can be selected in the official launcher */
+export type MinecraftVersionBranch = "snapshot" | "release"
 /** Specifies a "target" MC version that may change over time, e.g. the latest version */
 export type MinecraftVersionTarget = {
   type: "latest"
-  branch?: "snapshot" | "release"
+  branch?: MinecraftVersionBranch
 }
 /** Represents a single MC version as a set of numbers, instead of a string */
 export type NumericMinecraftVersion = {

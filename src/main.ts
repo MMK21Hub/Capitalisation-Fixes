@@ -1,14 +1,24 @@
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
 import {
+  MinecraftVersionBranch,
   MinecraftVersionFancyRange,
   MinecraftVersionSpecifier,
   VersionInfo,
 } from "./minecraftHelpers.js"
 import fetch from "node-fetch"
 
-export async function printStats() {
-  const stats = await generateStats(fixes, { version: targetVersions })
+export async function printStats(limitToLatest?: MinecraftVersionBranch) {
+  const versions: MinecraftVersionSpecifier = limitToLatest
+    ? {
+        type: "latest",
+        branch: limitToLatest,
+      }
+    : targetVersions
+
+  const stats = await generateStats(fixes, {
+    version: versions,
+  })
 
   const { bugReports, translationKeys } = stats.count
 
@@ -27,6 +37,12 @@ export async function buildPack() {
       ? undefined
       : (minecraftVersion) => `${minecraftVersion}.zip`,
   })
+}
+
+function getStatsFilter(): MinecraftVersionBranch | undefined {
+  if (process.argv[3] === "--latest-snapshot") return "snapshot"
+  if (process.argv[3] === "--latest-release") return "release"
+  return undefined
 }
 
 export const packDescription =
@@ -49,7 +65,9 @@ const targetVersions: MinecraftVersionFancyRange = {
 const targetLanguages = ["en_us", "en_gb"]
 
 try {
-  commandLineArg === "--stats" ? await printStats() : await buildPack()
+  commandLineArg === "--stats"
+    ? await printStats(getStatsFilter())
+    : await buildPack()
 } catch (error) {
   console.error(error)
   debugger

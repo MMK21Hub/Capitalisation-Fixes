@@ -82,9 +82,7 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 - [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
 - [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
-- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) (capitalisation of action button labels)
 - ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
-- ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) (capitalisation of action button labels)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
 - ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
@@ -143,7 +141,14 @@ node dist/main.js
 node dist/main.js v2.6
 
 # Print some statistics instead of building the pack
+# By default, it counts any fixes that are relevant to any of the target versions
 node dist/main.js --stats
+
+# Print the statistics, but only include fixes that are relevant to the latest snapshot
+node dist/main.js --stats --latest-snapshot
+
+# Print the statistics for the latest stable release of Minecraft
+node dist/main.js --stats --latest-release
 ```
 
 At the moment, you can't configure the output using command line arguments. The build configuration can be changed by editing the [`src/main.ts`](src/main.ts) file instead. (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
