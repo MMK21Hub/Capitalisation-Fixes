@@ -62,16 +62,18 @@ export type MinecraftVersionSpecifier =
   | MinecraftVersionFancyRange
   | SingleMinecraftVersionSpecifier
 export type LanguageFileData = Record<string, string>
-/** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
-export type ContextSensitiveSearchValue = ResolvableAsync<
-  SearchValue,
+
+/** A value that can be resolved (asynchronously) when provided a Minecraft version and a language. */
+export type ContextSensitive<T> = ResolvableAsync<
+  T,
   [MinecraftLanguage, MinecraftVersion]
 >
+/** A value that can be synchronously resolved when provided with language file data. */
+export type ContextSensitiveSync<T> = ResolvableSync<T, [LanguageFileData]>
+/** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
+export type ContextSensitiveSearchValue = ContextSensitive<SearchValue>
 /** A variant of {@link ContextSensitiveSearchValue}, where the language file data is directly provided to the resolver instead of the resolver having to fetch the data itself. */
-export type ContextSensitiveSearchValueSync = ResolvableSync<
-  SearchValue,
-  [LanguageFileData]
->
+export type ContextSensitiveSearchValueSync = ContextSensitiveSync<SearchValue>
 /** A search value that may or may not be be context-sensitive, and may or may not have a synchronous resolver. */
 export type FlexibleSearchValue =
   | ContextSensitiveSearchValue
