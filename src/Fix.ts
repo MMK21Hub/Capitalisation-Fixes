@@ -76,36 +76,6 @@ export default class Fix {
     }
   }
 
-  async validateBugAffectsVersions() {
-    if (!this.bug)
-      return console.warn(
-        "Fix#validateFixedBug() should only be called when a linked bug is present"
-      )
-
-    if (!this.versions) return
-
-    const applicableVersions = await resolveMinecraftVersionSpecifier(
-      this.versions
-    )
-
-    const affectsVersions = await getBugAffectsVersions(this.bug)
-    const firstAffectedVersion = affectsVersions.at(0)
-    const firstApplicableVersion = applicableVersions.at(0)
-    if (!firstAffectedVersion)
-      return console.warn(`${this.bug} has no Affects Version/s!`)
-    if (!firstApplicableVersion)
-      throw new Error(`Validating fix for ${this.bug}: Resolved versions 🦀`)
-    const affectedVersionsStart = findVersionIndex(firstAffectedVersion)
-    const applicableVersionsStart = findVersionIndex(firstApplicableVersion)
-
-    if (applicableVersionsStart < affectedVersionsStart) {
-      return console.warn(
-        `Version range for fix for ${this.bug} starts earlier than the first affected version. ` +
-          `Earliest affected version: ${firstAffectedVersion}. Earliest version that the fix will be applied to: ${firstApplicableVersion}.`
-      )
-    }
-  }
-
   async validateLinkedBug() {
     if (!this.bug) return
 
@@ -136,8 +106,6 @@ export default class Fix {
       )
 
     if (await isFixed(this.bug)) await this.validateFixedBug()
-
-    await this.validateBugAffectsVersions()
   }
 
   constructor(options: FixOptions) {
