@@ -16,9 +16,10 @@ export function fixGroup(
   strings: Record<string, string | Transformer>,
   options: {
     keyPrefix?: string
+    versions?: MinecraftVersionSpecifier
   } = {}
 ): Fix[] {
-  let { keyPrefix = "" } = options
+  let { keyPrefix = "", versions } = options
   if (keyPrefix && !keyPrefix.endsWith(".")) keyPrefix += "."
 
   return Object.entries(strings).map(
@@ -28,6 +29,7 @@ export function fixGroup(
         key: `${keyPrefix}${key}`,
         transformer:
           value instanceof Transformer ? value : new OverrideTransformer(value),
+        versions,
       })
   )
 }
