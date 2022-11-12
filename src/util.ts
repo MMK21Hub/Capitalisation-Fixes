@@ -53,7 +53,8 @@ export interface ResolvableSync<T, A extends any[] = []>
 export function isSimpleRange<T>(
   specifier: Range<T>
 ): specifier is StartAndEnd<T> {
-  return Array.isArray(specifier) && typeof specifier[0] !== "object"
+  if (!Array.isArray(specifier)) return false
+  return typeof specifier[0] !== "object" || specifier[0] === null
 }
 
 /* DATA MANIPULATION */
