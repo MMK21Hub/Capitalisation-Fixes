@@ -203,6 +203,14 @@ const fixes: Fix[] = [
       "argument.entity.options.gamemode.description",
     ]
   ),
+  new Fix({
+    bug: "MC-250197",
+    key: "advancements.husbandry.safely_harvest_honey.description",
+    transformer: new ReplaceTransformer(
+      "Bottle",
+      lang("item.minecraft.glass_bottle")
+    ),
+  }),
 ]
 
 export default fixes

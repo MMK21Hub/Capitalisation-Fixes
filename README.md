@@ -73,21 +73,22 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-30 modified translation strings are included in the resource pack, fixing a total of 18 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+31 modified translation strings are included in the resource pack, fixing a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
 | Minecraft version        | Translation strings | Fixed bugs |
 | ------------------------ | ------------------- | ---------- |
-| Latest release (1.19.2)  | 18                  | 30         |
-| Latest snapshot (22w45a) | 16                  | 27         |
-| Total                    | 18                  | 30         |
+| Latest release (1.19.2)  | 19                  | 31         |
+| Latest snapshot (22w45a) | 17                  | 28         |
+| Total                    | 19                  | 31         |
 
 And here's the list of translation strings that have fixes:
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
+- [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) (inconsistent reference to Glass Bottles)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
 - [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
@@ -183,7 +184,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s) | Fixed bug(s)         | Notes         |
 | ------------------------ | ---------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19       | [18](#fixed-strings) | You are here! |
+| **Capitalisation Fixes** | 1.19       | [17](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
