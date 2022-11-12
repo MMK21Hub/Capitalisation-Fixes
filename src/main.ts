@@ -48,4 +48,9 @@ const targetVersions: MinecraftVersionFancyRange = {
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
 const targetLanguages = ["en_us", "en_gb"]
 
-commandLineArg === "--stats" ? await printStats() : await buildPack()
+try {
+  commandLineArg === "--stats" ? await printStats() : await buildPack()
+} catch (error) {
+  console.error(error)
+  debugger
+}
