@@ -88,6 +88,15 @@ export interface MinecraftVersionFancyRange
   filter?: MinecraftVersionFilter
 }
 
+/** The data contained in Minecraft's version manifest: https://launchermeta.mojang.com/mc/game/version_manifest_v2.json */
+export interface VersionManifest {
+  latest: {
+    snapshot: string
+    release: string
+  }
+  versions: any[]
+}
+
 /** Metadata about a specific Minecraft version, as sourced from https://github.com/misode/mcmeta/tree/summary/versions */
 export interface VersionInfo {
   id: MinecraftVersion
@@ -198,10 +207,12 @@ export function findVersionInfo(targetVersion: string): VersionInfo {
       version.sha1 === targetVersion
   )
 
-  if (!matchedVersion)
+  if (!matchedVersion) {
+    debugger
     throw new Error(
       `Could not find a matching version ID, name or hash: ${targetVersion}`
     )
+  }
 
   return matchedVersion
 }
@@ -420,19 +431,19 @@ export async function getVanillaLanguageFile(
   return languageFile as any
 }
 
-function getVersionManifest(): Promise<{
-  latest: { snapshot: string; release: string }
-  versions: any[]
-}> {
+async function getVersionManifest(): Promise<VersionManifest> {
   // If it's available in the cache, immediately return that
   if (cache.has("versionManifest")) return cache.get("versionManifest")
 
-  const result = fetch(
+  const result = (await fetch(
     "https://launchermeta.mojang.com/mc/game/version_manifest_v2.json"
-  ).then((res) => res.json()) as any
+  ).then((res) => res.json())) as VersionManifest
 
   // Store the result in the cache for future calls of the function
   cache.set("versionManifest", result)
+
+  // Remove versions that are older than 1.14, since 1.14 is the earliest version available in the version summary
+  result.versions = result.versions.slice(0, -451)
 
   return result
 }
