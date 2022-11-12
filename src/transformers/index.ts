@@ -5,9 +5,11 @@ import {
   TransformerCallbackData as CallbackData,
 } from "../builder.js"
 import {
+  FlexibleReplacer,
   FlexibleSearchValue,
   getVanillaLanguageFile,
-  resolveFlexibleSearchValue,
+  ReplacerFunction,
+  resolveContextSensitiveValue,
 } from "../minecraftHelpers.js"
 import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
 
@@ -27,20 +29,25 @@ export class OverrideTransformer extends Transformer {
   }
 }
 
-export type Replacer = string | ReplacerFunction
-
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter
-type ReplacerFunction = (substring: string, groups: string[]) => string
-
 /** Replaces a specified search string with another string */
 export class ReplaceTransformer extends Transformer {
   searchValue
   replaceValue
 
-  constructor(searchValue: FlexibleSearchValue, replaceValue: Replacer) {
+  constructor(
+    searchValue: FlexibleSearchValue,
+    replaceValue: FlexibleReplacer
+  ) {
     super(async ({ oldValue, languageFileData, language, version }) => {
-      searchValue = await resolveFlexibleSearchValue(
+      const resolvedSearch = await resolveContextSensitiveValue(
         searchValue,
+        languageFileData,
+        language,
+        version
+      )
+
+      const resolvedReplacer = await resolveContextSensitiveValue(
+        replaceValue,
         languageFileData,
         language,
         version
@@ -50,7 +57,7 @@ export class ReplaceTransformer extends Transformer {
         substring: string,
         ...args: unknown[]
       ) => {
-        if (typeof replaceValue === "string")
+        if (typeof resolvedReplacer === "string")
           throw new Error(
             "Don't use the replacer function if the search value is a string. Instead, just directly pass the string to oldValue.replace()."
           )
@@ -61,14 +68,14 @@ export class ReplaceTransformer extends Transformer {
           else break
         }
 
-        return replaceValue(substring, captureGroups)
+        return resolvedReplacer(substring, captureGroups)
       }
 
       const newValue =
-        typeof replaceValue === "string"
-          ? oldValue?.replace(searchValue, replaceValue)
+        typeof resolvedReplacer === "string"
+          ? oldValue?.replace(resolvedSearch, resolvedReplacer)
           : // The built-in type for the parameters passed to the replacer function is just any[]
-            oldValue?.replace(searchValue, replacer as any)
+            oldValue?.replace(resolvedSearch, replacer as any)
 
       return {
         value: newValue,
@@ -128,7 +135,7 @@ export class CapitaliseSegmentTransformer extends Transformer {
       if (!oldValue) return { value: null }
 
       searchValue = new RegExp(
-        await resolveFlexibleSearchValue(
+        await resolveContextSensitiveValue(
           searchValue,
           languageFileData,
           language,

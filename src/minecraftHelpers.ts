@@ -61,14 +61,13 @@ export type MinecraftVersionSpecifier =
   | Range<SingleMinecraftVersionSpecifier>
   | MinecraftVersionFancyRange
   | SingleMinecraftVersionSpecifier
-export type LanguageFileData = Record<string, string>
 
-/** A value that can be resolved (asynchronously) when provided a Minecraft version and a language. */
+/** A value that can be resolved (asynchronously) to a value with type T, when provided a Minecraft version and a language. */
 export type ContextSensitive<T> = ResolvableAsync<
   T,
   [MinecraftLanguage, MinecraftVersion]
 >
-/** A value that can be synchronously resolved when provided with language file data. */
+/** A value that can be synchronously resolved to a value with type T, when provided with language file data. */
 export type ContextSensitiveSync<T> = ResolvableSync<T, [LanguageFileData]>
 /** Used to match parts of a translation string content (or anything really), but the search string can change based on the language/version being targeted. */
 export type ContextSensitiveSearchValue = ContextSensitive<SearchValue>
@@ -79,6 +78,17 @@ export type FlexibleSearchValue =
   | ContextSensitiveSearchValue
   | ContextSensitiveSearchValueSync
   | SearchValue
+/**
+ * The function that can be provided as the second parameter to to `String#replace()`.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_a_parameter
+ */
+export type ReplacerFunction = (substring: string, groups: string[]) => string
+export type FlexibleReplacer =
+  | string
+  | ContextSensitive<string>
+  | ReplacerFunction
+
+export type LanguageFileData = Record<string, string>
 export type ResourcePackMetadata = {
   pack: {
     pack_format: number
@@ -257,17 +267,18 @@ export function isSingleVersionSpecifier(
   )
 }
 
-export async function resolveFlexibleSearchValue(
-  searchValue: FlexibleSearchValue,
+/** Resolves a synchronous or async context-sensitive value by providing it with language file (meta)data. */
+export async function resolveContextSensitiveValue<T>(
+  value: ContextSensitive<T> | ContextSensitiveSync<T> | T,
   languageFileData: LanguageFileData,
   language: MinecraftLanguage,
   version: MinecraftVersion
-): Promise<SearchValue> {
-  if (typeof searchValue === "object" && "resolve" in searchValue)
-    return searchValue.sync
-      ? searchValue.resolve(languageFileData)
-      : await searchValue.resolve(language, version)
-  return searchValue
+): Promise<T> {
+  if (value && typeof value === "object" && "resolve" in value)
+    return value.sync
+      ? value.resolve(languageFileData)
+      : await value.resolve(language, version)
+  return value
 }
 
 export async function resolveMinecraftVersionId<F = never>(
