@@ -175,6 +175,7 @@ This is a utility script for Linux systems that automates part of the process of
 It performs three main jobs:
 
 - Run the build tool to create the `.zip` files that can be distributed with the release.
+- Bump the version in the project's [package.json file](package.json).
 - Push any commits that only exist locally, to make sure that the tag on GitHub is based on the most recent commit.
 - Create a new git tag to mark the version. It then pushes the tag to GitHub.
 
