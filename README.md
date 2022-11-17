@@ -75,15 +75,15 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-31 modified translation strings are included in the resource pack, fixing a total of 19 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+32 modified translation strings are included in the resource pack, fixing a total of 20 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
 | Minecraft version        | Translation strings | Fixed bugs |
 | ------------------------ | ------------------- | ---------- |
-| Latest release (1.19.2)  | 19                  | 31         |
-| Latest snapshot (22w45a) | 17                  | 28         |
-| Total                    | 19                  | 31         |
+| Latest release (1.19.2)  | 20                  | 32         |
+| Latest snapshot (22w46a) | 18                  | 29         |
+| Total                    | 20                  | 32         |
 
 And here's the list of translation strings that have fixes:
 
@@ -104,6 +104,7 @@ And here's the list of translation strings that have fixes:
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
+- [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
 
 ### Previously-fixed strings
 
@@ -187,7 +188,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s) | Fixed bug(s)         | Notes         |
 | ------------------------ | ---------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19       | [17](#fixed-strings) | You are here! |
+| **Capitalisation Fixes** | 1.19       | [18](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 

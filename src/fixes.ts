@@ -211,6 +211,11 @@ const fixes: Fix[] = [
       lang("item.minecraft.glass_bottle")
     ),
   }),
+  new Fix({
+    bug: "MC-257618",
+    key: "telemetry.event.world_loaded.description",
+    transformer: new ReplaceTransformer("pair", "paired"),
+  }),
 ]
 
 export default fixes
