@@ -215,7 +215,7 @@ const fixes: Fix[] = [
     bug: "MC-257618",
     key: "telemetry.event.world_loaded.description",
     transformer: new ReplaceTransformer("pair", "paired"),
-    versions: ["22w26a", null],
+    versions: ["22w46a", null],
   }),
 ]
 
