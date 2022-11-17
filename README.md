@@ -83,11 +83,11 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version        | Translation strings | Fixed bugs |
-| ------------------------ | ------------------- | ---------- |
-| Latest release (1.19.2)  | 20                  | 32         |
-| Latest snapshot (22w46a) | 18                  | 29         |
-| Total                    | 20                  | 32         |
+| Minecraft version        | Fixed bugs | Translation strings |
+| ------------------------ | ---------- | ------------------- |
+| Latest release (1.19.2)  | 20         | 32                  |
+| Latest snapshot (22w46a) | 18         | 29                  |
+| Total                    | 20         | 32                  |
 
 And here's the list of translation strings that have fixes:
 
