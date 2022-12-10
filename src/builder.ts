@@ -19,7 +19,7 @@ import { packDescription } from "./main.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
-  value: string | null | undefined
+  value: string
 }
 /** The data provided to {@link Transformer} callback functions */
 export type TransformerCallbackData = {
