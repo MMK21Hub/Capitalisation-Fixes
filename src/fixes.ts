@@ -6,6 +6,7 @@ import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,
   OverrideTransformer,
+  PluralGuardTransformer,
   RemoveWordTransformer,
   ReplaceTransformer,
   TitleCaseTransformer,
@@ -224,6 +225,34 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer(/$/, "..."),
     versions: ["22w46a", null],
   }),
+  ...multiFixGroup(
+    "MC-203095",
+    new PluralGuardTransformer(/\bpoints\b/i),
+    [
+      "query.points",
+      "set.points.success.single",
+      "set.points.success.multiple",
+      "add.points.success.single",
+      "add.points.success.multiple",
+    ],
+    {
+      keyPrefix: "commands.experience",
+    }
+  ),
+  ...multiFixGroup(
+    "MC-203095",
+    new PluralGuardTransformer(/\blevels\b/i),
+    [
+      "query.levels",
+      "set.levels.success.single",
+      "set.levels.success.multiple",
+      "add.levels.success.single",
+      "add.levels.success.multiple",
+    ],
+    {
+      keyPrefix: "commands.experience",
+    }
+  ),
 ]
 
 export default fixes

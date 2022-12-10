@@ -118,6 +118,7 @@ And here's the list of translation strings that have fixes:
 - [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
 - [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
 - [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) (missing ellipsis)
+- [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
 
 ### Previously-fixed strings
 
