@@ -118,7 +118,7 @@ export class ContextualReplaceTransformer extends Transformer {
 export class TitleCaseTransformer extends Transformer {
   constructor() {
     super(({ oldValue }) => ({
-      value: toTitleCase(oldValue || "") || null,
+      value: toTitleCase(oldValue),
     }))
   }
 }
@@ -129,8 +129,6 @@ export class CapitaliseSegmentTransformer extends Transformer {
 
   constructor(searchValue: FlexibleSearchValue) {
     super(async ({ oldValue, language, version, languageFileData }) => {
-      if (!oldValue) return { value: null }
-
       searchValue = new RegExp(
         await resolveContextSensitiveValue(
           searchValue,
@@ -155,8 +153,6 @@ export class CapitaliseSectionTransformer extends Transformer {
 
   constructor(start: SearchValue | null, end: SearchValue | null) {
     super(({ oldValue, key, logger }) => {
-      if (!oldValue) return { value: null }
-
       const [start, end] = this.range
 
       const simpleStart = typeof start === "string"
