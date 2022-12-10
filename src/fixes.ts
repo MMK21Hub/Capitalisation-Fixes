@@ -217,6 +217,12 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer(/\bpair\b/, "paired"),
     versions: ["22w46a", "1.19.3-pre1"],
   }),
+  new Fix({
+    bug: "MC-258246",
+    key: "options.telemetry",
+    // Adds an ellipsis ("...") to the end of the string
+    transformer: new ReplaceTransformer(/$/, "..."),
+  }),
 ]
 
 export default fixes

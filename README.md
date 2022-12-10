@@ -18,7 +18,7 @@
 
 ## Information
 
-- It currently targets the 1.19 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
+- It currently targets the 1.19.3 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
 - It currently supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21#2121` on Discord
 
@@ -85,15 +85,15 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-32 modified translation strings are included in the resource pack, fixing a total of 20 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+33 modified translation strings are included in the resource pack, fixing a total of 21 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
 | Minecraft version        | Fixed bugs | Translation strings |
 | ------------------------ | ---------- | ------------------- |
-| Latest release (1.19.2)  | 20         | 32                  |
-| Latest snapshot (22w46a) | 18         | 29                  |
-| Total                    | 20         | 32                  |
+| Latest release (1.19.3)  | 18         | 29                  |
+| Latest snapshot (1.19.3) | 18         | 29                  |
+| Total                    | 21         | 33                  |
 
 And here's the list of translation strings that have fixes:
 
@@ -115,6 +115,7 @@ And here's the list of translation strings that have fixes:
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
 - [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
+- [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) (missing ellipsis)
 
 ### Previously-fixed strings
 
