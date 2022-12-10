@@ -40,13 +40,17 @@ export function multiFixGroup(
   translationKeys: string[],
   options: {
     keyPrefix?: string
+    versions?: MinecraftVersionSpecifier
   } = {}
 ) {
-  const { keyPrefix } = options
+  let { keyPrefix = "", versions } = options
+  if (keyPrefix && !keyPrefix.endsWith(".")) keyPrefix += "."
+
   const targetKeys = keyPrefix
     ? translationKeys.map((key) => `${keyPrefix}${key}`)
     : translationKeys
-  return targetKeys.map((key) => new Fix({ bug, key, transformer }))
+
+  return targetKeys.map((key) => new Fix({ bug, key, transformer, versions }))
 }
 
 export function titleCaseGroup(
