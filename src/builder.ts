@@ -158,13 +158,14 @@ async function generateTranslationStrings(
       throw error
     }
 
-    if (!value) {
-      // FIXME: Get rid of this
+    if (value === "") {
+      debugger
       throw new Error(
-        `[${brand}] Transformer ${transformerName} didn't return any value.\n` +
+        `[${brand}] ${transformerName} returned an empty string!\n` +
           `Translation key being processed: ${key}`
       )
     }
+
     result[key] = value
 
     if (logger.countMessages(MessageType.Warn)) {
