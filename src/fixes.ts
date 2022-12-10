@@ -222,6 +222,7 @@ const fixes: Fix[] = [
     key: "options.telemetry",
     // Adds an ellipsis ("...") to the end of the string
     transformer: new ReplaceTransformer(/$/, "..."),
+    versions: ["22w46a", null],
   }),
 ]
 
