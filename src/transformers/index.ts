@@ -285,3 +285,24 @@ export class RemoveWordTransformer extends ContextualReplaceTransformer {
     )
   }
 }
+
+/**
+ * Adds a "plural guard" to the specified word.
+ *
+ * Plural guards are used when it is not known if a noun is singular or plural, e.g. "/kill is a command that kills the selected player(s)".
+ * They are usually an "s" in brackets, but sometimes the letters "es" are used to keep the spelling of the word correct.
+ *
+ * It is recommended to specify the targetWord as a regex wrapped in `\b` so that it only matches whole words.
+ */
+export class PluralGuardTransformer extends ReplaceTransformer {
+  constructor(targetWord: FlexibleSearchValue, pluralString: string = "s") {
+    const pluralGuard = `(${pluralString})`
+
+    super(targetWord, (word) => {
+      // Strip the plural from the matched word, e.g. "players" becomes "player"
+      const singularWord = word.replace(new RegExp(`${pluralString}$`), "")
+
+      return singularWord + pluralGuard
+    })
+  }
+}
