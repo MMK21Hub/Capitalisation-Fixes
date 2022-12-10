@@ -160,6 +160,7 @@ async function generateTranslationStrings(
       })
       value = result.value
     } catch (error) {
+      // FIXME: Get rid of this
       throw error instanceof MissingValueError
         ? new Error(
             `[${brand}] Transformer ${transformerName} requires a translation string value to be provided.\n` +
@@ -168,12 +169,13 @@ async function generateTranslationStrings(
         : error
     }
 
-    if (!value)
+    if (!value) {
+      // FIXME: Get rid of this
       throw new Error(
         `[${brand}] Transformer ${transformerName} didn't return any value.\n` +
           `Translation key being processed: ${key}`
       )
-
+    }
     result[key] = value
 
     if (logger.countMessages(MessageType.Warn)) {
