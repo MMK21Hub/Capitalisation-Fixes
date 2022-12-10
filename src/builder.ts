@@ -94,13 +94,6 @@ export interface OutFileMetadata {
   totalFiles: number
 }
 
-export class MissingValueError extends Error {
-  constructor() {
-    super()
-    this.name = "MissingValueError"
-  }
-}
-
 export abstract class Transformer {
   callback
 
@@ -160,13 +153,9 @@ async function generateTranslationStrings(
       })
       value = result.value
     } catch (error) {
-      // FIXME: Get rid of this
-      throw error instanceof MissingValueError
-        ? new Error(
-            `[${brand}] Transformer ${transformerName} requires a translation string value to be provided.\n` +
-              `Translation key being processed: ${key}`
-          )
-        : error
+      // This is were exceptions from transformer callbacks end up.
+      // We could do some fancier error handling her ein the future.
+      throw error
     }
 
     if (!value) {

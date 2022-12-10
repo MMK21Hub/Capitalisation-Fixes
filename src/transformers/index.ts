@@ -1,5 +1,4 @@
 import {
-  MissingValueError,
   Transformer,
   TransformerCallback as Callback,
   TransformerCallbackData as CallbackData,
@@ -94,8 +93,6 @@ export class ContextualReplaceTransformer extends Transformer {
     replace: string
   ) {
     super(({ oldValue }) => {
-      if (!oldValue) throw new MissingValueError()
-
       const fullRegex = new RegExp(
         `(?<before>${search.before?.source})(?<target>${search.target.source})(?<after>${search.after?.source})`
       )
@@ -216,7 +213,6 @@ export class CapitaliseFromTranslationStringsTransformer
   options
 
   callback: Callback = async ({ oldValue, language, version }) => {
-    if (!oldValue) throw new MissingValueError()
     const languageFile = await getVanillaLanguageFile(language, version)
 
     const matchingTranslationStrings = Object.entries(languageFile)
