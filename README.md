@@ -11,8 +11,8 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.15 for Minecraft 1.19.3 (22w46a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.15/Capitalisation-Fixes-v2.15-22w46a.zip)**
-- **[Capitalisation Fixes v2.15 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.15/Capitalisation-Fixes-v2.15-1.19.2.zip)** (Recommended)
+- **[Capitalisation Fixes v2.16 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.16/Capitalisation-Fixes-v2.16-1.19.3.zip)** (Recommended)
+- **[Capitalisation Fixes v2.16 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.16/Capitalisation-Fixes-v2.16-1.19.2.zip)**
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
 
