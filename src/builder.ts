@@ -209,9 +209,11 @@ async function generateTranslationStrings(
       targetLanguage === "en_us"
     ) {
       console.warn(
+        `[${brand}]`,
         `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
         `Transformer used: ${transformerName}`
       )
+      debugger
     }
   }
 

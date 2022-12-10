@@ -1,4 +1,5 @@
 # Capitalisation Fixes
+
 <center>
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/JdXoJZy7?color=%23ff&label=Modrinth%20downloads&logo=download)](https://modrinth.com/resourcepack/capitalisation-fixes)
