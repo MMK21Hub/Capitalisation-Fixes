@@ -2,7 +2,7 @@ import path from "node:path"
 import { readFile, writeFile } from "node:fs/promises"
 import AdmZip from "adm-zip"
 import {
-  getTranslationString,
+  getTranslationStringOrThrow,
   getVanillaLanguageFile,
   LanguageFileData,
   MinecraftLanguage,
@@ -26,7 +26,7 @@ export type TransformerCallbackData = {
   key: string
   language: MinecraftLanguage
   version: MinecraftVersion
-  oldValue: string | null | undefined
+  oldValue: string
   logger: TransformerLogger
   languageFileData: Record<string, string>
 }
@@ -142,7 +142,7 @@ async function generateTranslationStrings(
 
     const oldValue =
       originalLanguageFile[key] ||
-      (await getTranslationString(key, {
+      (await getTranslationStringOrThrow(key, {
         language: targetLanguage,
         version: targetVersion,
       }))
