@@ -463,6 +463,12 @@ async function getVersionManifest(): Promise<VersionManifest> {
   return result
 }
 
+export interface GetTranslationStringOptions {
+  language: MinecraftLanguage
+  version: MinecraftVersion
+  fallbackLanguage?: MinecraftLanguage | null
+}
+
 export async function getTranslationString(
   key: string,
   options: {
@@ -485,6 +491,23 @@ export async function getTranslationString(
   )
 
   return fallbackLangFile[key] || null
+}
+
+export async function getTranslationStringOrThrow(
+  key: string,
+  options: GetTranslationStringOptions
+) {
+  const matchedTranslationString = await getTranslationString(key, options)
+
+  if (!matchedTranslationString) {
+    throw new Error(
+      `Translation string ${key} doesn't exist! ` +
+        `Target language is ${options.language}. ` +
+        `Target version is ${options.version}.`
+    )
+  }
+
+  return matchedTranslationString
 }
 
 export function packFormat(version: MinecraftVersion) {

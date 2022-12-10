@@ -2,7 +2,7 @@ import path from "node:path"
 import { readFile, writeFile } from "node:fs/promises"
 import AdmZip from "adm-zip"
 import {
-  getTranslationString,
+  getTranslationStringOrThrow,
   getVanillaLanguageFile,
   LanguageFileData,
   MinecraftLanguage,
@@ -19,14 +19,14 @@ import { packDescription } from "./main.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
-  value: string | null | undefined
+  value: string
 }
 /** The data provided to {@link Transformer} callback functions */
 export type TransformerCallbackData = {
   key: string
   language: MinecraftLanguage
   version: MinecraftVersion
-  oldValue: string | null | undefined
+  oldValue: string
   logger: TransformerLogger
   languageFileData: Record<string, string>
 }
@@ -94,13 +94,6 @@ export interface OutFileMetadata {
   totalFiles: number
 }
 
-export class MissingValueError extends Error {
-  constructor() {
-    super()
-    this.name = "MissingValueError"
-  }
-}
-
 export abstract class Transformer {
   callback
 
@@ -142,7 +135,7 @@ async function generateTranslationStrings(
 
     const oldValue =
       originalLanguageFile[key] ||
-      (await getTranslationString(key, {
+      (await getTranslationStringOrThrow(key, {
         language: targetLanguage,
         version: targetVersion,
       }))
@@ -160,19 +153,18 @@ async function generateTranslationStrings(
       })
       value = result.value
     } catch (error) {
-      throw error instanceof MissingValueError
-        ? new Error(
-            `[${brand}] Transformer ${transformerName} requires a translation string value to be provided.\n` +
-              `Translation key being processed: ${key}`
-          )
-        : error
+      // This is were exceptions from transformer callbacks end up.
+      // We could do some fancier error handling her ein the future.
+      throw error
     }
 
-    if (!value)
+    if (value === "") {
+      debugger
       throw new Error(
-        `[${brand}] Transformer ${transformerName} didn't return any value.\n` +
+        `[${brand}] ${transformerName} returned an empty string!\n` +
           `Translation key being processed: ${key}`
       )
+    }
 
     result[key] = value
 
