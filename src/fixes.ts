@@ -155,7 +155,7 @@ const fixes: Fix[] = [
   new Fix({
     bug: "MC-253178",
     key: "gui.abuseReport.reason.non_consensual_intimate_imagery",
-    transformer: new ReplaceTransformer("consentual", "consensual"),
+    transformer: new ReplaceTransformer("consentual", "consensual"), // cspell:disable-line
     languages: ["en_us"],
     versions: ["22w24a", "1.19.1-pre1"],
   }),
