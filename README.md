@@ -39,11 +39,12 @@ you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.3
 
-|                                                                                  | 22w42a–22w45a | 22w46a    |
-| -------------------------------------------------------------------------------- | ------------- | --------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       | &#9989;   |
-| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#127775;     | &#9989;   |
-| **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#127775; |
+|                                                                                  | 22w42a–22w45a | 22w46a–1.19.3 |
+| -------------------------------------------------------------------------------- | ------------- | ------------- |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       | &#9989;       |
+| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#127775;     | &#9989;       |
+| **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#9989;       |
+| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;       | &#127775;     |
 
 ### 1.19
 
@@ -63,8 +64,9 @@ you can [build a custom version of the pack](#build-tool).
 | **[v2.11](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.11)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#127775;   | &#9989;   | &#9989;   |
 | **[v2.12](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.12)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
-| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#127775; |
+| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#9989;   |
 | **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
+| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
 
 ### 1.18
 
@@ -197,9 +199,9 @@ For detailed information, check [the file itself](new-version.sh).
 
 ### Resource Packs
 
-| Name                     | Version(s) | Fixed bug(s)         | Notes         |
-| ------------------------ | ---------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19       | [18](#fixed-strings) | You are here! |
+| Name                     | Version(s)  | Fixed bug(s)         | Notes         |
+| ------------------------ | ----------- | -------------------- | ------------- |
+| **Capitalisation Fixes** | 1.19–1.19.3 | [18](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
@@ -217,7 +219,7 @@ For detailed information, check [the file itself](new-version.sh).
 | -------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
 | [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)                                        | 1.17–1.19  | [260+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
 | [Blanket client-tweaks](https://modrinth.com/mod/blanket)                                    | 1.18–1.19  | [8](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
-| [More Culling](https://modrinth.com/mod/moreculling)                                         | 1.18–1.19  | [5](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client | Currently in alpha testing                                                           |
+| [More Culling](https://modrinth.com/mod/moreculling)                                         | 1.18–1.19  | [5](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client |                                                                                      |
 | [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix)                              | 1.16–1.19  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
 | [Raised](https://modrinth.com/mod/raised)                                                    | 1.16–1.19  | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |
 | [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)                                      | 1.15–1.19  | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
