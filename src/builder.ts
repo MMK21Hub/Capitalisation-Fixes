@@ -214,7 +214,7 @@ async function generateTranslationStrings(
   // Log the translation strings that we just generated
   console.group(`=== ${brand} ===`)
   Object.entries(result).forEach(([key, value]) =>
-    console.log(`${key}: "${value}"`)
+    console.log(`${key}: "${value.replace("\n", " ")}"`)
   )
   console.groupEnd()
 
