@@ -109,7 +109,7 @@ And here's the list of translation strings that have fixes:
 - [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
 - ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
-- ["Horse armor equips" subtitle](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
+- [Armour equipping subtitles](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
 - [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)

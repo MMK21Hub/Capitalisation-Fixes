@@ -31,13 +31,19 @@ const fixes: Fix[] = [
     key: "options.hideLightningFlashes.tooltip",
     transformer: autoCapitaliser,
   }),
-  new Fix({
-    bug: "MC-219541",
-    key: "subtitles.entity.horse.armor",
-    transformer: new CapitaliseSegmentTransformer(
-      lang`${"entity.minecraft.horse"} ${"attribute.name.generic.armor"}`
-    ),
-  }),
+  ...multiFixGroup(
+    "MC-219541",
+    new CapitaliseSegmentTransformer(lang`${"attribute.name.generic.armor"}`),
+    [
+      "subtitles.entity.horse.armor",
+      "subtitles.item.armor.equip_chain",
+      "subtitles.item.armor.equip_diamond",
+      "subtitles.item.armor.equip_gold",
+      "subtitles.item.armor.equip_iron",
+      "subtitles.item.armor.equip_leather",
+      "subtitles.item.armor.equip_netherite",
+    ]
+  ),
   new Fix({
     bug: "MC-195781",
     key: "structure_block.include_entities",
