@@ -500,10 +500,9 @@ export async function getTranslationStringOrThrow(
   const matchedTranslationString = await getTranslationString(key, options)
 
   if (!matchedTranslationString) {
+    debugger
     throw new Error(
-      `Translation string ${key} doesn't exist! ` +
-        `Target language is ${options.language}. ` +
-        `Target version is ${options.version}.`
+      `Translation string ${key} doesn't exist in version ${options.version}!`
     )
   }
 
