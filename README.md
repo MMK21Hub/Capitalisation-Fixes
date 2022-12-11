@@ -119,6 +119,7 @@ And here's the list of translation strings that have fixes:
 - [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
 - [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) (missing ellipsis)
 - [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
+- [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
 
 ### Previously-fixed strings
 

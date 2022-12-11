@@ -19,6 +19,9 @@ const autoCapitaliser = new CapitaliseFromTranslationStringsTransformer({
 /** If there's a letter right at the end of a string, add a full stop to the end */
 const addFullStop = new ReplaceTransformer(/\w$/, "$&.")
 
+/** Replaces right single quotation marks (’) with apostrophes (') */
+const standardiseQuoteMarks = new ReplaceTransformer("\u2019", "'")
+
 const fixes: Fix[] = [
   new Fix({
     bug: "MC-250158",
@@ -257,6 +260,19 @@ const fixes: Fix[] = [
     ],
     {
       keyPrefix: "commands.experience",
+    }
+  ),
+  ...multiFixGroup("MC-256422", standardiseQuoteMarks, [
+    "gui.chatReport.report_sent_msg",
+    "gui.banned.description.temporary",
+    "gui.banned.description.permanent",
+  ]),
+  ...multiFixGroup(
+    "MC-256422",
+    standardiseQuoteMarks,
+    ["mco.account.privacyinfo", "telemetry.event.world_load_times.description"],
+    {
+      versions: ["22w46a", null],
     }
   ),
 ]
