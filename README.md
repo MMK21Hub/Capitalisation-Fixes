@@ -19,7 +19,7 @@
 ## Information
 
 - It currently targets the 1.19.3 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
-- It currently supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
+- It supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21#2121` on Discord
 
 To download, go to the [Releases tab](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
@@ -87,15 +87,15 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 
 ## Fixed strings
 
-49 modified translation strings are included in the resource pack, fixing a total of 22 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+54 modified translation strings are included in the resource pack, fixing a total of 23 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
 | Minecraft version        | Fixed bugs | Translation strings |
 | ------------------------ | ---------- | ------------------- |
-| Latest release (1.19.3)  | 19         | 45                  |
-| Latest snapshot (1.19.3) | 19         | 45                  |
-| Total                    | 22         | 49                  |
+| Latest release (1.19.3)  | 20         | 50                  |
+| Latest snapshot (1.19.3) | 20         | 50                  |
+| Total                    | 23         | 54                  |
 
 And here's the list of translation strings that have fixes:
 
@@ -203,7 +203,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)         | Notes         |
 | ------------------------ | ----------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.19.3 | [19](#fixed-strings) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.19.3 | [20](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 

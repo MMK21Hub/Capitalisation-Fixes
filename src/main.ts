@@ -22,8 +22,13 @@ export async function printStats(limitToLatest?: MinecraftVersionBranch) {
 
   const { bugReports, translationKeys } = stats.count
 
-  console.log(`Fixed bugs: ${bugReports}`)
-  console.log(`Translation keys: ${translationKeys}`)
+  const versionString = limitToLatest
+    ? `the latest ${limitToLatest}`
+    : `all versions`
+
+  console.log(`Statistics for ${versionString}:`)
+  console.log(`  Fixed bugs: ${bugReports}`)
+  console.log(`  Translation keys: ${translationKeys}`)
 }
 
 export async function buildPack() {
