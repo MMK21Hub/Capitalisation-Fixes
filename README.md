@@ -4,7 +4,7 @@
 
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/JdXoJZy7?color=%23ff&label=Modrinth%20downloads&logo=download)](https://modrinth.com/resourcepack/capitalisation-fixes)
 [![GitHub last commit](https://img.shields.io/github/last-commit/MMK21Hub/capitalisation-fixes)](https://github.com/MMK21Hub/Capitalisation-Fixes/commits)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/MMK21Hub/Capitalisation-Fixes/Build%20each%20commit)](https://github.com/MMK21Hub/Capitalisation-Fixes/actions/workflows/build-each-commit.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MMK21Hub/Capitalisation-Fixes/build-each-commit.yml)](https://github.com/MMK21Hub/Capitalisation-Fixes/actions/workflows/build-each-commit.yml)
 </center>
 <p>Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
 <p>In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
