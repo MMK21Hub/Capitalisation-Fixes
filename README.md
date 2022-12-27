@@ -11,8 +11,8 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.16 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.16/Capitalisation-Fixes-v2.16-1.19.3.zip)** (Recommended)
-- **[Capitalisation Fixes v2.16 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.16/Capitalisation-Fixes-v2.16-1.19.2.zip)**
+- **[Capitalisation Fixes v2.17 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.3.zip)** (Recommended)
+- **[Capitalisation Fixes v2.17 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.2.zip)**
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
 
@@ -39,12 +39,13 @@ you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.3
 
-|                                                                                  | 22w42a–22w45a | 22w46a–1.19.3 |
-| -------------------------------------------------------------------------------- | ------------- | ------------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       | &#9989;       |
-| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#127775;     | &#9989;       |
-| **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#9989;       |
-| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;       | &#127775;     |
+|                                                                                  | 22w42a–22w46a | 1.19.3    |
+| -------------------------------------------------------------------------------- | ------------- | --------- |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       | &#9989;   |
+| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;       | &#9989;   |
+| **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#9989;   |
+| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;       | &#9989;   |
+| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#127775;     | &#127775; |
 
 ### 1.19
 
@@ -66,7 +67,8 @@ you can [build a custom version of the pack](#build-tool).
 | **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#9989;   |
 | **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
-| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
+| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
+| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
 
 ### 1.18
 
@@ -207,13 +209,13 @@ For detailed information, check [the file itself](new-version.sh).
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
-| Name               | Version(s) | Fixed bug(s)                                          | Notes                                                               |
-| ------------------ | ---------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
-| Item Stitching Fix | 1.14–1.19  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
-| Blaze's Rods Fix   | 1.14–1.19  | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
-| Cactus Bottom Fix  | 1.16–1.19  | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
-| Iron Bars Fix      | 1.14–1.19  | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
-| Hopper Bottom Fix  | 1.14–1.19  | [MC-203399](https://bugs.mojang.com/browse/MC-203399) |                                                                     |
+| Name               | Version(s)  | Fixed bug(s)                                          | Notes                                                               |
+| ------------------ | ----------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
+| Item Stitching Fix | 1.14–1.19.3 | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
+| Blaze's Rods Fix   | 1.14–1.19.3 | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
+| Cactus Bottom Fix  | 1.16–1.19.3 | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
+| Iron Bars Fix      | 1.14–1.19.3 | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
+| Hopper Bottom Fix  | 1.14–1.19.3 | [MC-203399](https://bugs.mojang.com/browse/MC-203399) |                                                                     |
 
 ### Fabric Mods
 
@@ -221,11 +223,11 @@ For detailed information, check [the file itself](new-version.sh).
 | --------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
 | [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)           | 1.17–1.19.3 | [260+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
 | [More Culling](https://modrinth.com/mod/moreculling)            | 1.18–1.19.3 | [5](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client |                                                                                      |
-| [Head Name Fix](https://modrinth.com/mod/headfix)               | 1.16—1.19.3 | [MC-174496](https://bugs.mojang.com/browse/MC-174496)                   | Server |
-| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18–1.19   | [8](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
-| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.19   | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client |
-| [Raised](https://modrinth.com/mod/raised)                       | 1.16–1.19   | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client | [Issue for 1.19.3 support](https://github.com/PepperCode1/Item-Model-Fix/issues/20)  |
-| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.19   | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |
-| [Title Fixer](https://modrinth.com/mod/title-fixer)             | 1.16–1.19   | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                   | Client |
+| [Head Name Fix](https://modrinth.com/mod/headfix)               | 1.16—1.19.3 | [MC-174496](https://bugs.mojang.com/browse/MC-174496)                   | Server |                                                                                      |
+| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18–1.19.3 | [8](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
+| [Raised](https://modrinth.com/mod/raised)                       | 1.16–1.19.3 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |                                                                                      |
+| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.19.3 | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |                                                                                      |
+| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.19   | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client | [Issue for 1.19.3 support](https://github.com/PepperCode1/Item-Model-Fix/issues/20)  |
+| [Title Fixer](https://modrinth.com/mod/title-fixer)             | 1.16–1.19   | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                   | Client |                                                                                      |
 | [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.16–1.17   | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
-| [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1      | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |
+| [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1      | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |                                                                                      |
