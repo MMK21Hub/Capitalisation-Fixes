@@ -11,6 +11,7 @@
 
 ## Quick download links
 
+- **[Capitalisation Fixes v2.17 for Minecraft 1.19.4 (23w03a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-23w03a.zip)**
 - **[Capitalisation Fixes v2.17 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.3.zip)** (Recommended)
 - **[Capitalisation Fixes v2.17 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.2.zip)**
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
@@ -18,7 +19,7 @@
 
 ## Information
 
-- It currently targets the 1.19.3 release branch, but there is a "[compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)" that you can use in 1.18.x versions
+- The pack is actively developed for Minecraft 1.19 to 1.19.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1).
 - It supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21#2121` on Discord
 
@@ -36,6 +37,12 @@ The variant system also means that if you are using a recent version of the pack
 
 To benefit from the newest bugfixes, you should keep up-to-date with the latest release of the resource pack. If you're running an older version of Minecraft but still want to use the latest version of the pack,
 you can [build a custom version of the pack](#build-tool).
+
+### 1.19.4
+
+|                                                                                  | 23w03a  |
+| -------------------------------------------------------------------------------- | ------- |
+| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989; |
 
 ### 1.19.3
 
@@ -96,7 +103,7 @@ Here's a summary of the statistics for different Minecraft versions. Some bugs a
 | Minecraft version        | Fixed bugs | Translation strings |
 | ------------------------ | ---------- | ------------------- |
 | Latest release (1.19.3)  | 20         | 50                  |
-| Latest snapshot (1.19.3) | 20         | 50                  |
+| Latest snapshot (23w03a) | 19         | 49                  |
 | Total                    | 23         | 54                  |
 
 And here's the list of translation strings that have fixes:
@@ -119,7 +126,6 @@ And here's the list of translation strings that have fixes:
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
 - [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
-- [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) (missing ellipsis)
 - [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
 - [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
 
@@ -141,6 +147,7 @@ They can be found in old releases of the pack. <!-- FIXME: Update to take the ne
 - [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) Fixed in 1.19.1-pre5
 - ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) Fixed in 22w44a
 - ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) Fixed in 22w44a
+- [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) Fixed in 23w03a
 
 ## Build tool
 
@@ -205,7 +212,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)         | Notes         |
 | ------------------------ | ----------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.19.3 | [20](#fixed-strings) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.19.4 | [19](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
