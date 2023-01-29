@@ -212,11 +212,11 @@ async function generateTranslationStrings(
   if (process.env.QUIET) return result
 
   // Log the translation strings that we just generated
-  console.group(`=== ${brand} ===`)
-  Object.entries(result).forEach(([key, value]) =>
-    console.log(`${key}: "${value.replaceAll(/\n+/g, " ")}"`)
-  )
-  console.groupEnd()
+  // console.group(`=== ${brand} ===`)
+  // Object.entries(result).forEach(([key, value]) =>
+  //   console.log(`${key}: "${value.replaceAll(/\n+/g, " ")}"`)
+  // )
+  // console.groupEnd()
 
   return result
 }
@@ -367,6 +367,17 @@ export async function emitResourcePacks(
     buildOptions.targetLanguages,
     fixes
   )
+
+  // Print a summary of the generated language files
+  if (!process.env.QUIET) {
+    const langFileEntries = Object.entries(languageFiles)
+    console.log(`Generated ${langFileEntries.length} version(s):`)
+    langFileEntries.forEach(([version, langFiles]) => {
+      const languageNames = Object.keys(langFiles).join(", ")
+      console.log(`  ${version} (${languageNames})`)
+    })
+  }
+
   const zipFiles = await generateMultiplePackZipData(languageFiles, ".")
 
   /** A map of filenames to that file's metadata. */
