@@ -275,6 +275,12 @@ const fixes: Fix[] = [
       versions: ["22w46a", null],
     }
   ),
+  new Fix({
+    bug: "MC-259360",
+    key: "selectWorld.mapFeatures.info",
+    transformer: new ReplaceTransformer("Shipwrecks etc", "Shipwrecks, etc"),
+    versions: ["23w04a", null],
+  }),
 ]
 
 export default fixes
