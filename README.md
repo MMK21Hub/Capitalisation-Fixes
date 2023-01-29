@@ -11,9 +11,9 @@
 
 ## Quick download links
 
-- **[Capitalisation Fixes v2.17 for Minecraft 1.19.4 (23w03a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-23w03a.zip)**
-- **[Capitalisation Fixes v2.17 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.3.zip)** (Recommended)
-- **[Capitalisation Fixes v2.17 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.17/Capitalisation-Fixes-v2.17-1.19.2.zip)**
+- **[Capitalisation Fixes v2.18 for Minecraft 1.19.4 (23w04a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w04a.zip)**
+- **[Capitalisation Fixes v2.18 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
+- **[Capitalisation Fixes v2.18 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
 - **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
 - **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
 
@@ -40,9 +40,10 @@ you can [build a custom version of the pack](#build-tool).
 
 ### 1.19.4
 
-|                                                                                  | 23w03a  |
-| -------------------------------------------------------------------------------- | ------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989; |
+|                                                                                  | 23w03a  | 23w04a  |
+| -------------------------------------------------------------------------------- | ------- | ------- |
+| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989; | &#9989; |
+| **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#9989; | &#9989; |
 
 ### 1.19.3
 
@@ -52,7 +53,8 @@ you can [build a custom version of the pack](#build-tool).
 | **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;       | &#9989;   |
 | **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#9989;   |
 | **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;       | &#9989;   |
-| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#127775;     | &#127775; |
+| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;       | &#9989;   |
+| **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#127775;     | &#127775; |
 
 ### 1.19
 
@@ -75,7 +77,8 @@ you can [build a custom version of the pack](#build-tool).
 | **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#127775; | &#9989;   |
 | **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
-| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
+| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
+| **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
 
 ### 1.18
 
@@ -102,9 +105,9 @@ Here's a summary of the statistics for different Minecraft versions. Some bugs a
 
 | Minecraft version        | Fixed bugs | Translation strings |
 | ------------------------ | ---------- | ------------------- |
-| Latest release (1.19.3)  | 20         | 50                  |
-| Latest snapshot (23w03a) | 19         | 49                  |
-| Total                    | 23         | 54                  |
+| Latest release (1.19.3)  | 21         | 51                  |
+| Latest snapshot (23w04a) | 21         | 51                  |
+| Total                    | 25         | 56                  |
 
 And here's the list of translation strings that have fixes:
 
@@ -212,7 +215,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)         | Notes         |
 | ------------------------ | ----------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.19.4 | [19](#fixed-strings) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.19.4 | [21](#fixed-strings) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
