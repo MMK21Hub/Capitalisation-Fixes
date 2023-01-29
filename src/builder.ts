@@ -374,11 +374,15 @@ export async function emitResourcePacks(
     console.log(
       `Generated translation files for ${langFileEntries.length} version(s):`
     )
+    const longestVersionName = Math.max(
+      ...langFileEntries.map(([version]) => version.length)
+    )
     langFileEntries.forEach(([version, langFiles]) => {
       const languages = Object.entries(langFiles)
         .map(([name, data]) => `${name} (${Object.keys(data).length})`)
         .join(", ")
-      console.log(`  ${version}: ${languages}`)
+      const versionPadded = `${version}:`.padEnd(longestVersionName + 1, " ")
+      console.log(`  ${versionPadded} ${languages}`)
     })
   }
 
