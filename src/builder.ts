@@ -371,10 +371,14 @@ export async function emitResourcePacks(
   // Print a summary of the generated language files
   if (!process.env.QUIET) {
     const langFileEntries = Object.entries(languageFiles)
-    console.log(`Generated ${langFileEntries.length} version(s):`)
+    console.log(
+      `Generated translation files for ${langFileEntries.length} version(s):`
+    )
     langFileEntries.forEach(([version, langFiles]) => {
-      const languageNames = Object.keys(langFiles).join(", ")
-      console.log(`  ${version} (${languageNames})`)
+      const languages = Object.entries(langFiles)
+        .map(([name, data]) => `${name} (${Object.keys(data).length})`)
+        .join(", ")
+      console.log(`  ${version}: ${languages}`)
     })
   }
 
