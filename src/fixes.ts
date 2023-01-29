@@ -52,6 +52,11 @@ const fixes: Fix[] = [
     key: "structure_block.include_entities",
     transformer: new TitleCaseTransformer(),
   }),
+  new Fix({
+    bug: "MC-258461",
+    key: "structure_block.detect_size",
+    transformer: new TitleCaseTransformer(),
+  }),
   ...fixGroup(
     "MC-195780",
     {

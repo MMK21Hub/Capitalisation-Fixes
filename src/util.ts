@@ -206,7 +206,7 @@ export function shouldCapitalise(word: string) {
   const includedWords = ["me"]
 
   if (includedWords.includes(word)) return true
-  if (word.length < 3) return false
+  if (word.length <= 3) return false
   if (word.length > 5) return true
   if (excludedWords.includes(word)) return false
   return true
