@@ -6,24 +6,74 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/MMK21Hub/capitalisation-fixes)](https://github.com/MMK21Hub/Capitalisation-Fixes/commits)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MMK21Hub/Capitalisation-Fixes/build-each-commit.yml)](https://github.com/MMK21Hub/Capitalisation-Fixes/actions/workflows/build-each-commit.yml)
 </center>
-<p>Capitalisation Fixes is a resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
-<p>In Minecraft, all in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
+<p>Capitalisation Fixes is a Minecraft resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
+<p>Minecraft has a few rules that decide when to capitalise a word. All in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
 
-## Quick download links
+## Download
 
-- **[Capitalisation Fixes v2.18 for Minecraft 1.19.4 (23w05a)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w05a.zip)**
-- **[Capitalisation Fixes v2.18 for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
-- **[Capitalisation Fixes v2.18 for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
-- **[Capitalisation Fixes v2.0 for Minecraft 1.18.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.0-compat/Capitalisation-Fixes-v2.0-compat.zip)**
-- **[Capitalisation Fixes v1.2 for Minecraft 1.16.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v1.2/Capitalisation-Fixes-v1.2.zip)**
+- **[Minecraft 23w05a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w05a.zip)**
+- **[Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
+- **[Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
+- [View all versions...](#compatibility-tables)
 
 ## Information
 
 - The pack is actively developed for Minecraft 1.19 to 1.19.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1).
 - It supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
-- You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues), or you can DM `MMK21#2121` on Discord
+- You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).
 
-To download, go to the [Releases tab](https://github.com/MMK21Hub/Capitalisation-Fixes/releases), choose the latest stable release and download the zip file. Install it just like any other resource pack. You can find the changelog [in a separate file](Changelog.md).
+## Fixed strings
+
+51 modified translation strings are included in the resource pack, fixing a total of 21 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+
+Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
+
+| Minecraft version        | Fixed bugs | Translation strings |
+| ------------------------ | ---------- | ------------------- |
+| Latest release (1.19.3)  | 21         | 51                  |
+| Latest snapshot (23w05a) | 21         | 51                  |
+| Any version              | 25         | 56                  |
+
+And here's the list of translation strings that have fixes:
+
+- [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
+- [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
+- [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
+- [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) (inconsistent reference to Glass Bottles)
+- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
+- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
+- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
+- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
+- ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
+- [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
+- [Armour equipping subtitles](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
+- ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
+- ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
+- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
+- [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
+- ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
+- [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
+- [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
+- [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
+- [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
+
+Some bugs have been fixed in the latest version of Minecraft. However, their fixes are still available in releases of the pack targeted at older versions.
+You can view them below.
+
+<details> <summary><strong>View older translation strings</strong></summary>
+
+- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
+- [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
+- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) Fixed in 1.19.1-pre1
+- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) Fixed in 1.19.1-pre1
+- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) Fixed in 1.19.1-pre5
+- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) Fixed in 22w44a
+- ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) Fixed in 22w44a
+- [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) Fixed in 23w03a
+
+</details>
+
+----
 
 ## Compatibility tables
 
@@ -96,61 +146,6 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 | **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 | **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
 | **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
-
-## Fixed strings
-
-54 modified translation strings are included in the resource pack, fixing a total of 23 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
-
-Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
-
-| Minecraft version        | Fixed bugs | Translation strings |
-| ------------------------ | ---------- | ------------------- |
-| Latest release (1.19.3)  | 21         | 51                  |
-| Latest snapshot (23w05a) | 21         | 51                  |
-| Total                    | 25         | 56                  |
-
-And here's the list of translation strings that have fixes:
-
-- [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
-- [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
-- [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
-- [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) (inconsistent reference to Glass Bottles)
-- [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
-- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
-- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
-- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
-- ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
-- [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
-- [Armour equipping subtitles](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
-- ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
-- ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
-- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
-- [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
-- ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
-- [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
-- [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
-- [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
-- [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
-
-### Previously-fixed strings
-
-These fixes used to be included in the pack but have since been fixed in the vanilla game, so they're longer necessary.
-They can be found in old releases of the pack. <!-- FIXME: Update to take the new "variants" system into account. -->
-
-- [Subtitles for Warden body parts](https://bugs.mojang.com/browse/MC-249422) Fixed in 22w14a
-- ["You Got a Friend in Me" advancement title](https://bugs.mojang.com/browse/MC-250025) Fixed in 22w15a
-- ["Feels like home" advancement title](https://bugs.mojang.com/browse/MC-237920) Fixed in 22w15a
-- [Sound of Music advancement description](https://bugs.mojang.com/browse/MC-237922) Fixed in 22w15a
-- [Star Trader advancement description](https://bugs.mojang.com/browse/MC-237924) Fixed in 22w15a
-- [Serious Dedication advancement description](https://bugs.mojang.com/browse/MC-231458) Fixed in 22w15a<!-- Not in source code -->
-- [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1<!-- Present in source code -->
-- [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
-- [Report Chat message selection button](https://bugs.mojang.com/browse/MC-253102) Fixed in 1.19.1-pre1
-- [Placeholder for unrelated messages in the Chat Reporting interface](https://bugs.mojang.com/browse/MC-253183) Fixed in 1.19.1-pre1
-- [Terrorism or violent extremism chat report reason description](https://bugs.mojang.com/browse/MC-253223) Fixed in 1.19.1-pre5
-- ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) Fixed in 22w44a
-- ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) Fixed in 22w44a
-- [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) Fixed in 23w03a
 
 ## Build tool
 
