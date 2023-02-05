@@ -7,7 +7,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MMK21Hub/Capitalisation-Fixes/build-each-commit.yml)](https://github.com/MMK21Hub/Capitalisation-Fixes/actions/workflows/build-each-commit.yml)
 </center>
 <p>Capitalisation Fixes is a Minecraft resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
-<p>Minecraft has a few rules that decide when to capitalise a word. All in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
+<p>Minecraft has a few guidelines for capitalizing words. All in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
 
 ## Download
 
