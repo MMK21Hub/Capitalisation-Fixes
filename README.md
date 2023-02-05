@@ -14,15 +14,15 @@
 - **[Minecraft 23w05a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w05a.zip)**
 - **[Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
 - **[Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
-- [View all releases...](#compatibility-tables)
+- [Find releases for older versions](#compatibility-tables)
 
 ## Information
 
-- The pack is actively developed for Minecraft 1.19 to 1.19.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1).
-- It supports two languages: `en_us` and `en_gb`. Other languages will not have the fixes applied to them.
-- You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues).
+- The pack is actively developed for Minecraft 1.19 to 1.19.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
+- The fixes are available when using British English or American English
+- You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues)
 
-## Fixed strings
+## Features
 
 51 modified translation strings are included in the resource pack, fixing a total of 21 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
@@ -34,7 +34,7 @@ Here's a summary of the statistics for different Minecraft versions. Some bugs a
 | Latest snapshot (23w05a) | 21         | 51                  |
 | Any version              | 25         | 56                  |
 
-And here's the list of translation strings that have fixes:
+<details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
@@ -57,10 +57,12 @@ And here's the list of translation strings that have fixes:
 - [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
 - [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
 
+</details>
+
 Some bugs have been fixed in the latest version of Minecraft. However, their fixes are still available in releases of the pack targeted at older versions.
 You can view them below.
 
-<details> <summary><strong>View older translation strings</strong></summary>
+<details> <summary><strong>List of older translation strings</strong></summary>
 
 - [Birthday Song advancement description](https://bugs.mojang.com/browse/MC-249980) Fixed in 1.18-pre1
 - [Goat Horn subtitles](https://bugs.mojang.com/browse/MC-250932) Fixed in 1.18-pre1
@@ -73,11 +75,8 @@ You can view them below.
 
 </details>
 
-----
-
 ## Variants
 
-<!-- Since different versions of Minecraft suffer from different bugs -->
 The pack's variant system lets it support a wide range of Minecraft versions, even though capitalisation bugs vary between Minecraft versions.
 Each release of the pack has multiple files (called variants) available to download, depending on which Minecraft version you use.
 ![4 different .zip files listed in the Assets section of a GitHub release](https://user-images.githubusercontent.com/50421330/216786826-4d984348-6a5f-46ad-ba9f-c53b519573e6.png)
@@ -94,7 +93,7 @@ Note that downloading an old release of the pack means that you won't have the l
 
 To benefit from the newest bugfixes for old versions, you can [build a custom version of the pack](#build-tool).
 
-### 1.19
+### Releases for Minecraft 1.19
 
 |                                                                                  | 22w11a    | 22w12a–13a | 22w14a    | 22w15a–16a | 22w17a–19a | 1.19-pre1+ | 1.19-pre5 | 1.19-rc1+ | 1.19      | 22w24a    | 1.19.1-pre1 | 1.19.1-rc1 | 1.19.1-pre2 | 1.19.1    | 1.19.2    |
 | -------------------------------------------------------------------------------- | --------- | ---------- | --------- | ---------- | ---------- | ---------- | --------- | --------- | --------- | --------- | ----------- | ---------- | ----------- | --------- | --------- |
@@ -118,17 +117,19 @@ To benefit from the newest bugfixes for old versions, you can [build a custom ve
 | **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#9989;   |
 | **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#9989;   | &#9989;    | &#9989;   | &#9989;    | &#9989;    | &#9989;    | &#9989;   | &#9989;   | &#9989;   | &#9989;   | &#9989;     | &#9989;    | &#9989;     | &#9989;   | &#127775; |
 
-### 1.18
+### Compatibility release for Minecraft 1.18
 
-|                                                                                                                           | 1.18.x  |
-| ------------------------------------------------------------------------------------------------------------------------- | ------- |
-| **[v2.0-compat](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)** (1.18 Compatibility Release) | &#9989; |
+During development of Capitalisation Fixes for the 1.19 snapshots, a special release was created to backport some of the fixes to 1.18.
+It is based on the v2.0 release and contains 17 bugfixes.
 
-### Capitalisation Fixes v1
+- **[Download the v2.0 compatibility release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat)** for Minecraft 1.18.x
 
-Capitalisation Fixes v1 (previously just "Capitalisation Fixes") was a resource pack that fixed some bugs in 20w21a+ where UI labels were incorrectly capitalised, and some minor grammar issues.
+### Capitalisation Fixes v1 (Minecraft 1.16)
 
-Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued because of a variety of reasons, e.g. the merger of many capitalisation bugs fixed by this pack into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
+Capitalisation Fixes v1 was a resource pack that fixed some bugs in 20w21a+ where UI labels were incorrectly capitalised, and some minor grammar issues.
+
+Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued for a few reasons,
+e.g. many of Minecraft's capitalisation bugs were merged into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
 |                                                                                                          | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | -------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
 | **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
@@ -182,7 +183,7 @@ At the moment, you can't configure the output using command line arguments. To c
 
 ## `new-version.sh`
 
-This is a utility script for Linux systems that automates part of the process of releasing a new version of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
+This is a utility script for Linux systems that automates part of the process of publishing a new release of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
 
 It performs three main jobs:
 
@@ -197,9 +198,9 @@ For detailed information, check [the file itself](new-version.sh).
 
 ### Resource Packs
 
-| Name                     | Version(s)  | Fixed bug(s)         | Notes         |
-| ------------------------ | ----------- | -------------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.19.4 | [21](#fixed-strings) | You are here! |
+| Name                     | Version(s)  | Fixed bug(s)    | Notes         |
+| ------------------------ | ----------- | --------------- | ------------- |
+| **Capitalisation Fixes** | 1.19–1.19.4 | [21](#features) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
 
