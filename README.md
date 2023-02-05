@@ -83,7 +83,7 @@ Each release of the pack has multiple files (called variants) available to downl
 
 Each variant includes the specific fixes that are required for its Minecraft version — nothing more and nothing less.
 
-If there isn't an officially-provided variant for your Minecraft version, you can compile a custom variant yourself using [the pack's build tool](#build-tool).
+If there isn't an officially-provided variant for your Minecraft version, you can compile one yourself using [the pack's build tool](#build-tool).
 
 ## Compatibility tables
 
