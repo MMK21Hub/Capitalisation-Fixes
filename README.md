@@ -14,7 +14,7 @@
 - **[Minecraft 23w05a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w05a.zip)**
 - **[Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
 - **[Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
-- [View all versions...](#compatibility-tables)
+- [View all releases...](#compatibility-tables)
 
 ## Information
 
@@ -75,36 +75,24 @@ You can view them below.
 
 ----
 
+## Variants
+
+<!-- Since different versions of Minecraft suffer from different bugs -->
+The pack's variant system lets it support a wide range of Minecraft versions, even though capitalisation bugs vary between Minecraft versions.
+Each release of the pack has multiple files (called variants) available to download, depending on which Minecraft version you use.
+![4 different .zip files listed in the Assets section of a GitHub release](https://user-images.githubusercontent.com/50421330/216786826-4d984348-6a5f-46ad-ba9f-c53b519573e6.png)
+
+Each variant includes the specific fixes that are required for its Minecraft version — nothing more and nothing less.
+
+If there isn't an officially-provided variant for your Minecraft version, you can compile a custom variant yourself using [the pack's build tool](#build-tool).
+
 ## Compatibility tables
 
-The tables below show you the versions of Minecraft that different releases of Capitalisation Fixes will work with. The &#127775; symbol denotes the best version of the pack to use for each Minecraft version.
+Old releases of the pack don't use the variant system, so they only target a single version (denoted by the &#127775; symbol in the tables below).
+Information on these old releases is kept here so that you can find one that matches an old Minecraft version.
+Note that downloading an old release of the pack means that you won't have the latest bugfixes.
 
-Newer releases of the pack (v2.9+) often have multiple variants for different Minecraft versions. These variants are available through the different files attached to each [GitHub Release](https://github.com/MMK21Hub/Capitalisation-Fixes/releases)
-and the different versions published on [Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes/versions). Each variant is optimised for its corresponding Minecraft version,
-meaning that they contain all of the fixes applicable to that version — nothing more and nothing less.
-
-The variant system also means that if you are using a recent version of the pack, you don't have to pay attention to these tables.
-
-To benefit from the newest bugfixes, you should keep up-to-date with the latest release of the resource pack. If you're running an older version of Minecraft but still want to use the latest version of the pack,
-you can [build a custom version of the pack](#build-tool).
-
-### 1.19.4
-
-|                                                                                  | 23w03a–23w05a |
-| -------------------------------------------------------------------------------- | ------------- |
-| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;       |
-| **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#9989;       |
-
-### 1.19.3
-
-|                                                                                  | 22w42a–22w46a | 1.19.3    |
-| -------------------------------------------------------------------------------- | ------------- | --------- |
-| **[v2.13](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.13)** | &#9989;       | &#9989;   |
-| **[v2.14](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.14)** | &#9989;       | &#9989;   |
-| **[v2.15](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.15)** | &#9989;       | &#9989;   |
-| **[v2.16](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.16)** | &#9989;       | &#9989;   |
-| **[v2.17](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.17)** | &#9989;       | &#9989;   |
-| **[v2.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.18)** | &#127775;     | &#127775; |
+To benefit from the newest bugfixes for old versions, you can [build a custom version of the pack](#build-tool).
 
 ### 1.19
 
@@ -189,7 +177,8 @@ node dist/main.js --stats --latest-snapshot
 node dist/main.js --stats --latest-release
 ```
 
-At the moment, you can't configure the output using command line arguments. The build configuration can be changed by editing the [`src/main.ts`](src/main.ts) file instead. (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
+At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`src/main.ts`](src/main.ts) file.
+(Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
 
 ## `new-version.sh`
 
