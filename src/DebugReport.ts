@@ -1,6 +1,6 @@
 export interface DebugEventOptions {
   type: string
-  trace?: string
+  trace?: string | number
   name?: string
   startTime?: number
   endTime?: number
@@ -9,7 +9,7 @@ export interface DebugEventOptions {
 
 export interface DebugEventSerialised {
   type: string
-  trace?: string
+  trace?: string | number
   name?: string
   startTime: number
   endTime?: number
@@ -81,9 +81,28 @@ export class DebugReport {
   }
 }
 
+export interface OutFileReporterOptions {
+  targetLanguages: string[]
+  targetVersion: string[]
+  index: number
+}
+
 /** A {@link DebugReport} with methods specific to the Capitalisation Fixes build tool */
 export class BuilderDebugReport extends DebugReport {
   constructor() {
     super()
   }
+
+  newOutFile(options: OutFileReporterOptions) {
+    this.push({
+      type: "generateLanguageFileSet",
+      data: {
+        targetLanguages: options.targetLanguages,
+        targetVersion: options.targetVersion,
+      },
+      name: `Generating language files for ${options.targetVersion}`,
+    })
+  }
+
+  newLanguageFile() {}
 }
