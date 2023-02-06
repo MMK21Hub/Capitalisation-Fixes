@@ -2,8 +2,11 @@ export interface DebugEventOptions {
   type: string
   trace?: string | number
   name?: string
+
   startTime?: number
   endTime?: number
+  promise?: Promise<unknown>
+
   data?: unknown
 }
 
@@ -33,6 +36,14 @@ export class DebugEvent {
     this.startTime = options.startTime || Date.now()
     this.endTime = options.endTime
     this.data = options.data
+
+    options.promise?.finally(() => {
+      this.end()
+    })
+  }
+
+  end() {
+    this.endTime = Date.now()
   }
 
   /** Add a child event */
@@ -83,8 +94,9 @@ export class DebugReport {
 
 export interface OutFileReporterOptions {
   targetLanguages: string[]
-  targetVersion: string[]
+  targetVersion: string
   index: number
+  promise: Promise<unknown>
 }
 
 /** A {@link DebugReport} with methods specific to the Capitalisation Fixes build tool */
@@ -100,7 +112,9 @@ export class BuilderDebugReport extends DebugReport {
         targetLanguages: options.targetLanguages,
         targetVersion: options.targetVersion,
       },
+      trace: options.index,
       name: `Generating language files for ${options.targetVersion}`,
+      promise: options.promise,
     })
   }
 

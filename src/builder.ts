@@ -15,7 +15,7 @@ import {
 import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 import TransformerLogger, { MessageType } from "./TransformerLogger.js"
 import type Fix from "./Fix.js"
-import { packDescription } from "./main.js"
+import { debugReport, packDescription } from "./main.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -241,9 +241,16 @@ export async function generateMultipleVersionsLanguageFileData(
   const versions = await resolveMinecraftVersionSpecifier(targetVersions)
 
   const versionedLanguageFiles = await Promise.all(
-    versions.map((version) =>
-      generateLanguageFilesData(version, targetLanguages, fixes)
-    )
+    versions.map((version, index) => {
+      const promise = generateLanguageFilesData(version, targetLanguages, fixes)
+      debugReport.newOutFile({
+        index,
+        targetLanguages,
+        targetVersion: version,
+        promise,
+      })
+      return promise
+    })
   )
 
   const result: LanguageFileBundle = {}
