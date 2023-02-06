@@ -1,3 +1,4 @@
+import path from "path"
 import { BuilderDebugReport } from "./DebugReport.js"
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
@@ -66,7 +67,8 @@ export const cache = new Map<string, any>()
 const commandLineArg = process.argv[2]
 
 const targetVersions: MinecraftVersionFancyRange = {
-  start: "1.19.2",
+  start: "23w05a",
+  // start: "1.19.2",
 }
 // const targetVersions = "1.19.3"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]
@@ -79,4 +81,16 @@ try {
 } catch (error) {
   console.error(error)
   debugger
+} finally {
+  // Save the debug report
+  const now = new Date()
+  const date = now.toISOString().slice(0, 10)
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  })
+  await debugReport.exportToFile("debug", `${date} ${time}.json`)
+  await printStats(getStatsFilter())
 }

@@ -2,6 +2,7 @@
 *.zip
 dist/
 out/
+debug/
 dep.svg
 
 # Local package installation

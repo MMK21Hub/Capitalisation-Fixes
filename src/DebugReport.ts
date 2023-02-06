@@ -1,3 +1,7 @@
+import { writeFile } from "fs/promises"
+import { ensureDir } from "./util.js"
+import { join as joinPath } from "path"
+
 export interface DebugEventOptions {
   type: string
   trace?: string | number
@@ -6,6 +10,7 @@ export interface DebugEventOptions {
   startTime?: number
   endTime?: number
   promise?: Promise<unknown>
+  async?: boolean
 
   data?: unknown
 }
@@ -22,6 +27,7 @@ export interface DebugEventSerialised {
 
 export class DebugEvent {
   children: DebugEvent[] = []
+  async = false
   type
   trace
   name
@@ -37,9 +43,17 @@ export class DebugEvent {
     this.endTime = options.endTime
     this.data = options.data
 
-    options.promise?.finally(() => {
+    if (options.promise) {
+      this.addPromise(options.promise)
+    }
+  }
+
+  addPromise(promise: Promise<unknown>) {
+    this.async = true
+    promise?.finally(() => {
       this.end()
     })
+    return promise
   }
 
   end() {
@@ -89,6 +103,16 @@ export class DebugReport {
       startTime: this.startTime,
       events: this.events.map((event) => event.toObject()),
     }
+  }
+
+  async exportToFile(...path: string[]) {
+    const event = this.push({
+      type: "DebugReport#exportToFile",
+      name: "Saving the debug report",
+    })
+    const data = JSON.stringify(this.toObject(), null, 4)
+    await ensureDir(joinPath(...path.slice(0, -1)))
+    await event.addPromise(writeFile(joinPath(...path), data, "utf8"))
   }
 }
 
