@@ -106,13 +106,9 @@ export class DebugReport {
   }
 
   async exportToFile(...path: string[]) {
-    const event = this.push({
-      type: "DebugReport#exportToFile",
-      name: "Saving the debug report",
-    })
     const data = JSON.stringify(this.toObject(), null, 4)
     await ensureDir(joinPath(...path.slice(0, -1)))
-    await event.addPromise(writeFile(joinPath(...path), data, "utf8"))
+    await writeFile(joinPath(...path), data, "utf8")
   }
 }
 
