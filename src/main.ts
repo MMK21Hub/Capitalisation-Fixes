@@ -91,6 +91,7 @@ try {
     second: "2-digit",
     hour12: false,
   })
+  debugReport.end()
   await debugReport.exportToFile("debug", `${date} ${time}.json`)
   await printStats(getStatsFilter())
 }

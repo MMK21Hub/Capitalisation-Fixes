@@ -84,7 +84,9 @@ export class DebugTask {
 /** A generic system for tracking and logging debug information and performance stats */
 export class DebugReport {
   tasks: DebugTask[] = []
+  finished = false
   startTime: number
+  endTime?: number
 
   constructor() {
     this.startTime = Date.now()
@@ -92,15 +94,24 @@ export class DebugReport {
 
   /** Add an task */
   push(options: DebugTaskOptions) {
+    if (this.finished)
+      throw new Error("Cannot add a task to a finished debug report")
+
     const task = new DebugTask(options)
     this.tasks.push(task)
     return task
+  }
+
+  end() {
+    this.finished = true
+    this.endTime = Date.now()
   }
 
   /** @returns All the debug data, ready to be serialised into JSON */
   toObject() {
     return {
       startTime: this.startTime,
+      endTime: this.endTime,
       tasks: this.tasks.map((task) => task.toObject()),
     }
   }
