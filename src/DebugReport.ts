@@ -2,7 +2,7 @@ import { writeFile } from "fs/promises"
 import { ensureDir } from "./util.js"
 import { join as joinPath } from "path"
 
-export interface DebugEventOptions {
+export interface DebugTaskOptions {
   type: string
   trace?: string | number
   name?: string
@@ -15,18 +15,18 @@ export interface DebugEventOptions {
   data?: unknown
 }
 
-export interface DebugEventSerialised {
+export interface DebugTaskSerialised {
   type: string
   trace?: string | number
   name?: string
   startTime: number
   endTime?: number
   data?: unknown
-  children: DebugEventSerialised[]
+  children: DebugTaskSerialised[]
 }
 
-export class DebugEvent {
-  children: DebugEvent[] = []
+export class DebugTask {
+  children: DebugTask[] = []
   async = false
   type
   trace
@@ -35,7 +35,7 @@ export class DebugEvent {
   endTime
   data
 
-  constructor(options: DebugEventOptions) {
+  constructor(options: DebugTaskOptions) {
     this.type = options.type
     this.trace = options.trace
     this.name = options.name
@@ -60,15 +60,15 @@ export class DebugEvent {
     this.endTime = Date.now()
   }
 
-  /** Add a child event */
-  push(options: DebugEventOptions) {
-    const event = new DebugEvent(options)
-    this.children.push(event)
-    return event
+  /** Add a child task */
+  push(options: DebugTaskOptions) {
+    const task = new DebugTask(options)
+    this.children.push(task)
+    return task
   }
 
-  /** Convert the event to a JSON-friendly object */
-  toObject(): DebugEventSerialised {
+  /** Convert the task to a JSON-friendly object */
+  toObject(): DebugTaskSerialised {
     return {
       type: this.type,
       trace: this.trace,
@@ -76,32 +76,32 @@ export class DebugEvent {
       startTime: this.startTime,
       endTime: this.endTime,
       data: this.data,
-      children: this.children.map((event) => event.toObject()),
+      children: this.children.map((task) => task.toObject()),
     }
   }
 }
 
 /** A generic system for tracking and logging debug information and performance stats */
 export class DebugReport {
-  events: DebugEvent[] = []
+  tasks: DebugTask[] = []
   startTime: number
 
   constructor() {
     this.startTime = Date.now()
   }
 
-  /** Add an event */
-  push(options: DebugEventOptions) {
-    const event = new DebugEvent(options)
-    this.events.push(event)
-    return event
+  /** Add an task */
+  push(options: DebugTaskOptions) {
+    const task = new DebugTask(options)
+    this.tasks.push(task)
+    return task
   }
 
   /** @returns All the debug data, ready to be serialised into JSON */
   toObject() {
     return {
       startTime: this.startTime,
-      events: this.events.map((event) => event.toObject()),
+      tasks: this.tasks.map((task) => task.toObject()),
     }
   }
 
