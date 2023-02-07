@@ -374,6 +374,11 @@ export async function emitResourcePacks(
   const validationResults = Promise.all(
     fixes.map((fix) => fix.validateLinkedBug())
   )
+  mainTask.push({
+    type: "emitResourcePacks.validateFixes",
+    name: "Validating the fixes",
+    promise: validationResults,
+  })
 
   // Prepare the output directory
   await ensureDir(outputDir)
