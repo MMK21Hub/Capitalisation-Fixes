@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 import path from "path"
-import { cache, versionsSummary } from "./main.js"
+import { cache, debugReport, versionsSummary } from "./main.js"
 import {
   FancyRange,
   StartAndEnd,
@@ -13,6 +13,7 @@ import {
   ResolvableSync,
   isSimpleRange,
 } from "./util.js"
+import { DebugTask } from "./DebugReport.js"
 
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string
@@ -193,6 +194,18 @@ export async function getLatestVersion(
 ): Promise<MinecraftVersion> {
   const versionManifest = await getVersionManifest()
   return versionManifest.latest[type]
+}
+
+export function fetchVersionsSummary() {
+  const task = debugReport.push({
+    type: "fetchVersionsSummary",
+    name: "Fetching Minecraft version information",
+  })
+  const dataPromise = fetch(
+    "https://raw.githubusercontent.com/misode/mcmeta/summary/versions/data.min.json"
+  ).then((res) => res.json())
+
+  return task.addPromise(dataPromise) as Promise<VersionInfo[]>
 }
 
 export function getVersion(target: MinecraftVersion | number): VersionInfo {

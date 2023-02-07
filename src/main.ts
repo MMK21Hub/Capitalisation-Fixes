@@ -1,4 +1,3 @@
-import path from "path"
 import { BuilderDebugReport } from "./DebugReport.js"
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
@@ -6,9 +5,8 @@ import {
   MinecraftVersionBranch,
   MinecraftVersionFancyRange,
   MinecraftVersionSpecifier,
-  VersionInfo,
+  fetchVersionsSummary,
 } from "./minecraftHelpers.js"
-import fetch from "node-fetch"
 
 export async function printStats(limitToLatest?: MinecraftVersionBranch) {
   const versions: MinecraftVersionSpecifier = limitToLatest
@@ -58,9 +56,7 @@ export const packDescription =
 export const debugReport = new BuilderDebugReport()
 
 console.log("Fetching Minecraft version information...")
-export const versionsSummary = (await fetch(
-  "https://raw.githubusercontent.com/misode/mcmeta/summary/versions/data.min.json"
-).then((res) => res.json())) as VersionInfo[]
+export const versionsSummary = await fetchVersionsSummary()
 
 export const cache = new Map<string, any>()
 
