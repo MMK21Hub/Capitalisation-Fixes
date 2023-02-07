@@ -95,38 +95,7 @@ export interface OutFileMetadata {
   totalFiles: number
 }
 
-export interface OutFileTaskOptions {
-  targetLanguages: string[]
-  targetVersion: string
-  index: number
-  promise: Promise<unknown>
-}
-
-export class BuilderDebugTask extends DebugTask {
-  constructor() {
-    super({
-      type: "emitResourcePacks",
-      name: "Building resource packs",
-    })
-  }
-
-  newOutFile(options: OutFileTaskOptions) {
-    this.push({
-      type: "generateLanguageFileSet",
-      data: {
-        targetLanguages: options.targetLanguages,
-        targetVersion: options.targetVersion,
-      },
-      trace: options.index,
-      name: `Generating language files for ${options.targetVersion}`,
-      promise: options.promise,
-    })
-  }
-
-  newLanguageFile() {}
-}
-
-let mainTask: BuilderDebugTask
+let mainTask: DebugTask
 
 export abstract class Transformer {
   callback
@@ -272,16 +241,25 @@ export async function generateMultipleVersionsLanguageFileData(
   targetLanguages: MinecraftLanguage[],
   fixes: Fix[]
 ) {
+  const languageFileGenerationTask = mainTask.push({
+    type: "generateMultipleVersionsLanguageFileData",
+    name: "Generating the language files for each version",
+  })
+
   const versions = await resolveMinecraftVersionSpecifier(targetVersions)
 
   const versionedLanguageFiles = await Promise.all(
     versions.map((version, index) => {
       const promise = generateLanguageFilesData(version, targetLanguages, fixes)
-      mainTask.newOutFile({
-        index,
-        targetLanguages,
-        targetVersion: version,
-        promise,
+      languageFileGenerationTask.push({
+        type: "generateLanguageFileSet",
+        data: {
+          targetLanguages,
+          targetVersion: version,
+        },
+        trace: index,
+        name: `Generating language files for ${version}`,
+        promise: promise,
       })
       return promise
     })
@@ -302,6 +280,7 @@ export async function generateMultipleVersionsLanguageFileData(
     result[versions[i]] = languages
   })
 
+  languageFileGenerationTask.end()
   return result
 }
 
@@ -386,7 +365,10 @@ export async function emitResourcePacks(
   const outputDir = buildOptions.directory || "out"
   console.log("Building resource packs...")
 
-  mainTask = debugReport.pushRaw(new BuilderDebugTask())
+  mainTask = debugReport.push({
+    type: "emitResourcePacks",
+    name: "Building resource packs",
+  })
 
   // Perform validation on the provided fixes
   const validationResults = Promise.all(
