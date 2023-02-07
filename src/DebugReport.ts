@@ -140,7 +140,7 @@ export class DebugReport {
   }
 
   async exportToFile(...path: string[]) {
-    const data = JSON.stringify(this.toObject(), null, 4)
+    const data = JSON.stringify(this.toObject(), null, 2)
     await ensureDir(joinPath(...path.slice(0, -1)))
     await writeFile(joinPath(...path), data, "utf8")
   }
