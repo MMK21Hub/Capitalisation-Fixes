@@ -1,4 +1,4 @@
-import { BuilderDebugReport } from "./DebugReport.js"
+import { DebugReport } from "./DebugReport.js"
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
 import {
@@ -53,7 +53,7 @@ function getStatsFilter(): MinecraftVersionBranch | undefined {
 export const packDescription =
   "Fixes issues with text labels.\nSource: §9§nbit.ly/CapsFix"
 
-export const debugReport = new BuilderDebugReport()
+export const debugReport = new DebugReport()
 
 console.log("Fetching Minecraft version information...")
 export const versionsSummary = await fetchVersionsSummary()

@@ -16,6 +16,7 @@ import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
 import TransformerLogger, { MessageType } from "./TransformerLogger.js"
 import type Fix from "./Fix.js"
 import { debugReport, packDescription } from "./main.js"
+import { DebugTask } from "./DebugReport.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -93,6 +94,39 @@ export interface OutFileMetadata {
    */
   totalFiles: number
 }
+
+export interface OutFileTaskOptions {
+  targetLanguages: string[]
+  targetVersion: string
+  index: number
+  promise: Promise<unknown>
+}
+
+export class BuilderDebugTask extends DebugTask {
+  constructor() {
+    super({
+      type: "emitResourcePacks",
+      name: "Building resource packs",
+    })
+  }
+
+  newOutFile(options: OutFileTaskOptions) {
+    this.push({
+      type: "generateLanguageFileSet",
+      data: {
+        targetLanguages: options.targetLanguages,
+        targetVersion: options.targetVersion,
+      },
+      trace: options.index,
+      name: `Generating language files for ${options.targetVersion}`,
+      promise: options.promise,
+    })
+  }
+
+  newLanguageFile() {}
+}
+
+let mainTask: BuilderDebugTask
 
 export abstract class Transformer {
   callback
@@ -243,7 +277,7 @@ export async function generateMultipleVersionsLanguageFileData(
   const versionedLanguageFiles = await Promise.all(
     versions.map((version, index) => {
       const promise = generateLanguageFilesData(version, targetLanguages, fixes)
-      debugReport.newOutFile({
+      mainTask.newOutFile({
         index,
         targetLanguages,
         targetVersion: version,
@@ -352,6 +386,8 @@ export async function emitResourcePacks(
   const outputDir = buildOptions.directory || "out"
   console.log("Building resource packs...")
 
+  mainTask = debugReport.pushRaw(new BuilderDebugTask())
+
   // Perform validation on the provided fixes
   const validationResults = Promise.all(
     fixes.map((fix) => fix.validateLinkedBug())
@@ -432,6 +468,8 @@ export async function emitResourcePacks(
 
   // Save the index.json file
   await emitOutFileIndex(zipFileIndex, outputDir)
+
+  mainTask.end()
 }
 
 export async function generateStats(

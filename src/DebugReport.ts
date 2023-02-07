@@ -21,6 +21,7 @@ export interface DebugTaskSerialised {
   name?: string
   startTime: number
   endTime?: number
+  duration?: number
   data?: unknown
   children: DebugTaskSerialised[]
 }
@@ -67,6 +68,13 @@ export class DebugTask {
     return task
   }
 
+  /** Calculate the task's duration, in milliseconds */
+  duration() {
+    if (!this.endTime) return undefined
+
+    return this.endTime - this.startTime
+  }
+
   /** Convert the task to a JSON-friendly object */
   toObject(): DebugTaskSerialised {
     return {
@@ -75,6 +83,7 @@ export class DebugTask {
       name: this.name,
       startTime: this.startTime,
       endTime: this.endTime,
+      duration: this.duration(),
       data: this.data,
       children: this.children.map((task) => task.toObject()),
     }
@@ -92,12 +101,15 @@ export class DebugReport {
     this.startTime = Date.now()
   }
 
-  /** Add an task */
+  /** Create a task */
   push(options: DebugTaskOptions) {
+    return this.pushRaw(new DebugTask(options))
+  }
+
+  pushRaw<T extends DebugTask>(task: T) {
     if (this.finished)
       throw new Error("Cannot add a task to a finished debug report")
 
-    const task = new DebugTask(options)
     this.tasks.push(task)
     return task
   }
@@ -107,11 +119,22 @@ export class DebugReport {
     this.endTime = Date.now()
   }
 
+  /** Calculate the time that this debug session took, in milliseconds */
+  duration() {
+    if (!this.endTime)
+      throw new Error(
+        "Cannot calculate duration if the debug report isn't finished"
+      )
+
+    return this.endTime - this.startTime
+  }
+
   /** @returns All the debug data, ready to be serialised into JSON */
   toObject() {
     return {
       startTime: this.startTime,
       endTime: this.endTime,
+      duration: this.duration(),
       tasks: this.tasks.map((task) => task.toObject()),
     }
   }
@@ -121,33 +144,4 @@ export class DebugReport {
     await ensureDir(joinPath(...path.slice(0, -1)))
     await writeFile(joinPath(...path), data, "utf8")
   }
-}
-
-export interface OutFileReporterOptions {
-  targetLanguages: string[]
-  targetVersion: string
-  index: number
-  promise: Promise<unknown>
-}
-
-/** A {@link DebugReport} with methods specific to the Capitalisation Fixes build tool */
-export class BuilderDebugReport extends DebugReport {
-  constructor() {
-    super()
-  }
-
-  newOutFile(options: OutFileReporterOptions) {
-    this.push({
-      type: "generateLanguageFileSet",
-      data: {
-        targetLanguages: options.targetLanguages,
-        targetVersion: options.targetVersion,
-      },
-      trace: options.index,
-      name: `Generating language files for ${options.targetVersion}`,
-      promise: options.promise,
-    })
-  }
-
-  newLanguageFile() {}
 }
