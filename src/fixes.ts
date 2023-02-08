@@ -284,7 +284,7 @@ const fixes: Fix[] = [
     bug: "MC-259360",
     key: "selectWorld.mapFeatures.info",
     transformer: new ReplaceTransformer("Shipwrecks etc", "Shipwrecks, etc"),
-    versions: ["23w04a", null],
+    versions: ["23w04a", "23w06a"],
   }),
 ]
 
