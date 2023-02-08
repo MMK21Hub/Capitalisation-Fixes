@@ -96,6 +96,7 @@ export interface OutFileMetadata {
 }
 
 let mainTask: DebugTask
+let validateFixesTask: DebugTask
 
 export abstract class Transformer {
   callback
@@ -371,14 +372,23 @@ export async function emitResourcePacks(
   })
 
   // Perform validation on the provided fixes
-  const validationResults = Promise.all(
-    fixes.map((fix) => fix.validateLinkedBug())
-  )
-  mainTask.push({
+  validateFixesTask = mainTask.push({
     type: "emitResourcePacks.validateFixes",
     name: "Validating the fixes",
-    promise: validationResults,
   })
+  const validationResults = validateFixesTask.addPromise(
+    Promise.all(
+      fixes.map((fix) => {
+        const promise = fix.validateLinkedBug()
+        validateFixesTask.push({
+          type: "Fix#validateLinkedBug",
+          name: "Validating a fix",
+          promise,
+        })
+        return promise
+      })
+    )
+  )
 
   // Prepare the output directory
   await ensureDir(outputDir)
