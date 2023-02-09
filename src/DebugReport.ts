@@ -93,6 +93,13 @@ export class DebugTask {
   }
 }
 
+export interface DebugReportSerialised {
+  startTime: number
+  endTime?: number
+  duration?: number
+  tasks: DebugTaskSerialised[]
+}
+
 /** A generic system for tracking and logging debug information and performance stats */
 export class DebugReport {
   tasks: DebugTask[] = []
@@ -133,7 +140,7 @@ export class DebugReport {
   }
 
   /** @returns All the debug data, ready to be serialised into JSON */
-  toObject() {
+  toObject(): DebugReportSerialised {
     return {
       startTime: this.startTime,
       endTime: this.endTime,

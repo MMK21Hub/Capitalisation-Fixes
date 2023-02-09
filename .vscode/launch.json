@@ -17,6 +17,13 @@
       "name": "Run publisher script",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/dist/publisher/main.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run report viewer",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/dist/report-viewer/main.js"
     }
   ]
 }
