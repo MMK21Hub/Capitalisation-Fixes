@@ -49,7 +49,7 @@ export class DebugTask {
     }
   }
 
-  addPromise(promise: Promise<unknown>) {
+  addPromise<T>(promise: Promise<T>) {
     this.async = true
     promise?.finally(() => {
       this.end()
@@ -63,7 +63,10 @@ export class DebugTask {
 
   /** Add a child task */
   push(options: DebugTaskOptions) {
-    const task = new DebugTask(options)
+    return this.pushRaw(new DebugTask(options))
+  }
+
+  pushRaw<T extends DebugTask>(task: T) {
     this.children.push(task)
     return task
   }

@@ -96,7 +96,6 @@ export interface OutFileMetadata {
 }
 
 let mainTask: DebugTask
-let validateFixesTask: DebugTask
 
 export abstract class Transformer {
   callback
@@ -372,20 +371,15 @@ export async function emitResourcePacks(
   })
 
   // Perform validation on the provided fixes
-  validateFixesTask = mainTask.push({
+  const validateFixesTask = mainTask.push({
     type: "emitResourcePacks.validateFixes",
     name: "Validating the fixes",
   })
-  const validationResults = validateFixesTask.addPromise(
+  const validationPromise = validateFixesTask.addPromise(
     Promise.all(
-      fixes.map((fix) => {
-        const promise = fix.validateLinkedBug()
-        validateFixesTask.push({
-          type: "Fix#validateLinkedBug",
-          name: "Validating a fix",
-          promise,
-        })
-        return promise
+      fixes.map(async (fix) => {
+        const debugTask = await fix.validateLinkedBug()
+        if (debugTask) validateFixesTask.pushRaw(debugTask)
       })
     )
   )
@@ -400,7 +394,7 @@ export async function emitResourcePacks(
     )
 
   // Validation needs to be complete before we start processing the fixes
-  await validationResults
+  await validationPromise
 
   const languageFiles = await generateMultipleVersionsLanguageFileData(
     buildOptions.targetVersions,

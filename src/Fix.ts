@@ -14,6 +14,7 @@ import {
   isFixed,
   Resolution,
 } from "./mojiraHelpers.js"
+import { DebugTask } from "./DebugReport.js"
 
 export interface FixOptions {
   /** The translation string that needs to be edited */
@@ -79,10 +80,20 @@ export default class Fix {
   async validateLinkedBug() {
     if (!this.bug) return
 
+    const debugTask = new DebugTask({
+      type: "Fix#validateLinkedBug",
+      name: `Validating a fix with linked bug ${this.bug}`,
+    })
+
     if (!/[A-Z]+-\d+/.test(this.bug))
       throw new Error(`Doesn't look like a bug report key: "${this.bug}"`)
 
-    const resolvedKey = await getBug(this.bug)
+    const resolvedKey = await debugTask
+      .push({
+        type: "getBug",
+      })
+      .addPromise(getBug(this.bug))
+
     if (!resolvedKey) throw new Error(`Issue ${this.bug} does not exist!`)
 
     if (resolvedKey !== this.bug) {
@@ -92,7 +103,11 @@ export default class Fix {
       this.bug = resolvedKey
     }
 
-    const { resolution } = await getBugResolution(this.bug)
+    const { resolution } = await debugTask
+      .push({
+        type: "getBugResolution",
+      })
+      .addPromise(getBugResolution(this.bug))
 
     const badResolutions = [
       Resolution.Invalid,
@@ -105,7 +120,21 @@ export default class Fix {
         `Bug report ${this.bug} has an inappropriate resolution (${Resolution[resolution]})`
       )
 
-    if (await isFixed(this.bug)) await this.validateFixedBug()
+    const bugFixed = await debugTask
+      .push({
+        type: "isFixed",
+      })
+      .addPromise(isFixed(this.bug))
+
+    if (bugFixed) {
+      await debugTask
+        .push({
+          type: "Fix#validateFixedBug",
+        })
+        .addPromise(this.validateFixedBug())
+    }
+
+    return debugTask
   }
 
   constructor(options: FixOptions) {
