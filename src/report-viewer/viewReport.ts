@@ -73,6 +73,9 @@ export class ReportRenderer {
         foundNextTask = true
         break
       }
+
+      stepInto = false
+      this.currentTaskIndex.pop()
     }
 
     return foundNextTask ? this.getCurrentTask() : undefined
@@ -81,8 +84,15 @@ export class ReportRenderer {
   printTasks() {
     let currentTask: DebugTaskSerialised | undefined = this.getCurrentTask()
     while (currentTask !== undefined) {
-      console.log(currentTask)
+      const indent = " ".repeat(this.calculateIndentation())
+      const title = currentTask.name || currentTask.type
+      let line = `${indent}${title}`
+      if (currentTask.duration) {
+        line += ` - ${secs(currentTask.duration)}`
+      }
+      console.log(line)
 
+      // Move onto the next task
       currentTask = this.bumpCurrentTask()
     }
   }
