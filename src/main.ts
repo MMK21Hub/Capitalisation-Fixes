@@ -89,5 +89,4 @@ try {
   })
   debugReport.end()
   await debugReport.exportToFile("debug", `${date} ${time}.json`)
-  await printStats(getStatsFilter())
 }
