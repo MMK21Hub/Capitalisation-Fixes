@@ -134,6 +134,7 @@ export default class Fix {
         .addPromise(this.validateFixedBug())
     }
 
+    debugTask.end()
     return debugTask
   }
 
