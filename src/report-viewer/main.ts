@@ -1,5 +1,6 @@
 import arg from "arg"
 import { findLatestReport, loadReport } from "./loadReport.js"
+import { ReportRenderer } from "./viewReport.js"
 
 const args = arg({
   "--file": String,
@@ -8,5 +9,6 @@ const args = arg({
 const { "--file": selectedFile } = args
 
 const targetFile = selectedFile || (await findLatestReport())
-
-console.log(await loadReport(targetFile))
+const reportData = await loadReport(targetFile)
+const renderer = new ReportRenderer({ reportData })
+renderer.printReport()
