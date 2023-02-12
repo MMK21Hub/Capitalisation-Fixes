@@ -1,5 +1,6 @@
 import { DebugReportSerialised, DebugTaskSerialised } from "../DebugReport.js"
 import { secs } from "./util.js"
+import chalk from "chalk"
 
 export interface ReportRendererOptions {
   reportData: DebugReportSerialised
@@ -85,10 +86,10 @@ export class ReportRenderer {
     let currentTask: DebugTaskSerialised | undefined = this.getCurrentTask()
     while (currentTask !== undefined) {
       const indent = " ".repeat(this.calculateIndentation())
-      const title = currentTask.name || currentTask.type
+      const title = chalk.bold(currentTask.name || chalk.dim(currentTask.type))
       let line = `${indent}${title}`
       if (currentTask.duration) {
-        line += ` - ${secs(currentTask.duration)}`
+        line += ` ${secs(currentTask.duration)}`
       }
       console.log(line)
 
