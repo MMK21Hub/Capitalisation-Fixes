@@ -7,6 +7,9 @@ export interface ReportRendererOptions {
 }
 
 export class ReportRenderer {
+  // Display options
+  indentWidth = 2
+
   report
   currentTaskIndex
   indents: number[] = []
@@ -23,21 +26,24 @@ export class ReportRenderer {
   }
 
   calculateIndentation() {
-    const indentWidth = 2
     const indentLevels = this.currentTaskDepth() - 1
-    return indentLevels * indentWidth
+    return indentLevels * this.indentWidth
   }
 
   indentationString() {
-    const width = this.calculateIndentation()
-    this.indents.push(width)
-    if (width === 0) return ""
+    const totalWidth = this.calculateIndentation()
+    this.indents.push(totalWidth)
+    if (totalWidth === 0) return ""
 
     const character = " "
-    const padding = character.repeat(width)
-    const finalPadding = replaceCharAt(padding, -2, "├╴")
+    let padding = character.repeat(totalWidth)
 
-    return finalPadding
+    for (let i = 0; i < totalWidth; i += this.indentWidth) {
+      padding = replaceCharAt(padding, i, "│")
+    }
+    padding = replaceCharAt(padding, -2, "├╴")
+
+    return padding
   }
 
   getTaskAt(...indexes: number[]): DebugTaskSerialised | undefined {
