@@ -11,7 +11,7 @@
 
 ## Download
 
-- **[Minecraft 1.19.4 Pre-release 3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-pre3.zip)**
+- **[Minecraft 1.19.4 Pre-release 3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.4-pre3.zip)**
 - **[Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
 - **[Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
 - [Find releases for older versions](#compatibility-tables)
