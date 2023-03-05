@@ -11,7 +11,7 @@
 
 ## Download
 
-- **[Minecraft 23w06a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-23w06a.zip)**
+- **[Minecraft 1.19.4 Pre-release 3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-pre3.zip)**
 - **[Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
 - **[Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
 - [Find releases for older versions](#compatibility-tables)
@@ -28,11 +28,11 @@
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version        | Fixed bugs | Translation strings |
-| ------------------------ | ---------- | ------------------- |
-| Latest release (1.19.3)  | 21         | 51                  |
-| Latest snapshot (23w06a) | 20         | 50                  |
-| Any version              | 25         | 56                  |
+| Minecraft version             | Fixed bugs | Translation strings |
+| ----------------------------- | ---------- | ------------------- |
+| Latest release (1.19.3)       | 21         | 51                  |
+| Latest snapshot (1.19.4-pre3) | 20         | 50                  |
+| Any version                   | 25         | 56                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
