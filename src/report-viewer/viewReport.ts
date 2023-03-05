@@ -1,5 +1,5 @@
 import { DebugReportSerialised, DebugTaskSerialised } from "../DebugReport.js"
-import { calculateColor, secs } from "./util.js"
+import { calculateColor, insertString as replaceCharAt, secs } from "./util.js"
 import chalk from "chalk"
 
 export interface ReportRendererOptions {
@@ -9,6 +9,7 @@ export interface ReportRendererOptions {
 export class ReportRenderer {
   report
   currentTaskIndex
+  indents: number[] = []
 
   constructor(options: ReportRendererOptions) {
     const { reportData } = options
@@ -25,6 +26,18 @@ export class ReportRenderer {
     const indentWidth = 2
     const indentLevels = this.currentTaskDepth() - 1
     return indentLevels * indentWidth
+  }
+
+  indentationString() {
+    const width = this.calculateIndentation()
+    this.indents.push(width)
+    if (width === 0) return ""
+
+    const character = " "
+    const padding = character.repeat(width)
+    const finalPadding = replaceCharAt(padding, -2, "├╴")
+
+    return finalPadding
   }
 
   getTaskAt(...indexes: number[]): DebugTaskSerialised | undefined {
@@ -85,7 +98,7 @@ export class ReportRenderer {
   printTasks() {
     let currentTask: DebugTaskSerialised | undefined = this.getCurrentTask()
     while (currentTask !== undefined) {
-      const indent = " ".repeat(this.calculateIndentation())
+      const indent = this.indentationString()
       const title = chalk.bold(currentTask.name || chalk(currentTask.type))
       let line = `${indent}${title}`
       if (currentTask.duration) {

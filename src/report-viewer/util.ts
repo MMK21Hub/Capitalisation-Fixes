@@ -23,3 +23,15 @@ export function calculateColor(time: number) {
   return chalk.red
   // return chalk.reset
 }
+
+export function insertString(string: string, index: number, newString: string) {
+  if (index > string.length - 1) return string
+  const insertLength = newString.length
+  return index < 0
+    ? string.slice(0, index) +
+        newString +
+        string.slice(index + insertLength || Infinity)
+    : string.substring(0, index) +
+        newString +
+        string.substring(index + insertLength)
+}
