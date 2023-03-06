@@ -1,4 +1,8 @@
-import { DebugReportSerialised, DebugTaskSerialised } from "../DebugReport.js"
+import {
+  DebugReportSerialised,
+  DebugTask,
+  DebugTaskSerialised,
+} from "../DebugReport.js"
 import { calculateColor, insertString as replaceCharAt, secs } from "./util.js"
 import chalk from "chalk"
 
@@ -63,24 +67,17 @@ export class ReportRenderer {
     return this.getTaskAt(...this.currentTaskIndex)!
   }
 
-  /**
-   * Updates `this.currentTaskIndex` to the index of the next task in the "task tree" of tasks and child tasks.
-   * If required, it will 'move' up or down a level to get to the next task.
-   * @param stepInto Set to `false` to prevent going deeper into the task tree
-   * @returns The current task, or `null` if we are at the end of the task tree
-   */
-  bumpCurrentTask(stepInto = true) {
-    let foundNextTask = false
+  findNextTask(currentIndex: number[], stepInto = true) {
+    let nextTaskIndex: number[] | undefined = currentIndex
 
-    for (let depth = this.currentTaskIndex.length - 1; depth >= 0; depth--) {
-      const index = this.currentTaskIndex[depth]
-      const oldTask = this.getCurrentTask()
-      const newIndexes = this.currentTaskIndex.slice()
+    for (let depth = nextTaskIndex.length - 1; depth >= 0; depth--) {
+      const index = nextTaskIndex[depth]
+      const oldTask = this.getTaskAt(...nextTaskIndex)!
+      const newIndexes = nextTaskIndex.slice()
 
       if (stepInto && oldTask.children.length !== 0) {
         // The current task has children, so step into the first child
-        this.currentTaskIndex.push(0)
-        foundNextTask = true
+        nextTaskIndex.push(0)
         break
       }
 
@@ -89,16 +86,27 @@ export class ReportRenderer {
       const nextTaskExists = !!this.getTaskAt(...newIndexes)
       if (nextTaskExists) {
         // This level of the tree has a sibling that we can move to
-        this.currentTaskIndex = newIndexes
-        foundNextTask = true
+        nextTaskIndex = newIndexes
         break
       }
 
       stepInto = false
-      this.currentTaskIndex.pop()
+      nextTaskIndex.pop()
     }
 
-    return foundNextTask ? this.getCurrentTask() : undefined
+    return nextTaskIndex.length ? nextTaskIndex : null
+  }
+
+  /**
+   * Updates `this.currentTaskIndex` to the index of the next task in the "task tree" of tasks and child tasks.
+   * If required, it will 'move' up or down a level to get to the next task.
+   * @param stepInto Set to `false` to prevent going deeper into the task tree
+   * @returns The current task, or `null` if we are at the end of the task tree
+   */
+  bumpCurrentTask(stepInto = true) {
+    const nextTask = this.findNextTask(this.currentTaskIndex, stepInto)
+    if (nextTask) this.currentTaskIndex = nextTask
+    return nextTask ? this.getTaskAt(...nextTask) : undefined
   }
 
   printTasks() {
