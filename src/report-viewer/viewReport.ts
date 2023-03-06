@@ -11,7 +11,7 @@ export interface ReportRendererOptions {
 }
 
 export class ReportRenderer {
-  // Display options
+  // Options for customising the display of debug reports
   indentWidth = 2
 
   report
@@ -45,7 +45,17 @@ export class ReportRenderer {
     for (let i = 0; i < totalWidth; i += this.indentWidth) {
       padding = replaceCharAt(padding, i, "│")
     }
-    padding = replaceCharAt(padding, -2, "├╴")
+
+    const nextTask = this.findNextTask()
+    const hasProceedingSibling =
+      // nextTask && nextTask.length <= this.currentTaskIndex.length
+      !!this.findNextTask(this.currentTaskIndex, {
+        stepInto: false,
+        stepOut: false,
+      })
+    const hasChild = this.getCurrentTask().children.length
+    const lastCharacter = hasProceedingSibling || hasChild ? "├╴" : "└╴"
+    padding = replaceCharAt(padding, -2, lastCharacter)
 
     return padding
   }
@@ -67,8 +77,13 @@ export class ReportRenderer {
     return this.getTaskAt(...this.currentTaskIndex)!
   }
 
-  findNextTask(currentIndex: number[], stepInto = true) {
-    let nextTaskIndex: number[] | undefined = currentIndex
+  findNextTask(
+    currentIndex: number[] = this.currentTaskIndex,
+    options: { stepInto?: boolean; stepOut?: boolean } = {}
+  ) {
+    let { stepInto = true, stepOut = true } = options
+
+    let nextTaskIndex: number[] = currentIndex.slice()
 
     for (let depth = nextTaskIndex.length - 1; depth >= 0; depth--) {
       const index = nextTaskIndex[depth]
@@ -90,6 +105,8 @@ export class ReportRenderer {
         break
       }
 
+      if (!stepOut) return null
+
       stepInto = false
       nextTaskIndex.pop()
     }
@@ -104,7 +121,7 @@ export class ReportRenderer {
    * @returns The current task, or `null` if we are at the end of the task tree
    */
   bumpCurrentTask(stepInto = true) {
-    const nextTask = this.findNextTask(this.currentTaskIndex, stepInto)
+    const nextTask = this.findNextTask(this.currentTaskIndex, { stepInto })
     if (nextTask) this.currentTaskIndex = nextTask
     return nextTask ? this.getTaskAt(...nextTask) : undefined
   }
