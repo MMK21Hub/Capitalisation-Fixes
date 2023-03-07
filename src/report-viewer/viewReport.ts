@@ -43,16 +43,15 @@ export class ReportRenderer {
     let padding = character.repeat(totalWidth)
 
     for (let i = 0; i < totalWidth; i += this.indentWidth) {
-      padding = replaceCharAt(padding, i, "│")
+      const depth = i / this.indentWidth + 1
+      const shouldAddLine = this.currentTaskHasProceedingSiblingAtDepth(depth)
+      if (shouldAddLine) padding = replaceCharAt(padding, i, "│")
     }
 
-    const nextTask = this.findNextTask()
-    const hasProceedingSibling =
-      // nextTask && nextTask.length <= this.currentTaskIndex.length
-      !!this.findNextTask(this.currentTaskIndex, {
-        stepInto: false,
-        stepOut: false,
-      })
+    const hasProceedingSibling = !!this.findNextTask(this.currentTaskIndex, {
+      stepInto: false,
+      stepOut: false,
+    })
     const hasChild = this.getCurrentTask().children.length
     const lastCharacter = hasProceedingSibling || hasChild ? "├╴" : "└╴"
     padding = replaceCharAt(padding, -2, lastCharacter)
@@ -75,6 +74,15 @@ export class ReportRenderer {
 
   getCurrentTask() {
     return this.getTaskAt(...this.currentTaskIndex)!
+  }
+
+  currentTaskHasProceedingSiblingAtDepth(depth: number) {
+    const indexes = this.currentTaskIndex.slice()
+    const taskAtDepth = indexes.slice(0, depth + 1)
+    taskAtDepth[depth] += 1
+
+    const taskExists = !!this.getTaskAt(...taskAtDepth)
+    return taskExists
   }
 
   findNextTask(
