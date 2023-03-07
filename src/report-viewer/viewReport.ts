@@ -26,11 +26,11 @@ export class ReportRenderer {
   }
 
   currentTaskDepth() {
-    return this.currentTaskIndex.length
+    return this.currentTaskIndex.length - 1
   }
 
   calculateIndentation() {
-    const indentLevels = this.currentTaskDepth() - 1
+    const indentLevels = this.currentTaskDepth()
     return indentLevels * this.indentWidth
   }
 
@@ -48,12 +48,23 @@ export class ReportRenderer {
       if (shouldAddLine) padding = replaceCharAt(padding, i, "│")
     }
 
-    const hasProceedingSibling = !!this.findNextTask(this.currentTaskIndex, {
-      stepInto: false,
-      stepOut: false,
-    })
+    const hasDirectlyProceedingSibling = !!this.findNextTask(
+      this.currentTaskIndex,
+      {
+        stepInto: false,
+        stepOut: false,
+      }
+    )
+    const hasAnyProceedingSibling = this.currentTaskHasProceedingSiblingAtDepth(
+      this.currentTaskDepth()
+    )
     const hasChild = this.getCurrentTask().children.length
-    const lastCharacter = hasProceedingSibling || hasChild ? "├╴" : "└╴"
+    const lastCharacter =
+      hasAnyProceedingSibling || hasChild
+        ? hasDirectlyProceedingSibling
+          ? "├╴"
+          : "└╴"
+        : "└╴"
     padding = replaceCharAt(padding, -2, lastCharacter)
 
     return padding
