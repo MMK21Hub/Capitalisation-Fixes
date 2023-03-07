@@ -148,7 +148,7 @@ export class ReportRenderer {
   printTasks() {
     let currentTask: DebugTaskSerialised | undefined = this.getCurrentTask()
     while (currentTask !== undefined) {
-      const indent = this.indentationString()
+      const indent = chalk.gray.dim(this.indentationString())
       const title = chalk.bold(currentTask.name || chalk(currentTask.type))
       let line = `${indent}${title}`
       if (currentTask.duration) {
