@@ -8,6 +8,15 @@ dep.svg
 # Local package installation
 node_modules/
 
+# Yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # Log files
 yarn-error.log
 log.txt
