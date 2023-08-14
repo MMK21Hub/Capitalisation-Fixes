@@ -129,7 +129,7 @@ export class CapitaliseSegmentTransformer extends Transformer {
 
   constructor(searchValue: FlexibleSearchValue) {
     super(async ({ oldValue, language, version, languageFileData }) => {
-      searchValue = new RegExp(
+      const searchString = new RegExp(
         await resolveContextSensitiveValue(
           searchValue,
           languageFileData,
@@ -139,7 +139,7 @@ export class CapitaliseSegmentTransformer extends Transformer {
         "gi"
       )
 
-      const value = oldValue.replaceAll(searchValue, toTitleCase)
+      const value = oldValue.replaceAll(searchString, toTitleCase)
       return { value }
     })
 
