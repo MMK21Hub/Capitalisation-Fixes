@@ -205,8 +205,8 @@ async function generateTranslationStrings(
     ) {
       console.warn(
         `[${brand}]`,
-        `Result of the transformer for translation key ${key} is the same as the vanilla value.`,
-        `Transformer used: ${transformerName}`
+        `${key} is unchanged from the vanilla value (using ${transformerName}):`,
+        `"${result[key]}"`
       )
       debugger
     }
