@@ -33,6 +33,7 @@ const fixes: Fix[] = [
     bug: "MC-236606",
     key: "options.hideLightningFlashes.tooltip",
     transformer: autoCapitaliser,
+    versions: ["21w37a", "1.20-pre1"],
   }),
   ...multiFixGroup(
     "MC-219541",
@@ -51,11 +52,13 @@ const fixes: Fix[] = [
     bug: "MC-195781",
     key: "structure_block.include_entities",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "1.20-pre1"],
   }),
   new Fix({
     bug: "MC-258461",
     key: "structure_block.detect_size",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "1.20-pre2"],
   }),
   ...fixGroup(
     "MC-195780",
@@ -71,11 +74,13 @@ const fixes: Fix[] = [
     bug: "MC-220096",
     key: "options.graphics.warning.cancel",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "1.20-pre2"],
   }),
   new Fix({
     bug: "MC-220096",
     key: "options.graphics.warning.accept",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "1.20-pre2"],
   }),
   ...fixGroup(
     "MC-128972",
@@ -100,10 +105,13 @@ const fixes: Fix[] = [
     key: "options.chunks",
     transformer: new TitleCaseTransformer(),
   }),
-  ...autoCapitaliseGroup("MC-206548", [
-    "subtitles.entity.leash_knot.break",
-    "subtitles.entity.leash_knot.place",
-  ]),
+  ...autoCapitaliseGroup(
+    "MC-206548",
+    ["subtitles.entity.leash_knot.break", "subtitles.entity.leash_knot.place"],
+    {
+      versions: [null, "1.20-pre1"],
+    }
+  ),
   new Fix({
     bug: "MC-244721",
     key: "selectWorld.backupEraseCache",
@@ -139,6 +147,7 @@ const fixes: Fix[] = [
     key: "advancements.adventure.walk_on_powder_snow_with_leather_boots.description",
     // Replaces "XXX...YYY" with "XXX... YYY" (i.e. adds a space after the ellipsis)
     transformer: new ReplaceTransformer(/(\w)\.\.\.(\w)/, "$1... $2"),
+    versions: ["1.17-pre1", "1.20-pre1"],
   }),
   ...autoCapitaliseGroup(
     "MC-250932",
@@ -165,7 +174,7 @@ const fixes: Fix[] = [
     key: "chat.disabled.profile",
     transformer: addFullStop,
     languages: ["en_us"],
-    versions: ["1.19-pre5", null],
+    versions: ["1.19-pre5", "1.20-pre2"],
   }),
   new Fix({
     bug: "MC-253178",
@@ -216,7 +225,10 @@ const fixes: Fix[] = [
       "debug.creative_spectator.help",
       "debug.creative_spectator.error",
       "argument.entity.options.gamemode.description",
-    ]
+    ],
+    {
+      versions: [null, "1.20-pre1"],
+    }
   ),
   new Fix({
     bug: "MC-250197",
@@ -225,6 +237,7 @@ const fixes: Fix[] = [
       "Bottle",
       lang("item.minecraft.glass_bottle")
     ),
+    versions: [null, "1.20-pre2"],
   }),
   new Fix({
     bug: "MC-257618",
