@@ -277,7 +277,7 @@ export default class TransformerLogger extends EventEmitter {
   }
 
   getMessages(...types: MessageType[]) {
-    return types === []
+    return types.length === 0
       ? this.messages
       : this.messages.filter(({ type }) => types.includes(type))
   }
