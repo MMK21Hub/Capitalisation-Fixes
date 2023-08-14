@@ -358,6 +358,8 @@ export async function resolveMinecraftVersionSimpleRange(
   } = {}
 ) {
   const { removeStart = false, removeEnd = true } = options
+  // Don't include April Fools updates
+  const jokeVersions = ["23w13a_or_b"]
 
   // Don't return any items if no range was provided
   if (!range) return []
@@ -385,7 +387,9 @@ export async function resolveMinecraftVersionSimpleRange(
       `Invalid version range! Range end (${end}) is newer than range start (${start}).`
     )
 
-  return versions.slice(startIndex, endIndex)
+  return versions
+    .slice(startIndex, endIndex)
+    .filter((version) => !jokeVersions.includes(version))
 }
 
 export async function resolveMinecraftVersionFancyRange(
@@ -393,6 +397,9 @@ export async function resolveMinecraftVersionFancyRange(
 ): Promise<string[]> {
   // Local function shorthands:
   const resolveRange = resolveMinecraftVersionSimpleRange
+
+  // Don't include April Fools updates
+  const jokeVersions = ["23w13a_or_b"]
 
   const start = range.start || null
   const end = range.end || null
@@ -406,13 +413,16 @@ export async function resolveMinecraftVersionFancyRange(
   const inclusionRange = await resolveMinecraftVersionSpecifier(range.include)
 
   // Remove any items that need to be excluded
-  const filteredRange = fullRange.filter((el) => !exclusionRange.includes(el))
+  const processedRange = fullRange.filter(
+    (ver) => !exclusionRange.includes(ver) || !jokeVersions.includes(ver)
+  )
   // Add any items that need to be included
-  filteredRange.push(...inclusionRange)
+  processedRange.push(...inclusionRange)
 
-  if (!range.filter) return filteredRange
+  if (!range.filter) return processedRange
 
-  return filteredRange.filter((version) => {
+  // If a filter is present on the range, only return versions that match it
+  return processedRange.filter((version) => {
     if (range.filter?.type)
       return checkMinecraftVersionTypes(version, range.filter.type)
     return true
