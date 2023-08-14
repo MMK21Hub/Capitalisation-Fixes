@@ -196,34 +196,33 @@ For detailed information, check [the file itself](new-version.sh).
 
 ## Related projects
 
-### Resource Packs
+### Resource packs
 
 | Name                     | Version(s)  | Fixed bug(s)    | Notes         |
 | ------------------------ | ----------- | --------------- | ------------- |
 | **Capitalisation Fixes** | 1.19–1.19.4 | [21](#features) | You are here! |
 
-#### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs/)
+#### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
 | Name               | Version(s)  | Fixed bug(s)                                          | Notes                                                               |
 | ------------------ | ----------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
-| Item Stitching Fix | 1.14–1.19.3 | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
-| Blaze's Rods Fix   | 1.14–1.19.3 | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
-| Cactus Bottom Fix  | 1.16–1.19.3 | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
-| Iron Bars Fix      | 1.14–1.19.3 | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
-| Hopper Bottom Fix  | 1.14–1.19.3 | [MC-203399](https://bugs.mojang.com/browse/MC-203399) |                                                                     |
+| Item Stitching Fix | 1.14–1.20.1 | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
+| Blaze's Rods Fix   | 1.14–1.20.1 | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
+| Cactus Bottom Fix  | 1.16–1.20.1 | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
+| Iron Bars Fix      | 1.14–1.20.1 | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
 
-### Fabric Mods
+### Fabric mods
 
-| Name                                                            | Version(s)  | Fixed bug(s)                                                            | Side   | Notes                                                                                |
-| --------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
-| [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)           | 1.17–1.19.3 | [260+](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
-| [More Culling](https://modrinth.com/mod/moreculling)            | 1.18–1.19.3 | [5](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client |                                                                                      |
-| [Head Name Fix](https://modrinth.com/mod/headfix)               | 1.16–1.19.3 | [MC-174496](https://bugs.mojang.com/browse/MC-174496)                   | Server |                                                                                      |
-| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18–1.19.3 | [8](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
-| [Raised](https://modrinth.com/mod/raised)                       | 1.16–1.19.3 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                     | Client |                                                                                      |
-| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.19.3 | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                     | Client |                                                                                      |
-| [Title Fixer](https://modrinth.com/mod/title-fixer)             | 1.16–1.19.3 | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                   | Client |                                                                                      |
-| [MC-237017 Fix](https://modrinth.com/mod/mc-237017-fix)         | 1.18–1.19.3 | [MC-237017](https://bugs.mojang.com/browse/MC-237017)                   | Server |
-| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.19   | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                     | Client | [Issue for 1.19.3 support](https://github.com/PepperCode1/Item-Model-Fix/issues/20)  |
-| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.16–1.17   | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                   | Client |
-| [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1      | [MC-67](https://bugs.mojang.com/browse/MC-67)                           | Server |                                                                                      |
+| Name                                                            | Version(s)  | Fixed bug(s)                                                                 | Side   | Notes                                                                                |
+| --------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------ |
+| [Carpet-Fixes](https://modrinth.com/mod/carpet-fixes)           | 1.17–1.20.1 | [260+ bugs](https://github.com/fxmorin/carpet-fixes/wiki/Available-Settings) | Server | Requires [Carpet Mod](https://github.com/gnembon/fabric-carpet) to also be installed |
+| [More Culling](https://modrinth.com/mod/moreculling)            | 1.18–1.20.1 | [5 bugs](https://github.com/fxmorin/MoreCulling#current-bugs-fixed)          | Client |                                                                                      |
+| [Head Name Fix](https://modrinth.com/mod/headfix)               | 1.16–1.20.1 | [MC-174496](https://bugs.mojang.com/browse/MC-174496)                        | Server |                                                                                      |
+| [Raised](https://modrinth.com/mod/raised)                       | 1.16–1.20.1 | [MC-67532](https://bugs.mojang.com/browse/MC-67532)                          | Client |                                                                                      |
+| [Title Fix Mod](https://modrinth.com/mod/title-fix-mod)         | 1.15–1.20.1 | [MC-55347](https://bugs.mojang.com/browse/MC-55347)                          | Client |                                                                                      |
+| [Title Fixer](https://modrinth.com/mod/title-fixer)             | 1.16–1.20.1 | [MC-238712](https://bugs.mojang.com/browse/MC-238712)                        | Client |                                                                                      |
+| [Blanket client-tweaks](https://modrinth.com/mod/blanket)       | 1.18–1.19.3 | [8 bugs](https://github.com/BlanketMC/blanket-client-tweaks)                 | Client | Also includes "QoL improvements and tweaks" (disabled by default)                    |
+| [MC-237017 Fix](https://modrinth.com/mod/mc-237017-fix)         | 1.18–1.19.3 | [MC-237017](https://bugs.mojang.com/browse/MC-237017)                        | Server |
+| [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.19   | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                          | Client | [Issue for 1.19.3 support](https://github.com/PepperCode1/Item-Model-Fix/issues/20)  |
+| [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.16–1.17   | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                        | Client |
+| [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1      | [MC-67](https://bugs.mojang.com/browse/MC-67)                                | Server |                                                                                      |
