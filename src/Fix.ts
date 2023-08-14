@@ -51,10 +51,10 @@ export default class Fix {
         "Fix#validateFixedBug() should only be called when the linked bug is fixed"
       )
 
+    // TODO: Deduplicate warnings that come from the same bug
     if (!this.versions)
       return console.warn(
-        `Linked bug ${this.bug} has been fixed upstream, but there is no version constraint on the fix. ` +
-          `You should add a version constraint to avoid applying unnecessary fixes.`
+        `${this.bug} has been fixed upstream, but its fix(es) don't have version constraints.`
       )
 
     const fixVersion = fixVersions.at(-1)!
@@ -70,9 +70,8 @@ export default class Fix {
     if (applicableVersionsEnd >= fixedVersionsStart) {
       const extraVersions = applicableVersionsEnd - fixedVersionsStart + 1
       console.warn(
-        `Version range for ${this.bug} fix overlaps with versions where the bug is fixed upstream. ` +
-          `Bug was fixed upstream in version ${fixVersion}, but the last version included in the range is ${lastApplicableVersion}. ` +
-          `This means that ${extraVersions} version(s) will have the fix unnecessarily applied.`
+        `Version range for ${this.bug} fix includes versions ${extraVersions} version(s) where the bug is fixed upstream. ` +
+          `Bug was fixed upstream in ${fixVersion}, but the last version included in the range is ${lastApplicableVersion}.`
       )
     }
   }
