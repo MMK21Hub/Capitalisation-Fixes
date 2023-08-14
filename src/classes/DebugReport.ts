@@ -1,5 +1,5 @@
 import { writeFile } from "fs/promises"
-import { ensureDir } from "./util.js"
+import { ensureDir } from "../helpers/util.js"
 import { join as joinPath } from "path"
 
 export interface DebugTaskOptions {

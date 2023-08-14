@@ -6,7 +6,7 @@ import {
   resolveURLParams,
   toMap,
   URLSearchParamsResolvable,
-} from "../util.js"
+} from "../helpers/util.js"
 import fetch, { Headers, BodyInit, FormData } from "node-fetch"
 
 export interface ModrinthClientOptions {

@@ -1,5 +1,5 @@
 import path from "path"
-import { DebugReportSerialised } from "../DebugReport.js"
+import { DebugReportSerialised } from "../classes/DebugReport.js"
 import { debugReportsFolder } from "./util.js"
 import { readFile, readdir } from "fs/promises"
 

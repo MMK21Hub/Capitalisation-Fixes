@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 import path from "path"
-import { cache, debugReport, versionsSummary } from "./main.js"
+import { cache, debugReport, versionsSummary } from "../main.js"
 import {
   FancyRange,
   StartAndEnd,
@@ -12,8 +12,7 @@ import {
   SearchValue,
   ResolvableSync,
   isSimpleRange,
-} from "./util.js"
-import { DebugTask } from "./DebugReport.js"
+} from "../helpers/util.js"
 
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string

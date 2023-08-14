@@ -1,4 +1,4 @@
-import { DebugReport } from "./DebugReport.js"
+import { DebugReport } from "./classes/DebugReport.js"
 import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
 import {
@@ -6,7 +6,7 @@ import {
   MinecraftVersionFancyRange,
   MinecraftVersionSpecifier,
   fetchVersionsSummary,
-} from "./minecraftHelpers.js"
+} from "./helpers/minecraftHelpers.js"
 
 export async function printStats(limitToLatest?: MinecraftVersionBranch) {
   const versions: MinecraftVersionSpecifier = limitToLatest

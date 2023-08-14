@@ -1,9 +1,9 @@
 import { Transformer } from "./builder.js"
-import Fix from "./Fix.js"
+import Fix from "./classes/Fix.js"
 import {
   FlexibleSearchValue,
   MinecraftVersionSpecifier,
-} from "./minecraftHelpers.js"
+} from "./helpers/minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,

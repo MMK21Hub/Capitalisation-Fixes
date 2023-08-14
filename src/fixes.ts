@@ -1,7 +1,7 @@
-import Fix from "./Fix.js"
+import Fix from "./classes/Fix.js"
 import { fixGroup, autoCapitaliseGroup, multiFixGroup } from "./fixGroups.js"
-import { getMilk } from "./languageHelpers.js"
-import { lang } from "./minecraftHelpers.js"
+import { getMilk } from "./helpers/languageHelpers.js"
+import { lang } from "./helpers/minecraftHelpers.js"
 import {
   CapitaliseFromTranslationStringsTransformer,
   CapitaliseSegmentTransformer,

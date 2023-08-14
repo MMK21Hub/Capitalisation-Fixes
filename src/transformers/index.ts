@@ -9,8 +9,8 @@ import {
   getVanillaLanguageFile,
   ReplacerFunction,
   resolveContextSensitiveValue,
-} from "../minecraftHelpers.js"
-import { toTitleCase, StartAndEnd, SearchValue } from "../util.js"
+} from "../helpers/minecraftHelpers.js"
+import { toTitleCase, StartAndEnd, SearchValue } from "../helpers/util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {

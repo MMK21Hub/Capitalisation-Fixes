@@ -3,17 +3,16 @@ import {
   MinecraftLanguage,
   MinecraftVersionSpecifier,
   resolveMinecraftVersionSpecifier,
-} from "./minecraftHelpers.js"
-import { MultiTransformer } from "./transformers/MultiTransformer.js"
-import { Transformer } from "./builder.js"
+} from "../helpers/minecraftHelpers.js"
+import { MultiTransformer } from "../transformers/MultiTransformer.js"
+import { Transformer } from "../builder.js"
 import {
   getBug,
-  getBugAffectsVersions,
   getBugFixVersions,
   getBugResolution,
   isFixed,
   Resolution,
-} from "./mojiraHelpers.js"
+} from "../helpers/mojiraHelpers.js"
 import { DebugTask } from "./DebugReport.js"
 
 export interface FixOptions {

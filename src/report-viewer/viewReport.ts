@@ -2,7 +2,7 @@ import {
   DebugReportSerialised,
   DebugTask,
   DebugTaskSerialised,
-} from "../DebugReport.js"
+} from "../classes/DebugReport.js"
 import { calculateColor, insertString as replaceCharAt, secs } from "./util.js"
 import chalk from "chalk"
 

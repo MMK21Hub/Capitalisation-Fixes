@@ -11,12 +11,12 @@ import {
   packFormat,
   resolveMinecraftVersionSpecifier,
   ResourcePackMetadata,
-} from "./minecraftHelpers.js"
-import { FunctionMaybe, filter, ensureDir, clearDir } from "./util.js"
-import TransformerLogger, { MessageType } from "./TransformerLogger.js"
-import type Fix from "./Fix.js"
+} from "./helpers/minecraftHelpers.js"
+import { FunctionMaybe, filter, ensureDir, clearDir } from "./helpers/util.js"
+import TransformerLogger, { MessageType } from "./classes/TransformerLogger.js"
+import type Fix from "./classes/Fix.js"
 import { debugReport, packDescription } from "./main.js"
-import { DebugTask } from "./DebugReport.js"
+import { DebugTask } from "./classes/DebugReport.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
