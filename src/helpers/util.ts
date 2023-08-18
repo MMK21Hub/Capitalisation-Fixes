@@ -50,6 +50,7 @@ export interface ResolvableSync<T, A extends any[] = []>
   sync: true
 }
 
+/** @deprecated We are migrating to `MinecraftVersionRange`s, which use `templateIsSimple()` for a similar goal. */
 export function isSimpleRange<T>(
   specifier: Range<T>
 ): specifier is StartAndEnd<T> {

@@ -477,7 +477,7 @@ export async function getVanillaLanguageFile(
   return languageFile as any
 }
 
-async function getVersionManifest(): Promise<VersionManifest> {
+export async function getVersionManifest(): Promise<VersionManifest> {
   // If it's available in the cache, immediately return that
   if (cache.has("versionManifest")) return cache.get("versionManifest")
 
