@@ -7,6 +7,7 @@ import {
   MinecraftVersionSpecifier,
   fetchVersionsSummary,
 } from "./helpers/minecraftHelpers.js"
+import { MinecraftVersionRange } from "./classes/minecraftVersions.js"
 
 export async function printStats(limitToLatest?: MinecraftVersionBranch) {
   const versions: MinecraftVersionSpecifier = limitToLatest
@@ -71,6 +72,10 @@ const targetVersions: MinecraftVersionFancyRange = {
 const targetLanguages = ["en_us", "en_gb"]
 
 try {
+  // const range = new MinecraftVersionRange([null, null])
+  // const allVersions = await range.getVersionIds()
+  // debugger
+
   commandLineArg === "--stats"
     ? await printStats(getStatsFilter())
     : await buildPack()

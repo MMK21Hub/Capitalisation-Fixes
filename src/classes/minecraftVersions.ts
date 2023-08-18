@@ -68,10 +68,6 @@ async function getVersionsInBetween(
     excludeStart = DEFAULT_EXCLUSIVE_START,
     excludeEnd = DEFAULT_EXCLUSIVE_END,
   } = options
-
-  // Don't return any items if no range was provided
-  if (!startSpecifier && !endSpecifier) return []
-
   // Don't include April Fools updates
   const jokeVersions = ["23w13a_or_b"]
 
@@ -146,7 +142,3 @@ export class MinecraftVersionRange {
     this.exclusiveEnd = template.exclusiveEnd
   }
 }
-
-// const range = new MinecraftVersionRange(["1.19.3", "1.19.4"])
-// const allVersions = await range.getVersionIds()
-// debugger
