@@ -17,6 +17,7 @@ import TransformerLogger, { MessageType } from "./classes/TransformerLogger.js"
 import type Fix from "./classes/Fix.js"
 import { debugReport, packDescription } from "./main.js"
 import { DebugTask } from "./classes/DebugReport.js"
+import { MinecraftVersionRange } from "./classes/minecraftVersions.js"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -61,7 +62,7 @@ export type LanguageFileBundle = Record<
 >
 
 interface BuildOptions {
-  targetVersions: MinecraftVersionSpecifier
+  targetVersions: MinecraftVersionRange
   targetLanguages: MinecraftLanguage[]
   directory?: string
   packVersion?: string
@@ -237,7 +238,7 @@ function generateLanguageFilesData(
 }
 
 export async function generateMultipleVersionsLanguageFileData(
-  targetVersions: MinecraftVersionSpecifier,
+  targetVersions: MinecraftVersionRange,
   targetLanguages: MinecraftLanguage[],
   fixes: Fix[]
 ) {
@@ -246,7 +247,7 @@ export async function generateMultipleVersionsLanguageFileData(
     name: "Generating the language files for each version",
   })
 
-  const versions = await resolveMinecraftVersionSpecifier(targetVersions)
+  const versions = await targetVersions.getVersionIds()
 
   const versionedLanguageFiles = await Promise.all(
     versions.map((version, index) => {
