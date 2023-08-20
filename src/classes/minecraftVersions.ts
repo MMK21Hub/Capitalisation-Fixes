@@ -1,5 +1,5 @@
 import {
-  MinecraftVersion,
+  MinecraftVersionId,
   SingleMinecraftVersionSpecifier,
   getVersionManifest,
   resolveSingleMinecraftVersionSpecifier,
@@ -7,15 +7,16 @@ import {
 import { StartAndEnd } from "../helpers/util.js"
 
 export type MinecraftVersionFancyRangeTemplate = {
-  start?: MinecraftVersion
-  end?: MinecraftVersion
+  start?: MinecraftVersionId
+  end?: MinecraftVersionId
   exclude?: MinecraftVersionRange
   include?: MinecraftVersionRange
   exclusiveStart?: boolean
   exclusiveEnd?: boolean
 }
 
-export type MinecraftVersionSimpleRangeTemplate = StartAndEnd<MinecraftVersion>
+export type MinecraftVersionSimpleRangeTemplate =
+  StartAndEnd<MinecraftVersionId>
 
 export type MinecraftVersionRangeTemplate =
   | MinecraftVersionSimpleRangeTemplate
@@ -63,7 +64,7 @@ async function getVersionsInBetween(
     excludeStart?: boolean
     excludeEnd?: boolean
   } = {}
-): Promise<MinecraftVersion[]> {
+): Promise<MinecraftVersionId[]> {
   const {
     excludeStart = DEFAULT_EXCLUSIVE_START,
     excludeEnd = DEFAULT_EXCLUSIVE_END,
@@ -109,7 +110,7 @@ export class MinecraftVersionRange {
   exclusiveStart
   exclusiveEnd
 
-  async getVersionIds(): Promise<MinecraftVersion[]> {
+  async getVersionIds(): Promise<MinecraftVersionId[]> {
     const baseRange = await getVersionsInBetween(this.start, this.end, {
       excludeStart: this.exclusiveStart,
       excludeEnd: this.exclusiveEnd,

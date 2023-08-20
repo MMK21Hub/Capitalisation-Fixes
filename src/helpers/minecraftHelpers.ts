@@ -17,7 +17,7 @@ import {
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string
 /** A single Minecraft version ID */
-export type MinecraftVersion = string
+export type MinecraftVersionId = string
 /** The two update policies that can be selected in the official launcher */
 export type MinecraftVersionBranch = "snapshot" | "release"
 /** Specifies a "target" MC version that may change over time, e.g. the latest version */
@@ -53,7 +53,7 @@ export type MinecraftVersionFilter = {
 }
 /** Refers to a single version of minecraft, through a version number as a string or object, or a {@link MinecraftVersionTarget} */
 export type SingleMinecraftVersionSpecifier =
-  | MinecraftVersion
+  | MinecraftVersionId
   | MinecraftVersionTarget
   | NumericMinecraftVersion
 /** Used to refer to a group, range, or single version of Minecraft */
@@ -65,7 +65,7 @@ export type MinecraftVersionSpecifier =
 /** A value that can be resolved (asynchronously) to a value with type T, when provided a Minecraft version and a language. */
 export type ContextSensitive<T> = ResolvableAsync<
   T,
-  [MinecraftLanguage, MinecraftVersion]
+  [MinecraftLanguage, MinecraftVersionId]
 >
 /** A value that can be synchronously resolved to a value with type T, when provided with language file data. */
 export type ContextSensitiveSync<T> = ResolvableSync<T, [LanguageFileData]>
@@ -113,9 +113,9 @@ export interface VersionManifest {
 
 /** Metadata about a specific Minecraft version, as sourced from https://github.com/misode/mcmeta/tree/summary/versions */
 export interface VersionInfo {
-  id: MinecraftVersion
+  id: MinecraftVersionId
   name: string
-  release_target: MinecraftVersion
+  release_target: MinecraftVersionId
   type: "release" | "snapshot"
   stable: boolean
   data_version: number
@@ -144,7 +144,7 @@ export enum MinecraftVersionType {
 export class UseTranslationString {
   readonly string
 
-  async resolve(language: MinecraftLanguage, version: MinecraftVersion) {
+  async resolve(language: MinecraftLanguage, version: MinecraftVersionId) {
     const langFile = await getVanillaLanguageFile(language, version)
     return langFile[this.string]
   }
@@ -172,7 +172,7 @@ export function lang(
   ...substitutions: string[]
 ): ResolvableFromLangFile {
   return {
-    async resolve(language: MinecraftLanguage, version: MinecraftVersion) {
+    async resolve(language: MinecraftLanguage, version: MinecraftVersionId) {
       const langFile = await getVanillaLanguageFile(language, version)
 
       if (typeof providedText === "string") return langFile[providedText]
@@ -190,7 +190,7 @@ export function lang(
 
 export async function getLatestVersion(
   type: "release" | "snapshot" = "snapshot"
-): Promise<MinecraftVersion> {
+): Promise<MinecraftVersionId> {
   const versionManifest = await getVersionManifest()
   return versionManifest.latest[type]
 }
@@ -207,7 +207,7 @@ export function fetchVersionsSummary() {
   return task.addPromise(dataPromise) as Promise<VersionInfo[]>
 }
 
-export function getVersion(target: MinecraftVersion | number): VersionInfo {
+export function getVersion(target: MinecraftVersionId | number): VersionInfo {
   const matchedVersion = versionsSummary.find((version) =>
     typeof target === "string"
       ? version.id === target
@@ -284,7 +284,7 @@ export async function resolveContextSensitiveValue<T>(
   value: ContextSensitive<T> | ContextSensitiveSync<T> | T,
   languageFileData: LanguageFileData,
   language: MinecraftLanguage,
-  version: MinecraftVersion
+  version: MinecraftVersionId
 ): Promise<T> {
   if (value && typeof value === "object" && "resolve" in value)
     return value.sync
@@ -430,7 +430,7 @@ export async function resolveMinecraftVersionFancyRange(
 
 export async function getVanillaLanguageFile(
   language: MinecraftLanguage,
-  version: MinecraftVersion
+  version: MinecraftVersionId
 ): Promise<Record<string, string>> {
   // If there is a file in the cache that matches the language and the version, use it
   const cachedFilePath = `${version}/${language}.json`
@@ -496,7 +496,7 @@ export async function getVersionManifest(): Promise<VersionManifest> {
 
 export interface GetTranslationStringOptions {
   language: MinecraftLanguage
-  version: MinecraftVersion
+  version: MinecraftVersionId
   fallbackLanguage?: MinecraftLanguage | null
 }
 
@@ -504,7 +504,7 @@ export async function getTranslationString(
   key: string,
   options: {
     language: MinecraftLanguage
-    version: MinecraftVersion
+    version: MinecraftVersionId
     fallbackLanguage?: MinecraftLanguage | null
   }
 ) {
@@ -540,7 +540,7 @@ export async function getTranslationStringOrThrow(
   return matchedTranslationString
 }
 
-export function packFormat(version: MinecraftVersion) {
+export function packFormat(version: MinecraftVersionId) {
   const versionInfo = getVersion(version)
   return versionInfo["resource_pack_version"]
 }

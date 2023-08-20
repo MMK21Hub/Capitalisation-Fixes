@@ -6,7 +6,7 @@ import {
   getVanillaLanguageFile,
   LanguageFileData,
   MinecraftLanguage,
-  MinecraftVersion,
+  MinecraftVersionId,
   MinecraftVersionSpecifier,
   packFormat,
   resolveMinecraftVersionSpecifier,
@@ -27,7 +27,7 @@ export type TransformerResult = {
 export type TransformerCallbackData = {
   key: string
   language: MinecraftLanguage
-  version: MinecraftVersion
+  version: MinecraftVersionId
   oldValue: string
   logger: TransformerLogger
   languageFileData: Record<string, string>
@@ -78,7 +78,7 @@ export interface OutFileMetadata {
    * Has to be a single, literal Minecraft version ID (not a version specifier).
    * @example "1.19.1-pre1"
    */
-  minecraftVersion: MinecraftVersion
+  minecraftVersion: MinecraftVersionId
   /**
    * The version of that the pack is branded with, i.e. the current version of Capitalisation Fixes.
    * Some built resource packs don't have a version number, e.g. ones built for development of the pack.
@@ -107,7 +107,7 @@ export abstract class Transformer {
 }
 
 async function generateTranslationStrings(
-  targetVersion: MinecraftVersion,
+  targetVersion: MinecraftVersionId,
   targetLanguage: MinecraftLanguage,
   fixes: Fix[]
 ): Promise<LanguageFileData> {
@@ -226,7 +226,7 @@ async function generateTranslationStrings(
 }
 
 function generateLanguageFilesData(
-  targetVersion: MinecraftVersion,
+  targetVersion: MinecraftVersionId,
   targetLanguages: MinecraftLanguage[],
   fixes: Fix[]
 ) {

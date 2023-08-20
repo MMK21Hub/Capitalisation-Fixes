@@ -3,7 +3,6 @@ import { emitResourcePacks, generateStats } from "./builder.js"
 import fixes from "./fixes.js"
 import {
   MinecraftVersionBranch,
-  MinecraftVersionFancyRange,
   MinecraftVersionSpecifier,
   fetchVersionsSummary,
 } from "./helpers/minecraftHelpers.js"
