@@ -66,6 +66,7 @@ const commandLineArg = process.argv[2]
 const targetVersions: MinecraftVersionFancyRange = {
   start: "23w06a",
   // start: "1.19.2",
+  end: "23w32a",
 }
 // const targetVersions = "1.19.3"
 // const targetVersions: StartAndEnd<string> = ["1.19.1-pre1", null]

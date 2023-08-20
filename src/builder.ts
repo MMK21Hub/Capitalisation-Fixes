@@ -122,8 +122,8 @@ async function generateTranslationStrings(
 
   // Remove fixes that aren't for the target version
   fixes = await filter(fixes, async (fix) => {
-    if (!fix.versions) return true
-    const versions = await resolveMinecraftVersionSpecifier(fix.versions)
+    if (fix.versions.isUnconstrained()) return true
+    const versions = await fix.versions.getVersionIds()
     return versions.includes(targetVersion)
   })
 
@@ -472,9 +472,9 @@ export async function generateStats(
 ) {
   async function checkVersion(fix: Fix) {
     if (!versions) return true
-    if (!fix.versions) return true
+    if (fix.versions.isUnconstrained()) return true
 
-    const fixVersions = await resolveMinecraftVersionSpecifier(fix.versions)
+    const fixVersions = await fix.versions.getVersionIds()
     return fixVersions.some((version) => versions.includes(version))
   }
 

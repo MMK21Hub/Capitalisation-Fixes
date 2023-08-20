@@ -132,6 +132,14 @@ export class MinecraftVersionRange {
     return processedRange
   }
 
+  isConstrained() {
+    return this.end || this.start || this.excludeRanges.length !== 0
+  }
+
+  isUnconstrained() {
+    return !this.isConstrained()
+  }
+
   constructor(template: MinecraftVersionRangeTemplate) {
     template = toFancyTemplate(template)
     this.start = template.start

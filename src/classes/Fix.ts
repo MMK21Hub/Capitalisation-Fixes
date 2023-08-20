@@ -1,9 +1,11 @@
 import {
   findVersionIndex,
   MinecraftLanguage,
-  MinecraftVersionSpecifier,
-  resolveMinecraftVersionSpecifier,
 } from "../helpers/minecraftHelpers.js"
+import {
+  MinecraftVersionRange,
+  MinecraftVersionSimpleRangeTemplate,
+} from "./minecraftVersions.js"
 import { MultiTransformer } from "../transformers/MultiTransformer.js"
 import { Transformer } from "../builder.js"
 import {
@@ -21,7 +23,7 @@ export interface FixOptions {
   /** A "transformer" that declares the edits that need to be made to the specified translation string. Providing an array of transformers automatically uses a {@link MultiTransformer} */
   transformer: Transformer | Transformer[]
   /** Specifies the versions of Minecraft that the fix should be applied to (defaults to all versions) */
-  versions?: MinecraftVersionSpecifier
+  versions?: MinecraftVersionSimpleRangeTemplate | MinecraftVersionRange
   /** Specifies the languages that the fix should be applied to (defaults to all languages) */
   languages?: MinecraftLanguage[]
   /** References the Mojira bug report for the bug that the fix fixes */
@@ -35,7 +37,7 @@ export interface FixData extends FixOptions {
 export default class Fix {
   key
   transformer
-  versions
+  versions: MinecraftVersionRange
   languages
   bug
 
@@ -51,15 +53,14 @@ export default class Fix {
       )
 
     // TODO: Deduplicate warnings that come from the same bug
-    if (!this.versions)
+    if (this.versions.isUnconstrained())
       return console.warn(
         `${this.bug} has been fixed upstream, but its fix(es) don't have version constraints.`
       )
 
     const fixVersion = fixVersions.at(-1)!
-    const applicableVersions = await resolveMinecraftVersionSpecifier(
-      this.versions
-    )
+    const applicableVersions = await this.versions.getVersionIds()
+
     const lastApplicableVersion = applicableVersions.at(-1)
     if (!lastApplicableVersion)
       return new Error(`Fix#versions didn't return anything when resolved!`)
@@ -143,7 +144,10 @@ export default class Fix {
 
     this.bug = options.bug
     this.key = options.key
-    this.versions = options.versions
+    this.versions =
+      options.versions instanceof MinecraftVersionRange
+        ? options.versions
+        : new MinecraftVersionRange(options.versions || [null, null])
     this.languages = options.languages
   }
 }
