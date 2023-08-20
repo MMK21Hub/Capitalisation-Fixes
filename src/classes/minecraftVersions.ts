@@ -9,8 +9,8 @@ import { StartAndEnd } from "../helpers/util.js"
 export type MinecraftVersionFancyRangeTemplate = {
   start?: MinecraftVersionId
   end?: MinecraftVersionId
-  exclude?: MinecraftVersionRange
-  include?: MinecraftVersionRange
+  exclude?: MinecraftVersionRange[]
+  include?: MinecraftVersionRange[]
   exclusiveStart?: boolean
   exclusiveEnd?: boolean
 }
@@ -145,8 +145,8 @@ export class MinecraftVersionRange {
     template = toFancyTemplate(template)
     this.start = template.start
     this.end = template.end
-    this.includeRanges = template.include ? [template.include] : []
-    this.excludeRanges = template.exclude ? [template.exclude] : []
+    this.includeRanges = template.include || []
+    this.excludeRanges = template.exclude || []
     this.exclusiveStart = template.exclusiveStart
     this.exclusiveEnd = template.exclusiveEnd
   }
