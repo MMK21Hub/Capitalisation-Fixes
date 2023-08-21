@@ -119,10 +119,17 @@ export class MinecraftVersionRange {
   async getVersionIds(): Promise<MinecraftVersionId[]> {
     if (this.only) return [this.only]
 
-    const baseRange = await getVersionsInBetween(this.start, this.end, {
-      excludeStart: this.exclusiveStart,
-      excludeEnd: this.exclusiveEnd,
-    })
+    const baseRange = this.isConstrained()
+      ? this.start || this.end
+        ? await getVersionsInBetween(this.start, this.end, {
+            excludeStart: this.exclusiveStart,
+            excludeEnd: this.exclusiveEnd,
+          })
+        : [] // Start with no versions if there isn't a `start` or `end`, but we do have other versions to include
+      : await getVersionsInBetween(undefined, undefined, {
+          excludeStart: this.exclusiveStart,
+          excludeEnd: this.exclusiveEnd,
+        })
 
     // Both of these are arrays of arrays of version IDs, i.e. version IDs grouped by the
     // exclusion or inclusion range that they came from. May contain duplicates.
@@ -142,7 +149,7 @@ export class MinecraftVersionRange {
   }
 
   isConstrained(): boolean {
-    if (this.end || this.start || this.excludeRanges.length !== 0) return true
+    if (this.end || this.start || this.includeRanges.length !== 0) return true
     return false
   }
 
