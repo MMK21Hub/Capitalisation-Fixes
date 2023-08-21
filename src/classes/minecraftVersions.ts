@@ -141,11 +141,12 @@ export class MinecraftVersionRange {
     return processedRange
   }
 
-  isConstrained() {
-    return this.end && this.start && this.excludeRanges.length !== 0
+  isConstrained(): boolean {
+    if (this.end || this.start || this.excludeRanges.length !== 0) return true
+    return false
   }
 
-  isUnconstrained() {
+  isUnconstrained(): boolean {
     return !this.isConstrained()
   }
 
@@ -181,6 +182,7 @@ abstract class MinecraftVersionResolvable {
 class MinecraftVersion extends MinecraftVersionResolvable {
   id
 
+  // @ts-ignore just so that it compiles
   getPossiblyValidId() {
     //
     return resolveMinecraftVersionId(this.id)
