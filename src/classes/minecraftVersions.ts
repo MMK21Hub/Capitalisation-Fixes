@@ -142,7 +142,7 @@ export class MinecraftVersionRange {
   }
 
   isConstrained() {
-    return this.end || this.start || this.excludeRanges.length !== 0
+    return this.end && this.start && this.excludeRanges.length !== 0
   }
 
   isUnconstrained() {
