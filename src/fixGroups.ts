@@ -1,6 +1,10 @@
 import { Transformer } from "./builder.js"
 import Fix from "./classes/Fix.js"
 import {
+  MinecraftVersionRange,
+  MinecraftVersionSimpleRangeTemplate,
+} from "./classes/minecraftVersions.js"
+import {
   FlexibleSearchValue,
   MinecraftVersionSpecifier,
 } from "./helpers/minecraftHelpers.js"
@@ -16,7 +20,7 @@ export function fixGroup(
   strings: Record<string, string | Transformer>,
   options: {
     keyPrefix?: string
-    versions?: MinecraftVersionSpecifier
+    versions?: MinecraftVersionSimpleRangeTemplate | MinecraftVersionRange
   } = {}
 ): Fix[] {
   let { keyPrefix = "", versions } = options
@@ -40,7 +44,7 @@ export function multiFixGroup(
   translationKeys: string[],
   options: {
     keyPrefix?: string
-    versions?: MinecraftVersionSpecifier
+    versions?: MinecraftVersionSimpleRangeTemplate | MinecraftVersionRange
   } = {}
 ) {
   let { keyPrefix = "", versions } = options
@@ -80,7 +84,7 @@ export function autoCapitaliseGroup(
     keyPrefix?: string
     vanillaStrings?: string[]
     alwaysCapitalise?: FlexibleSearchValue[]
-    versions?: MinecraftVersionSpecifier
+    versions?: MinecraftVersionSimpleRangeTemplate | MinecraftVersionRange
   } = {}
 ): Fix[] {
   let {
