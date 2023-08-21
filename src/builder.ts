@@ -247,6 +247,8 @@ export async function generateMultipleVersionsLanguageFileData(
     name: "Generating the language files for each version",
   })
 
+  console.log("Building the packs...")
+
   const versions = await targetVersions.getVersionIds()
 
   const versionedLanguageFiles = await Promise.all(
@@ -364,8 +366,6 @@ export async function emitResourcePacks(
   buildOptions: BuildOptions
 ) {
   const outputDir = buildOptions.directory || "out"
-  console.log("Building resource packs...")
-
   mainTask = debugReport.push({
     type: "emitResourcePacks",
     name: "Building resource packs",
@@ -376,6 +376,7 @@ export async function emitResourcePacks(
     type: "emitResourcePacks.validateFixes",
     name: "Validating the fixes",
   })
+  console.log("Validating the fixes...")
   const validationPromise = validateFixesTask.addPromise(
     Promise.all(
       fixes.map(async (fix) => {
