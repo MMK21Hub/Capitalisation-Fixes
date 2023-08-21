@@ -18,7 +18,7 @@
 
 ## Information
 
-- The pack is actively developed for Minecraft 1.19 to 1.19.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
+- The pack is actively developed for Minecraft 1.19 to 1.19.4 (1.20 coming soon!), and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
 - The fixes are available when using British English or American English
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues)
 
@@ -28,32 +28,24 @@
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version             | Fixed bugs | Translation strings |
-| ----------------------------- | ---------- | ------------------- |
-| Latest release (1.19.3)       | 21         | 51                  |
-| Latest snapshot (1.19.4-pre3) | 20         | 50                  |
-| Any version                   | 25         | 56                  |
+| Minecraft version        | Fixed bugs | Translation strings |
+| ------------------------ | ---------- | ------------------- |
+| Latest release (1.20.1)  | 11         | 38                  |
+| Latest snapshot (23w33a) | 11         | 38                  |
+| Any version              | 25         | 56                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
-- [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) (missing space after ellipsis)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
-- [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) (inconsistent reference to Glass Bottles)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
-- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) (capitalisation)
 - ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
-- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) (capitalisation of action button labels)
-- ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) (capitalisation of action button labels)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
 - [Armour equipping subtitles](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
 - ["Wandering Trader drinks milk/potion" subtitle](https://bugs.mojang.com/browse/MC-219533) (capitalisation)
-- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) (capitalisation)
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
-- [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) (should be spelt as "game mode")
-- [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) (incorrect tense of "pair")
 - [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
 - [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
 
@@ -72,6 +64,15 @@ You can view them below.
 - ["Erase cached data" button](https://bugs.mojang.com/browse/MC-244721) Fixed in 22w44a
 - ["Data mode" and "Load mode" buttons in the Structure Block interface](https://bugs.mojang.com/browse/MC-195780) Fixed in 22w44a
 - [Telemetry Data option menu button](https://bugs.mojang.com/browse/MC-258246) Fixed in 23w03a
+- [Light as a Rabbit advancement description](https://bugs.mojang.com/browse/MC-226454) Fixed in 1.20-pre1
+- [Hide Lightning Flashes option description](https://bugs.mojang.com/browse/MC-236606) Fixed in 1.20-pre1
+- ["Include entities" button in the Structure Block interface](https://bugs.mojang.com/browse/MC-195781) Fixed in 1.20-pre1
+- [Leash Knot subtitles](https://bugs.mojang.com/browse/MC-206548) Fixed in 1.20-pre1
+- [Strings that contain the word "gamemode"](https://bugs.mojang.com/browse/MC-256424) Fixed in 1.20-pre1
+- [World Loaded telemetry event description](https://bugs.mojang.com/browse/MC-257618) Fixed in 1.20-pre1
+- [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) Fixed in 1.20-pre2
+- [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) Fixed in 1.20-pre2
+- ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) Fixed in 1.20-pre2
 
 </details>
 
@@ -83,7 +84,7 @@ Each release of the pack has multiple files (called variants) available to downl
 
 Each variant includes the specific fixes that are required for its Minecraft version — nothing more and nothing less.
 
-If there isn't an officially-provided variant for your Minecraft version, you can compile one yourself using [the pack's build tool](#build-tool).
+If there isn't an officially-provided variant for your Minecraft version, you can compile one yourself using [the pack's build tool](#build-tool). This also works for snapshots!
 
 ## Compatibility tables
 
