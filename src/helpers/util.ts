@@ -3,6 +3,8 @@ import { Response } from "node-fetch"
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
 
+/** Might be the value itself, or a promise that resolves to that value */
+export type PromiseMaybe<T> = T | Promise<T>
 /** Makes the provided keys (K) of the object (T) optional */
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
 /** Specify a value, or provide a function that returns that value */
@@ -36,12 +38,12 @@ export type Range<T> = StartAndEnd<T> | FancyRange<T>
 export type SearchValue = string | RegExp
 
 export interface ResolvableAny<T, A extends any[] = []> {
-  resolve(...args: A): T | Promise<T>
+  resolve(...args: A): PromiseMaybe<T>
   sync?: boolean
 }
 export interface ResolvableAsync<T, A extends any[] = []>
   extends ResolvableAny<T, A> {
-  resolve(...args: A): T | Promise<T>
+  resolve(...args: A): PromiseMaybe<T>
   sync?: false
 }
 export interface ResolvableSync<T, A extends any[] = []>
@@ -56,6 +58,10 @@ export function isSimpleRange<T>(
 ): specifier is StartAndEnd<T> {
   if (!Array.isArray(specifier)) return false
   return typeof specifier[0] !== "object" || specifier[0] === null
+}
+
+export async function fromPromiseMaybe<T>(promiseMaybe: PromiseMaybe<T>) {
+  return promiseMaybe instanceof Promise ? await promiseMaybe : promiseMaybe
 }
 
 /* DATA MANIPULATION */

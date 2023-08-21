@@ -69,10 +69,6 @@ const targetVersions = new MinecraftVersionRange({
 const targetLanguages = ["en_us", "en_gb"]
 
 try {
-  // const range = new MinecraftVersionRange([null, null])
-  // const allVersions = await range.getVersionIds()
-  // debugger
-
   commandLineArg === "--stats"
     ? await printStats(getStatsFilter())
     : await buildPack()

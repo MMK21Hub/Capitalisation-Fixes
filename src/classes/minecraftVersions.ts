@@ -1,10 +1,14 @@
 import {
   MinecraftVersionId,
+  MinecraftVersionTarget,
+  NumericMinecraftVersion,
   SingleMinecraftVersionSpecifier,
+  getLatestVersion,
   getVersionManifest,
+  resolveMinecraftVersionId,
   resolveSingleMinecraftVersionSpecifier,
 } from "../helpers/minecraftHelpers.js"
-import { StartAndEnd } from "../helpers/util.js"
+import { PromiseMaybe, StartAndEnd, fromPromiseMaybe } from "../helpers/util.js"
 
 export type MinecraftVersionFancyRangeTemplate = {
   start?: MinecraftVersionId
@@ -154,5 +158,36 @@ export class MinecraftVersionRange {
     this.excludeRanges = template.exclude || []
     this.exclusiveStart = template.exclusiveStart
     this.exclusiveEnd = template.exclusiveEnd
+  }
+}
+
+export type MinecraftVersionTemplate =
+  | MinecraftVersionId
+  | MinecraftVersionTarget
+  | NumericMinecraftVersion
+
+abstract class MinecraftVersionResolvable {
+  abstract getPossiblyValidId: () => PromiseMaybe<string>
+
+  async getId() {
+    const possiblyValidId = await fromPromiseMaybe(this.getPossiblyValidId())
+
+    // We use resolveMinecraftVersionId() to throw if the version ID is invalid
+    return resolveMinecraftVersionId(possiblyValidId)
+  }
+}
+
+// This class is WIP. In the future it will replace raw version IDs.
+class MinecraftVersion extends MinecraftVersionResolvable {
+  id
+
+  getPossiblyValidId() {
+    //
+    return resolveMinecraftVersionId(this.id)
+  }
+
+  constructor(id: MinecraftVersionId) {
+    super()
+    this.id = id
   }
 }
