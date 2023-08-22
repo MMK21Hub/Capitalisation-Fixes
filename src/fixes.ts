@@ -299,6 +299,17 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer("Shipwrecks etc", "Shipwrecks, etc"),
     versions: ["23w04a", "23w06a"],
   }),
+  ...multiFixGroup(
+    "MC-264962",
+    new ReplaceTransformer("%1$s+%2$s", "%1$s + %2$s"),
+    ["inventory.hotbarInfo", "inventory.hotbarSaved"]
+  ),
+  new Fix({
+    bug: "MC-264962",
+    key: "options.accessibility.narrator_hotkey.tooltip",
+    transformer: new ReplaceTransformer("'Ctrl+B'", "Ctrl + B"),
+    versions: ["23w33a", null],
+  }),
 ]
 
 export default fixes
