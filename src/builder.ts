@@ -371,6 +371,11 @@ export async function emitResourcePacks(
     name: "Building resource packs",
   })
 
+  if (!buildOptions.packVersion)
+    console.log(
+      "Building development variants of the pack (for published releases, you should set a version number)"
+    )
+
   // Perform validation on the provided fixes
   const validateFixesTask = mainTask.push({
     type: "emitResourcePacks.validateFixes",
@@ -389,11 +394,6 @@ export async function emitResourcePacks(
   // Prepare the output directory
   await ensureDir(outputDir)
   if (buildOptions.clearDirectory) await clearDir(outputDir, false)
-
-  if (!buildOptions.packVersion)
-    console.warn(
-      "No pack version specified. Published builds should be branded with a version number."
-    )
 
   // Validation needs to be complete before we start processing the fixes
   await validationPromise
