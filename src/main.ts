@@ -63,7 +63,13 @@ export const cache = new Map<string, any>()
 const commandLineArg = process.argv[2]
 
 const targetVersions = new MinecraftVersionRange({
-  only: "23w06a",
+  include: [
+    new MinecraftVersionRange({ only: "1.19.2" }),
+    new MinecraftVersionRange({ only: "1.19.3" }),
+    new MinecraftVersionRange({ only: "1.19.4" }),
+    new MinecraftVersionRange({ only: "1.20" }),
+    new MinecraftVersionRange({ start: "1.20.1" }),
+  ],
 })
 
 const targetLanguages = ["en_us", "en_gb"]
