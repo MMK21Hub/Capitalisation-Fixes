@@ -11,7 +11,7 @@
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 20w33a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-20w33a.zip)**
+- **[Capitalisation Fixes for Minecraft 23w33a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-23w33a.zip)**
 - **[Capitalisation Fixes for Minecraft 1.20.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.1.zip)** (Recommended)
 - **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
 - [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
@@ -201,7 +201,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)    | Notes         |
 | ------------------------ | ----------- | --------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.19.4 | [21](#features) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.20.2 | [21](#features) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
