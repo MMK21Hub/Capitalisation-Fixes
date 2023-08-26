@@ -11,10 +11,10 @@
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 1.19.4 Pre-release 3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.4-pre3.zip)**
-- **[Capitalisation Fixes for Minecraft 1.19.3](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.3.zip)** (Recommended)
-- **[Capitalisation Fixes for Minecraft 1.19.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.18/Capitalisation-Fixes-v2.18-1.19.2.zip)**
-- [Find releases for older versions](#compatibility-tables)
+- **[Capitalisation Fixes for Minecraft 20w33a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-20w33a.zip)**
+- **[Capitalisation Fixes for Minecraft 1.20.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.1.zip)** (Recommended)
+- **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
+- [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
 
 ## Information
 
@@ -24,7 +24,7 @@
 
 ## Features
 
-51 modified translation strings are included in the resource pack, fixing a total of 21 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+38 modified translation strings are included in the resource pack, fixing a total of 11 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
@@ -32,7 +32,7 @@ Here's a summary of the statistics for different Minecraft versions. Some bugs a
 | ------------------------ | ---------- | ------------------- |
 | Latest release (1.20.1)  | 11         | 38                  |
 | Latest snapshot (23w33a) | 11         | 38                  |
-| Any version              | 25         | 56                  |
+| Any version              | 33         | 66                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
