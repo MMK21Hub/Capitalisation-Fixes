@@ -32,10 +32,10 @@ fi
 echo "Built $ZIP_COUNT Resource Pack .zip file(s): $PWD/out"
 
 # Update the package.json version
-# https://classic.yarnpkg.com/en/docs/cli/version
+# https://yarnpkg.com/cli/version/
 YARN_VERSION="$1.0"
 echo "Updating package.json version to $YARN_VERSION"
-yarn version --new-version $YARN_VERSION --no-git-tag-version
+yarn version $YARN_VERSION
 YARN_VERSION_STATUS=$?
 
 if [[ $YARN_VERSION_STATUS != 0 ]]; then
