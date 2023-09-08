@@ -18,7 +18,7 @@
 
 ## Information
 
-- The pack is actively developed for Minecraft 1.19 to 1.19.4 (1.20 coming soon!), and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
+- The pack is actively developed for Minecraft 1.19.1 to 1.20.2, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
 - The fixes are available when using British English or American English
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues)
 
