@@ -28,11 +28,11 @@
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version        | Fixed bugs | Translation strings |
-| ------------------------ | ---------- | ------------------- |
-| Latest release (1.20.1)  | 11         | 38                  |
-| Latest snapshot (23w33a) | 11         | 38                  |
-| Any version              | 33         | 66                  |
+| Minecraft version             | Fixed bugs | Translation strings |
+| ----------------------------- | ---------- | ------------------- |
+| Latest release (1.20.1)       | 12         | 40                  |
+| Latest snapshot (1.20.2-pre2) | 12         | 41                  |
+| Any version                   | 33         | 66                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
@@ -201,7 +201,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)    | Notes         |
 | ------------------------ | ----------- | --------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.20.2 | [21](#features) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.20.2 | [12](#features) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
