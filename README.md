@@ -11,7 +11,7 @@
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 23w33a](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-23w33a.zip)**
+- **[Capitalisation Fixes for Minecraft 1.20.2 (Release candidate 1)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.2-rc1.zip)**
 - **[Capitalisation Fixes for Minecraft 1.20.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.1.zip)** (Recommended)
 - **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
 - [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
@@ -28,11 +28,11 @@
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version             | Fixed bugs | Translation strings |
-| ----------------------------- | ---------- | ------------------- |
-| Latest release (1.20.1)       | 12         | 40                  |
-| Latest snapshot (1.20.2-pre2) | 12         | 41                  |
-| Any version                   | 33         | 66                  |
+| Minecraft version            | Fixed bugs | Translation strings |
+| ---------------------------- | ---------- | ------------------- |
+| Latest release (1.20.1)      | 12         | 40                  |
+| Latest snapshot (1.20.2-rc1) | 12         | 41                  |
+| Any version                  | 33         | 66                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
