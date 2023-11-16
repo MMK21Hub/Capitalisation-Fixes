@@ -11,8 +11,7 @@
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 1.20.2 (Release candidate 1)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.2-rc1.zip)**
-- **[Capitalisation Fixes for Minecraft 1.20.1](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.1.zip)** (Recommended)
+- **[Capitalisation Fixes for Minecraft 1.20.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.2.zip)** (Recommended)
 - **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
 - [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
 
