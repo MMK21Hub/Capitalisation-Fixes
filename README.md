@@ -11,27 +11,27 @@
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 1.20.2](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.2.zip)** (Recommended)
+- **[Capitalisation Fixes for Minecraft 1.20.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.4.zip)** (Recommended)
 - **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
 - [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
 
 ## Information
 
-- The pack is actively developed for Minecraft 1.19.1 to 1.20.2, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
+- The pack is currently maintained for Minecraft 1.19.1 to 1.20.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
 - The fixes are available when using British English or American English
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues)
 
 ## Features
 
-38 modified translation strings are included in the resource pack, fixing a total of 11 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+38 modified translation strings are included in the resource pack, fixing a total of 12 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version            | Fixed bugs | Translation strings |
-| ---------------------------- | ---------- | ------------------- |
-| Latest release (1.20.1)      | 12         | 40                  |
-| Latest snapshot (1.20.2-rc1) | 12         | 41                  |
-| Any version                  | 33         | 66                  |
+| Minecraft version         | Fixed bugs | Translation strings |
+| ------------------------- | ---------- | ------------------- |
+| Latest release (1.20.4)   | 12         | 41                  |
+| Latest snapshot (1.20.4)  | 12         | 41                  |
+| Any version (1.18–1.20.4) | 33         | 66                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
@@ -204,12 +204,12 @@ For detailed information, check [the file itself](new-version.sh).
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
-| Name               | Version(s)  | Fixed bug(s)                                          | Notes                                                               |
-| ------------------ | ----------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
-| Item Stitching Fix | 1.14–1.20.1 | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
-| Blaze's Rods Fix   | 1.14–1.20.1 | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
-| Cactus Bottom Fix  | 1.16–1.20.1 | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
-| Iron Bars Fix      | 1.14–1.20.1 | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
+| Name               | Version(s) | Fixed bug(s)                                          | Notes                                                               |
+| ------------------ | ---------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
+| Item Stitching Fix | 1.14–1.20  | [MC-73186](https://bugs.mojang.com/browse/MC-73186)   | Only contains fixes for commonly-held items, such as food and tools |
+| Blaze's Rods Fix   | 1.14–1.20  | [MC-144327](https://bugs.mojang.com/browse/MC-144327) |                                                                     |
+| Cactus Bottom Fix  | 1.16–1.20  | [MC-150572](https://bugs.mojang.com/browse/MC-150572) |                                                                     |
+| Iron Bars Fix      | 1.14–1.20  | [MC-192420](https://bugs.mojang.com/browse/MC-192420) |                                                                     |
 
 ### Fabric mods
 
