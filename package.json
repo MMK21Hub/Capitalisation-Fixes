@@ -39,5 +39,6 @@
     "dotenv": "^16.0.3",
     "jsdom": "^19.0.0",
     "node-fetch": "^3.2.3"
-  }
+  },
+  "packageManager": "yarn@4.2.1"
 }
