@@ -68,8 +68,8 @@ const targetVersions = new MinecraftVersionRange({
     // new MinecraftVersionRange({ only: "1.19.3" }),
     // new MinecraftVersionRange({ only: "1.19.4" }),
     // new MinecraftVersionRange({ only: "1.20" }),
-    new MinecraftVersionRange({ only: "1.20.3" }),
-    new MinecraftVersionRange({ only: "1.20.4" }),
+    new MinecraftVersionRange({ only: "1.20.5" }),
+    new MinecraftVersionRange({ only: "1.20.6" }),
   ],
 })
 
