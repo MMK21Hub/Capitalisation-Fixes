@@ -34,9 +34,15 @@ export enum Resolution {
   Declined = 10005,
 }
 
+const MOJIRA_DOMAIN = "https://bugs-legacy.mojang.com"
+
 export function getBugXMLUrl(key: string, fields?: string[]) {
-  const base = "https://bugs.mojang.com/si/jira.issueviews:issue-xml"
-  const url = urlPath(base, key, ".xml")
+  const url = urlPath(
+    MOJIRA_DOMAIN,
+    "si/jira.issueviews:issue-xml",
+    key,
+    ".xml"
+  )
   fields?.forEach((field) => url.searchParams.append("field", field))
   return url
 }
@@ -131,7 +137,7 @@ export async function isFixed(bug: string) {
 }
 
 export async function getBug(key: string): Promise<string | null> {
-  const url = urlPath("https://bugs.mojang.com/rest/api/2/issue", key)
+  const url = urlPath(MOJIRA_DOMAIN, "rest/api/2/issue", key)
   const response = await fetch(url.href)
   if (response.status === 404) return null
 
