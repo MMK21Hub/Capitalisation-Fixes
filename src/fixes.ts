@@ -122,6 +122,7 @@ const fixes: Fix[] = [
     bug: "MC-222876",
     key: "createWorld.customize.buffet.title",
     transformer: new TitleCaseTransformer(),
+    versions: [null, "25w02a"],
   }),
   ...autoCapitaliseGroup(
     "MC-219533",
@@ -280,17 +281,24 @@ const fixes: Fix[] = [
       keyPrefix: "commands.experience",
     }
   ),
-  ...multiFixGroup("MC-256422", standardiseQuoteMarks, [
-    "gui.chatReport.report_sent_msg",
-    "gui.banned.description.temporary",
-    "gui.banned.description.permanent",
-  ]),
+  ...multiFixGroup(
+    "MC-256422",
+    standardiseQuoteMarks,
+    [
+      "gui.chatReport.report_sent_msg",
+      "gui.banned.description.temporary",
+      "gui.banned.description.permanent",
+    ],
+    {
+      versions: [null, "24w33a"],
+    }
+  ),
   ...multiFixGroup(
     "MC-256422",
     standardiseQuoteMarks,
     ["mco.account.privacyinfo", "telemetry.event.world_load_times.description"],
     {
-      versions: ["22w46a", null],
+      versions: ["22w46a", "24w33a"],
     }
   ),
   new Fix({
