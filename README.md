@@ -200,7 +200,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)    | Notes         |
 | ------------------------ | ----------- | --------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.20.2 | [12](#features) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.20.4 | [12](#features) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
