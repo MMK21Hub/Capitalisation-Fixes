@@ -351,6 +351,10 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer("Catalogue", "Catalog"),
     languages: ["en_us"],
   }),
+  ...multiFixGroup("MC-189953", new ReplaceTransformer("Win", "Super"), [
+    "key.keyboard.left.win",
+    "key.keyboard.right.win",
+  ]),
 ]
 
 export default fixes
