@@ -381,6 +381,7 @@ const fixes: Fix[] = [
         "Fish",
         "Seed",
         "Gold",
+        "Iron",
         "Copper Block",
       ],
     }
