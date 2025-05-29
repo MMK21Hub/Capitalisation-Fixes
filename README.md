@@ -87,7 +87,8 @@ You can view them below.
 
 The pack's variant system lets it support a wide range of Minecraft versions, even though capitalisation bugs vary between Minecraft versions.
 Each release of the pack has multiple files (called variants) available to download, depending on which Minecraft version you use.
-![4 different .zip files listed in the Assets section of a GitHub release](https://user-images.githubusercontent.com/50421330/216786826-4d984348-6a5f-46ad-ba9f-c53b519573e6.png)
+
+[![4 different .zip files listed in the Assets section of a GitHub release](https://user-images.githubusercontent.com/50421330/216786826-4d984348-6a5f-46ad-ba9f-c53b519573e6.png)](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/latest)
 
 Each variant includes the specific fixes that are required for its Minecraft version — nothing more and nothing less.
 
