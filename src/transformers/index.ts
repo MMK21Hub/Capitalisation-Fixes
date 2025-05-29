@@ -249,10 +249,11 @@ export class CapitaliseFromTranslationStringsTransformer
       if (!match) return
 
       // Case-insensitively replace all occurrences of the string with the properly-capitalised version from the lang file
-      currentValue = currentValue.replaceAll(
-        matcher,
-        match === 1 ? string : `${string}s`
-      )
+      if (match === 1) {
+        currentValue = currentValue.replaceAll(matcher, string)
+      } else if (match === 2) {
+        currentValue = currentValue.replaceAll(pluralMatcher, string + "s")
+      }
     })
 
     return { value: currentValue }
