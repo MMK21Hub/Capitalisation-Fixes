@@ -355,6 +355,36 @@ const fixes: Fix[] = [
     "key.keyboard.left.win",
     "key.keyboard.right.win",
   ]),
+  ...autoCapitaliseGroup(
+    "MC-250153",
+    // We only fix the corrections marked in green on the bug report table,
+    // because those are the ones we know are intended by Mojang
+    [
+      "advancements.adventure.arbalistic.description",
+      "advancements.adventure.hero_of_the_village.description",
+      "advancements.adventure.summon_iron_golem.description",
+      "advancements.adventure.voluntary_exile.description",
+      "advancements.husbandry.fishy_business.description",
+      "advancements.husbandry.plant_seed.description",
+      "advancements.nether.distract_piglin.description",
+      "advancements.story.lava_bucket.description",
+      "advancements.story.mine_diamond.description",
+      "advancements.story.obtain_armor.description",
+      "advancements.husbandry.wax_on.description",
+      "advancements.husbandry.wax_off.description",
+      "advancements.husbandry.make_a_sign_glow.description",
+    ],
+    {
+      alwaysCapitalise: [
+        "Village",
+        "Raid",
+        "Fish",
+        "Seed",
+        "Gold",
+        "Copper Block",
+      ],
+    }
+  ),
 ]
 
 export default fixes
