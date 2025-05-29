@@ -26,12 +26,11 @@
 
 38 modified translation strings are included in the resource pack, fixing a total of 12 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
-Here's a summary of the statistics for different Minecraft versions. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
+Here's a summary of the statistics for different Minecraft versions supported by the pack. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
 | Minecraft version         | Fixed bugs | Translation strings |
 | ------------------------- | ---------- | ------------------- |
-| Latest release (1.20.4)   | 12         | 41                  |
-| Latest snapshot (1.20.4)  | 12         | 41                  |
+| Latest version (1.20.4)   | 12         | 41                  |
 | Any version (1.18–1.20.4) | 33         | 66                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
