@@ -15,9 +15,9 @@ Naturally, all titles should be in title case, including the titles of UI screen
 
 ## Download
 
-- **[Capitalisation Fixes for Minecraft 1.20.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.20.4.zip)** (Recommended)
-- **[Capitalisation Fixes for Minecraft 1.19.4](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.19/Capitalisation-Fixes-v2.19-1.19.4.zip)**
-- [Download it from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)
+- **[Download Capitalisation Fixes from Modrinth](https://modrinth.com/resourcepack/capitalisation-fixes)** (Recommended)
+- [Download Capitalisation Fixes for Minecraft 1.21.5 from GitHub](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/download/v2.20/Capitalisation-Fixes-v2.20-1.21.5.zip)
+- [View the latest release on GitHub](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/latest)
 
 ## Information
 
