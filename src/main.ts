@@ -64,12 +64,16 @@ const commandLineArg = process.argv[2]
 
 const targetVersions = new MinecraftVersionRange({
   include: [
-    // new MinecraftVersionRange({ only: "1.19.2" }),
-    // new MinecraftVersionRange({ only: "1.19.3" }),
+    // Versions to build for published releases
+    // are the latest minor release for each major update or game drop
     // new MinecraftVersionRange({ only: "1.19.4" }),
-    // new MinecraftVersionRange({ only: "1.20" }),
-    new MinecraftVersionRange({ only: "1.20.5" }),
-    new MinecraftVersionRange({ only: "1.20.6" }),
+    // new MinecraftVersionRange({ only: "1.20.2" }),
+    // new MinecraftVersionRange({ only: "1.20.6" }),
+    // new MinecraftVersionRange({ only: "1.21.1" }),
+    // new MinecraftVersionRange({ only: "1.21.3" }),
+    // new MinecraftVersionRange({ only: "1.21.4" }),
+    // new MinecraftVersionRange({ only: "1.21.5" }),
+    new MinecraftVersionRange({ only: "1.21.6-pre1" }),
   ],
 })
 
