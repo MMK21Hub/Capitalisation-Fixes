@@ -21,27 +21,27 @@ Naturally, all titles should be in title case, including the titles of UI screen
 
 ## Information
 
-- The pack is currently maintained for Minecraft 1.19.1 to 1.20.4, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
+- The pack is currently maintained for Minecraft 1.19.1 to 1.21.6, and there are older versions available for [1.18](https://github.com/MMK21Hub/Capitalisation-Fixes/releases/tag/v2.0-compat) and [1.16](#capitalisation-fixes-v1-minecraft-116)
 - The fixes are available when using British English or American English
 - You can submit feedback and bug reports under the [Issues tab](https://github.com/MMK21Hub/Capitalisation-Fixes/issues)
 
 ## Features
 
-38 modified translation strings are included in the resource pack, fixing a total of 12 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
+52 modified translation strings are included in the resource pack, fixing a total of 14 bugs. A lot of the issues are uncapitalised in-game names (which I've just referred to as "capitalisation"), but there are also other capitalisation and grammar issues in there.
 
 Here's a summary of the statistics for different Minecraft versions supported by the pack. Some bugs aren't present in all versions, so each version may have different numbers of included fixes.
 
-| Minecraft version         | Fixed bugs | Translation strings |
-| ------------------------- | ---------- | ------------------- |
-| Latest version (1.20.4)   | 12         | 41                  |
-| Any version (1.18–1.20.4) | 33         | 66                  |
+| Minecraft version             | Fixed bugs | Translation strings |
+| ----------------------------- | ---------- | ------------------- |
+| Latest release (1.21.5)       | 14         | 52                  |
+| Latest snapshot (1.21.6-pre1) | 14         | 52                  |
+| Any version (1.18–1.21.6)     | 37         | 85                  |
 
 <details> <summary><strong>List of translation strings that have been fixed</strong></summary>
 
 - [Sneak 100 advancement description](https://bugs.mojang.com/browse/MC-250158) (missing serial comma)
 - [Wax On & Wax Off advancement descriptions](https://bugs.mojang.com/browse/MC-226484) (misleading terminology)
 - [Render/Simulation distance sliders](https://bugs.mojang.com/browse/MC-237590) (capitalisation of UI widget labels)
-- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) (capitalisation of screen titles)
 - [Target selector argument descriptions](https://bugs.mojang.com/browse/MC-128972) (Multiple grammar issues and inconsistencies. Their fixes are slightly opinionated, as there are multiple ways to fix the issues.)
 - [Armour equipping subtitles](https://bugs.mojang.com/browse/MC-219541) (capitalisation)
 - ["Sliding down a honey block" subtitle](https://bugs.mojang.com/browse/MC-206779) (capitalisation)
@@ -49,7 +49,10 @@ Here's a summary of the statistics for different Minecraft versions supported by
 - [Subtitles for Goat body parts](https://bugs.mojang.com/browse/MC-250968) (possessive apostrophes)
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) (missing full stop)
 - [`/xp` output messages](https://bugs.mojang.com/browse/MC-203095) (always uses plural nouns)
-- [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) (apostrophes should be used)
+- [Awkward/Thick/Mundane Tipped Arrow items](https://bugs.mojang.com/browse/MC-158539) (all called "Tipped Arrow")
+- [A Complete Catalogue advancement title](https://bugs.mojang.com/browse/MC-250194) (always uses British spelling)
+- ["Win" key in the Controls menu](https://bugs.mojang.com/browse/MC-189953) (platform-specific terminology)
+- [Various advancement descriptions](https://bugs.mojang.com/browse/MC-250153) (capitalisation)
 
 </details>
 
@@ -75,6 +78,8 @@ You can view them below.
 - [Bee Our Guest advancement description](https://bugs.mojang.com/browse/MC-250197) Fixed in 1.20-pre2
 - [Graphics warning buttons](https://bugs.mojang.com/browse/MC-220096) Fixed in 1.20-pre2
 - ["Chat not allowed" message](https://bugs.mojang.com/browse/MC-252408) Fixed in 1.20-pre2
+- [Strings that use the right-quote-mark character](https://bugs.mojang.com/browse/MC-256422) Fixed in 24w33a
+- ["Buffet world customization" title](https://bugs.mojang.com/browse/MC-222876) Fixed in 25w02a
 
 </details>
 
@@ -203,7 +208,7 @@ For detailed information, check [the file itself](new-version.sh).
 
 | Name                     | Version(s)  | Fixed bug(s)    | Notes         |
 | ------------------------ | ----------- | --------------- | ------------- |
-| **Capitalisation Fixes** | 1.19–1.20.4 | [12](#features) | You are here! |
+| **Capitalisation Fixes** | 1.19–1.21.6 | [12](#features) | You are here! |
 
 #### [Vanilla Tweaks](https://vanillatweaks.net/picker/resource-packs)
 
