@@ -318,15 +318,21 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer("'Ctrl+B'", "Ctrl + B"),
     versions: ["23w33a", null],
   }),
-  ...multiFixGroup(
-    "MC-188265",
-    new ReplaceTransformer("blocks away", "block(s) away"),
-    [
-      "commands.locate.biome.success",
-      "commands.locate.poi.success",
-      "commands.locate.structure.success",
-    ]
-  ),
+  // Unable to reproduce the bug in-game, for now
+  // ...multiFixGroup(
+  //   "MC-188265",
+  //   new ReplaceTransformer("blocks away", "block(s) away"),
+  //   [
+  //     "commands.locate.biome.success",
+  //     "commands.locate.poi.success",
+  //     "commands.locate.structure.success",
+  //   ]
+  // ),
+  ...fixGroup("MC-158539", {
+    "item.minecraft.tipped_arrow.effect.awkward": "Awkward Tipped Arrow",
+    "item.minecraft.tipped_arrow.effect.mundane": "Mundane Tipped Arrow",
+    "item.minecraft.tipped_arrow.effect.thick": "Thick Tipped Arrow",
+  }),
 ]
 
 export default fixes
