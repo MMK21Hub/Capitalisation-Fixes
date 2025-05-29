@@ -1,6 +1,6 @@
 {
   "name": "capitalisation-fixes",
-  "version": "2.19.0",
+  "version": "2.20.0",
   "description": "Fixes incorrect capitalisation in Minecraft ",
   "main": "src/main.ts",
   "type": "module",
