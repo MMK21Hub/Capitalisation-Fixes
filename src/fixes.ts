@@ -370,8 +370,9 @@ const fixes: Fix[] = [
       "advancements.story.lava_bucket.description",
       "advancements.story.mine_diamond.description",
       "advancements.story.obtain_armor.description",
-      "advancements.husbandry.wax_on.description",
-      "advancements.husbandry.wax_off.description",
+      // Wax On and Wax Off are excluded because of MC-226484
+      // "advancements.husbandry.wax_on.description",
+      // "advancements.husbandry.wax_off.description",
       "advancements.husbandry.make_a_sign_glow.description",
     ],
     {
