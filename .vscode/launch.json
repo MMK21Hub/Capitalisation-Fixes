@@ -10,7 +10,8 @@
       "name": "Run build tool",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/dist/main.js",
-      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"]
+      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"],
+      "runtimeVersion": "24"
     },
     {
       "type": "node",
@@ -18,7 +19,8 @@
       "name": "Run publisher script",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/dist/publisher/main.js",
-      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"]
+      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"],
+      "runtimeVersion": "24"
     },
     {
       "type": "node",
@@ -26,7 +28,8 @@
       "name": "Run report viewer",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/dist/report-viewer/main.js",
-      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"]
+      "runtimeArgs": ["--preserve-symlinks", "--preserve-symlinks-main"],
+      "runtimeVersion": "24"
     }
   ]
 }
