@@ -333,6 +333,12 @@ const fixes: Fix[] = [
     "item.minecraft.tipped_arrow.effect.mundane": "Mundane Tipped Arrow",
     "item.minecraft.tipped_arrow.effect.thick": "Thick Tipped Arrow",
   }),
+  new Fix({
+    bug: "MC-250194",
+    key: "advancements.husbandry.complete_catalogue.title",
+    transformer: new ReplaceTransformer("Catalogue", "Catalog"),
+    languages: ["en_us"],
+  }),
 ]
 
 export default fixes
