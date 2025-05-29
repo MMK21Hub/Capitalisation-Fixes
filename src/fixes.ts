@@ -318,6 +318,15 @@ const fixes: Fix[] = [
     transformer: new ReplaceTransformer("'Ctrl+B'", "Ctrl + B"),
     versions: ["23w33a", null],
   }),
+  ...multiFixGroup(
+    "MC-188265",
+    new ReplaceTransformer("blocks away", "block(s) away"),
+    [
+      "commands.locate.biome.success",
+      "commands.locate.poi.success",
+      "commands.locate.structure.success",
+    ]
+  ),
 ]
 
 export default fixes
