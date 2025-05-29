@@ -302,6 +302,18 @@ const fixes: Fix[] = [
     }
   ),
   new Fix({
+    bug: "MC-256422",
+    key: "mco.account.privacy.information",
+    transformer: standardiseQuoteMarks,
+    versions: ["23w42a", "24w33a"],
+  }),
+  new Fix({
+    bug: "MC-256422",
+    key: "gui.abuseReport.report_sent_msg",
+    transformer: standardiseQuoteMarks,
+    versions: ["23w33a", "24w33a"],
+  }),
+  new Fix({
     bug: "MC-259360",
     key: "selectWorld.mapFeatures.info",
     transformer: new ReplaceTransformer("Shipwrecks etc", "Shipwrecks, etc"),
