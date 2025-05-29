@@ -5,6 +5,7 @@
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/JdXoJZy7?color=%23ff&label=Modrinth%20downloads&logo=download)](https://modrinth.com/resourcepack/capitalisation-fixes)
 [![GitHub last commit](https://img.shields.io/github/last-commit/MMK21Hub/capitalisation-fixes)](https://github.com/MMK21Hub/Capitalisation-Fixes/commits)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/MMK21Hub/Capitalisation-Fixes/build-each-commit.yml)](https://github.com/MMK21Hub/Capitalisation-Fixes/actions/workflows/build-each-commit.yml)
+
 </center>
 <p>Capitalisation Fixes is a Minecraft resource pack that fixes various bugs related to in-game and UI text, such as labels being improperly capitalised.</p>
 <p>Minecraft has a few guidelines for capitalizing words. All in-game names should be capitalised as proper nouns (e.g. "Oak Boat", "Bottle of Enchanting", "Golden Apple") and all 'action' button labels should also be in title case (e.g. "Import Settings", "Create Backup & Load", "Erase Cached Data"). In addition all titles should be in title case, including the titles of UI screens ("Video Settings") and the titles of advancements ("Monster Hunter").</p>
@@ -130,11 +131,11 @@ Capitalisation Fixes v1 was a resource pack that fixed some bugs in 20w21a+ wher
 
 Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1.16.2. It was discontinued for a few reasons,
 e.g. many of Minecraft's capitalisation bugs were merged into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
-|                                                                                                          | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
+| | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | -------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
-| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
-| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
-| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989;          | &#9989;           | &#9989;        | &#9989;          |
+| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989; | &#9989; | &#9989; | &#9989; |
 
 ## Build tool
 
@@ -159,7 +160,7 @@ yarn build
 Then, you can actually run the build script. Here are some usage examples:
 
 ```yaml
-# Build the resource pack. The output will be in the `out` folder, 
+# Build the resource pack. The output will be in the `out` folder,
 # and the zip file will be named after the targeted Minecraft version.
 # If multiple versions are targeted, there will be one zip file for each.
 node dist/main.js
@@ -226,3 +227,7 @@ For detailed information, check [the file itself](new-version.sh).
 | [Item Model Fix](https://github.com/PepperCode1/Item-Model-Fix) | 1.16–1.19   | [MC-73186](https://bugs.mojang.com/browse/MC-73186)                          | Client | [Issue for 1.19.3 support](https://github.com/PepperCode1/Item-Model-Fix/issues/20)  |
 | [Mc122477Fix](https://modrinth.com/mod/mc122477fix)             | 1.16–1.17   | [MC-122477](https://bugs.mojang.com/browse/MC-122477)                        | Client |
 | [Subspace Train](https://modrinth.com/mod/subspace-train)       | 1.17.1      | [MC-67](https://bugs.mojang.com/browse/MC-67)                                | Server |                                                                                      |
+
+### Other projects
+
+If there's a project I've missed out that fixes a bug in Minecraft (without changing intended features or adding content), please let me know through an issue or a pull request!
