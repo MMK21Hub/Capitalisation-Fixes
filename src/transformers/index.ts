@@ -234,9 +234,12 @@ export class CapitaliseFromTranslationStringsTransformer
     let currentValue = oldValue
 
     matchingTranslationStrings.forEach((string) => {
-      const matcher = new RegExp(string, "gi")
-      const pluralMatcher = new RegExp(string + "s", "gi")
+      // Surround the string in \b to make sure it's a whole-word match
+      // e.g. so we get "Full" but not "successFull"
+      const matcher = new RegExp("\\b" + string + "\\b", "gi")
+      const pluralMatcher = new RegExp("\\b" + string + "s\\b", "gi")
 
+      // 0 if no match, 1 if it's singular, 2 if it's plural
       const match = matcher.test(currentValue)
         ? 1
         : pluralMatcher.test(currentValue)
