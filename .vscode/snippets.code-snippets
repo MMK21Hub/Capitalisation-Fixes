@@ -39,10 +39,4 @@
     ],
     "scope": "typescript"
   },
-
-  "Mojira Link": {
-    "prefix": "mc",
-    "body": "[$1](https://bugs.mojang.com/browse/$1)$0",
-    "scope": "markdown"
-  }
 }

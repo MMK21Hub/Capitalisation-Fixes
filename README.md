@@ -141,9 +141,9 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 e.g. many of Minecraft's capitalisation bugs were merged into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
 | | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | -------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
-| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989; | &#9989; | &#9989; | &#9989; |
-| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989; | &#9989; | &#9989; | &#9989; |
-| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v10-2020-05-21)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v11-2020-05-31)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v12-2020-06-10)** | &#9989; | &#9989; | &#9989; | &#9989; |
 
 ## Build tool
 
