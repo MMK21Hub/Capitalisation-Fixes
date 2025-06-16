@@ -1,7 +1,7 @@
 {
   "name": "capitalisation-fixes",
   "version": "2.20.0",
-  "description": "Fixes incorrect capitalisation in Minecraft ",
+  "description": "Fixes incorrect capitalisation and grammar mistakes in Minecraft",
   "main": "src/main.ts",
   "type": "module",
   "scripts": {
@@ -14,11 +14,10 @@
   },
   "keywords": [
     "minecraft",
-    "minecraft-resourcepack",
-    "bugfixes",
+    "minecraft-resource-pack",
+    "bug-fix",
     "minecraft-snapshot",
-    "capitalisation",
-    "minecraft-1-19"
+    "capitalization"
   ],
   "author": "MMK21",
   "license": "CC0-1.0",
