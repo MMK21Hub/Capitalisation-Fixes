@@ -239,3 +239,9 @@ For detailed information, check [the file itself](new-version.sh).
 ### Other projects
 
 If there's a project I've missed out that fixes a bug in Minecraft (without changing intended features or adding content), please let me know through an issue or a pull request!
+
+## AI usage statement
+
+I have not used any AI tools or completions when creating the [build tool](./build-tool/).
+
+I have used GitHub Copilot's inline code completions to help create the [web UI](./web-ui/).
