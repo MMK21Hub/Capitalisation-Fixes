@@ -1,25 +1,18 @@
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* @import "@catppuccin/palette/style"; */
+
+html {
+  background-color: var(--base);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.preact:hover {
-  filter: drop-shadow(0 0 2em #673ab8aa);
+header {
+  background-color: var(--mantle);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+h1 {
+  margin: 0;
+  justify-self: center;
 }

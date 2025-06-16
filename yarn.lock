@@ -955,6 +955,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"capitalisation-fixes-web@workspace:web-ui":
+  version: 0.0.0-use.local
+  resolution: "capitalisation-fixes-web@workspace:web-ui"
+  dependencies:
+    "@preact/preset-vite": "npm:^2.10.1"
+    preact: "npm:^10.26.5"
+    typescript: "npm:~5.8.3"
+    vite: "npm:^6.3.5"
+  languageName: unknown
+  linkType: soft
+
 "capitalisation-fixes@workspace:build-tool":
   version: 0.0.0-use.local
   resolution: "capitalisation-fixes@workspace:build-tool"
@@ -2424,17 +2435,6 @@ __metadata:
   checksum: 10/8e7e13501b3834094a50abe7c0b6456155a55d7571312b89570012ef47ec2a46d766934768c50aabad10a9c30dd764a407623e8bfcc74fcb58495c29130edea9
   languageName: node
   linkType: hard
-
-"web-ui@workspace:web-ui":
-  version: 0.0.0-use.local
-  resolution: "web-ui@workspace:web-ui"
-  dependencies:
-    "@preact/preset-vite": "npm:^2.10.1"
-    preact: "npm:^10.26.5"
-    typescript: "npm:~5.8.3"
-    vite: "npm:^6.3.5"
-  languageName: unknown
-  linkType: soft
 
 "webidl-conversions@npm:^7.0.0":
   version: 7.0.0

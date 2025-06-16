@@ -1,4 +1,5 @@
 import { useState } from "preact/hooks"
+import "@catppuccin/palette/css/catppuccin.css"
 import "./app.css"
 
 export function App() {
@@ -6,7 +7,9 @@ export function App() {
 
   return (
     <>
-      <h1>Vite + Preact</h1>
+      <header>
+        <h1>Capitalisation Fixes</h1>
+      </header>
       <div class="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
