@@ -1,6 +1,7 @@
 {
   "workspaces": [
-    "build-tool"
+    "build-tool",
+    "web-ui"
   ],
   "packageManager": "yarn@4.9.2"
 }
