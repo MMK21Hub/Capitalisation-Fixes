@@ -243,6 +243,27 @@ For detailed information, check [the file itself](new-version.sh).
 
 If there's a project I've missed out that fixes a bug in Minecraft (without changing intended features or adding content), please let me know through an issue or a pull request!
 
+## Project folder structure
+
+This repository uses a monorepo structure (using Yarn workspaces), with the following folders:
+
+- **[build-tool](./build-tool/)**
+  - Contains the source code for the resource pack, the build tool, the Modrinth publisher, and the debug report viewer.
+  - (In the future, this should probably be split into separate workspaces for each of the components mentioned above.)
+  - Built using TypeScript
+  - The build tool is (mostly) isomorphic, but the publisher and report viewer are Node.js-only.
+- **[web-ui](./web-ui/)**
+  - Contains the source code for the "Capitalisation Fixes web" project
+  - Built using Vite, Preact, and TypeScript
+
+## Acknowledgements
+
+- Thanks to Mojang for letting us hack on your game with resource packs and data packs.
+- Thanks to the Mojira community for maintaining up-to-date bug reports for the various bugs fixed in this pack.
+- The build tool uses Misode's [`mcmeta`](https://github.com/misode/mcmeta) project for Minecraft version metadata.
+- I've used [`madge`](https://github.com/pahen/madge) is used to generate dependency graphs to help with debugging
+  - Use it like `madge ./dist -i dep.svg`
+
 ## AI usage statement
 
 I have not used any AI tools or completions when creating the [build tool](./build-tool/).
