@@ -960,13 +960,14 @@ __metadata:
   resolution: "capitalisation-fixes-web@workspace:web-ui"
   dependencies:
     "@preact/preset-vite": "npm:^2.10.1"
+    capitalisation-fixes: "workspace:*"
     preact: "npm:^10.26.5"
     typescript: "npm:~5.8.3"
     vite: "npm:^6.3.5"
   languageName: unknown
   linkType: soft
 
-"capitalisation-fixes@workspace:build-tool":
+"capitalisation-fixes@workspace:*, capitalisation-fixes@workspace:build-tool":
   version: 0.0.0-use.local
   resolution: "capitalisation-fixes@workspace:build-tool"
   dependencies:
@@ -976,6 +977,7 @@ __metadata:
     adm-zip: "npm:^0.5.16"
     arg: "npm:^5.0.2"
     chalk: "npm:^5.4.1"
+    client-zip: "npm:^2.5.0"
     dotenv: "npm:^16.5.0"
     jsdom: "npm:^26.1.0"
     node-fetch: "npm:^3.3.2"
@@ -994,6 +996,13 @@ __metadata:
   version: 3.0.0
   resolution: "chownr@npm:3.0.0"
   checksum: 10/b63cb1f73d171d140a2ed8154ee6566c8ab775d3196b0e03a2a94b5f6a0ce7777ee5685ca56849403c8d17bd457a6540672f9a60696a6137c7a409097495b82c
+  languageName: node
+  linkType: hard
+
+"client-zip@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "client-zip@npm:2.5.0"
+  checksum: 10/995736b6655f6335c8ed90bd2f2bda3d8fbaf548eea4a50fa6201eb4d47d22c01ceec4fa965dfdbb4f69fb1c96a515e87fe9d9ae2873021e1620bd29f82eba95
   languageName: node
   linkType: hard
 
