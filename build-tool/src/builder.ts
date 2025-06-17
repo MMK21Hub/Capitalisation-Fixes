@@ -12,7 +12,8 @@ import {
   resolveMinecraftVersionSpecifier,
   ResourcePackMetadata,
 } from "./helpers/minecraftHelpers.js"
-import { FunctionMaybe, filter, ensureDir, clearDir } from "./helpers/util.js"
+import { FunctionMaybe, filter } from "./helpers/util.js"
+import { clearDir, ensureDir } from "./helpers/utilNode.js"
 import TransformerLogger, { MessageType } from "./classes/TransformerLogger.js"
 import type Fix from "./classes/Fix.js"
 import { debugReport, packDescription } from "./main.js"

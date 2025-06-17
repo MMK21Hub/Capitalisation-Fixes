@@ -1,7 +1,7 @@
+/** Isomorphic "utility" functions for various things */
+
 import { JSDOM } from "jsdom"
 import { Response } from "node-fetch"
-import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
-import path from "node:path"
 
 /** Might be the value itself, or a promise that resolves to that value */
 export type PromiseMaybe<T> = T | Promise<T>
@@ -236,54 +236,21 @@ export function isSingleWord(str: string) {
   return toWords(str).length === 1
 }
 
-/* FILESYSTEM UTILS */
-
-/**
- * Creates a directory if it does not already exist
- * @returns true if the directory already existed; false if it was created
- */
-export function ensureDir(path: string): Promise<boolean> {
-  return mkdir(path)
-    .then(() => true)
-    .catch((e) => {
-      return e.code === "EEXIST" ? false : e
-    })
+/* ISOMORPHIC UTILS */
+export function isNode() {
+  return typeof process === "object"
 }
 
-/** Deletes all the files in a folder */
-export async function clearDir(
-  directoryPath: string,
-  recursive: boolean = true
-) {
-  const contents = await readdir(directoryPath)
-
-  // Return false if the directory is empty
-  if (!contents) return false
-
-  // Delete all the files in the directory (asynchronously)
-  await Promise.all(
-    contents.map((file) => rm(path.resolve(directoryPath, file), { recursive }))
-  )
-
-  return true
+export async function addToCacheIfPossible(filePath: string, contents: string) {
+  if (!isNode()) return
+  const { addToCache } = await import("./utilNode.js")
+  await addToCache(filePath, contents)
 }
 
-/* CACHING */
-
-export async function getCachedFile(filePath: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  return await readFile(fullFilePath, "utf8").catch(() => {
-    return null
-  })
-}
-
-export async function addToCache(filePath: string, contents: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  await writeFile(fullFilePath, contents)
+export async function getCachedFileIfPossible(
+  filePath: string
+): Promise<string | null> {
+  if (!isNode()) return null
+  const { getCachedFile } = await import("./utilNode.js")
+  return getCachedFile(filePath)
 }

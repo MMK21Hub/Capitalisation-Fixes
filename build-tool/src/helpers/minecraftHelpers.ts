@@ -5,13 +5,12 @@ import {
   FancyRange,
   StartAndEnd,
   Range,
-  addToCache,
-  ensureDir,
-  getCachedFile,
   ResolvableAsync,
   SearchValue,
   ResolvableSync,
   isSimpleRange,
+  addToCacheIfPossible,
+  getCachedFileIfPossible,
 } from "../helpers/util.js"
 
 /** A single Minecraft language ID */
@@ -434,7 +433,7 @@ export async function getVanillaLanguageFile(
 ): Promise<Record<string, string>> {
   // If there is a file in the cache that matches the language and the version, use it
   const cachedFilePath = `${version}/${language}.json`
-  const cacheResult = await getCachedFile(cachedFilePath)
+  const cacheResult = await getCachedFileIfPossible(cachedFilePath)
 
   if (cacheResult) {
     try {
@@ -469,10 +468,8 @@ export async function getVanillaLanguageFile(
     )
 
   // Asynchronously cache the language file
-  ensureDir(path.join(".cache", version)).then(() => {
-    const filePath = path.join(version, `${language}.json`)
-    addToCache(filePath, JSON.stringify(languageFile))
-  })
+  const filePath = path.join(version, `${language}.json`)
+  addToCacheIfPossible(filePath, JSON.stringify(languageFile))
 
   return languageFile as any
 }

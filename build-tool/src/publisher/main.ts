@@ -5,7 +5,7 @@ import { readFile, writeFile } from "fs/promises"
 import { join } from "path"
 import { OutFileIndex, OutFileMetadata } from "../builder.js"
 import { createInterface } from "readline"
-import { ensureDir } from "../helpers/util.js"
+import { ensureDir } from "../helpers/utilNode.js"
 
 /**
  * Goes through all the files in the index.
