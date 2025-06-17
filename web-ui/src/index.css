@@ -15,3 +15,12 @@ html {
   --pico-primary-border: var(--blue);
   --pico-primary-inverse: black;
 }
+
+:focus-visible {
+  outline: auto;
+}
+
+button:focus-visible {
+  outline: 4px solid var(--blue);
+  outline-offset: 4px;
+}

@@ -1,9 +1,6 @@
-import { useState } from "preact/hooks"
 import "./app.css"
 
 export function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <header>
@@ -11,9 +8,7 @@ export function App() {
       </header>
       <main>
         <p>Click the button below to generate a resource pack :)</p>
-        <button onClick={() => setCount((count) => count + 1)}>
-          Generate resource pack
-        </button>
+        <button onClick={() => false}>Generate resource pack</button>
       </main>
     </>
   )
