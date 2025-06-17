@@ -267,16 +267,28 @@ export function isNode() {
   return typeof process === "object"
 }
 
-export async function addToCacheIfPossible(filePath: string, contents: string) {
+export async function addToCacheIfPossible(
+  // We accept an array of strings so that the caller doesn't need access to `node:path`
+  filePath: string | string[],
+  contents: string
+) {
   if (!isNode()) return
   const { addToCache } = await import("./utilNode.js")
-  await addToCache(filePath, contents)
+  const path = await import("node:path")
+  const resolvedPath = Array.isArray(filePath)
+    ? path.join(...filePath)
+    : filePath
+  await addToCache(resolvedPath, contents)
 }
 
 export async function getCachedFileIfPossible(
-  filePath: string
+  filePath: string | string[]
 ): Promise<string | null> {
   if (!isNode()) return null
   const { getCachedFile } = await import("./utilNode.js")
-  return getCachedFile(filePath)
+  const path = await import("node:path")
+  const resolvedPath = Array.isArray(filePath)
+    ? path.join(...filePath)
+    : filePath
+  return getCachedFile(resolvedPath)
 }

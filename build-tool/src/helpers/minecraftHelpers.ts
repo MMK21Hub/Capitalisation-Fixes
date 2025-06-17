@@ -1,4 +1,3 @@
-import path from "path"
 import {
   FancyRange,
   StartAndEnd,
@@ -471,8 +470,10 @@ export async function getVanillaLanguageFile(
     )
 
   // Asynchronously cache the language file
-  const filePath = path.join(version, `${language}.json`)
-  addToCacheIfPossible(filePath, JSON.stringify(languageFile))
+  addToCacheIfPossible(
+    [version, `${language}.json`],
+    JSON.stringify(languageFile)
+  )
 
   return languageFile as any
 }
