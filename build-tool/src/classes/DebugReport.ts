@@ -1,7 +1,3 @@
-import { writeFile } from "fs/promises"
-import { ensureDir } from "../helpers/utilNode.js"
-import { join as joinPath } from "path"
-
 export interface DebugTaskOptions {
   type: string
   trace?: string | number
@@ -150,6 +146,10 @@ export class DebugReport {
   }
 
   async exportToFile(...path: string[]) {
+    const { writeFile } = await import("node:fs/promises")
+    const { ensureDir } = await import("../helpers/utilNode.js")
+    const { join: joinPath } = await import("node:path")
+
     const data = JSON.stringify(this.toObject(), null, 2)
     await ensureDir(joinPath(...path.slice(0, -1)))
     await writeFile(joinPath(...path), data, "utf8")
