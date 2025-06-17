@@ -1,8 +1,5 @@
 /** Isomorphic "utility" functions for various things */
 
-import { JSDOM } from "jsdom"
-import type { DebugReport } from "../classes/DebugReport.js"
-
 /** Might be the value itself, or a promise that resolves to that value */
 export type PromiseMaybe<T> = T | Promise<T>
 /** Makes the provided keys (K) of the object (T) optional */
@@ -78,19 +75,29 @@ export function toMap<T>(recordLike: RecordLike<string, T>): Map<string, T> {
 
 /* DOM UTILS */
 
+/** A DOM-compatible object, e.g. a `JSDOM` instance or the browser's `globalThis` */
+export type DOM = {
+  window: {
+    document: {
+      querySelector: typeof window.document.querySelector
+      querySelectorAll: typeof window.document.querySelectorAll
+    }
+  }
+}
+
 export class SelectorNotFound extends Error {
   constructor(message: string) {
     super(message)
   }
 }
 
-export function getSelector(dom: JSDOM, selector: string) {
+export function getSelector(dom: DOM, selector: string) {
   const match = dom.window.document.querySelector(selector)
   if (!match) throw new SelectorNotFound(`Couldn't find selector: ${selector}`)
   return match
 }
 
-export function getSelectorAll(dom: JSDOM, selector: string) {
+export function getSelectorAll(dom: DOM, selector: string) {
   const matches = dom.window.document.querySelectorAll(selector)
   if (!matches.length)
     throw new SelectorNotFound(`Didn't match any elements: ${selector}`)
@@ -108,28 +115,28 @@ export function getElementText(element: Element) {
   throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
 }
 
-export function getSelectorText(dom: JSDOM, selector: string) {
+export function getSelectorText(dom: DOM, selector: string) {
   const element = getSelector(dom, selector)
   return getElementText(element)
 }
 
-export function getSelectorTextAll(dom: JSDOM, selector: string) {
+export function getSelectorTextAll(dom: DOM, selector: string) {
   const matchingElements = Array.from(getSelectorAll(dom, selector))
   return matchingElements.map(getElementText)
 }
 
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict?: true
 ): T
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict: false
 ): T | null
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict = true
 ): T | null {
