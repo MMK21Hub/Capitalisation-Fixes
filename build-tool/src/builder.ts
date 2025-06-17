@@ -291,7 +291,7 @@ export async function generateMultipleVersionsLanguageFileData(
 async function generatePackZipData(
   languageFiles: Record<string, LanguageFileData>,
   packMetadata: ResourcePackMetadata,
-  metaFiles?: Record<string, Buffer>
+  metaFiles?: MetaFiles
 ) {
   const zip = new JSZip()
 
@@ -316,20 +316,13 @@ async function generatePackZipData(
   return zip
 }
 
+export type MetaFiles = Record<string, Buffer>
+
 async function generateMultiplePackZipData(
   versionedLanguageFiles: LanguageFileBundle,
-  metaFileDirectory: string
+  metaFiles: MetaFiles
 ) {
   const result: Record<string, JSZip> = {}
-
-  // Get the pack.png and README files from the repo, and include them in the zip
-  const metaFiles: Record<string, Buffer> = {}
-  const metaFileNames = ["pack.png", "README.md"]
-  for (const i in metaFileNames) {
-    const file = metaFileNames[i]
-    const filePath = path.join(metaFileDirectory, file)
-    metaFiles[file] = await readFile(filePath)
-  }
 
   await Promise.all(
     Object.entries(versionedLanguageFiles).map(
@@ -423,7 +416,16 @@ export async function emitResourcePacks(
     })
   }
 
-  const zipFiles = await generateMultiplePackZipData(languageFiles, ".")
+  // Grab the metadata file contents to be included in the zip files
+  const metadataFiles: MetaFiles = {
+    "pack.png": await readFile("pack.png"),
+    "README.md": await readFile(path.join("..", "README.md")),
+  }
+  // Generate the zip files (to memory)
+  const zipFiles = await generateMultiplePackZipData(
+    languageFiles,
+    metadataFiles
+  )
 
   /** A map of filenames to that file's metadata. */
   const zipFileIndex: OutFileIndex = new Map()

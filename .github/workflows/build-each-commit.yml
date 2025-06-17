@@ -13,7 +13,7 @@ jobs:
       - name: Compile TypeScript source using tsc
         run: cd build-tool && yarn build
       - name: Build the resource pack
-        run: node build-tool/dist/main.js
+        run: cd build-tool && node dist/main.js
       - name: Save the built resource pack as an artifact
         uses: actions/upload-artifact@v4
         with:

@@ -10,7 +10,7 @@ import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
  * @returns true if the directory already existed; false if it was created
  */
 export function ensureDir(path: string): Promise<boolean> {
-  return mkdir(path)
+  return mkdir(path, { recursive: true })
     .then(() => true)
     .catch((e) => {
       return e.code === "EEXIST" ? false : e
@@ -48,9 +48,13 @@ export async function getCachedFile(filePath: string) {
 }
 
 export async function addToCache(filePath: string, contents: string) {
-  // Make sure that the .cache directory exists
+  const filePathParts = filePath.split("/")
+  // Make sure that the .cache directory (in CWD) exists
   await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
+  // Ensure that any subdirectories in the provided file path exist
+  const filePathSubfolders = filePathParts.slice(0, -1)
+  await ensureDir(path.join(".cache", ...filePathSubfolders))
+  // Create the file
+  const fullFilePath = path.join(".cache", ...filePathParts)
   await writeFile(fullFilePath, contents)
 }
