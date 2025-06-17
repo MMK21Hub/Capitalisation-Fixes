@@ -266,6 +266,8 @@ This repository uses a monorepo structure (using Yarn workspaces), with the foll
 
 ## AI usage statement
 
-I have not used any AI tools or completions when creating the [build tool](./build-tool/).
+I have used GitHub Copilot's inline code completions to help code versions after v2.20 (May 2025) of the [build tool](./build-tool/). I have not used any AI tools or completions when creating the resource pack, or build tool versions before v2.20.
 
 I have used GitHub Copilot's inline code completions to help create the [web UI](./web-ui/).
+
+I have not generated any large sections of code or whole functions using AI, and no text, documentation, or images have been generated using AI.
