@@ -7,6 +7,7 @@ html {
 header {
   background-color: var(--mantle);
   height: 4rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -15,4 +16,8 @@ header {
 h1 {
   margin: 0;
   justify-self: center;
+}
+
+main {
+  margin-inline: 0.5rem;
 }
