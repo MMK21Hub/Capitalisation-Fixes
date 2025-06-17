@@ -1,7 +1,6 @@
 /** Isomorphic "utility" functions for various things */
 
 import { JSDOM } from "jsdom"
-import { Response } from "node-fetch"
 
 /** Might be the value itself, or a promise that resolves to that value */
 export type PromiseMaybe<T> = T | Promise<T>

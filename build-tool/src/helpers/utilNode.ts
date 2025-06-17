@@ -1,5 +1,13 @@
 /** Utilities that can only be used when running under Node.js */
 
+if (
+  typeof process === "undefined" ||
+  !process.versions ||
+  typeof window !== "undefined"
+) {
+  throw new Error("utilNode.ts should only be imported in Node.js environments")
+}
+
 import path from "node:path"
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
 

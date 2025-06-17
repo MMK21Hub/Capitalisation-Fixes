@@ -6,7 +6,6 @@ import {
   urlPath,
 } from "./util.js"
 import { JSDOM } from "jsdom"
-import fetch from "node-fetch"
 import { isFutureVersion, toVersionID } from "./minecraftHelpers.js"
 
 // From https://bugs.mojang.com/rest/api/2/status

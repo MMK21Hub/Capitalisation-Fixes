@@ -1,4 +1,3 @@
-import fetch from "node-fetch"
 import path from "path"
 import { cache, debugReport, versionsSummary } from "../main.js"
 import {
