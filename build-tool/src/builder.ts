@@ -6,7 +6,7 @@
  * - It ends with `generateTranslationStrings`, which generates a language file for a single language and a single Minecraft version.
  */
 
-import { readFile, writeFile } from "node:fs/promises"
+import { writeFile } from "node:fs/promises"
 import {
   getTranslationStringOrThrow,
   getVanillaLanguageFile,
@@ -70,14 +70,21 @@ export type LanguageFileBundle = Record<
 >
 
 interface BuildOptions {
+  // Pack options:
   targetVersions: MinecraftVersionRange
   targetLanguages: MinecraftLanguage[]
-  directory?: string
+  /** The Capitalisation Fixes version that this pack shall be branded as */
   packVersion?: string
-  /** The description string to go into the `pack.mcmeta */
+  /** The description string to go into the `pack.mcmeta` */
   packDescription: string
-  clearDirectory?: boolean
   filename?: FunctionMaybe<string, [string, string?]>
+  assets: {
+    readme: Uint8Array
+    packPng: Uint8Array
+  }
+  // Filesystem options:
+  directory?: string
+  clearDirectory?: boolean
 }
 
 export type OutFileIndex = Map<string, OutFileMetadata>
@@ -325,7 +332,7 @@ async function generatePackZipData(
   return zip
 }
 
-export type MetaFiles = Record<string, Buffer>
+export type MetaFiles = Record<string, Uint8Array>
 
 async function generateMultiplePackZipData(
   versionedLanguageFiles: LanguageFileBundle,
@@ -431,8 +438,8 @@ export async function emitResourcePacks(
 
   // Grab the metadata file contents to be included in the zip files
   const metadataFiles: MetaFiles = {
-    "pack.png": await readFile("pack.png"),
-    "README.md": await readFile(path.join("..", "README.md")),
+    "pack.png": buildOptions.assets.packPng,
+    "README.md": buildOptions.assets.readme,
   }
   // Generate the zip files (to memory)
   const zipFiles = await generateMultiplePackZipData(

@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises"
 import { emitResourcePacks, generateStats } from "./builder.js"
 import { MinecraftVersionRange } from "./classes/minecraftVersions.js"
 import { debugReport } from "./debugReport.js"
@@ -6,6 +7,7 @@ import {
   MinecraftVersionBranch,
   MinecraftVersionSpecifier,
 } from "./helpers/minecraftHelpers.js"
+import path from "node:path"
 
 export async function buildPack() {
   return await emitResourcePacks(fixes, {
@@ -19,6 +21,10 @@ export async function buildPack() {
     filename: commandLineArg
       ? undefined
       : (minecraftVersion) => `${minecraftVersion}.zip`,
+    assets: {
+      packPng: await readFile("pack.png"),
+      readme: await readFile(path.join("..", "README.md")),
+    },
   })
 }
 
