@@ -6,7 +6,6 @@
  * - It ends with `generateTranslationStrings`, which generates a language file for a single language and a single Minecraft version.
  */
 
-import path from "node:path"
 import { readFile, writeFile } from "node:fs/promises"
 import {
   getTranslationStringOrThrow,
@@ -360,6 +359,7 @@ async function generateMultiplePackZipData(
 
 /** Saves an index of the generated zip files to the outputDir */
 async function emitOutFileIndex(index: OutFileIndex, outputDir: string) {
+  const path = await import("node:path")
   const filename = "index.json"
   const data = JSON.stringify(Array.from(index.entries()))
   const filePath = path.join(outputDir, filename)
@@ -426,6 +426,8 @@ export async function emitResourcePacks(
       console.log(`  ${versionPadded} ${languages}`)
     })
   }
+
+  const path = await import("node:path") // TODO move this further down
 
   // Grab the metadata file contents to be included in the zip files
   const metadataFiles: MetaFiles = {
