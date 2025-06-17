@@ -5,8 +5,6 @@
  * - It starts with with `emitResourcePacks`, the function that is called by the CLI.
  * - It ends with `generateTranslationStrings`, which generates a language file for a single language and a single Minecraft version.
  */
-
-import { writeFile } from "node:fs/promises"
 import {
   getTranslationStringOrThrow,
   getVanillaLanguageFile,
@@ -113,7 +111,7 @@ export interface OutFileMetadata {
   totalFiles: number
 }
 
-let mainTask: DebugTask
+let mainTask: DebugTask | null = null
 
 export abstract class Transformer {
   callback
@@ -259,7 +257,7 @@ export async function generateMultipleVersionsLanguageFileData(
   targetLanguages: MinecraftLanguage[],
   fixes: Fix[]
 ) {
-  const languageFileGenerationTask = mainTask.push({
+  const languageFileGenerationTask = mainTask?.push({
     type: "generateMultipleVersionsLanguageFileData",
     name: "Generating the language files for each version",
   })
@@ -271,7 +269,7 @@ export async function generateMultipleVersionsLanguageFileData(
   const versionedLanguageFiles = await Promise.all(
     versions.map((version, index) => {
       const promise = generateLanguageFilesData(version, targetLanguages, fixes)
-      languageFileGenerationTask.push({
+      languageFileGenerationTask?.push({
         type: "generateLanguageFileSet",
         data: {
           targetLanguages,
@@ -300,7 +298,7 @@ export async function generateMultipleVersionsLanguageFileData(
     result[versions[i]] = languages
   })
 
-  languageFileGenerationTask.end()
+  languageFileGenerationTask?.end()
   return result
 }
 
@@ -367,49 +365,37 @@ async function generateMultiplePackZipData(
 /** Saves an index of the generated zip files to the outputDir */
 async function emitOutFileIndex(index: OutFileIndex, outputDir: string) {
   const path = await import("node:path")
+  const { writeFile } = await import("node:fs/promises")
+
   const filename = "index.json"
   const data = JSON.stringify(Array.from(index.entries()))
   const filePath = path.join(outputDir, filename)
   await writeFile(filePath, data, "utf-8")
 }
 
-export async function emitResourcePacks(
-  fixes: Fix[],
-  buildOptions: BuildOptions
-) {
-  const outputDir = buildOptions.directory || "out"
-  mainTask = debugReport.push({
-    type: "emitResourcePacks",
-    name: "Building resource packs",
-  })
-
-  if (!buildOptions.packVersion)
-    console.log(
-      "Building development variants of the pack (for published releases, you should set a version number)"
-    )
-
-  // Perform validation on the provided fixes
-  const validateFixesTask = mainTask.push({
+/** Perform validation on the provided fixes */
+export async function validateFixes(fixes: Fix[]) {
+  const validateFixesTask = mainTask?.push({
     type: "emitResourcePacks.validateFixes",
     name: "Validating the fixes",
   })
   console.log("Validating the fixes...")
-  const validationPromise = validateFixesTask.addPromise(
+  const validationPromise = validateFixesTask?.addPromise(
     Promise.all(
       fixes.map(async (fix) => {
         const debugTask = await fix.validateLinkedBug()
-        if (debugTask) validateFixesTask.pushRaw(debugTask)
+        if (debugTask) validateFixesTask?.pushRaw(debugTask)
       })
     )
   )
+  return validationPromise
+}
 
-  // Prepare the output directory
-  await ensureDir(outputDir)
-  if (buildOptions.clearDirectory) await clearDir(outputDir, false)
-
-  // Validation needs to be complete before we start processing the fixes
-  await validationPromise
-
+/** Builds a set of resource packs according to the provided build options. Returns the in-memory ZIP file representations. */
+export async function generateResourcePacks(
+  fixes: Fix[],
+  buildOptions: BuildOptions
+): Promise<{ [version: string]: JSZip }> {
   const languageFiles = await generateMultipleVersionsLanguageFileData(
     buildOptions.targetVersions,
     buildOptions.targetLanguages,
@@ -434,8 +420,6 @@ export async function emitResourcePacks(
     })
   }
 
-  const path = await import("node:path") // TODO move this further down
-
   // Grab the metadata file contents to be included in the zip files
   const metadataFiles: MetaFiles = {
     "pack.png": buildOptions.assets.packPng,
@@ -448,8 +432,26 @@ export async function emitResourcePacks(
     buildOptions.packDescription
   )
 
+  return zipFiles
+}
+
+/** Node.js only - Saves the provided (in-memory) zip files to the output directory at the end of a build */
+async function saveResourcePacksToDisk(
+  zipFiles: {
+    [version: string]: JSZip
+  },
+  buildOptions: BuildOptions
+) {
+  const path = await import("node:path")
+  const { writeFile } = await import("node:fs/promises")
+
+  const outputDir = buildOptions.directory || "out"
   /** A map of filenames to that file's metadata. */
   const zipFileIndex: OutFileIndex = new Map()
+
+  // Prepare the output directory
+  await ensureDir(outputDir)
+  if (buildOptions.clearDirectory) await clearDir(outputDir, false)
 
   // Save each of the in-memory zip files to the disk
   const zipTasks = Object.entries(zipFiles).map(
@@ -490,6 +492,28 @@ export async function emitResourcePacks(
 
   // Save the index.json file
   await emitOutFileIndex(zipFileIndex, outputDir)
+}
+
+export async function emitResourcePacks(
+  fixes: Fix[],
+  buildOptions: BuildOptions
+) {
+  mainTask = debugReport.push({
+    type: "emitResourcePacks",
+    name: "Building resource packs",
+  })
+
+  if (!buildOptions.packVersion)
+    console.log(
+      "Building development variants of the pack (for published releases, you should set a version number)"
+    )
+
+  // Validation needs to be complete before we start processing the fixes
+  await validateFixes(fixes)
+  // Generate the packs
+  const zipFiles = await generateResourcePacks(fixes, buildOptions)
+  // Save the packs as real zip files in the output directory
+  await saveResourcePacksToDisk(zipFiles, buildOptions)
 
   mainTask.end()
 }
