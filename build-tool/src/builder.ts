@@ -1,3 +1,11 @@
+/**
+ * @file Responsible for actually building the resource pack. This is where the magic happens.
+ *
+ * The build process in this file goes from the bottom to the top:
+ * - It starts with with `emitResourcePacks`, the function that is called by the CLI.
+ * - It ends with `generateTranslationStrings`, which generates a language file for a single language and a single Minecraft version.
+ */
+
 import path from "node:path"
 import { readFile, writeFile } from "node:fs/promises"
 import {
