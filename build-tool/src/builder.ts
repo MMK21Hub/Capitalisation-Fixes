@@ -1,6 +1,5 @@
 import path from "node:path"
 import { readFile, writeFile } from "node:fs/promises"
-import AdmZip from "adm-zip"
 import {
   getTranslationStringOrThrow,
   getVanillaLanguageFile,
@@ -19,6 +18,7 @@ import type Fix from "./classes/Fix.js"
 import { debugReport, packDescription } from "./main.js"
 import { DebugTask } from "./classes/DebugReport.js"
 import { MinecraftVersionRange } from "./classes/minecraftVersions.js"
+import JSZip from "jszip"
 
 /** The output of a {@link Transformer} */
 export type TransformerResult = {
@@ -293,21 +293,21 @@ async function generatePackZipData(
   packMetadata: ResourcePackMetadata,
   metaFiles?: Record<string, Buffer>
 ) {
-  const zip = new AdmZip()
+  const zip = new JSZip()
 
   // Add each "meta file" to the zip
   if (metaFiles)
     Object.entries(metaFiles).forEach(([path, contents]) =>
-      zip.addFile(path, contents)
+      zip.file(path, contents)
     )
 
   // Add the pack.mcmeta
-  zip.addFile("pack.mcmeta", Buffer.from(JSON.stringify(packMetadata, null, 4)))
+  zip.file("pack.mcmeta", Buffer.from(JSON.stringify(packMetadata, null, 4)))
 
   // Add each language file to the zip
   Object.entries(languageFiles).forEach(([language, languageFile]) => {
     const fileContents = JSON.stringify(languageFile, null, 4)
-    zip.addFile(
+    zip.file(
       `assets/minecraft/lang/${language}.json`,
       Buffer.from(fileContents)
     )
@@ -320,7 +320,7 @@ async function generateMultiplePackZipData(
   versionedLanguageFiles: LanguageFileBundle,
   metaFileDirectory: string
 ) {
-  const result: Record<string, AdmZip> = {}
+  const result: Record<string, JSZip> = {}
 
   // Get the pack.png and README files from the repo, and include them in the zip
   const metaFiles: Record<string, Buffer> = {}
@@ -429,36 +429,41 @@ export async function emitResourcePacks(
   const zipFileIndex: OutFileIndex = new Map()
 
   // Save each of the in-memory zip files to the disk
-  Object.entries(zipFiles).forEach(([version, zip], index) => {
-    const suffix = buildOptions.packVersion
-      ? `-${buildOptions.packVersion}`
-      : ""
-    const defaultFilename = `Capitalisation-Fixes${suffix}-${version}.zip`
-    const filename =
-      typeof buildOptions.filename === "function"
-        ? buildOptions.filename(version, buildOptions.packVersion)
-        : buildOptions.filename || defaultFilename
-    const zipPath = path.join(outputDir, filename)
+  const zipTasks = Object.entries(zipFiles).map(
+    async ([version, zip], index) => {
+      const suffix = buildOptions.packVersion
+        ? `-${buildOptions.packVersion}`
+        : ""
+      const defaultFilename = `Capitalisation-Fixes${suffix}-${version}.zip`
+      const filename =
+        typeof buildOptions.filename === "function"
+          ? buildOptions.filename(version, buildOptions.packVersion)
+          : buildOptions.filename || defaultFilename
+      const zipPath = path.join(outputDir, filename)
 
-    const fileMetadata: OutFileMetadata = {
-      minecraftVersion: version,
-      versionBrand: buildOptions.packVersion,
-      index,
-      totalFiles: Object.values(zipFiles).length,
-    }
-    const infoFileContents = {
-      ...fileMetadata,
-      license: "CC0",
-      licenseDescription: "Public-domain equivalent. No rights reserved.",
-      url: "https://modrinth.com/resourcepack/capitalisation-fixes",
-      source: "https://github.com/MMK21Hub/Capitalisation-Fixes",
-    }
-    const infoFile = Buffer.from(JSON.stringify(infoFileContents, null, 4))
-    zip.addFile("capitalisation_fixes.json", infoFile)
+      const fileMetadata: OutFileMetadata = {
+        minecraftVersion: version,
+        versionBrand: buildOptions.packVersion,
+        index,
+        totalFiles: Object.values(zipFiles).length,
+      }
+      const infoFileContents = {
+        ...fileMetadata,
+        license: "CC0",
+        licenseDescription: "Public-domain equivalent. No rights reserved.",
+        url: "https://modrinth.com/resourcepack/capitalisation-fixes",
+        source: "https://github.com/MMK21Hub/Capitalisation-Fixes",
+      }
+      const infoFile = Buffer.from(JSON.stringify(infoFileContents, null, 4))
+      zip.file("capitalisation_fixes.json", infoFile)
 
-    zip.writeZip(zipPath)
-    zipFileIndex.set(filename, fileMetadata)
-  })
+      // zip.writeZip(zipPath)
+      const zipFileData = await zip.generateAsync({ type: "uint8array" })
+      await writeFile(zipPath, zipFileData)
+      zipFileIndex.set(filename, fileMetadata)
+    }
+  )
+  await Promise.all(zipTasks)
 
   // Save the index.json file
   await emitOutFileIndex(zipFileIndex, outputDir)

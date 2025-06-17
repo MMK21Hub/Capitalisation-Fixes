@@ -26,18 +26,16 @@
   },
   "homepage": "https://github.com/MMK21Hub/Capitalisation-Fixes#readme",
   "devDependencies": {
-    "@types/adm-zip": "^0.5.7",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.17.47",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "adm-zip": "^0.5.16",
     "arg": "^5.0.2",
     "chalk": "^5.4.1",
-    "client-zip": "^2.5.0",
     "dotenv": "^16.5.0",
     "jsdom": "^26.1.0",
+    "jszip": "^3.10.1",
     "node-fetch": "^3.3.2"
   },
   "packageManager": "yarn@4.9.1"
