@@ -1,5 +1,3 @@
-import EventEmitter from "node:events"
-
 export enum MessageType {
   Info,
   Warn,
@@ -263,17 +261,29 @@ export class Timestamp {
   }
 }
 
-export default class TransformerLogger extends EventEmitter {
+export default class TransformerLogger extends EventTarget {
   info(message: string) {
-    this.emit("message", { content: message, type: MessageType.Info })
+    this.dispatchEvent(
+      new CustomEvent("message", {
+        detail: { content: message, type: MessageType.Info },
+      })
+    )
   }
 
   warn(message: string) {
-    this.emit("message", { content: message, type: MessageType.Warn })
+    this.dispatchEvent(
+      new CustomEvent("message", {
+        detail: { content: message, type: MessageType.Warn },
+      })
+    )
   }
 
   error(message: string) {
-    this.emit("message", { content: message, type: MessageType.Error })
+    this.dispatchEvent(
+      new CustomEvent("message", {
+        detail: { content: message, type: MessageType.Error },
+      })
+    )
   }
 
   getMessages(...types: MessageType[]) {
@@ -291,19 +301,20 @@ export default class TransformerLogger extends EventEmitter {
   constructor() {
     super()
 
-    this.on(
-      "message",
-      ({ type, content }: { type: MessageType; content: string }) => {
-        const eventName = MessageType[type].toLowerCase()
+    this.addEventListener("message", (event) => {
+      if (!(event instanceof CustomEvent))
+        throw new Error("message event is the wrong type")
+      // TODO: Make this type-safe, potentially with a better EventEmitter class implemented by us
+      const { type, content } = event.detail
+      const eventName = MessageType[type].toLowerCase()
 
-        this.messages.push({
-          type,
-          message: content,
-          timestamp: new Timestamp(Date.now()),
-        })
+      this.messages.push({
+        type,
+        message: content,
+        timestamp: new Timestamp(Date.now()),
+      })
 
-        this.emit(eventName, content)
-      }
-    )
+      this.dispatchEvent(new CustomEvent(eventName, { detail: content }))
+    })
   }
 }
