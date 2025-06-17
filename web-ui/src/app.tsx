@@ -1,4 +1,5 @@
 import "./app.css"
+import { PackGenerator } from "./generate-pack"
 
 export function App() {
   return (

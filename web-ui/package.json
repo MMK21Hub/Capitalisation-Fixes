@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.26.5"
+    "preact": "^10.26.5",
+    "capitalisation-fixes": "workspace:*"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",
