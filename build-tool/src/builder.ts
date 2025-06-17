@@ -315,15 +315,12 @@ async function generatePackZipData(
     )
 
   // Add the pack.mcmeta
-  zip.file("pack.mcmeta", Buffer.from(JSON.stringify(packMetadata, null, 4)))
+  zip.file("pack.mcmeta", JSON.stringify(packMetadata, null, 4))
 
   // Add each language file to the zip
   Object.entries(languageFiles).forEach(([language, languageFile]) => {
     const fileContents = JSON.stringify(languageFile, null, 4)
-    zip.file(
-      `assets/minecraft/lang/${language}.json`,
-      Buffer.from(fileContents)
-    )
+    zip.file(`assets/minecraft/lang/${language}.json`, fileContents)
   })
 
   return zip
@@ -479,7 +476,7 @@ async function saveResourcePacksToDisk(
         url: "https://modrinth.com/resourcepack/capitalisation-fixes",
         source: "https://github.com/MMK21Hub/Capitalisation-Fixes",
       }
-      const infoFile = Buffer.from(JSON.stringify(infoFileContents, null, 4))
+      const infoFile = JSON.stringify(infoFileContents, null, 4)
       zip.file("capitalisation_fixes.json", infoFile)
 
       // zip.writeZip(zipPath)
