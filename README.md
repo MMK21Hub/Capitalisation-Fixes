@@ -161,11 +161,14 @@ cd Capitalisation-Fixes
 # Resolve and install dependencies
 yarn install
 
+# Move into the build tool folder
+cd build-tool
+
 # Compile the code into executable JavaScript
 yarn build
 ```
 
-Then, you can actually run the build script. Here are some usage examples:
+Then, you can actually run the build script. Ensure you're in the `build-tool` folder. Here are some usage examples:
 
 ```yaml
 # Build the resource pack. The output will be in the `out` folder,
@@ -187,7 +190,7 @@ node dist/main.js --stats --latest-snapshot
 node dist/main.js --stats --latest-release
 ```
 
-At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`src/main.ts`](src/main.ts) file.
+At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`build-tool/src/main.ts`](build-tool/src/main.ts) file.
 (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
 
 ## `new-version.sh`
