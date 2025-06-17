@@ -1,5 +1,4 @@
 import path from "path"
-import { cache, debugReport, versionsSummary } from "../main.js"
 import {
   FancyRange,
   StartAndEnd,
@@ -11,6 +10,11 @@ import {
   addToCacheIfPossible,
   getCachedFileIfPossible,
 } from "../helpers/util.js"
+import { debugReport } from "../debugReport.js"
+
+const cache = new Map<string, any>()
+console.log("Fetching Minecraft version information...")
+const versionsSummary = await fetchVersionsSummary()
 
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string

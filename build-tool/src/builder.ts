@@ -15,9 +15,9 @@ import { FunctionMaybe, filter } from "./helpers/util.js"
 import { clearDir, ensureDir } from "./helpers/utilNode.js"
 import TransformerLogger, { MessageType } from "./classes/TransformerLogger.js"
 import type Fix from "./classes/Fix.js"
-import { debugReport, packDescription } from "./main.js"
 import { DebugTask } from "./classes/DebugReport.js"
 import { MinecraftVersionRange } from "./classes/minecraftVersions.js"
+import { debugReport } from "./debugReport.js"
 import JSZip from "jszip"
 
 /** The output of a {@link Transformer} */
@@ -67,6 +67,8 @@ interface BuildOptions {
   targetLanguages: MinecraftLanguage[]
   directory?: string
   packVersion?: string
+  /** The description string to go into the `pack.mcmeta */
+  packDescription: string
   clearDirectory?: boolean
   filename?: FunctionMaybe<string, [string, string?]>
 }
@@ -320,7 +322,8 @@ export type MetaFiles = Record<string, Buffer>
 
 async function generateMultiplePackZipData(
   versionedLanguageFiles: LanguageFileBundle,
-  metaFiles: MetaFiles
+  metaFiles: MetaFiles,
+  packDescription: string
 ) {
   const result: Record<string, JSZip> = {}
 
@@ -424,7 +427,8 @@ export async function emitResourcePacks(
   // Generate the zip files (to memory)
   const zipFiles = await generateMultiplePackZipData(
     languageFiles,
-    metadataFiles
+    metadataFiles,
+    buildOptions.packDescription
   )
 
   /** A map of filenames to that file's metadata. */
