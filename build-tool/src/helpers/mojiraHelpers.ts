@@ -1,12 +1,12 @@
 import {
   DOM,
+  fetchDOM,
   getSelectorId,
   getSelectorText,
   getSelectorTextAll,
   SelectorNotFound,
   urlPath,
 } from "./util.js"
-import { JSDOM } from "jsdom"
 import { isFutureVersion, toVersionID } from "./minecraftHelpers.js"
 
 // From https://bugs.mojang.com/rest/api/2/status
@@ -53,7 +53,7 @@ export function getBugXML(
   retry = true
 ): Promise<DOM> {
   const url = getBugXMLUrl(bug, fields)
-  return JSDOM.fromURL(url.href)
+  return fetchDOM(url)
     .catch((error: Error) => {
       if (retry) {
         console.warn("getBugXML(): HTTP request failed, retrying.")

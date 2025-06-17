@@ -85,6 +85,25 @@ export type DOM = {
   }
 }
 
+export async function fetchDOM(url: URL | string): Promise<DOM> {
+  if (isNode()) {
+    const { JSDOM } = await import("jsdom")
+    return JSDOM.fromURL(url.toString())
+  }
+  // Parse using the browser DOMParser API
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new RequestError(response, `Failed to fetch DOM from ${url}`)
+  }
+  const domParser = new DOMParser()
+  const document = domParser.parseFromString(await response.text(), "text/xml")
+  return {
+    window: {
+      document,
+    },
+  }
+}
+
 export class SelectorNotFound extends Error {
   constructor(message: string) {
     super(message)
