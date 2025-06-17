@@ -17,7 +17,6 @@ import {
   ResourcePackMetadata,
 } from "./helpers/minecraftHelpers.js"
 import { FunctionMaybe, filter } from "./helpers/util.js"
-import { clearDir, ensureDir } from "./helpers/utilNode.js"
 import TransformerLogger, { MessageType } from "./classes/TransformerLogger.js"
 import type Fix from "./classes/Fix.js"
 import { DebugTask } from "./classes/DebugReport.js"
@@ -444,6 +443,7 @@ async function saveResourcePacksToDisk(
 ) {
   const path = await import("node:path")
   const { writeFile } = await import("node:fs/promises")
+  const { ensureDir, clearDir } = await import("./helpers/utilNode.js")
 
   const outputDir = buildOptions.directory || "out"
   /** A map of filenames to that file's metadata. */
