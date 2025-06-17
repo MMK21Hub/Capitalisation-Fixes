@@ -79,6 +79,10 @@ interface BuildOptions {
     readme: Uint8Array
     packPng: Uint8Array
   }
+  // Printing options:
+  /** Set to print less output. False by default. */
+  // TODO: Support setting this with a command-line flag (for new-version.sh)
+  quiet?: boolean
   // Filesystem options:
   directory?: string
   clearDirectory?: boolean
@@ -226,15 +230,6 @@ async function generateTranslationStrings(
       debugger
     }
   }
-
-  if (process.env.QUIET) return result
-
-  // Log the translation strings that we just generated
-  // console.group(`=== ${brand} ===`)
-  // Object.entries(result).forEach(([key, value]) =>
-  //   console.log(`${key}: "${value.replaceAll(/\n+/g, " ")}"`)
-  // )
-  // console.groupEnd()
 
   return result
 }
@@ -399,7 +394,7 @@ export async function generateResourcePacks(
   )
 
   // Print a summary of the generated language files
-  if (!process.env.QUIET) {
+  if (!buildOptions.quiet) {
     const langFileEntries = Object.entries(languageFiles)
     console.log(
       `Generated translation files for ${langFileEntries.length} version(s):`

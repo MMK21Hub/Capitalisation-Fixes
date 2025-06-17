@@ -18,7 +18,7 @@ if [[ $(git status -s --porcelain) ]]; then
 fi
 
 # Generate a Resource Pack ZIP file that can be distributed with the release
-yarn build && QUIET=1 node dist/main.js $1
+yarn build && node dist/main.js $1
 BUILD_STATUS=$?
 ZIP_COUNT=$(ls -1q out/Capitalisation-Fixes-$1-*.zip | wc -l)
 
