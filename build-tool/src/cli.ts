@@ -94,6 +94,8 @@ export async function runCLI() {
       hour12: false,
     })
     debugReport.end()
-    await debugReport.exportToFile("debug", `${date} ${time}.json`)
+    const debugReportPath = ["debug", `${date} ${time}.json`]
+    await debugReport.exportToFile(...debugReportPath)
+    console.log(`Saved debug report to "${path.resolve(...debugReportPath)}"`)
   }
 }

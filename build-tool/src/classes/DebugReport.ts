@@ -146,7 +146,6 @@ export class DebugReport {
   }
 
   async exportToFile(...path: string[]) {
-    console.log(`Saving debug report to ${path.join("/")}`)
     const { writeFile } = await import("node:fs/promises")
     const { ensureDir } = await import("../helpers/utilNode.js")
     const { join: joinPath } = await import("node:path")
