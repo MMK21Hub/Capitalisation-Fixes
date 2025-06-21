@@ -12,7 +12,7 @@ fi
 
 if [[ $(git status -s --porcelain) ]]; then
   echo "Warning: You have uncommited changes!" >&2
-  echo "Please chack that you don't intend to include them in the release." >&2
+  echo "Please check that you don't intend to include them in the release." >&2
   git status -s
   read -r -p "Press Ctrl+C to cancel, or Enter to continue. "
 fi
