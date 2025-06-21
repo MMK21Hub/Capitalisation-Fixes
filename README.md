@@ -190,6 +190,10 @@ node dist/main.js --stats --latest-release
 At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`src/main.ts`](src/main.ts) file.
 (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
 
+## Publisher tool
+
+See [`src/publisher/README.md`](src/publisher/README.md) for documentation for the publisher tool.
+
 ## `new-version.sh`
 
 This is a utility script for Linux systems that automates part of the process of publishing a new release of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
