@@ -37,6 +37,10 @@ When doing this, there are a few things to get right when using the publisher:
   - In the future, the publisher should have a smarter way to avoid duplicates.
 - Ensure the `release/changelog.md` file matches the changelog published with the previous variants. Copy/paste from Modrinth if needed.
 
+Finally, don't forget to upload the new variant(s) to the latest GitHub release, and update the README as appropriate (<kbd>Ctrl</kbd>+<kbd>F</kbd> for the previous MC version and double-check the download links at the top of the README).
+
+See [issue #12](https://github.com/MMK21Hub/Capitalisation-Fixes/issues/12) for ideas to make this process easier.
+
 ### Guidelines for writing changelogs
 
 - Don't use heading levels 1 or 2, because that messes up the accessibility tree on Modrinth/GitHub Releases. You can use heading level 3 or below.
