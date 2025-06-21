@@ -1,6 +1,5 @@
 import ModrinthClient from "./ModrinthClient.js"
 import dotenv from "dotenv"
-import { Blob } from "node-fetch"
 import { readFile, writeFile } from "fs/promises"
 import { join } from "path"
 import { OutFileIndex, OutFileMetadata } from "../builder.js"
@@ -108,11 +107,18 @@ async function publishReleases(changelogBody: string) {
   for (const [filename, fileInfo] of index.entries()) {
     const { minecraftVersion } = fileInfo
     const fileContents = await readFile(join(outputDir, filename))
+    // Convert the Node.js `Buffer` to a (browser API compatible) `ArrayBuffer` (https://stackoverflow.com/a/12101012/11519302)
+    const arrayBuffer = fileContents.buffer.slice(
+      fileContents.byteOffset,
+      fileContents.byteOffset + fileContents.byteLength
+    )
+    if (arrayBuffer instanceof SharedArrayBuffer)
+      throw new Error("Unexpected SharedArrayBuffer")
     const name = `${packVersion} (${minecraftVersion})`
 
     const responseData = await client.rest
       .createVersion({
-        files: [[filename, new Blob([fileContents])]],
+        files: [[filename, new Blob([arrayBuffer])]],
         game_versions: [minecraftVersion],
         loaders: ["minecraft"],
         name: name,
