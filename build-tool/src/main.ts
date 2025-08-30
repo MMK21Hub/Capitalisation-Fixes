@@ -12,3 +12,4 @@ export {
   validateFixes,
 } from "./builder.js"
 export { MinecraftVersionRange } from "./classes/minecraftVersions.js"
+export { PACK_DESCRIPTION } from "./constants.js"

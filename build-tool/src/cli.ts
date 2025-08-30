@@ -8,6 +8,7 @@ import {
   MinecraftVersionSpecifier,
 } from "./helpers/minecraftHelpers.js"
 import path from "node:path"
+import { PACK_DESCRIPTION } from "./constants.js"
 
 export async function buildPack() {
   return await emitResourcePacks(fixes, {
@@ -15,8 +16,7 @@ export async function buildPack() {
     targetLanguages,
     clearDirectory: true,
     packVersion: commandLineArg,
-    packDescription:
-      "Fixes issues with text labels.\nSource: §9§nbit.ly/CapsFix",
+    packDescription: PACK_DESCRIPTION,
     // If no version was specified, just name the zip after the MC version it targets:
     filename: commandLineArg
       ? undefined
