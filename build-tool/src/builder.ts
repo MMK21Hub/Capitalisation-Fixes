@@ -13,6 +13,7 @@ import {
   MinecraftVersionId,
   MinecraftVersionSpecifier,
   packFormat,
+  packMetadata,
   resolveMinecraftVersionSpecifier,
   ResourcePackMetadata,
 } from "./helpers/minecraftHelpers.js"
@@ -333,12 +334,10 @@ async function generateMultiplePackZipData(
   await Promise.all(
     Object.entries(versionedLanguageFiles).map(
       async ([version, languageFiles]) => {
-        const metadata = {
-          pack: {
-            description: packDescription,
-            pack_format: packFormat(version),
-          },
-        }
+        const metadata = packMetadata({
+          description: packDescription,
+          format: packFormat(version),
+        })
 
         // Add the current version's language files to the result
         result[version] = await generatePackZipData(
