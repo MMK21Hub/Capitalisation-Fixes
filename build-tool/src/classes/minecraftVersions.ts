@@ -149,7 +149,7 @@ export class MinecraftVersionRange {
     return processedRange
   }
 
-  async containsVersion(version: MinecraftVersionId): Promise<boolean> {
+  async includesVersion(version: MinecraftVersionId): Promise<boolean> {
     const targetVersion = getVersion(version)
     const startVersion = this.start ? getVersion(this.start) : null
     const endVersion = this.end ? getVersion(this.end) : null
@@ -162,13 +162,13 @@ export class MinecraftVersionRange {
 
     // Deal with inclusions/exclusions
     for (const range of this.includeRanges) {
-      if (await range.containsVersion(version)) {
+      if (await range.includesVersion(version)) {
         doesContain = true
         break
       }
     }
     for (const range of this.excludeRanges) {
-      if (await range.containsVersion(version)) {
+      if (await range.includesVersion(version)) {
         doesContain = false
         break
       }
