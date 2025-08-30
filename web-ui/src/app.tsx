@@ -76,6 +76,7 @@ export function App() {
   )
   const [mcVersion, setMcVersion] = useState<null | MinecraftVersionId>(null)
   const [showSnapshots, setShowSnapshots] = useState(false)
+  const [includeAllFixes, setIncludeAllFixes] = useState(true)
 
   function versionIsRelevant(version: VersionInfo) {
     return version.type === "release" && version.data_version >= 3105 //1.19+
@@ -109,7 +110,7 @@ export function App() {
         <h1>Capitalisation Fixes</h1>
       </header>
       <main>
-        <h2>Minecraft version</h2>
+        <h2>Step 1: Select Minecraft version</h2>
         <select
           disabled={!versionsSummary}
           onChange={(e) =>
@@ -125,19 +126,62 @@ export function App() {
               </option>
             ))}
         </select>
-        <h2>Fixes</h2>
+        <h2>Step 2: Choose fixes</h2>
         {(() => {
           if (!versionsSummary)
             return <p>Waiting for Minecraft versions to be loaded...</p>
           if (!mcVersion) return <p>Select a Minecraft version above first!</p>
           return (
-            <p>
-              Currently including all <strong>{relevantFixes?.length}</strong>{" "}
-              fixes available for Minecraft {mcVersion}.
-            </p>
+            <>
+              <p>
+                <strong>{relevantFixes?.length}</strong> bugfixes are available
+                for Minecraft {mcVersion}.
+              </p>
+              <input
+                type="checkbox"
+                id="include-all-fixes"
+                checked={includeAllFixes}
+                onChange={(e) =>
+                  e.target instanceof HTMLInputElement
+                    ? setIncludeAllFixes(e.target.checked)
+                    : console.warn("Incorrect event target")
+                }
+              />
+              <label htmlFor="include-all-fixes">Include all fixes</label>
+              {relevantFixes?.map((fix, index) => {
+                const checkboxId = `enable-fix-${index}`
+                const transformerName = fix.transformer.constructor.name
+                const bugLink = fix.bug ? (
+                  <a
+                    href={`https://bugs.mojang.com/browse/MC/issues/${fix.bug}`}
+                  >
+                    {fix.bug}
+                  </a>
+                ) : null
+                return (
+                  <div key={fix}>
+                    <input
+                      type="checkbox"
+                      id={checkboxId}
+                      checked
+                      disabled={includeAllFixes}
+                      onChange={(e) =>
+                        e.target instanceof HTMLInputElement
+                          ? console.warn(`${e.target} is ${e.target.checked}`)
+                          : console.warn("Incorrect event target")
+                      }
+                    />
+                    <label htmlFor={checkboxId}>
+                      <code>{transformerName}</code> for <code>{fix.key}</code>
+                      {bugLink && <span>(fixes {bugLink})</span>}
+                    </label>
+                  </div>
+                )
+              })}
+            </>
           )
         })()}
-        <h2>Generate</h2>
+        <h2>Step 3: Generate pack</h2>
         <p>Click the button below to generate a resource pack :)</p>
         <button onClick={generateAndDownloadPack}>
           Generate resource pack
