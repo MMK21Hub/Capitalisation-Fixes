@@ -4,6 +4,7 @@ import {
   NumericMinecraftVersion,
   SingleMinecraftVersionSpecifier,
   getLatestVersion,
+  getVersion,
   getVersionManifest,
   resolveMinecraftVersionId,
   resolveSingleMinecraftVersionSpecifier,
@@ -146,6 +147,34 @@ export class MinecraftVersionRange {
       .filter((version) => !versionsToExclude.flat().includes(version))
 
     return processedRange
+  }
+
+  async containsVersion(version: MinecraftVersionId): Promise<boolean> {
+    const targetVersion = getVersion(version)
+    const startVersion = this.start ? getVersion(this.start) : null
+    const endVersion = this.end ? getVersion(this.end) : null
+
+    // Deal with the simple start/end stuff
+    const startNum = startVersion?.data_version || -Infinity
+    const targetNum = targetVersion.data_version
+    const endNum = endVersion?.data_version || Infinity
+    let doesContain = targetNum >= startNum && targetNum <= endNum
+
+    // Deal with inclusions/exclusions
+    for (const range of this.includeRanges) {
+      if (await range.containsVersion(version)) {
+        doesContain = true
+        break
+      }
+    }
+    for (const range of this.excludeRanges) {
+      if (await range.containsVersion(version)) {
+        doesContain = false
+        break
+      }
+    }
+
+    return doesContain
   }
 
   isConstrained(): boolean {
