@@ -1,6 +1,7 @@
 import {
   generateResourcePacks,
   MinecraftVersionRange,
+  PACK_DESCRIPTION,
 } from "capitalisation-fixes"
 import fixes from "capitalisation-fixes/src/fixes"
 import "./app.css"
@@ -17,7 +18,7 @@ async function generatePackZip(
         "# Some README file content!".split("").map((c) => c.charCodeAt(0))
       ),
     },
-    packDescription: "Cap fixes is a great pack and you have it installed now",
+    packDescription: PACK_DESCRIPTION,
     targetLanguages,
     targetVersions: new MinecraftVersionRange({
       only: targetVersion,
