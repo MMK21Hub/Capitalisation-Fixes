@@ -14,4 +14,7 @@ export default defineConfig({
       buildToolPackageJSON.version
     ),
   },
+  server: {
+    allowedHosts: [".ngrok.app", ".ngrok-free.app"]
+  }
 })
