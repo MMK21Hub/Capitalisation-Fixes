@@ -2,12 +2,13 @@ import {
   generateResourcePacks,
   MinecraftVersionRange,
   PACK_DESCRIPTION,
+  type Fix,
   type MinecraftVersionId,
 } from "capitalisation-fixes"
 import fixes from "capitalisation-fixes/src/fixes"
 import "./app.css"
 import { capFixesVersion, webUIVersion } from "./constants"
-import { useEffect, useState } from "preact/hooks"
+import { useEffect, useMemo, useState } from "preact/hooks"
 import {
   fetchVersionsSummary,
   type VersionInfo,
@@ -80,6 +81,21 @@ export function App() {
     return version.type === "release" && version.data_version >= 3105 //1.19+
   }
 
+  async function getRelevantFixes(mcVersion: MinecraftVersionId) {
+    const relevantFixes = []
+    for (const fix of fixes) {
+      if (await fix.versions.includesVersion(mcVersion)) {
+        relevantFixes.push(fix)
+      }
+    }
+    return relevantFixes
+  }
+  const [relevantFixes, setRelevantFixes] = useState<null | Fix[]>(null)
+  useEffect(() => {
+    if (!mcVersion) return
+    getRelevantFixes(mcVersion).then(setRelevantFixes)
+  }, [mcVersion])
+
   useEffect(() => {
     fetchVersionsSummary().then((summary) => {
       setVersionsSummary(summary)
@@ -116,9 +132,8 @@ export function App() {
           if (!mcVersion) return <p>Select a Minecraft version above first!</p>
           return (
             <p>
-              Currently including all <strong>{fixes.length}</strong> fixes
-              available for Minecraft {mcVersion}.
-              {/* TODO: filter fixes by selected Minecraft version */}
+              Currently including all <strong>{relevantFixes?.length}</strong>{" "}
+              fixes available for Minecraft {mcVersion}.
             </p>
           )
         })()}
