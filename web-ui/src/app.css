@@ -18,6 +18,11 @@ h1 {
   justify-self: center;
 }
 
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 main {
   margin-inline: 0.5rem;
 }

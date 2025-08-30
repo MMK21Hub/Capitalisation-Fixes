@@ -2,13 +2,19 @@ import {
   generateResourcePacks,
   MinecraftVersionRange,
   PACK_DESCRIPTION,
+  type MinecraftVersionId,
 } from "capitalisation-fixes"
 import fixes from "capitalisation-fixes/src/fixes"
 import "./app.css"
 import { capFixesVersion, webUIVersion } from "./constants"
+import { useEffect, useState } from "preact/hooks"
+import {
+  fetchVersionsSummary,
+  type VersionInfo,
+} from "capitalisation-fixes/src/helpers/minecraftHelpers"
 
 async function generatePackZip(
-  targetVersion: string,
+  targetVersion: MinecraftVersionId,
   targetLanguages: string[]
 ) {
   const zipFiles = await generateResourcePacks(fixes, {
@@ -54,7 +60,7 @@ function saveFile(blob: Blob, filename: string) {
 
 async function generateAndDownloadPack() {
   const minecraftVersion = "1.21.4"
-  const langs = ["en_us"]
+  const langs = ["en_us", "en_gb"]
   const packZip = await generatePackZip(minecraftVersion, langs)
   const blob = await packZip.generateAsync({ type: "blob" })
   saveFile(
@@ -64,12 +70,59 @@ async function generateAndDownloadPack() {
 }
 
 export function App() {
+  const [versionsSummary, setVersionsSummary] = useState<null | VersionInfo[]>(
+    null
+  )
+  const [mcVersion, setMcVersion] = useState<null | MinecraftVersionId>(null)
+  const [showSnapshots, setShowSnapshots] = useState(false)
+
+  function versionIsRelevant(version: VersionInfo) {
+    return version.type === "release" && version.data_version >= 3105 //1.19+
+  }
+
+  useEffect(() => {
+    fetchVersionsSummary().then((summary) => {
+      setVersionsSummary(summary)
+      setMcVersion(summary.filter(versionIsRelevant).at(0)?.id || null)
+    })
+  }, [])
+
   return (
     <>
       <header>
         <h1>Capitalisation Fixes</h1>
       </header>
       <main>
+        <h2>Minecraft version</h2>
+        <select
+          disabled={!versionsSummary}
+          onChange={(e) =>
+            e.target instanceof HTMLSelectElement
+              ? setMcVersion(e.target.value)
+              : console.warn("Incorrect event target")
+          }
+        >
+          {versionsSummary &&
+            versionsSummary.filter(versionIsRelevant).map((version) => (
+              <option key={version.id} value={version.id}>
+                {version.name}
+              </option>
+            ))}
+        </select>
+        <h2>Fixes</h2>
+        {(() => {
+          if (!versionsSummary)
+            return <p>Waiting for Minecraft versions to be loaded...</p>
+          if (!mcVersion) return <p>Select a Minecraft version above first!</p>
+          return (
+            <p>
+              Currently including all <strong>{fixes.length}</strong> fixes
+              available for Minecraft {mcVersion}.
+              {/* TODO: filter fixes by selected Minecraft version */}
+            </p>
+          )
+        })()}
+        <h2>Generate</h2>
         <p>Click the button below to generate a resource pack :)</p>
         <button onClick={generateAndDownloadPack}>
           Generate resource pack

@@ -13,3 +13,4 @@ export {
 } from "./builder.js"
 export { MinecraftVersionRange } from "./classes/minecraftVersions.js"
 export { PACK_DESCRIPTION } from "./constants.js"
+export type { MinecraftVersionId } from "./helpers/minecraftHelpers.js"
