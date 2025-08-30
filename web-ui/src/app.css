@@ -27,3 +27,17 @@ main {
   margin-inline: 0.5rem;
   padding-bottom: 4rem;
 }
+
+.fix-line {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.fix-line input {
+  flex-shrink: 0;
+}
+
+[for="include-all-fixes"] {
+  font-weight: bold;
+}
