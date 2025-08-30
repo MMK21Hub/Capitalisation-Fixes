@@ -70,6 +70,10 @@ async function generateAndDownloadPack() {
   )
 }
 
+interface FixWithState extends Fix {
+  enabled: boolean
+}
+
 export function App() {
   const [versionsSummary, setVersionsSummary] = useState<null | VersionInfo[]>(
     null
@@ -83,15 +87,19 @@ export function App() {
   }
 
   async function getRelevantFixes(mcVersion: MinecraftVersionId) {
-    const relevantFixes = []
+    const relevantFixes: FixWithState[] = []
     for (const fix of fixes) {
       if (await fix.versions.includesVersion(mcVersion)) {
+        // @ts-ignore quick and dirty way to add the `enabled` property
+        fix.enabled = true // @ts-ignore
         relevantFixes.push(fix)
       }
     }
     return relevantFixes
   }
-  const [relevantFixes, setRelevantFixes] = useState<null | Fix[]>(null)
+  const [relevantFixes, setRelevantFixes] = useState<null | FixWithState[]>(
+    null
+  )
   useEffect(() => {
     if (!mcVersion) return
     getRelevantFixes(mcVersion).then(setRelevantFixes)
@@ -159,17 +167,17 @@ export function App() {
                   </a>
                 ) : null
                 return (
-                  <div key={fix}>
+                  <div key={fix} class="fix-line">
                     <input
                       type="checkbox"
                       id={checkboxId}
                       checked
                       disabled={includeAllFixes}
-                      onChange={(e) =>
-                        e.target instanceof HTMLInputElement
-                          ? console.warn(`${e.target} is ${e.target.checked}`)
-                          : console.warn("Incorrect event target")
-                      }
+                      onChange={(e) => {
+                        if (!(e.target instanceof HTMLInputElement))
+                          return console.warn("Incorrect event target")
+                        fix.enabled = e.target.checked
+                      }}
                     />
                     <label htmlFor={checkboxId}>
                       <code>{transformerName}</code> for <code>{fix.key}</code>
