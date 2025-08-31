@@ -15,6 +15,7 @@ import {
 } from "capitalisation-fixes/src/helpers/minecraftHelpers"
 
 async function generatePackZip(
+  fixes: Fix[],
   targetVersion: MinecraftVersionId,
   targetLanguages: string[]
 ) {
@@ -59,17 +60,6 @@ function saveFile(blob: Blob, filename: string) {
   URL.revokeObjectURL(url)
 }
 
-async function generateAndDownloadPack() {
-  const minecraftVersion = "1.21.4"
-  const langs = ["en_us", "en_gb"]
-  const packZip = await generatePackZip(minecraftVersion, langs)
-  const blob = await packZip.generateAsync({ type: "blob" })
-  saveFile(
-    blob,
-    `Capitalisation-Fixes-v${capFixesVersion}-${minecraftVersion}.zip`
-  )
-}
-
 interface FixWithState extends Fix {
   enabled: boolean
 }
@@ -83,7 +73,7 @@ export function App() {
   const [includeAllFixes, setIncludeAllFixes] = useState(true)
 
   function versionIsRelevant(version: VersionInfo) {
-    return version.type === "release" && version.data_version >= 3105 //1.19+
+    return version.type === "release" && version.data_version >= 3117 //1.19.1+
   }
 
   async function getRelevantFixes(mcVersion: MinecraftVersionId) {
@@ -111,6 +101,17 @@ export function App() {
       setMcVersion(summary.filter(versionIsRelevant).at(0)?.id || null)
     })
   }, [])
+
+  async function generateAndDownloadPack() {
+    if (!mcVersion) return alert("Minecraft versions have not been loaded yet!")
+    if (!relevantFixes)
+      return alert("Minecraft versions and fixes have not loaded yet!")
+    const langs = ["en_us", "en_gb"]
+    const selectedFixes = relevantFixes.filter((fix) => fix.enabled)
+    const packZip = await generatePackZip(selectedFixes, mcVersion, langs)
+    const blob = await packZip.generateAsync({ type: "blob" })
+    saveFile(blob, `Capitalisation-Fixes-v${capFixesVersion}-${mcVersion}.zip`)
+  }
 
   return (
     <>
