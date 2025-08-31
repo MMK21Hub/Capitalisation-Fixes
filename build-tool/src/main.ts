@@ -14,5 +14,5 @@ export {
 export { MinecraftVersionRange } from "./classes/minecraftVersions.js"
 export { PACK_DESCRIPTION } from "./constants.js"
 export type { MinecraftVersionId } from "./helpers/minecraftHelpers.js"
-import Fix from "./classes/Fix.js"
+import type Fix from "./classes/Fix.js"
 export type { Fix }
