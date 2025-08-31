@@ -16,5 +16,17 @@ export default defineConfig({
   },
   server: {
     allowedHosts: [".ngrok.app", ".ngrok-free.app"]
+  },
+  build: {
+    target: "es2021",
+    rollupOptions: {
+      // Prevent Vite trying to be smart and process node-specific `import()`s that don't ever get called
+      external: ["node:fs/promises"]
+    }
+  },
+  esbuild: {
+    supported: {
+      'top-level-await': true
+    },
   }
 })
