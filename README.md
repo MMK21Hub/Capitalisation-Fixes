@@ -201,6 +201,13 @@ Try out the MVP at **<https://capitalisation-fixes.netlify.app/>**
 
 <img width="2560" height="1311" alt="image" src="https://github.com/user-attachments/assets/125cd965-26b2-4fd2-bb00-5527a4331865" />
 
+### Running the web UI locally
+
+1. Clone the repository
+2. Install dependencies: `yarn install`
+3. Start the development server with `yarn workspace capitalisation-fixes-web dev`
+4. Alternatively, you can build the project for production with `yarn workspace capitalisation-fixes-web build`
+
 ## `new-version.sh`
 
 This is a utility script for Linux systems that automates part of the process of publishing a new release of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
