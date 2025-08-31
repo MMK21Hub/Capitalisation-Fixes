@@ -30,7 +30,7 @@ main {
 
 .fix-line {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.25rem;
   align-items: center;
 }
 
