@@ -181,7 +181,8 @@ export function App() {
                       }}
                     />
                     <label htmlFor={checkboxId}>
-                      <code>{transformerName}</code> for <code>{fix.key}</code>
+                      {bugLink && <>Fix {bugLink}: </>}
+                      {fix.transformer.name} in <code>{fix.key}</code>
                       {bugLink && <span>(fixes {bugLink})</span>}
                     </label>
                   </div>
