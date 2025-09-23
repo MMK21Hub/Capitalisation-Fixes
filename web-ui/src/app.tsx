@@ -159,7 +159,6 @@ export function App() {
               <label htmlFor="include-all-fixes">Include all fixes</label>
               {relevantFixes?.map((fix, index) => {
                 const checkboxId = `enable-fix-${index}`
-                const transformerName = fix.transformer.constructor.name
                 const bugLink = fix.bug ? (
                   <a
                     href={`https://bugs.mojang.com/browse/MC/issues/${fix.bug}`}
@@ -183,7 +182,6 @@ export function App() {
                     <label htmlFor={checkboxId}>
                       {bugLink && <>Fix {bugLink}: </>}
                       {fix.transformer.name} in <code>{fix.key}</code>
-                      {bugLink && <span>(fixes {bugLink})</span>}
                     </label>
                   </div>
                 )
