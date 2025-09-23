@@ -118,6 +118,8 @@ export interface OutFileMetadata {
 let mainTask: DebugTask | null = null
 
 export abstract class Transformer {
+  /** A friendly name for this transformer type to be displayed in the Web UI */
+  abstract name: string
   callback
 
   constructor(callback: TransformerCallback) {
