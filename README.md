@@ -195,11 +195,11 @@ At the moment, you can't configure the output using command line arguments. To c
 
 ## Web UI
 
-You can now use the build tool without needing to resort to the command line, and make basic customisations to your pack without editing the source code.
+You can now use the build tool without needing to resort to the command line, and customise the fixes included in the pack without editing the source code.
 
-Try out the MVP at **<https://capitalisation-fixes.netlify.app/>**
+Try it out at **<https://capitalisation-fixes.slevel.xyz>**
 
-<img width="2560" height="1311" alt="image" src="https://github.com/user-attachments/assets/125cd965-26b2-4fd2-bb00-5527a4331865" />
+[![Screenshot of the web UI](https://hc-cdn.hel1.your-objectstorage.com/s/v3/caaa296dd0524a105ee713229c0918e44cc81a72_image.png)](https://capitalisation-fixes.slevel.xyz)
 
 ### Running the web UI locally
 
