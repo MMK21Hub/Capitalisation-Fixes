@@ -208,6 +208,10 @@ Try out the MVP at **<https://capitalisation-fixes.netlify.app/>**
 3. Start the development server with `yarn workspace capitalisation-fixes-web dev`
 4. Alternatively, you can build the project for production with `yarn workspace capitalisation-fixes-web build`
 
+## Publisher tool
+
+See [`src/publisher/README.md`](src/publisher/README.md) for documentation for the publisher tool.
+
 ## `new-version.sh`
 
 This is a utility script for Linux systems that automates part of the process of publishing a new release of Capitalisation Fixes. You should provide a name for the new version as the first (and only) argument, e.g. `./new-version.sh v2.1`.
