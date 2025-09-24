@@ -119,7 +119,10 @@ export function App() {
   return (
     <>
       <header>
-        <h1>Capitalisation Fixes</h1>
+        <div class="header-title">
+          <img src="icon.png" />
+          <h1>Capitalisation Fixes</h1>
+        </div>
       </header>
       <main>
         <h2>Step 1: Select Minecraft version</h2>

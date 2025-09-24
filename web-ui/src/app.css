@@ -13,6 +13,17 @@ header {
   justify-content: space-evenly;
 }
 
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-title img {
+  height: 2.5em;
+  width: 2.5em;
+}
+
 h1 {
   margin: 0;
   justify-self: center;
