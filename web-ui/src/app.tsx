@@ -125,6 +125,23 @@ export function App() {
         </div>
       </header>
       <main>
+        {/* <h2>About Capitalisation Fixes</h2> */}
+        <p>
+          Download Capitalisation Fixes, a Minecraft resource pack that fixes
+          textual errors, like incorrect naming or capitalisation.
+        </p>
+        <p>
+          Find out more at the links below, or scroll down to customise and
+          download the pack.
+        </p>
+        <div class="links">
+          <a href="https://modrinth.com/resourcepack/capitalisation-fixes">
+            Download from Modrinth
+          </a>
+          <a href="https://github.com/MMK21Hub/Capitalisation-Fixes">
+            Find out more on GitHub
+          </a>
+        </div>
         <h2>Step 1: Select Minecraft version</h2>
         <select
           disabled={!versionsSummary}

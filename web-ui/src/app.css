@@ -39,6 +39,16 @@ main {
   padding-bottom: 4rem;
 }
 
+.links {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.175rem;
+}
+
+.links a {
+  margin-inline: 1rem;
+}
+
 .fix-line {
   display: flex;
   margin-top: 0.25rem;
