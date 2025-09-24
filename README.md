@@ -267,12 +267,16 @@ If there's a project I've missed out that fixes a bug in Minecraft (without chan
 This repository uses a monorepo structure (using Yarn workspaces), with the following folders:
 
 - **[build-tool](./build-tool/)**
-  - Contains the source code for the resource pack, the build tool, the Modrinth publisher, and the debug report viewer.
-  - (In the future, this should probably be split into separate workspaces for each of the components mentioned above.)
+  - Most of the code in this folder is part of the build tool
+  - It also contains source code for the following sub-projects:
+    - The Capitalisation Fixes resource pack content (`fixes.ts`, `pack.png`, `constants.ts`)
+    - The [Modrinth publisher tool](#publisher-tool) (`src/publisher/`)
+    - The debug report viewer (`src/report-viewer/`)
+    - Note: In the future, each of the components mentioned above should probably be split into separate workspaces.
   - Built using TypeScript
   - The build tool is (mostly) isomorphic, but the publisher and report viewer are Node.js-only.
 - **[web-ui](./web-ui/)**
-  - Contains the source code for the "Capitalisation Fixes web" project
+  - Contains the source code for the [Capitalisation Fixes web UI](#web-ui)
   - Built using Vite, Preact, and TypeScript
 
 ## Acknowledgements
