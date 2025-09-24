@@ -13,18 +13,21 @@ import {
   fetchVersionsSummary,
   type VersionInfo,
 } from "capitalisation-fixes/src/helpers/minecraftHelpers"
+import packPngUrl from "../../build-tool/pack.png?url"
+import readmeUrl from "../../README.md?url"
 
 async function generatePackZip(
   fixes: Fix[],
   targetVersion: MinecraftVersionId,
   targetLanguages: string[]
 ) {
+  const packPngFile = await fetch(packPngUrl).then((res) => res.arrayBuffer())
+  const readmeText = await fetch(readmeUrl).then((res) => res.text())
+
   const zipFiles = await generateResourcePacks(fixes, {
     assets: {
-      packPng: Uint8Array.from([0]),
-      readme: Uint8Array.from(
-        "# Some README file content!".split("").map((c) => c.charCodeAt(0))
-      ),
+      packPng: new Uint8Array(packPngFile),
+      readme: new TextEncoder().encode(readmeText),
     },
     packDescription: PACK_DESCRIPTION,
     targetLanguages,
