@@ -41,12 +41,10 @@ main {
 
 .links {
   margin-top: 2rem;
-  text-align: center;
-  font-size: 1.175rem;
-}
-
-.links a {
-  margin-inline: 1rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  font-size: 1.175rem; /* This value just looks the nicest */
 }
 
 .fix-line {
