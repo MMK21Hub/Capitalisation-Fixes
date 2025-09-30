@@ -14,6 +14,7 @@ import { toTitleCase, StartAndEnd, SearchValue } from "../helpers/util.js"
 
 /** Provide a custom callback function to do advanced transformations that aren't covered by existing transformers */
 export class CustomTransformer extends Transformer {
+  name = "Custom transformation"
   constructor(callback: (data: CallbackData) => string) {
     // Call the provided function and use the string it returns
     super((data) => ({ value: callback(data) }))
@@ -22,6 +23,7 @@ export class CustomTransformer extends Transformer {
 
 /** Modify translation strings the old way! */
 export class OverrideTransformer extends Transformer {
+  name = "Replace entire string"
   constructor(value: string) {
     // Just return the provided value
     super(() => ({ value }))
@@ -30,6 +32,7 @@ export class OverrideTransformer extends Transformer {
 
 /** Replaces a specified search string with another string */
 export class ReplaceTransformer extends Transformer {
+  name = "Replace word(s)"
   searchValue
   replaceValue
 
@@ -88,6 +91,7 @@ export class ReplaceTransformer extends Transformer {
 
 /** Similar to {@link ReplaceTransformer}, but can take into account context (stuff surrounding the target string) */
 export class ContextualReplaceTransformer extends Transformer {
+  name = "Replace specific word(s)"
   constructor(
     search: { before?: RegExp; target: RegExp; after?: RegExp },
     replace: string
@@ -116,6 +120,7 @@ export class ContextualReplaceTransformer extends Transformer {
 
 /** Converts the whole string into Title Case. Useful for button labels etc. */
 export class TitleCaseTransformer extends Transformer {
+  name = "Capitalise all words"
   constructor() {
     super(({ oldValue }) => ({
       value: toTitleCase(oldValue),
@@ -123,8 +128,9 @@ export class TitleCaseTransformer extends Transformer {
   }
 }
 
-/** Capitalises past of a string, as specified by a RegEx or simple search string */
+/** Capitalises part of a string, as specified by a RegEx or simple search string */
 export class CapitaliseSegmentTransformer extends Transformer {
+  name = "Capitalise specific word(s)"
   searchValue
 
   constructor(searchValue: FlexibleSearchValue) {
@@ -149,6 +155,7 @@ export class CapitaliseSegmentTransformer extends Transformer {
 
 /** Capitalises the parts of a string that are in-between the provided search strings (inclusively)  */
 export class CapitaliseSectionTransformer extends Transformer {
+  name = "Capitalise specific word(s)"
   range: StartAndEnd<SearchValue>
 
   constructor(start: SearchValue | null, end: SearchValue | null) {
@@ -206,6 +213,7 @@ export class CapitaliseSectionTransformer extends Transformer {
 export class CapitaliseFromTranslationStringsTransformer
   implements Transformer
 {
+  name = "Capitalise in-game names"
   options
 
   callback: Callback = async ({ oldValue, language, version }) => {
@@ -271,6 +279,7 @@ export class CapitaliseFromTranslationStringsTransformer
 }
 
 export class RemoveWordTransformer extends ContextualReplaceTransformer {
+  name = "Remove word(s)"
   constructor(
     word: RegExp,
     options: {
@@ -299,6 +308,7 @@ export class RemoveWordTransformer extends ContextualReplaceTransformer {
  * It is recommended to specify the targetWord as a regex wrapped in `\b` so that it only matches whole words.
  */
 export class PluralGuardTransformer extends ReplaceTransformer {
+  name = "Add plural guard"
   constructor(targetWord: FlexibleSearchValue, pluralString: string = "s") {
     const pluralGuard = `(${pluralString})`
 

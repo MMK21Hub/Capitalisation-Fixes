@@ -1,7 +1,4 @@
-import { JSDOM } from "jsdom"
-import { Response } from "node-fetch"
-import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises"
-import path from "node:path"
+/** Isomorphic "utility" functions for various things */
 
 /** Might be the value itself, or a promise that resolves to that value */
 export type PromiseMaybe<T> = T | Promise<T>
@@ -78,19 +75,48 @@ export function toMap<T>(recordLike: RecordLike<string, T>): Map<string, T> {
 
 /* DOM UTILS */
 
+/** A DOM-compatible object, e.g. a `JSDOM` instance or the browser's `globalThis` */
+export type DOM = {
+  window: {
+    document: {
+      querySelector: typeof window.document.querySelector
+      querySelectorAll: typeof window.document.querySelectorAll
+    }
+  }
+}
+
+export async function fetchDOM(url: URL | string): Promise<DOM> {
+  if (isNode()) {
+    const { JSDOM } = await import("jsdom")
+    return JSDOM.fromURL(url.toString())
+  }
+  // Parse using the browser DOMParser API
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new RequestError(response, `Failed to fetch DOM from ${url}`)
+  }
+  const domParser = new DOMParser()
+  const document = domParser.parseFromString(await response.text(), "text/xml")
+  return {
+    window: {
+      document,
+    },
+  }
+}
+
 export class SelectorNotFound extends Error {
   constructor(message: string) {
     super(message)
   }
 }
 
-export function getSelector(dom: JSDOM, selector: string) {
+export function getSelector(dom: DOM, selector: string) {
   const match = dom.window.document.querySelector(selector)
   if (!match) throw new SelectorNotFound(`Couldn't find selector: ${selector}`)
   return match
 }
 
-export function getSelectorAll(dom: JSDOM, selector: string) {
+export function getSelectorAll(dom: DOM, selector: string) {
   const matches = dom.window.document.querySelectorAll(selector)
   if (!matches.length)
     throw new SelectorNotFound(`Didn't match any elements: ${selector}`)
@@ -108,28 +134,28 @@ export function getElementText(element: Element) {
   throw new Error(`Element doesn't contain any text!\n${element.outerHTML}`)
 }
 
-export function getSelectorText(dom: JSDOM, selector: string) {
+export function getSelectorText(dom: DOM, selector: string) {
   const element = getSelector(dom, selector)
   return getElementText(element)
 }
 
-export function getSelectorTextAll(dom: JSDOM, selector: string) {
+export function getSelectorTextAll(dom: DOM, selector: string) {
   const matchingElements = Array.from(getSelectorAll(dom, selector))
   return matchingElements.map(getElementText)
 }
 
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict?: true
 ): T
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict: false
 ): T | null
 export function getSelectorId<T extends number = number>(
-  dom: JSDOM,
+  dom: DOM,
   selector: string,
   strict = true
 ): T | null {
@@ -236,54 +262,33 @@ export function isSingleWord(str: string) {
   return toWords(str).length === 1
 }
 
-/* FILESYSTEM UTILS */
-
-/**
- * Creates a directory if it does not already exist
- * @returns true if the directory already existed; false if it was created
- */
-export function ensureDir(path: string): Promise<boolean> {
-  return mkdir(path)
-    .then(() => true)
-    .catch((e) => {
-      return e.code === "EEXIST" ? false : e
-    })
+/* ISOMORPHIC UTILS */
+export function isNode() {
+  return typeof process === "object"
 }
 
-/** Deletes all the files in a folder */
-export async function clearDir(
-  directoryPath: string,
-  recursive: boolean = true
+export async function addToCacheIfPossible(
+  // We accept an array of strings so that the caller doesn't need access to `node:path`
+  filePath: string | string[],
+  contents: string
 ) {
-  const contents = await readdir(directoryPath)
-
-  // Return false if the directory is empty
-  if (!contents) return false
-
-  // Delete all the files in the directory (asynchronously)
-  await Promise.all(
-    contents.map((file) => rm(path.resolve(directoryPath, file), { recursive }))
-  )
-
-  return true
+  if (!isNode()) return
+  const { addToCache } = await import("./utilNode.js")
+  const path = await import("node:path")
+  const resolvedPath = Array.isArray(filePath)
+    ? path.join(...filePath)
+    : filePath
+  await addToCache(resolvedPath, contents)
 }
 
-/* CACHING */
-
-export async function getCachedFile(filePath: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  return await readFile(fullFilePath, "utf8").catch(() => {
-    return null
-  })
-}
-
-export async function addToCache(filePath: string, contents: string) {
-  // Make sure that the .cache directory exists
-  await ensureDir(".cache")
-
-  const fullFilePath = path.join(".cache", ...filePath.split("/"))
-  await writeFile(fullFilePath, contents)
+export async function getCachedFileIfPossible(
+  filePath: string | string[]
+): Promise<string | null> {
+  if (!isNode()) return null
+  const { getCachedFile } = await import("./utilNode.js")
+  const path = await import("node:path")
+  const resolvedPath = Array.isArray(filePath)
+    ? path.join(...filePath)
+    : filePath
+  return getCachedFile(resolvedPath)
 }

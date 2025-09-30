@@ -1,12 +1,12 @@
 import {
+  DOM,
+  fetchDOM,
   getSelectorId,
   getSelectorText,
   getSelectorTextAll,
   SelectorNotFound,
   urlPath,
 } from "./util.js"
-import { JSDOM } from "jsdom"
-import fetch from "node-fetch"
 import { isFutureVersion, toVersionID } from "./minecraftHelpers.js"
 
 // From https://bugs.mojang.com/rest/api/2/status
@@ -51,9 +51,9 @@ export function getBugXML(
   bug: string,
   fields?: string[],
   retry = true
-): Promise<JSDOM> {
+): Promise<DOM> {
   const url = getBugXMLUrl(bug, fields)
-  return JSDOM.fromURL(url.href)
+  return fetchDOM(url)
     .catch((error: Error) => {
       if (retry) {
         console.warn("getBugXML(): HTTP request failed, retrying.")
@@ -80,7 +80,7 @@ export async function getBugResolution(bug: string) {
 }
 
 /** @returns An array of version names (or maybe IDs, sometimes) */
-function getRawVersionsFromXML(dom: JSDOM, selector: string) {
+function getRawVersionsFromXML(dom: DOM, selector: string) {
   try {
     const versionNames = getSelectorTextAll(dom, selector)
     return versionNames
@@ -91,7 +91,7 @@ function getRawVersionsFromXML(dom: JSDOM, selector: string) {
 }
 
 /** @returns An array of version IDs */
-function getVersionsFromXML(dom: JSDOM, selector: string) {
+function getVersionsFromXML(dom: DOM, selector: string) {
   const selectedVersions = getRawVersionsFromXML(dom, selector)
   const versionIds = selectedVersions
     // Get rid of future versions, since they refer to the future,

@@ -1,0 +1,26 @@
+html {
+  color-scheme: dark;
+  --base: var(--ctp-mocha-base);
+  --mantle: var(--ctp-mocha-mantle);
+  --crust: var(--ctp-mocha-crust);
+  --text: var(--ctp-mocha-text);
+  --blue: var(--ctp-mocha-blue);
+  --blue-hsl: var(--ctp-mocha-blue-hsl);
+}
+
+* {
+  --pico-primary-background: var(--blue);
+  --pico-primary-hover-background: hsl(from var(--blue) h s 85%);
+  --pico-primary-hover-border: var(--pico-primary-hover-background);
+  --pico-primary-border: var(--blue);
+  --pico-primary-inverse: black;
+}
+
+:focus-visible {
+  outline: auto;
+}
+
+button:focus-visible {
+  outline: 4px solid var(--blue);
+  outline-offset: 4px;
+}

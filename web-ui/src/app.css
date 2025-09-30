@@ -1,0 +1,62 @@
+/* @import "@catppuccin/palette/style"; */
+
+html {
+  background-color: var(--base);
+}
+
+header {
+  background-color: var(--mantle);
+  height: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-title img {
+  height: 2.5em;
+  width: 2.5em;
+}
+
+h1 {
+  margin: 0;
+  justify-self: center;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+main {
+  margin-inline: 0.5rem;
+  padding-bottom: 4rem;
+}
+
+.links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  font-size: 1.175rem; /* This value just looks the nicest */
+}
+
+.fix-line {
+  display: flex;
+  margin-top: 0.25rem;
+  align-items: center;
+}
+
+.fix-line input {
+  flex-shrink: 0;
+}
+
+[for="include-all-fixes"] {
+  font-weight: bold;
+}

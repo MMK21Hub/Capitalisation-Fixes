@@ -2,6 +2,7 @@ import { Transformer } from "../builder.js"
 
 /** Lets you apply multiple transformers to a single translation string */
 export class MultiTransformer extends Transformer {
+  name = "Multiple transformations"
   transformers
 
   constructor(transformers: Transformer[]) {

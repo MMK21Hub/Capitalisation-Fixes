@@ -7,7 +7,6 @@ import {
   toMap,
   URLSearchParamsResolvable,
 } from "../helpers/util.js"
-import fetch, { Headers, BodyInit, FormData } from "node-fetch"
 
 export interface ModrinthClientOptions {
   token?: string

@@ -1,18 +1,19 @@
-import fetch from "node-fetch"
-import path from "path"
-import { cache, debugReport, versionsSummary } from "../main.js"
 import {
   FancyRange,
   StartAndEnd,
   Range,
-  addToCache,
-  ensureDir,
-  getCachedFile,
   ResolvableAsync,
   SearchValue,
   ResolvableSync,
   isSimpleRange,
+  addToCacheIfPossible,
+  getCachedFileIfPossible,
 } from "../helpers/util.js"
+import { debugReport } from "../debugReport.js"
+
+const cache = new Map<string, any>()
+console.log("Fetching Minecraft version information...")
+const versionsSummary = await fetchVersionsSummary()
 
 /** A single Minecraft language ID */
 export type MinecraftLanguage = string
@@ -434,7 +435,7 @@ export async function getVanillaLanguageFile(
 ): Promise<Record<string, string>> {
   // If there is a file in the cache that matches the language and the version, use it
   const cachedFilePath = `${version}/${language}.json`
-  const cacheResult = await getCachedFile(cachedFilePath)
+  const cacheResult = await getCachedFileIfPossible(cachedFilePath)
 
   if (cacheResult) {
     try {
@@ -469,10 +470,10 @@ export async function getVanillaLanguageFile(
     )
 
   // Asynchronously cache the language file
-  ensureDir(path.join(".cache", version)).then(() => {
-    const filePath = path.join(version, `${language}.json`)
-    addToCache(filePath, JSON.stringify(languageFile))
-  })
+  addToCacheIfPossible(
+    [version, `${language}.json`],
+    JSON.stringify(languageFile)
+  )
 
   return languageFile as any
 }

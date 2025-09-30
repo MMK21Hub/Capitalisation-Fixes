@@ -141,9 +141,9 @@ Unfortunately, Capitalisation Fixes v1 is not supported in versions newer than 1
 e.g. many of Minecraft's capitalisation bugs were merged into a single bug report on the bugtracker (making it harder to track which specific strings are fixed by this pack). Also, a large part of the pack was made obsolete by the release of 1.16 Pre-release 3, which added many of these fixes into the vanilla game.
 | | 20w21a to 20w22a | 1.16 Pre-releases | 1.16 to 1.16.1 | 20w27a to 20w29a |
 | -------------------------------------------------------------------------------------------------------- | ---------------- | ----------------- | -------------- | ---------------- |
-| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v10-2020-05-21)** | &#9989; | &#9989; | &#9989; | &#9989; |
-| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v11-2020-05-31)** | &#9989; | &#9989; | &#9989; | &#9989; |
-| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/old_changelog.md#v12-2020-06-10)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.0](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v10-2020-05-21)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.1](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v11-2020-05-31)** | &#9989; | &#9989; | &#9989; | &#9989; |
+| **[v1.2](https://github.com/MMK21Hub/Capitalisation-Fixes/blob/master/docs/changelogs/old_changelog.md#v12-2020-06-10)** | &#9989; | &#9989; | &#9989; | &#9989; |
 
 ## Build tool
 
@@ -161,11 +161,14 @@ cd Capitalisation-Fixes
 # Resolve and install dependencies
 yarn install
 
+# Move into the build tool folder
+cd build-tool
+
 # Compile the code into executable JavaScript
 yarn build
 ```
 
-Then, you can actually run the build script. Here are some usage examples:
+Then, you can actually run the build script. Ensure you're in the `build-tool` folder. Here are some usage examples:
 
 ```yaml
 # Build the resource pack. The output will be in the `out` folder,
@@ -187,8 +190,23 @@ node dist/main.js --stats --latest-snapshot
 node dist/main.js --stats --latest-release
 ```
 
-At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`src/main.ts`](src/main.ts) file.
+At the moment, you can't configure the output using command line arguments. To change the targeted Minecraft version (for example) you can instead edit the build configuration in the [`build-tool/src/main.ts`](build-tool/src/main.ts) file.
 (Make sure that you run `yarn build` after editing any source files, or alternatively use `yarn watch` to automatically compile the code whenever you make changes.)
+
+## Web UI
+
+You can now use the build tool without needing to resort to the command line, and customise the fixes included in the pack without editing the source code.
+
+Try it out at **<https://capitalisation-fixes.slevel.xyz>**
+
+[![Screenshot of the web UI](https://hc-cdn.hel1.your-objectstorage.com/s/v3/caaa296dd0524a105ee713229c0918e44cc81a72_image.png)](https://capitalisation-fixes.slevel.xyz)
+
+### Running the web UI locally
+
+1. Clone the repository
+2. Install dependencies: `yarn install`
+3. Start the development server with `yarn workspace capitalisation-fixes-web dev`
+4. Alternatively, you can build the project for production with `yarn workspace capitalisation-fixes-web build`
 
 ## Publisher tool
 
@@ -243,3 +261,36 @@ For detailed information, check [the file itself](new-version.sh).
 ### Other projects
 
 If there's a project I've missed out that fixes a bug in Minecraft (without changing intended features or adding content), please let me know through an issue or a pull request!
+
+## Project folder structure
+
+This repository uses a monorepo structure (using Yarn workspaces), with the following folders:
+
+- **[build-tool](./build-tool/)**
+  - Most of the code in this folder is part of the build tool
+  - It also contains source code for the following sub-projects:
+    - The Capitalisation Fixes resource pack content (`fixes.ts`, `pack.png`, `constants.ts`)
+    - The [Modrinth publisher tool](#publisher-tool) (`src/publisher/`)
+    - The debug report viewer (`src/report-viewer/`)
+    - Note: In the future, each of the components mentioned above should probably be split into separate workspaces.
+  - Built using TypeScript
+  - The build tool is (mostly) isomorphic, but the publisher and report viewer are Node.js-only.
+- **[web-ui](./web-ui/)**
+  - Contains the source code for the [Capitalisation Fixes web UI](#web-ui)
+  - Built using Vite, Preact, and TypeScript
+
+## Acknowledgements
+
+- Thanks to Mojang for letting us hack on your game with resource packs and data packs.
+- Thanks to the Mojira community for maintaining up-to-date bug reports for the various bugs fixed in this pack.
+- The build tool uses Misode's [`mcmeta`](https://github.com/misode/mcmeta) project for Minecraft version metadata.
+- I've used [`madge`](https://github.com/pahen/madge) is used to generate dependency graphs to help with debugging
+  - Use it like `madge ./dist -i dep.svg`
+
+## AI usage statement
+
+I have used GitHub Copilot's inline code completions to help code versions after v2.20 (May 2025) of the [build tool](./build-tool/). I have not used any AI tools or completions when creating the resource pack, or build tool versions before v2.20.
+
+I have used GitHub Copilot's inline code completions to help create the [web UI](./web-ui/).
+
+I have not generated any large sections of code or whole functions using AI, and no text, documentation, or images have been generated using AI.
